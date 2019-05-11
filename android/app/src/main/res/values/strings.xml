@@ -1,0 +1,5 @@
+<resources>
+    <string name="facebook_app_id">184203322195637</string>
+    <string name="fb_login_protocol_scheme">fb184203322195637</string>
+    <string name="google_geo_id">AIzaSyA846FFKKOz3i01WiOCrKVGFqljJ6EF_8Q</string>
+</resources>

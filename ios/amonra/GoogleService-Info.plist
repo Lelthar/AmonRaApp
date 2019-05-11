@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>631107559689-aipk7c9kvhelhs73ssarl21602ohi24b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.631107559689-aipk7c9kvhelhs73ssarl21602ohi24b</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBatuagX7dj_rpZ2Fx4S-N0rTl0l3pCXFQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>631107559689</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.amonra</string>
+	<key>PROJECT_ID</key>
+	<string>amonra-tec</string>
+	<key>STORAGE_BUCKET</key>
+	<string>amonra-tec.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:631107559689:ios:40173912b1077941</string>
+	<key>DATABASE_URL</key>
+	<string>https://amonra-tec.firebaseio.com</string>
+</dict>
+</plist>

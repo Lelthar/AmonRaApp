@@ -1,0 +1,15 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "Alianza Cultural Franco Costarricense", "descriptio": null, "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ -84.0756601, 9.9369741 ] } },
+{ "type": "Feature", "properties": { "Name": "Casa Coto Cubero", "descriptio": null, "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ -84.0757459, 9.9376875 ] } },
+{ "type": "Feature", "properties": { "Name": "El Castillo del Moro", "descriptio": "Es un edificio....", "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ -84.0771514, 9.9393149 ] } },
+{ "type": "Feature", "properties": { "Name": "Casa Huete Quirós ", "descriptio": null, "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ -84.0773486, 9.9379755 ] } },
+{ "type": "Feature", "properties": { "Name": "Antigua Casa Mario González Feo", "descriptio": null, "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ -84.0742144, 9.9371551 ] } },
+{ "type": "Feature", "properties": { "Name": "Antigua Casa Calvo Peña", "descriptio": null, "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ -84.0740072, 9.9377257 ] } },
+{ "type": "Feature", "properties": { "Name": "Centro Costarricense de Producción Cinematográfica\t", "descriptio": null, "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ -84.0733635, 9.9374154 ] } },
+{ "type": "Feature", "properties": { "Name": "Antigua Casa Brenes Méndez", "descriptio": null, "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ -84.0733601, 9.9376234 ] } },
+{ "type": "Feature", "properties": { "Name": "Casa Verde", "descriptio": null, "timestamp": null, "begin": null, "end": null, "altitudeMo": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ -84.0746945, 9.9378064 ] } }
+]
+}

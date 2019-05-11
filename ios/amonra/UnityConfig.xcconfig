@@ -1,0 +1,60 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/FirebaseAnalytics/Frameworks" "${PODS_ROOT}/FirebaseInstanceID/Frameworks" "${PODS_ROOT}/GoogleMaps/Base/Frameworks" "${PODS_ROOT}/GoogleMaps/Maps/Frameworks" "${PODS_ROOT}/GoogleSignIn/Frameworks"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 $(inherited) GTM_OAUTH2_USE_FRAMEWORK_IMPORTS=1 $(inherited) PB_FIELD_32BIT=1 PB_NO_PACKED_STRUCTS=1
+HEADER_SEARCH_PATHS = $(inherited) ${PODS_ROOT}/Firebase/CoreOnly/Sources "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/DoubleConversion" "${PODS_ROOT}/Headers/Public/Firebase" "${PODS_ROOT}/Headers/Public/FirebaseAnalytics" "${PODS_ROOT}/Headers/Public/FirebaseAuth" "${PODS_ROOT}/Headers/Public/FirebaseCore" "${PODS_ROOT}/Headers/Public/FirebaseDatabase" "${PODS_ROOT}/Headers/Public/FirebaseInstanceID" "${PODS_ROOT}/Headers/Public/GTMOAuth2" "${PODS_ROOT}/Headers/Public/GTMSessionFetcher" "${PODS_ROOT}/Headers/Public/Google-Maps-iOS-Utils" "${PODS_ROOT}/Headers/Public/GoogleMaps" "${PODS_ROOT}/Headers/Public/GoogleSignIn" "${PODS_ROOT}/Headers/Public/GoogleToolboxForMac" "${PODS_ROOT}/Headers/Public/React" "${PODS_ROOT}/Headers/Public/glog" "${PODS_ROOT}/Headers/Public/leveldb-library" "${PODS_ROOT}/Headers/Public/nanopb" "${PODS_ROOT}/Headers/Public/react-native-google-maps" "${PODS_ROOT}/Headers/Public/react-native-maps" "${PODS_ROOT}/Headers/Public/react-native-orientation" "${PODS_ROOT}/Headers/Public/react-native-video" "${PODS_ROOT}/Headers/Public/yoga""$(SRCROOT)/UnityExport/Classes" "$(SRCROOT)/UnityExport/Classes/Unity" "$(SRCROOT)/UnityExport/Classes/Native" "$(SRCROOT)/UnityExport/Libraries" "$(SRCROOT)/UnityExport/Libraries/libil2cpp/include" ${PODS_HEADER_PATHS};
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion" "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth" "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore" "${PODS_CONFIGURATION_BUILD_DIR}/FirebaseDatabase" "${PODS_CONFIGURATION_BUILD_DIR}/Folly" "${PODS_CONFIGURATION_BUILD_DIR}/GTMOAuth2" "${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher" "${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils" "${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac" "${PODS_CONFIGURATION_BUILD_DIR}/React" "${PODS_CONFIGURATION_BUILD_DIR}/glog" "${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library" "${PODS_CONFIGURATION_BUILD_DIR}/nanopb" "${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps" "${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps" "${PODS_CONFIGURATION_BUILD_DIR}/react-native-orientation" "${PODS_CONFIGURATION_BUILD_DIR}/react-native-video" "${PODS_CONFIGURATION_BUILD_DIR}/yoga" "$(SRCROOT)/UnityExport/Libraries" "$(SRCROOT)/UnityExport/Libraries/libil2cpp/include" ${PODS_LIBRARY_PATHS};
+
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/DoubleConversion" -isystem "${PODS_ROOT}/Headers/Public/Firebase" -isystem "${PODS_ROOT}/Headers/Public/FirebaseAnalytics" -isystem "${PODS_ROOT}/Headers/Public/FirebaseAuth" -isystem "${PODS_ROOT}/Headers/Public/FirebaseCore" -isystem "${PODS_ROOT}/Headers/Public/FirebaseDatabase" -isystem "${PODS_ROOT}/Headers/Public/FirebaseInstanceID" -isystem "${PODS_ROOT}/Headers/Public/GTMOAuth2" -isystem "${PODS_ROOT}/Headers/Public/GTMSessionFetcher" -isystem "${PODS_ROOT}/Headers/Public/Google-Maps-iOS-Utils" -isystem "${PODS_ROOT}/Headers/Public/GoogleMaps" -isystem "${PODS_ROOT}/Headers/Public/GoogleSignIn" -isystem "${PODS_ROOT}/Headers/Public/GoogleToolboxForMac" -isystem "${PODS_ROOT}/Headers/Public/React" -isystem "${PODS_ROOT}/Headers/Public/glog" -isystem "${PODS_ROOT}/Headers/Public/leveldb-library" -isystem "${PODS_ROOT}/Headers/Public/nanopb" -isystem "${PODS_ROOT}/Headers/Public/react-native-google-maps" -isystem "${PODS_ROOT}/Headers/Public/react-native-maps" -isystem "${PODS_ROOT}/Headers/Public/react-native-orientation" -isystem "${PODS_ROOT}/Headers/Public/react-native-video" -isystem "${PODS_ROOT}/Headers/Public/yoga" -DINIT_SCRIPTING_BACKEND=1 -fno-strict-overflow -DRUNTIME_IL2CPP=1;
+OTHER_LDFLAGS = $(inherited) -ObjC -l"DoubleConversion" -l"FirebaseAuth" -l"FirebaseCore" -l"FirebaseDatabase" -l"Folly" -l"GTMOAuth2" -l"GTMSessionFetcher" -l"Google-Maps-iOS-Utils" -l"GoogleToolboxForMac" -l"React" -l"c++" -l"glog" -l"icucore" -l"leveldb-library" -l"nanopb" -l"react-native-google-maps" -l"react-native-maps" -l"react-native-orientation" -l"react-native-video" -l"sqlite3" -l"stdc++" -l"yoga" -l"z" -framework "Accelerate" -framework "CFNetwork" -framework "CoreData" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreTelephony" -framework "CoreText" -framework "FirebaseAnalytics" -framework "FirebaseCoreDiagnostics" -framework "FirebaseInstanceID" -framework "FirebaseNanoPB" -framework "Foundation" -framework "GLKit" -framework "GoogleMaps" -framework "GoogleMapsBase" -framework "GoogleMapsCore" -framework "GoogleSignIn" -framework "ImageIO" -framework "JavaScriptCore" -framework "OpenGLES" -framework "QuartzCore" -framework "SafariServices" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "UIKit"  -weak-lSystem -weak_framework CoreMotion -weak_framework GameKit -weak_framework iAd -framework AVFoundation -framework AudioToolbox -framework CFNetwork -framework CoreGraphics -framework CoreLocation -framework CoreMedia -framework CoreVideo -framework Foundation -framework MediaPlayer -framework MediaToolbox -framework Metal -framework OpenAL -framework OpenGLES -framework QuartzCore -framework SystemConfiguration -framework UIKit -liconv.2 -liPhone-lib -lil2cpp ${PODS_LIBRARIES};
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
+
+
+
+
+
+//
+//  UnityConfig.xcconfig
+//  rnunitydemo
+//
+//  Created by xzper on 2018/3/6.
+//  Copyright © 2018年 Facebook. All rights reserved.
+//
+UNITY_SCRIPTING_BACKEND = il2cpp;
+GCC_PREFIX_HEADER = $(SRCROOT)/UnityExport/Classes/Prefix.pch;
+
+
+
+// If using .net 4.0 in Unity, append -DNET_4_0 to OTHER_CFLAGS
+
+
+
+CLANG_CXX_LANGUAGE_STANDARD = c++0x;
+CLANG_CXX_LIBRARY = libc++;
+CLANG_ENABLE_MODULES = NO;
+CLANG_WARN_BOOL_CONVERSION = NO;
+CLANG_WARN_CONSTANT_CONVERSION = NO;
+CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+CLANG_WARN_EMPTY_BODY = NO;
+CLANG_WARN_ENUM_CONVERSION = NO;
+CLANG_WARN_INT_CONVERSION = NO;
+CLANG_WARN_OBJC_ROOT_CLASS = YES;
+CLANG_WARN_UNREACHABLE_CODE = NO;
+CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+GCC_C_LANGUAGE_STANDARD = c99;
+GCC_ENABLE_OBJC_EXCEPTIONS = NO;
+GCC_ENABLE_CPP_RTTI = NO;
+GCC_PRECOMPILE_PREFIX_HEADER = YES;
+GCC_THUMB_SUPPORT = NO;
+GCC_USE_INDIRECT_FUNCTION_CALLS = NO;
+GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64] = YES;
+GCC_WARN_ABOUT_RETURN_TYPE = YES;
+GCC_WARN_UNDECLARED_SELECTOR = NO;
+GCC_WARN_UNINITIALIZED_AUTOS = NO;
+GCC_WARN_UNUSED_FUNCTION = NO;
+
+ENABLE_BITCODE = NO;
+
+DEAD_CODE_STRIPPING = YES;
