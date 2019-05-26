@@ -35,6 +35,7 @@ import Literature from './components/MenuSide/Experiences/Literature/Literature'
 import Narrations from './components/MenuSide/Experiences/Narrations/Narrations';
 import VirtualVisit from './components/VirtualVisit/VirtualVisit';
 import Secrets from './components/MenuSide/Experiences/Secrets/Secrets';
+import Place from './components/Map/Place/Place';
 import ViromediaController from './components/Viromedia/ViromediaController';
 //import LocationLoader from './components/LocationLoaderView/LocationLoader';
 
@@ -106,6 +107,9 @@ const RootStack = StackNavigator(
         Secrets:{
             screen: Secrets
         },
+        Place:{
+            screen: Place
+        },
         VirtualVisit:{
             screen: VirtualVisit
         },
@@ -143,9 +147,11 @@ export default class MainApp extends Component<Props> {
             guideScreen: false,
             width: Dimensions.get('window').width,
             height: Dimensions.get('window').height,
+            navigatorMethod: null,
         }
         this.getNavigationProp = this.getNavigationProp.bind(this);
         this.getActiveFilters = this.getActiveFilters.bind(this);
+        this.updateNavigationToScreen  = this.updateNavigationToScreen.bind(this);
     }
 
     componentWillMount(){
@@ -157,6 +163,13 @@ export default class MainApp extends Component<Props> {
             console.log("Celular inicio en LANDSCAPE")
         }
 
+    }
+
+    updateNavigationToScreen(goToScreen) {
+        this.setState(
+            {
+                navigatorMethod:goToScreen
+            });
     }
 
     // This function is use to open the FilterMenu and the map screen
@@ -269,7 +282,10 @@ export default class MainApp extends Component<Props> {
           rateScreen: this.state.rateScreen,
           guideScreen: this.state.guideScreen,
           first: this.state.first
-        }
+        },
+
+        navigatorMethod:this.state.navigatorMethod,
+        updateNavigationToScreen: this.updateNavigationToScreen.bind(this),
       }
         return (
             <View style={styles.container}>

@@ -16,7 +16,8 @@ import Image from 'react-native-scalable-image'
 import MenuSide from '../MenuSide/MenuSide';
 import UseGuide from '../UseGuide/UseGuide';
 import RateApp from '../RateApp/RateApp';
-//import Unity from '../Unity/Unity'
+//import AugmentedReality from '../Unity/AugmentedReality';
+
 
 const window_height = Dimensions.get('window').height - 120
 const white = "rgba(255, 255, 255, 0.7)";
@@ -32,13 +33,9 @@ const png = '.png';
 
 export default class Navigator extends Component {
 
-
     //Please don't change the order of any of the lists.
     constructor (props) {
         super(props);
-
-        //console.debug("MAINAPPDEBUG: " + JSON.stringify(this.props.screenProps))
-
         this.state = {
             filterMenu: this.props.screenProps.showProps.filterMenu,
             menuSide: this.props.screenProps.showProps.menuSide,
@@ -51,24 +48,70 @@ export default class Navigator extends Component {
             currentScreenTitle: "",
             barsColor: white,
             colorScreens: [
-                "Directory", "CultureArt", "Institutional",
-                "Hotels", "Gastronomy", "Experiences",
-                "Architecture", "MoreAmonRA", "Origin",
-                "InfoAmon_RA", "AsociacionVecinos",
-                "Activities", "Characters", "Houses",
-                "Literature", "Narrations", "Secrets", "ArchitectureView"
+                "Directory", 
+                "CultureArt", 
+                "Institutional",
+                "Hotels", 
+                "Gastronomy", 
+                "Experiences",
+                "Architecture", 
+                "MoreAmonRA", 
+                "Origin",
+                "InfoAmon_RA", 
+                "AsociacionVecinos",
+                "Activities", 
+                "Characters", 
+                "Houses",
+                "Literature", 
+                "Narrations", 
+                "Secrets", 
+                "ArchitectureView",
+                "Place",
             ],
             colorScreensSpanish: [
-              "Oferta Urbana", "Cultura y Arte", "Institucional",
-              "Hoteles", "Gastronomía", "Vivencias",
-              "Arquitectura", "Más de Amón_RA", "Origen del Barrio",
-              "Proyecto Amón_RA", "Asociación de Vecinos",
-              "Actividades", "Personajes", "Casas",
-              "Literatura", "Narraciones", "Secretos", "Arquitectura"
+              "Oferta Urbana", 
+              "Cultura y Arte", 
+              "Institucional",
+              "Hoteles", 
+              "Gastronomía", 
+              "Vivencias",
+              "Arquitectura", 
+              "Más de Amón_RA", 
+              "Origen del Barrio",
+              "Proyecto Amón_RA", 
+              "Asociación de Vecinos",
+              "Actividades", 
+              "Personajes", 
+              "Casas",
+              "Literatura", 
+              "Narraciones", 
+              "Secretos", 
+              "Arquitectura",
+              "Oferta Urbana" //Se debe de cambiar
             ],
             directoryScreens: [],
             screensRecord: ['MapScreen'],
-
+            datosColorScreens: {
+            	Directory: "Oferta Urbana",
+            	CultureArt: "Cultura y Arte",
+            	Institutional: "Institucional",
+            	Hotels: "Hoteles",
+            	Gastronomy: "Gastronomía", 
+              Experiences: "Vivencias",
+              Architecture: "Arquitectura", 
+              MoreAmonRA: "Más de Amón_RA", 
+              Origin: "Origen del Barrio",
+              InfoAmon_RA: "Proyecto Amón_RA", 
+              AsociacionVecinos: "Asociación de Vecinos",
+              Activities: "Actividades", 
+              Characters: "Personajes", 
+              Houses: "Casas",
+              Literature: "Literatura", 
+              Narrations: "Narraciones", 
+              Secrets: "Secretos", 
+              ArchitectureView: "Arquitectura",
+              Place: "Place",
+            }
         }
 
         this.makeAnAction = this.makeAnAction.bind(this);
@@ -84,7 +127,7 @@ export default class Navigator extends Component {
 
         this.setFirstFalse = this.props.screenProps.showFunctions.setFirstFalse;
         this.resetAll = this.props.screenProps.showFunctions.resetAll;
-
+        this.updateNavigationToScreen = this.props.screenProps.updateNavigationToScreen;
 
         BackHandler.addEventListener('hardwareBackPress', () => {
 
@@ -93,7 +136,6 @@ export default class Navigator extends Component {
             return true;
           }
 
-          //console.debug("RADEBUG: Back pressed: this.state.screensRecord.length =  " + this.state.screensRecord.length);
           if (this.state.screensRecord.length > 1){
             this.goBack();
             return true;
@@ -103,12 +145,7 @@ export default class Navigator extends Component {
             return false;
           }
          });
-
-
-         //this.goToScreen("MapScreen",{activeFilters: this.state.activeFilters, resetAll: this.resetAll})
-        //console.debug("RADEBUG: this.props.navigation at Navigator constructor: " + JSON.stringify(this.props.navigation))
     }
-
 
     static getDerivedStateFromProps(props, state){
       state.filterMenu = props.screenProps.showProps.filterMenu;
@@ -119,84 +156,72 @@ export default class Navigator extends Component {
       return state;
     }
 
+    componentDidMount(){
+    	this.updateNavigationToScreen(this.goToScreen);
+    }
+
     setColor(screen){
-      if (this.state.colorScreens.includes(screen)){
-          this.setState({color: true})
-          //console.debug("RADEBUG: Color set to TRUE by: " + screen);
-      }
-      else {
+      if (this.state.datosColorScreens[screen] !== undefined){
+          this.setState({color: true});
+      } else {
           this.setState({color: false});
-          //console.debug("RADEBUG: Color set to FALSE by: " + screen);
       }
     }
 
-
-
     pushScreenToStack(screen){
-      var visitedScreens = this.state.screensRecord.slice();
+      let visitedScreens = this.state.screensRecord.slice();
       visitedScreens.push(screen);
       this.setState({
           screensRecord: visitedScreens
-      })
-      console.debug("RADEBUG: Pushed screen " +screen+" to state stack: " + JSON.stringify(this.state.screensRecord));
+      });
     }
 
     popScreenFromStack(){
-      var visitedScreens = this.state.screensRecord.slice();
+      let visitedScreens = this.state.screensRecord.slice();
       visitedScreens.pop();
       this.setState({
           screensRecord: visitedScreens
-      })
-      console.debug("RADEBUG: Poped screen frome state stack: " + JSON.stringify(this.state.screensRecord));
-      var willReturn = visitedScreens.slice().pop();
-      console.debug("RADEBUG: Returning visitedScreens.pop(): " + willReturn);
+      });
+      let willReturn = visitedScreens.slice().pop();
       return willReturn;
     }
-
-
 
     goToScreen(screen, params){
       this.resetAll();
       this.setColor(screen);
       this.props.navigation.navigate(screen,params);
       this.pushScreenToStack(screen);
-      this.setCurrentScreenTitle(screen);
-
+      this.setCurrentScreenTitle(screen,params);
     }
 
-    setCurrentScreenTitle(screen){
-      var screenIndex = this.state.colorScreens.indexOf(screen);
-      //If the screen is Directory, Hotels, Gastronomy, CultureArt or Institucional, then title should be OfertaUrbana (which is index 0)
-      if (screenIndex <= 4 && screenIndex >= 0){
-        screenIndex = 0;
+    setCurrentScreenTitle(screen,params){
+      let correctName = "";
+
+      if (screen === "Place") {
+      	correctName = params["title"]; 
+      } else {
+      	correctName = this.state.datosColorScreens[screen]
       }
-      var correctName = this.state.colorScreensSpanish[screenIndex];
       this.setState({currentScreenTitle: correctName});
-      console.debug("RADEBUG: nameInSpanish: " + correctName);
     }
 
 
     goBack(){
-      this.resetAll()
+      this.resetAll();
        //console.debug("RADEBUG: current routeName: " + this.props.navigation.state.routeName);
-       var result = this.props.navigation.pop();
-       var goingTo = this.popScreenFromStack();
-       if (result){
+       let result = this.props.navigation.pop();
+       let goingTo = this.popScreenFromStack();
+       if (result) {
          console.debug("RADEBUG: POP true. Should be going to " + goingTo);
          this.setColor(goingTo);
          this.setCurrentScreenTitle(goingTo);
 
-       }else{
+       } else {
          this.setColor(this.state.screensRecord.slice(-1).pop());
          this.setCurrentScreenTitle(this.state.screensRecord.slice(-1).pop());
          console.debug("RADEBUG: POP false. Stack:" + JSON.stringify(this.state.screensRecord));
        }
     }
-
-    // Function to get the activated filters in the FilterMenu
-
-
-
 
     makeAnAction(message){
         if (message.action === "send"){
@@ -204,26 +229,20 @@ export default class Navigator extends Component {
                 "Su comentario ha sido recibido, gracias por su apoyo!"
             )
         }
-
-        this.toggleRateScreen()
+        this.toggleRateScreen();
     }
-
 
     isNecessaryToShowGuide(){
-        if (this.state.first || this.state.guideScreen){
-            return true
-        }
-        return false
+      return this.state.first || this.state.guideScreen;
     }
 
-
     _hideVideo(){
-        if (this.state.first){
-          this.setFirstFalse();
-        }
-        if (this.state.guideScreen){
-          this.toggleShowGuide();
-        }
+      if (this.state.first){
+        this.setFirstFalse();
+      }
+      if (this.state.guideScreen){
+        this.toggleShowGuide();
+      }
     }
 
     render() {
@@ -273,21 +292,19 @@ export default class Navigator extends Component {
                  <View style={styles.footerBar}>
                    <View style={styles.footerBarRow}>
 
-                     <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("TimeLine")}>
-                       <Image style={styles.squareButton}  source={lastScreen === "TimeLine" ?
-                                                                         require(timeLineIconURL + png) :
-                                                                         require(timeLineIconURL + "_gris" + png) }
+                      <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("MapScreen",{goToScreen: this.goToScreen,activeFilters: this.state.activeFilters, resetAll: this.resetAll})}>
+                        <Image style={styles.squareButton}  source={lastScreen === "MapScreen" ?
+                                                                         require(mapsIconURL + png) :
+                                                                         require(mapsIconURL + "_gris" + png) }
                        />
                      </TouchableOpacity>
 
-                     <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("Viromedia", {goToScreen: this.goToScreen, do: "AR"})} >
-                          <Image style={styles.squareButton}  source={lastScreen === "Viromedia" ?
+                     <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("Viromedia", {goToScreen: this.goToScreen})} >
+                       <Image style={styles.squareButton}  source={lastScreen === "Viromedia" ?
                                                                          require(RAIconURL + png) :
                                                                          require(RAIconURL + "_gris" + png) }
                        />
                      </TouchableOpacity>
-
-                     
 
                      <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("VirtualVisit", {goToScreen: this.goToScreen})}>
                        <Image style={styles.squareButton}  source={lastScreen === "VirtualVisit" ?
@@ -304,10 +321,10 @@ export default class Navigator extends Component {
                        />
                      </TouchableOpacity>
 
-                     <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("MapScreen",{activeFilters: this.state.activeFilters, resetAll: this.resetAll})}>
-                       <Image style={styles.squareButton}  source={lastScreen === "MapScreen" ?
-                                                                         require(mapsIconURL + png) :
-                                                                         require(mapsIconURL + "_gris" + png) }
+                     <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("TimeLine")}>
+                       <Image style={styles.squareButton}  source={lastScreen === "TimeLine" ?
+                                                                         require(timeLineIconURL + png) :
+                                                                         require(timeLineIconURL + "_gris" + png) }
                        />
                      </TouchableOpacity>
 
@@ -319,19 +336,20 @@ export default class Navigator extends Component {
                     <View style={styles.footerBarColor}>
                       <View style={styles.footerBarRow}>
 
-                        <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("TimeLine")}>
-                          <Image style={styles.squareButton}  source={lastScreen === "TimeLine" ?
-                                                                            require(timeLineIconURL + "_blanco"+ png) :
-                                                                            require(timeLineIconURL + "_turquesa" + png) }
+                        <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("MapScreen",{goToScreen: this.goToScreen,activeFilters: this.state.activeFilters, resetAll: this.resetAll})}>
+                          <Image style={styles.squareButton}  source={lastScreen === "MapScreen" ?
+                                                                            require(mapsIconURL + "_blanco"+ png) :
+                                                                            require(mapsIconURL + "_turquesa" + png) }
                           />
                         </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("Viromedia", {goToScreen: this.goToScreen, do: "AR"})} >
+                        
+                        <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("Viromedia", {goToScreen: this.goToScreen})} >
                           <Image style={styles.squareButton}  source={lastScreen === "Viromedia" ?
                                                                             require(RAIconURL + "_blanco"+ png) :
                                                                             require(RAIconURL + "_turquesa" + png) }
                           />
                         </TouchableOpacity>
+
 
                         <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("VirtualVisit", {goToScreen: this.goToScreen})}>
                           <Image style={styles.squareButton}  source={lastScreen === "3d" ?
@@ -347,10 +365,10 @@ export default class Navigator extends Component {
                           />
                         </TouchableOpacity>
 
-                       <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("MapScreen",{activeFilters: this.state.activeFilters, resetAll: this.resetAll})}>
-                          <Image style={styles.squareButton}  source={lastScreen === "MapScreen" ?
-                                                                            require(mapsIconURL + "_blanco"+ png) :
-                                                                            require(mapsIconURL + "_turquesa" + png) }
+                        <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("TimeLine")}>
+                          <Image style={styles.squareButton}  source={lastScreen === "TimeLine" ?
+                                                                            require(timeLineIconURL + "_blanco"+ png) :
+                                                                            require(timeLineIconURL + "_turquesa" + png) }
                           />
                         </TouchableOpacity>
 
@@ -388,12 +406,14 @@ const styles = StyleSheet.create ({
 
     footerBar:{
       flex:2,
+      width: Dimensions.get('window').width,
       backgroundColor: 'rgba(255, 255, 255, 0.7)'
     },
 
     footerBarColor:{
       flex:2,
       flexDirection: "column",
+      width: Dimensions.get('window').width,
       backgroundColor: '#00A2B5',
       justifyContent:'center',
       alignItems:'center'

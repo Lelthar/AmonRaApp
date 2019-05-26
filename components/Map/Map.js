@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
     Platform,
     AppRegistry,
@@ -34,25 +34,23 @@ const GOOGLE_MAPS_APIKEY = "AIzaSyClk_-24I-chIehpLCDp17fpOhSDbqPSbo";
 
 const filtros_url = require( '../../images/icons/PantallaPrincipal/mapa_filtros.png' );
 const puntos = data.features;
+
 const poligono = data["Perímetro Barrio Amón"];
 const imagenes = {
-  "Cultura":require("../../images/icons/maps/Cultura.png"),
-  "Fotografías 360":require("../../images/icons/maps/Fotografias 360.png"),
+  "Cultura y arte":require("../../images/icons/maps/Culturayarte.png"),
+  "Fotos 360°":require("../../images/icons/maps/Fotos360°.png"),
   "Gastronomía":require("../../images/icons/maps/Gastronomia.png"),
   "Hospedaje":require("../../images/icons/maps/Hospedaje.png"),
   "Institucional":require("../../images/icons/maps/Institucional.png"),
-   "Naturaleza":require("../../images/icons/maps/Naturaleza.png"),
-   "Pasado Perdido":require("../../images/icons/maps/Pasado Perdido.png"),
-   "Patrimonio Arquitectónico":require("../../images/icons/maps/Patrimonio Arquitectonico.png"),
-   "Realidad Aumentada":require("../../images/icons/maps/Realidad Aumentada.png"),
-   "Secretos":require("../../images/icons/maps/Secretos.png"),
-}
+  "Naturaleza":require("../../images/icons/maps/Naturaleza.png"),
+  "Pasado perdido":require("../../images/icons/maps/Pasadoperdido.png"),
+  "Patrimonio Arquitectónico":require("../../images/icons/maps/Patrimonioarquitectonico.png"),
+  "Realidad Aumentada":require("../../images/icons/maps/RealidadAumentada.png"),
+  "Secretos":require("../../images/icons/maps/Secretos.png"),
+  "Modelos 3D":require("../../images/icons/maps/Modelos3d.png"),
+};
 
-
-
-
-export default class Map extends PureComponent {
-
+export default class Map extends Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -78,20 +76,23 @@ export default class Map extends PureComponent {
       		    longitude: -84.075539,
       			  latitudeDelta: 0.004,
       			  longitudeDelta: 0.004
-            	//error: null
             },
 
             coords_dir: {
               origen: null,
               destino: null
             },
-        }
+            informationVisible: false,
+            checkerTitle: "Vacio",
+            checkerDir: "Vacio",
+            checkerTel: "Vacio",
+            checkerFacebook: "Vacio",
+            current_category: "",
+        };
         this.toggleFilters = this.props.screenProps.showFunctions.toggleFilters;
         this.props.screenProps.getNavigationProp(this.props.navigation);
         this.resetAll = this.props.screenProps.showFunctions.resetAll;
-
     }
-
 
     //Cuando los props cambian (en MainApp.js) este método se ejecuta
     //Props es el objeto entero que cambió (enviado como screenProps)
@@ -99,28 +100,27 @@ export default class Map extends PureComponent {
     //este se puede modificar, y al retornarlo es como hacer this.setState
     //
     //Su función es ver los filtros activos
+    goTo(screen,params){
+        let goToScreen = this.props.screenProps.navigatorMethod;
+        goToScreen(screen, params);
+    }
+
     static getDerivedStateFromProps(props, state) {
       state.activeFilters = props.screenProps.activeFilters;
       return state;
     }
 
-
     //Toma los filtros activos, revisa la lista de markers, y crea un nuevo markers con propiedades
     // más amigables para el renderizado
     getActiveMarkers(){
-
-        var activeFilters = this.state.activeFilters.slice()
-        var markers = this.state.markers
-        var activeMarkers = []
-
-        //console.debug("NEWMARKER: activeFilters: " JSON.stringify(activeFilters));
+        let activeFilters = this.state.activeFilters.slice()
+        let markers = this.state.markers
+        let activeMarkers = []
 
         for(filter in activeFilters){
-          var markersOfOneCategoryList =  markers[activeFilters[filter].key];
+          let markersOfOneCategoryList =  markers[activeFilters[filter].key];
           for (marker in markersOfOneCategoryList){
-
-            //console.debug("NEWMARKER: oldmarker" + JSON.stringify(markersOfOneCategoryList[marker]));
-            var newMarker =
+            let newMarker =
             {
               coordinates: {
                 latitude: markersOfOneCategoryList[marker].geometry.coordinates[1],
@@ -131,8 +131,8 @@ export default class Map extends PureComponent {
               tel: markersOfOneCategoryList[marker].properties.tel,
               facebook: markersOfOneCategoryList[marker].facebook,
               category: activeFilters[filter].key,
+              marker_id: 1,
             };
-            //console.debug("NEWMARKER: newmarker" + JSON.stringify(newMarker));
             activeMarkers.push(newMarker);
           }
         }
@@ -140,6 +140,23 @@ export default class Map extends PureComponent {
         return activeMarkers
     }
 
+    openInformation(marker) {
+      this.resetAll();
+
+      this.setState({
+        informationVisible:true,
+        checkerTitle:marker.title,
+        checkerDir:marker.direction,
+        checkerTel:marker.tel,
+        checkerFacebook:marker.facebook,
+        checkerId:marker.marker_id,
+        current_category:marker.category,
+      });
+    };
+    
+    toggleInformation() {  
+      this.setState({informationVisible: false});
+    }
 
     localizacion = {
         latitude: 9.938232,
@@ -147,7 +164,6 @@ export default class Map extends PureComponent {
         latitudeDelta: 0.004,
         longitudeDelta: 0.004
     };
-
 
     setMapHybrid(){
       this.resetAll();
@@ -166,7 +182,7 @@ export default class Map extends PureComponent {
     // fetch directions and decode polylines
     async getDirections(startLoc, destinationLoc) {
         try {
-            let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${ startLoc }&destination=${ destinationLoc }`)
+            let resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${ startLoc }&destination=${ destinationLoc }`);
             let respJson = await resp.json();
             let points = Polyline.decode(respJson.routes[0].overview_polyline.points);
             let coords = points.map((point, index) => {
@@ -174,9 +190,9 @@ export default class Map extends PureComponent {
                     latitude : point[0],
                     longitude : point[1]
                 }
-            })
-            this.setState({coords: coords})
-            return coords
+            });
+            this.setState({coords: coords});
+            return coords;
         } catch(error) {
             return error
         }
@@ -184,25 +200,19 @@ export default class Map extends PureComponent {
 
 
     envia_datos_localizacion(lat,lon,latPersona,lonPersona){
-      console.debug("DISMAPS: envia_datos_localizacion ")
-      var startLocc = lat+','+lon
-      var finalLocc = latPersona+','+lonPersona
-      console.debug("DISMAPS: startLoc" +startLocc)
-      console.debug("DISMAPS: finalLoc" +finalLocc)
+      let startLocc = lat+','+lon;
+      let finalLocc = latPersona+','+lonPersona;
+    
       this.setState({
         coords_dir:{
           origen: startLocc,
           destino: finalLocc
         }
-      })
-
-      //this.setState({coords_dir: this.getDirections(startLocc,finalLocc)})
-
+      });
     }
 
 
     display_my_location(){
-      //alert("userLocation is:" + JSON.stringify(userLocation))
       this.setState({
         region: userLocation
       });
@@ -214,7 +224,7 @@ export default class Map extends PureComponent {
         latitude: coordinate.latitude,
         latitudeDelta: 0.004,
         longitudeDelta: 0.004
-      }
+      };
     }
 
     goToBarrioAmon(){
@@ -276,8 +286,6 @@ export default class Map extends PureComponent {
             strokeColor="#fd3c00"
             onPress={() => this.resetAll()}
         />
-
-
             {/*Marker si estoy en barrio amón:agarrar localizacion, sino estoy en barrio amón: no ponerlo*/}
 
             {this.getActiveMarkers().map( (marker, index) => (
@@ -285,26 +293,13 @@ export default class Map extends PureComponent {
               <MapView.Marker
                   key={index}
                   coordinate={marker.coordinates}
-                  title={marker.title}
+                 
                   description={marker.description}
-                  onPress={() => this.resetAll() }
+                  onPress={() => this.openInformation(marker) }
                   image={imagenes[marker.category]}
               >
 
-                  <MapView.Callout style={{backgroundColor:'rgba(54, 145, 160, 0.8)'}} flat={true} tooltip={true}  
-                                   onPress={()=>this.envia_datos_localizacion(marker.coordinates[0].latitude,marker.coordinates[0].longitude,
-                                                                               this.state.region.latitude,this.state.region.longitude)}>
-                      <Text style={{color:'white',fontSize: 16}}>{marker.title}</Text>
-                      <Text style={{color:'white',fontSize: 16}}>{marker.direction}</Text>
-                      <Text style={{color:'white',fontSize: 16}}>{marker.tel}</Text>
-                      <Text style={{color:'white',fontSize: 16}}>{marker.facebook}</Text>
-                      <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={console.debug("DISMAPS: " +"ir")} >
-                      <View style={{flexDirection: 'row'}}>
-                        <Text style={{color:'white',fontSize: 16}}>ir </Text>
-                        <Image  source={require('../../images/icons-temp/navigation.png')}/>
-                      </View>
-                      </TouchableOpacity>
-                  </MapView.Callout >
+                  <MapView.Callout tooltip={true} />
               </MapView.Marker>
           ))}
 
@@ -318,7 +313,7 @@ export default class Map extends PureComponent {
             </MapView>
 
 
-            <View style={{flex:1}}>
+            <View style={{flex:1,justifyContent: 'center',alignItems: 'center'}}>
 
             { /* barra de arriba */}
               <View style={{flex:8}}/>
@@ -326,7 +321,7 @@ export default class Map extends PureComponent {
               {/* Body completo, flex row */}
               <View style={{flex:40, flexDirection:'row', justifyContent:'center'}}>
 
-              <View style={{flex:3.75}}/>
+              <View style={{flex:2}}/>
 
                 {/* 1 columnas de botón */}
                 <View style={{flex:0.5, flexDirection:'column'}}>
@@ -366,10 +361,9 @@ export default class Map extends PureComponent {
                       <View style={{flex:1.3}}/>
                     </View>
                   }
-                  </View>                      
-                  
+                  </View>                       
 
-                  <View style={{flex:9.5, flexDirection:'row'}}>
+                  <View style={{flex:12, flexDirection:'row'}}>
                     <View style={{flex:2}}/>
                     <TouchableOpacity style={styles.imgContainer} onPress={()=> this.display_my_location()}>
                       <Image  style={styles.squareButton} source={require('../../images/icons/maps/ubicacion.png')} />
@@ -381,8 +375,15 @@ export default class Map extends PureComponent {
                 <View style={{flex:0.10}}/>                  
 
               </View>
+                            
 
-                                     
+              {/* Boton de filtros */}
+              <View style={{ flex:3, position:'absolute', right:-13, bottom:13 ,width:90}}>   
+                  <TouchableOpacity style={ styles.arrow_button } onPress={ () => this.show_filters('MapScreen') }>
+                    <Image source={ filtros_url }/>
+                  </TouchableOpacity>              
+              </View>
+
               {/* Menu de filtros del mapa */}
               <View style={ styles.filters }>            
               {
@@ -391,14 +392,48 @@ export default class Map extends PureComponent {
                             getActiveFilters={this.props.screenProps.getActiveFilters}/>         
                   
               }              
-              </View>              
-              
-              {/* Boton de filtros */}
-              <View style={{ flex:6 }}>   
-                  <TouchableOpacity style={ styles.arrow_button } onPress={ () => this.show_filters('MapScreen') }>
-                    <Image source={ filtros_url }/>
-                  </TouchableOpacity>              
               </View>
+
+              {this.state.informationVisible && <View style={{flex:14, flexDirection: 'row', padding:15, width:300,position:"absolute",bottom:68,backgroundColor:'rgba(54, 145, 160, 0.8)'}} >
+                <View style={{flex:6}}>
+                  <View style={{flex:1, marginBottom:5}}>
+                    <Text style={{color:'white',fontSize: 18,fontWeight:"bold"}}>{this.state.checkerTitle}</Text>
+                  </View>
+                  <View style={{flex:1,marginBottom:5}}>
+                    <Text style={{color:'white',fontSize: 16}}>{"Dirección: "+this.state.checkerDir}</Text>
+                    <Text style={{color:'white',fontSize: 16}}>{"Tel: "+this.state.checkerTel}</Text>
+                    <Text style={{color:'white',fontSize: 16}}>{"Facebook: "+this.state.checkerFacebook}</Text>
+                  </View>
+                  <View style={{flex:0.5}}/>
+                  <View style={{flex:1}}>
+                    <Text style={{color:'white',fontSize: 14}}>{"Visita este lugar para descrubir más RA"}</Text>
+                  </View>
+                </View>
+                <View style={{flex:1}}>
+                  <View style={{flex:1}}>
+                    <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={this.toggleInformation.bind(this)} >
+                      
+                      <Image source={require('../../images/icons-temp/close.png')} />
+                     
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{flex:1, marginTop: 20}}>
+                    <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={()=> this.goTo('Place',{place_id:this.state.checkerId, title:this.state.current_category})} >
+                      
+                    <Image source={require('../../images/icons-temp/masinfo.png')}/>
+                     
+                    </TouchableOpacity>
+                  </View>
+                  <View style={{flex:1}}>
+                    <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={()=> console.log("Ir")} >
+                      <View style={{flexDirection: 'row'}}>
+                        <Text style={{color:'white',fontSize: 16}}>ir </Text>
+                        <Image source={require('../../images/icons-temp/navigation.png')}/>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>  }
 
               <View style={{ flex: 5.5 }}/>                  
 
@@ -501,15 +536,20 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject
       },
       arrow_button: {
-        flex:5, 
+        flex:1, 
         flexDirection:'row', 
         justifyContent: 'center', 
-        marginLeft:"86%"
+        //marginLeft:"86%"
       },
       filters: {
         flex:23,
         flexDirection: 'row',
         justifyContent: 'center',
+        position:'absolute', 
+        right:0, 
+        bottom:126,
+        width: 750,
+        height:450
       },
       slide_menu: {
         flex: 1,
