@@ -170,6 +170,14 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-video')
+    compile project(':react-native-simple-compass')
+    compile project(':react-native-orientation')
+    compile project(':react-native-maps')
+    compile project(':react-native-google-signin')
+    compile project(':react-native-geolocation-service')
+    compile project(':react-native-firebase')
+    compile project(':react-native-fbsdk')
     implementation 'com.android.support:multidex:1.0.3'
     implementation project(':react-native-orientation')
     implementation (project(':react-native-firebase')){

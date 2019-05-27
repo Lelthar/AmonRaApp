@@ -117,8 +117,6 @@ const RootStack = StackNavigator(
             screen: ViromediaController
         }
 
-
-
     },
     navigationOptions
 );
@@ -130,7 +128,7 @@ export default class MainApp extends Component<Props> {
     constructor (props) {
         super(props);
 
-        var firstTime = false;
+        let firstTime = false;
 
         if (typeof this.props.navigation != "undefined"){
             firstTime = true;
