@@ -468,322 +468,406 @@
   { "type": "Feature", "properties": { "Name": "Antigua Casa de las Ich", "description": null }, "geometry": { "type": "Point", "coordinates": [ -84.0761845, 9.9378024 ] } },
   { "type": "Feature", "properties": { "Name": "Antiguo Local de \"Curruzo\" El Zapatero", "description": null }, "geometry": { "type": "Point", "coordinates": [ -84.0777496, 9.9380864 ] } }
   ]},
-  "Linea_Del_Tiempo":[
+"Linea_Del_Tiempo":[
     { "Año": "1737",
       "Acontecimiento": "Villa de la Boca del Monte",
-      "Descripción": "Se estableció la Ayuda de Parroquia de San José de la Boca del Monte para que los pobladores del Valle de Aserrí, Curridabat, Pacaca y Barva cumplieran con sus obligaciones religiosas y no acudiesen a las misas de los pueblos indios (Vargas y Zamora, 2000)."
+      "Descripción": "Se estableció la Ayuda de Parroquia de San José de la Boca del Monte para que los pobladores del Valle de Aserrí, Curridabat, Pacaca y Barva cumplieran con sus obligaciones religiosas y no acudiesen a las misas de los pueblos indios (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1738",
       "Acontecimiento": "Construcción de la primera ermita",
-      "Descripción": "La primera ermita terminada y bendecida en 1738, fue dedicada al Patriarca Señor San José. Durante los primeros años, no contó con viviendas a su alrededor pues los pobladores del Valle de Aserrí se negaban a trasladarse al nuevo asentamiento por la falta de fuentes de agua cercanas (Vargas y Zamora, 2000)."
+      "Descripción": "La primera ermita terminada y bendecida en 1738, fue dedicada al Patriarca Señor San José. Durante los primeros años, no contó con viviendas a su alrededor pues los pobladores del Valle de Aserrí se negaban a trasladarse al nuevo asentamiento por la falta de fuentes de agua cercanas (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1751",
       "Acontecimiento": "Primeras viviendas",
-      "Descripción": "En los primeros años sólo existían dos o tres casas en las cercanías de la ermita. Para 1751 existe registro del obispo Pedro Morel de Santa Cruz, de que, para esa época, ya se habían construido 11 casas de teja y 15 de paja, aunque no se contaba aún con calles ni plaza (Bustamante, 1996)."
+      "Descripción": "En los primeros años sólo existían dos o tres casas en las cercanías de la ermita. Para 1751 existe registro del obispo Pedro Morel de Santa Cruz, de que, para esa época, ya se habían construido 11 casas de teja y 15 de paja, aunque no se contaba aún con calles ni plaza (Bustamante, 1996).",
+      "ImageURL": "1751"
     },
     { "Año": "1755",
       "Acontecimiento": "Ordenanza para traslado de la población al nuevo asentamiento",
-      "Descripción": "El alcalde ordinario de Cartago don Tomás López del Corral, ordenó el traslado de los habitantes dispersos de los Valles de Aserrí y Barva al nuevo asentamiento. El cumplimiento de esta ordenanza permitió la consolidación de la villa (Vargas y Zamora, 2000)."
+      "Descripción": "El alcalde ordinario de Cartago don Tomás López del Corral, ordenó el traslado de los habitantes dispersos de los Valles de Aserrí y Barva al nuevo asentamiento. El cumplimiento de esta ordenanza permitió la consolidación de la villa (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1813",
       "Acontecimiento": "Título de Ciudad a la  Villa de la Boca del Monte",
-      "Descripción": "En ese año las Cortes de Cádiz le concedieron el título de ciudad a la villa cambiando desde ese momento su nombre a  San José. Este cambio se debió al crecimiento económico y urbano del asentamiento, impulsado por los beneficios del cultivo del tabaco, así como el comercio (Vargas y Zamora, 2000)."
+      "Descripción": "En ese año las Cortes de Cádiz le concedieron el título de ciudad a la villa cambiando desde ese momento su nombre a  San José. Este cambio se debió al crecimiento económico y urbano del asentamiento, impulsado por los beneficios del cultivo del tabaco, así como el comercio (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1823",
       "Acontecimiento": "Traslado de capital",
-      "Descripción": "Año en que se traslada la capital de Cartago a la ciudad de San José (Vargas y Zamora, 2000)."
+      "Descripción": "Año en que se traslada la capital de Cartago a la ciudad de San José (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1841",
       "Acontecimiento": "División Territorial Ciudad de San José",
-      "Descripción": "Se realiza una división territorial de San José donde se especifica que esta se divide en dos grandes barrios: barrio El Carmen y barrio La Merced (Bustamante, 1996)."
+      "Descripción": "Se realiza una división territorial de San José donde se especifica que esta se divide en dos grandes barrios: barrio El Carmen y barrio La Merced (Bustamante, 1996).",
+      "ImageURL": null
     },
     { "Año": "1850",
       "Acontecimiento": "Fábrica de ladrillos",
-      "Descripción": "Existió una fábrica de ladrillos que perteneció al Obispo Anselmo Llorente y Lafuente próximo al río Torres en terrenos de lo que actualmente son los bajos de Amón y de Tournón; respondiendo al auge que se daba del uso de ladrillo y teja para la construcción en San José (Vargas y Zamora, 2000)."
+      "Descripción": "Existió una fábrica de ladrillos que perteneció al Obispo Anselmo Llorente y Lafuente próximo al río Torres en terrenos de lo que actualmente son los bajos de Amón y de Tournón; respondiendo al auge que se daba del uso de ladrillo y teja para la construcción en San José (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1854",
       "Acontecimiento": "Hipólito Tournón llega al país",
-      "Descripción": "Hipólito fue el comerciante francés que fundó la firma Tournón, dueño de la finca del mismo nombre. Además, fue agente general de la Compañía Transatlántica Francesa. Además, fue cuñado de Amón Fasileau-Duplantier (Quesada, 2001)."
+      "Descripción": "Hipólito fue el comerciante francés que fundó la firma Tournón, dueño de la finca del mismo nombre. Además, fue agente general de la Compañía Transatlántica Francesa. Además, fue cuñado de Amón Fasileau-Duplantier (Quesada, 2001).",
+      "ImageURL": "1854"
     },
     { "Año": "1868",
       "Acontecimiento": "Distrito Carmen",
-      "Descripción": "A través de las Ordenanzas Municipales la ciudad de San José se dividió en cuatro distritos parroquiales: La Merced, El Carmen, Catedral y Hospital (Álvarez y Gómez, 2000)."
+      "Descripción": "A través de las Ordenanzas Municipales la ciudad de San José se dividió en cuatro distritos parroquiales: La Merced, El Carmen, Catedral y Hospital (Álvarez y Gómez, 2000).",
+      "ImageURL": null
     },
     { "Año": "1870",
       "Acontecimiento": "Lavaderos del Padre Umaña",
-      "Descripción": "A inicios de esta década se construyeron los lavaderos en la zona que actualmente es conocida como el bajo de Amón para facilitar las tareas domésticas a las familias que no recibían el agua directamente en sus casas (Vargas y Zamora, 2000)."
+      "Descripción": "A inicios de esta década se construyeron los lavaderos en la zona que actualmente es conocida como el bajo de Amón para facilitar las tareas domésticas a las familias que no recibían el agua directamente en sus casas (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1884",
       "Acontecimiento": "Beneficio Torres",
-      "Descripción": "Amón Fasileau-Duplantier invierte en la construcción de un beneficio de café, llamado Beneficio Torres, por encontrarse en los márgenes del río Torres, donde se ubica actualmente la Universidad ULACIT (Vargas y Zamora, 2000)."
+      "Descripción": "Amón Fasileau-Duplantier invierte en la construcción de un beneficio de café, llamado Beneficio Torres, por encontrarse en los márgenes del río Torres, donde se ubica actualmente la Universidad ULACIT (Vargas y Zamora, 2000).",
+      "ImageURL": "1884"
     },
     { "Año": "1887",
       "Acontecimiento": "La compañía de Hipólito Tournón es dirigida por Amón",
-      "Descripción": "Hipólito Tournón no residía en Costa Rica, por tanto su negocio estuvo inicialmente bajo la dirección de su cuñado Amón Fasileau-Duplantier hasta la primera década del siglo XX. Posteriormente Elois Tournón, hijo de Hipólito, toma el mando de la compañía (Quesada, 2001)."
+      "Descripción": "Hipólito Tournón no residía en Costa Rica, por tanto su negocio estuvo inicialmente bajo la dirección de su cuñado Amón Fasileau-Duplantier hasta la primera década del siglo XX. Posteriormente Elois Tournón, hijo de Hipólito, toma el mando de la compañía (Quesada, 2001).",
+      "ImageURL": "1887"
     },
     { "Año": "1888",
       "Acontecimiento": "Nace María Isabel Carvajal (Carmen Lyra)",
-      "Descripción": "La casa donde se presume que nació y que ocupó durante años la escritora costarricense María Isabel Carvajal conocida como Carmen Lyra, se encontraba en la frontera de barrio Amón, en avenida 7, entre calles 3 y 5. Actualmente se encuentra la entidad bancaria FINSA (Lemistre, 2015)."
+      "Descripción": "La casa donde se presume que nació y que ocupó durante años la escritora costarricense María Isabel Carvajal conocida como Carmen Lyra, se encontraba en la frontera de barrio Amón, en avenida 7, entre calles 3 y 5. Actualmente se encuentra la entidad bancaria FINSA (Lemistre, 2015).",
+      "ImageURL": "1888"
     },
     { "Año": "1889",
       "Acontecimiento": "Amón adquiere ladrillera del obispo Llorente",
-      "Descripción": "Gracias a su posición económica, Amón Fasileau Duplantier adquirió la antigua ladrillera del obispo Llorente. Construyó una infraestructura mínima para sus actividades complementarias, como el estibado de leña, depósitos de arcilla, hornos, bodegas (Vargas y Zamora, 2000)."
+      "Descripción": "Gracias a su posición económica, Amón Fasileau Duplantier adquirió la antigua ladrillera del obispo Llorente. Construyó una infraestructura mínima para sus actividades complementarias, como el estibado de leña, depósitos de arcilla, hornos, bodegas (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1892",
       "Acontecimiento": "Proyecto de ensanche de la ciudad al norte",
-      "Descripción": "Amón F. D. presentó a la Municipalidad de San José el proyecto de ensanche de la ciudad hacia el norte, donde  proponía crear un nuevo barrio residencial. Esta zona se caracterizaba por ser un foco de suciedad e inundaciones ya que no había canales para desagües de agua de lluvia (Quesada, 2001)."
+      "Descripción": "Amón F. D. presentó a la Municipalidad de San José el proyecto de ensanche de la ciudad hacia el norte, donde  proponía crear un nuevo barrio residencial. Esta zona se caracterizaba por ser un foco de suciedad e inundaciones ya que no había canales para desagües de agua de lluvia (Quesada, 2001).",
+      "ImageURL": null
     },
     { "Año": "1894",
       "Acontecimiento": "Aprobación del contrato del ensanche de Barrio Amón",
-      "Descripción": "La Municipalidad de San José aprueba la realización del ensanche a cargo de Amón. Según el contrato, Amón F. D. construiría desde avenida 9 a la 13, y de la calle 1 a la 3 y 3 bis, mientras que la municipalidad realizaría la apertura y prolongación de otras vías en el barrio (Quesada, 2001)."
+      "Descripción": "La Municipalidad de San José aprueba la realización del ensanche a cargo de Amón. Según el contrato, Amón F. D. construiría desde avenida 9 a la 13, y de la calle 1 a la 3 y 3 bis, mientras que la municipalidad realizaría la apertura y prolongación de otras vías en el barrio (Quesada, 2001).",
+      "ImageURL": null
     },
     { "Año": "1895",
       "Acontecimiento": "Casa Sandoval Jiménez, actual Alianza Francesa",
-      "Descripción": "Casa construida entre 1895 y 1897 por Manuel Sandoval, un agricultor alajuelense, que compró un lote de aproximadamente 793 m² al Sr Fasileau-Duplantier. La casa contaba con nueve cuartos, una  despensa, dos bodegas, un sótano,  dos corredores de mosaico y un patio de entrada (Quesada, 2001)."
+      "Descripción": "Casa construida entre 1895 y 1897 por Manuel Sandoval, un agricultor alajuelense, que compró un lote de aproximadamente 793 m² al Sr Fasileau-Duplantier. La casa contaba con nueve cuartos, una  despensa, dos bodegas, un sótano,  dos corredores de mosaico y un patio de entrada (Quesada, 2001).",
+      "ImageURL": "1895"
     },
     { "Año": "1897",
       "Acontecimiento": "Lotificación de Barrio Amón",
-      "Descripción": "Se llevó a cabo la lotificación de Barrio Amón considerando como límites originales: la avenida séptima, al sur; la avenida trece (río Torres) al norte; la calle central, al oeste;  y la calle nueve, al este (Quesada, 2001)."
+      "Descripción": "Se llevó a cabo la lotificación de Barrio Amón considerando como límites originales: la avenida séptima, al sur; la avenida trece (río Torres) al norte; la calle central, al oeste;  y la calle nueve, al este (Quesada, 2001).",
+      "ImageURL": null
     },
     { "Año": "1899",
       "Acontecimiento": "Casa de Manuel Serrano Consuegra",
-      "Descripción": "Esta casa fue construida en 1899; por algún tiempo fue utilizada como consulado de Colombia. Actualmente es la residencia de Daniel Chavarría y oficina de Profimercado, una compañía de mercadeo, consultoría y publicidad turística (I. Güier, comunicación personal, 26 de octubre de 2017)."
+      "Descripción": "Esta casa fue construida en 1899; por algún tiempo fue utilizada como consulado de Colombia. Actualmente es la residencia de Daniel Chavarría y oficina de Profimercado, una compañía de mercadeo, consultoría y publicidad turística (I. Güier, comunicación personal, 26 de octubre de 2017).",
+      "ImageURL": "1899"
     },
     { "Año": "Principios del siglo XX",
       "Acontecimiento": "Casa Mario González Feo",
-      "Descripción": "Construida por la familia Echandi alrededor de 1900. Cuenta con dos niveles, su fachada y estructura original es de madera y evidencia el estilo neovictoriano predominante en el barrio en esa época. Adquirida por González Feo en la década de 1930 (MCJ, 1998)."
+      "Descripción": "Construida por la familia Echandi alrededor de 1900. Cuenta con dos niveles, su fachada y estructura original es de madera y evidencia el estilo neovictoriano predominante en el barrio en esa época. Adquirida por González Feo en la década de 1930 (MCJ, 1998).",
+      "ImageURL": null
     },
     { "Año": "1900",
       "Acontecimiento": "Traslado a San José de la Cervecería Traube",
-      "Descripción": "La Cervecería Traube era una fábrica que contaba con instalaciones en los márgenes del río Torres, es considerada como la primera fábrica de cervezas del país; su fundador fue José Traube Fich de nacionalidad austriaca (Quesada, 2001)."
+      "Descripción": "La Cervecería Traube era una fábrica que contaba con instalaciones en los márgenes del río Torres, es considerada como la primera fábrica de cervezas del país; su fundador fue José Traube Fich de nacionalidad austriaca (Quesada, 2001).",
+      "ImageURL": "1900"
     },
     { "Año": "1902",
       "Acontecimiento": "Beneficio Tournón",
-      "Descripción": "Amón F. D. vendió el beneficio Torres a la firma Tournón, desde entonces el  beneficio cambió su nombre a Tournón. Ellos ampliaron sus patios y bodegas y concentran sus negocios cafetaleros entorno a este, convirtiéndose en uno de los principales exportadores de café hacia Europa (Vargas y Zamora, 2000)."
+      "Descripción": "Amón F. D. vendió el beneficio Torres a la firma Tournón, desde entonces el  beneficio cambió su nombre a Tournón. Ellos ampliaron sus patios y bodegas y concentran sus negocios cafetaleros entorno a este, convirtiéndose en uno de los principales exportadores de café hacia Europa (Vargas y Zamora, 2000).",
+      "ImageURL": "1902"
     },
     { "Año": "1904",
       "Acontecimiento": "Ampliación de los lavaderos del río Torres",
-      "Descripción": "La Municipalidad de San José amplió y mejoró los lavaderos a orillas del río Torres. Se construyó una casa donde se podía guardar ropa, algunos patios para el secado y un pasadizo de cemento hasta los lavaderos. Gracias a esto, muchas mujeres pudieron ganarse el sustento diario (Quesada, 2001)."
+      "Descripción": "La Municipalidad de San José amplió y mejoró los lavaderos a orillas del río Torres. Se construyó una casa donde se podía guardar ropa, algunos patios para el secado y un pasadizo de cemento hasta los lavaderos. Gracias a esto, muchas mujeres pudieron ganarse el sustento diario (Quesada, 2001).",
+      "ImageURL": null
     },
     { "Año": "1906",
       "Acontecimiento": "Adquisición de los terrenos para el zoológico Simón Bolívar",
-      "Descripción": "Los terrenos se obtuvieron gracias a un convenio entre la Municipalidad de San José,  Amalia Otoya y Gabriel Vargas para la ampliación de la ciudad hacia el sector noreste (Vargas y Zamora, 2000)."
+      "Descripción": "Los terrenos se obtuvieron gracias a un convenio entre la Municipalidad de San José,  Amalia Otoya y Gabriel Vargas para la ampliación de la ciudad hacia el sector noreste (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "Principios del siglo XX",
       "Acontecimiento": "Frontón Beti Jai",
-      "Descripción": "El circo teatro Beti Jai se localizó donde hoy es la sede del Centro Académico San José del TEC. Fue uno de los sitios de diversión más importantes del barrio, sus instalaciones se utilizaron para eventos como circos de toros, representaciones escénicas y juegos de pelota vasca (Vargas y Zamora, 2000)."
+      "Descripción": "El circo teatro Beti Jai se localizó donde hoy es la sede del Centro Académico San José del TEC. Fue uno de los sitios de diversión más importantes del barrio, sus instalaciones se utilizaron para eventos como circos de toros, representaciones escénicas y juegos de pelota vasca (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1910",
       "Acontecimiento": "Casa Brenes Méndez",
-      "Descripción": "Carlos Brenes y Arabela Méndez construyeron una de las primeras residencias que forman parte del conjunto armónico con el antiguo ingreso al Zoológico Simón Bolívar. La casa es de influencia victoriana bajo los principios del bahareque francés, diseñada por el Ing. Luis Jiménez (MCJ, 2016)."
+      "Descripción": "Carlos Brenes y Arabela Méndez construyeron una de las primeras residencias que forman parte del conjunto armónico con el antiguo ingreso al Zoológico Simón Bolívar. La casa es de influencia victoriana bajo los principios del bahareque francés, diseñada por el Ing. Luis Jiménez (MCJ, 2016).",
+      "ImageURL": null
     },
     { "Año": "1910",
       "Acontecimiento": "Casa Ford Iglesias, actual Centro de Cine",
-      "Descripción": "Vivienda de Walter Ford y Victoria Iglesias, hermana del expresidente Rafael Iglesias. De influencia victoriana, se construyó en concreto armado, con ventanales tipo 'bay window' californiano. En 1920 fue sede de la Embajada de EEUU y en 1948 residencia de José Figueres Ferrer (Madrigal Soto, 2017)."
+      "Descripción": "Vivienda de Walter Ford y Victoria Iglesias, hermana del expresidente Rafael Iglesias. De influencia victoriana, se construyó en concreto armado, con ventanales tipo 'bay window' californiano. En 1920 fue sede de la Embajada de EEUU y en 1948 residencia de José Figueres Ferrer (Madrigal Soto, 2017).",
+      "ImageURL": "1910_1"
     },
     { "Año": "1910",
       "Acontecimiento": "Casa Mariano Álvarez Melgar",
-      "Descripción": "Se construyó la vivienda de Mariano Álvarez, vicecónsul de España en 1912. Ubicada sobre avenida 9 y calle 3a, presenta una marcada influencia del estilo neomudéjar con arcos de medio punto, paredes de ladrillo forradas en madera en su interior y vidrios pintados a mano (Quesada, 2001)."
+      "Descripción": "Se construyó la vivienda de Mariano Álvarez, vicecónsul de España en 1912. Ubicada sobre avenida 9 y calle 3a, presenta una marcada influencia del estilo neomudéjar con arcos de medio punto, paredes de ladrillo forradas en madera en su interior y vidrios pintados a mano (Quesada, 2001).",
+      "ImageURL": "1910_2"
     },
     { "Año": "1912",
       "Acontecimiento": "Casa Elías Pagés",
-      "Descripción": "Se construyó la casa de Elías Pagés sobre avenida 7. De influencia victoriana, utiliza ladrillo en el primer piso y madera en el segundo; actualmente posee diversos usos como cafetería, librería (Quesada, 2001). Fue sede de un espacio dedicado a las artes escénicas llamado La Casona Iluminada"
+      "Descripción": "Se construyó la casa de Elías Pagés sobre avenida 7. De influencia victoriana, utiliza ladrillo en el primer piso y madera en el segundo; actualmente posee diversos usos como cafetería, librería (Quesada, 2001). Fue sede de un espacio dedicado a las artes escénicas llamado La Casona Iluminada",
+      "ImageURL": null
     },
     { "Año": "1912",
       "Acontecimiento": "Casa Huete Quirós",
-      "Descripción": "Casa con influencia del estilo victoriano, construida entre 1912 y 1913. Según el antiguo dueño de la vivienda, Francisco Huete, para la construcción de la casa tuvieron una gran suerte, pues sacaron el mayor de la lotería (Quesada, 2001). Declarado Patrimonio Histórico Arquitectónico en 2012."
+      "Descripción": "Casa con influencia del estilo victoriano, construida entre 1912 y 1913. Según el antiguo dueño de la vivienda, Francisco Huete, para la construcción de la casa tuvieron una gran suerte, pues sacaron el mayor de la lotería (Quesada, 2001). Declarado Patrimonio Histórico Arquitectónico en 2012.",
+      "ImageURL": null
     },
     { "Año": "1913",
       "Acontecimiento": "Casa Saborío Yglesias, actual Casa Verde",
-      "Descripción": "Carlos Saborío Yglesias y su esposa adquirieron una propiedad en barrio Amón y compraron una casa de estilo victoriano por catálogo, la misma fue construida entre 1913 y 1915. La casa original era de una sola planta, pero por la topografía el diseño tuvo que adaptarse (Montero, 2016)."
+      "Descripción": "Carlos Saborío Yglesias y su esposa adquirieron una propiedad en barrio Amón y compraron una casa de estilo victoriano por catálogo, la misma fue construida entre 1913 y 1915. La casa original era de una sola planta, pero por la topografía el diseño tuvo que adaptarse (Montero, 2016).",
+      "ImageURL": "1913"
     },
     { "Año": "1916",
       "Acontecimiento": "Consolidación del Parque Simón Bolívar",
-      "Descripción": "Bajo el gobierno de Alfredo González Flores se decretó nombrar el parque como Simón Bolívar, aunque este no entró en funcionamiento hasta años después (Vargas y Zamora, 2000)."
+      "Descripción": "Bajo el gobierno de Alfredo González Flores se decretó nombrar el parque como Simón Bolívar, aunque este no entró en funcionamiento hasta años después (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1918",
       "Acontecimiento": "Fallecimiento Carlos Saborío Yglesias",
-      "Descripción": "Al fallecer Carlos Saborío Yglesias, su familia dejó la casa. Se vendió a Jorge Hine y luego a Henry Horcher, quien la dividió en 3 para alquilar los aposentos a la familia Antillón Montealegre en la primer planta, y a las familias Pacheco y Born en la segunda planta hasta 1990 (Montero, 2016)."
+      "Descripción": "Al fallecer Carlos Saborío Yglesias, su familia dejó la casa. Se vendió a Jorge Hine y luego a Henry Horcher, quien la dividió en 3 para alquilar los aposentos a la familia Antillón Montealegre en la primer planta, y a las familias Pacheco y Born en la segunda planta hasta 1990 (Montero, 2016).",
+      "ImageURL": null
     },
     { "Año": "1919",
       "Acontecimiento": "Asesinato de Joaquín Tinoco",
-      "Descripción": "El General Joaquín Tinoco, hermano del presidente Federico Tinoco, residía en barrio Amón. El 10 de agosto de 1919 salió de su elegante vivienda y mientras caminaba por calle 3 hacia avenida 7, un desconocido le llamó “Mi general” e inmediatamente lo asesinó de un disparo (Quesada, 1996)."
+      "Descripción": "El General Joaquín Tinoco, hermano del presidente Federico Tinoco, residía en barrio Amón. El 10 de agosto de 1919 salió de su elegante vivienda y mientras caminaba por calle 3 hacia avenida 7, un desconocido le llamó “Mi general” e inmediatamente lo asesinó de un disparo (Quesada, 1996).",
+      "ImageURL": "1919"
     },
     { "Año": "1920",
       "Acontecimiento": "Casa Alejo Aguilar Bolandi",
-      "Descripción": "Construida entre la avenida 9 y calle 3; perteneció al señor Alejo Aguilar. La vivienda tiene influencia neocolonial, aún conserva algunas de sus características originales como el antejardín, los corredores con balaustrada, arcos, techo de teja y columnas de madera (Quesada, 2001)."
+      "Descripción": "Construida entre la avenida 9 y calle 3; perteneció al señor Alejo Aguilar. La vivienda tiene influencia neocolonial, aún conserva algunas de sus características originales como el antejardín, los corredores con balaustrada, arcos, techo de teja y columnas de madera (Quesada, 2001).",
+      "ImageURL": "1920"
     },
     { "Año": "1921",
       "Acontecimiento": "Apertura del Parque Simón Bolívar",
-      "Descripción": "En ese año se terminan las obras del parque Simón Bolívar, celebrándose la inauguración el 24 de junio (Vargas y Zamora, 2000)."
+      "Descripción": "En ese año se terminan las obras del parque Simón Bolívar, celebrándose la inauguración el 24 de junio (Vargas y Zamora, 2000).",
+      "ImageURL": "1921"
     },
     { "Año": "1924 - 1928",
       "Acontecimiento": "Traspaso del zoológico del Museo Nacional al Parque Simón Bolívar",
-      "Descripción": "Antiguamente el zoológico perteneció al Museo Nacional, durante la segunda administración de Ricardo Jiménez se traslada al Parque Simón Bolívar. La administración continuó a cargo del Museo Nacional hasta 1953 cuando pasó a manos del Ministerio de Agricultura y Ganadería (Vargas y Zamora, 2000)."
+      "Descripción": "Antiguamente el zoológico perteneció al Museo Nacional, durante la segunda administración de Ricardo Jiménez se traslada al Parque Simón Bolívar. La administración continuó a cargo del Museo Nacional hasta 1953 cuando pasó a manos del Ministerio de Agricultura y Ganadería (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1927",
       "Acontecimiento": "Casa Coto Cubero",
-      "Descripción": "Casa con influencia del estilo victoriano; construida con basas de guachipelín, paredes de pinotea en tablillas y techada con hierro galvanizado; esta casa se ubica entre avenida 9 y calle 5, edificada en la década de los 20 por Aniceto Esquivel Carranza (Quesada, 2001)."
+      "Descripción": "Casa con influencia del estilo victoriano; construida con basas de guachipelín, paredes de pinotea en tablillas y techada con hierro galvanizado; esta casa se ubica entre avenida 9 y calle 5, edificada en la década de los 20 por Aniceto Esquivel Carranza (Quesada, 2001).",
+      "ImageURL": null
     },
     { "Año": "1927",
       "Acontecimiento": "Casa Alfredo Esquivel Carranza",
-      "Descripción": "Se construyó una de las pocas residencias de dos pisos construidas en barrio Amón. Se trata de una construcción mixta de madera de pinotea y concreto armado,con techo de hierro galvanizado. El inmueble se ubica en la avenida 11 y calle 5, actualmente corresponde al Hotel Dunn Inn (Quesada, 2001)."
+      "Descripción": "Se construyó una de las pocas residencias de dos pisos construidas en barrio Amón. Se trata de una construcción mixta de madera de pinotea y concreto armado,con techo de hierro galvanizado. El inmueble se ubica en la avenida 11 y calle 5, actualmente corresponde al Hotel Dunn Inn (Quesada, 2001).",
+      "ImageURL": "1927"
+    },
+    { "Año": "Alrededor de la década de 1920",
+      "Acontecimiento": "Casa Mario González Feo",
+      "Descripción": "En esta década, Mario González Feo adquiere la casa ubicada sobre calle 9. La reconstruye realizando diversas modificaciones a lo largo de los años, principalmente intervenciones en ladrillo. En ella se conservan elementos de alto valor artístico como mosaicos, murales, pinturas y vitrales (MCJ, 1998).",
+      "ImageURL": "1929"
     },
     { "Año": "1930",
       "Acontecimiento": "Castillo del Moro",
-      "Descripción": "Con una marcada influencia del estilo neomudéjar, esta singular vivienda, que reproduce una pequeña fortaleza, fue construida por el contratista Gerardo Rovira alrededor de 1930 para el comerciante español Anastasio Herrero Vitoria (Quesada, 2001)."
+      "Descripción": "Con una marcada influencia del estilo neomudéjar, esta singular vivienda, que reproduce una pequeña fortaleza, fue construida por el contratista Gerardo Rovira alrededor de 1930 para el comerciante español Anastasio Herrero Vitoria (Quesada, 2001).",
+      "ImageURL": "1930_1"
     },
     { "Año": "1930",
       "Acontecimiento": "Casa Calvo Peña",
-      "Descripción": "Diseñada por José Fco. Salazar Quesada, esta casa perteneciente al Dr. Antonio Peña,  fue construida en la década de 1930 con influencia del estilo neocolonial para destinarse a alquiler, hasta que en 1948 fue habitada por una de sus hijas Rosa Peña casada con José Calvo Arias (MCJ, 2000)."
-    },
-    { "Año": "1930 – 1960",
-      "Acontecimiento": "Casa Mario González Feo",
-      "Descripción": "En esta década, Mario González Feo adquiere la casa ubicada sobre calle 9. La reconstruye realizando diversas modificaciones a lo largo de los años, principalmente intervenciones en ladrillo. En ella se conservan elementos de alto valor artístico como mosaicos, murales, pinturas y vitrales (MCJ, 1998)."
+      "Descripción": "Diseñada por José Fco. Salazar Quesada, esta casa perteneciente al Dr. Antonio Peña,  fue construida en la década de 1930 con influencia del estilo neocolonial para destinarse a alquiler, hasta que en 1948 fue habitada por una de sus hijas Rosa Peña casada con José Calvo Arias (MCJ, 2000).",
+      "ImageURL": null
     },
     { "Año": "1938",
       "Acontecimiento": "Asesinato del Dr. Carlos Manuel Echandi Lahmann",
-      "Descripción": "El Dr. Echandi, reconocido cirujano, fue asesinado el 23 de agosto de 1938 por Beltrán Cortés, antiguo paciente que culpaba al médico y a su colega el Dr. Moreno Cañas de una operación fallida. Esa misma noche, también asesinó a Moreno Cañas, Arthurd Maynar y Egérico Vargas (Porras, 2015)."
+      "Descripción": "El Dr. Echandi, reconocido cirujano, fue asesinado el 23 de agosto de 1938 por Beltrán Cortés, antiguo paciente que culpaba al médico y a su colega el Dr. Moreno Cañas de una operación fallida. Esa misma noche, también asesinó a Moreno Cañas, Arthurd Maynar y Egérico Vargas (Porras, 2015).",
+      "ImageURL": "1938"
     },
     { "Año": "1944",
       "Acontecimiento": "Casa Santa Margarita",
-      "Descripción": "La casa fue donada por Carolina Dent para la Asociación de Adoradores, Adoradoras y Reparadoras del Corazón Eucarístico de Jesús. La actual capilla se construyó el 18 de junio de 1971 con la aprobación del Arzobispo de San José Excmo. Mons. Carlos Humberto Rodríguez Quirós (Suore Oblate al Divino Amore, 2018)."
-    },
-    { "Año": "1949",
-      "Acontecimiento": "Edificio Escuela Técnica Nacional",
-      "Descripción": "En este año, el Ing. Rafael Keith Alvarado (conocido como Rafles) junto al Ing. Antonio Fernández y el Lic. Mariano Ramírez emprenden la creación de la Escuela Técnica Nacional; la cual se ubicará en lo que actualmente es el Centro Académico de San José del TEC (Montero, 2017)."
+      "Descripción": "La casa fue donada por Carolina Dent para la Asociación de Adoradores, Adoradoras y Reparadoras del Corazón Eucarístico de Jesús. La actual capilla se construyó el 18 de junio de 1971 con la aprobación del Arzobispo de San José Excmo. Mons. Carlos Humberto Rodríguez Quirós (Suore Oblate al Divino Amore, 2018).",
+      "ImageURL": null
     },
     { "Año": "1947",
       "Acontecimiento": "Pensión Canadá",
-      "Descripción": "La Pensión Canadá, “primer gran hotel de Centroamérica”, se abrió para albergar a visitantes internacionales. Actualmente, su ubicación corresponde al Hotel Don Carlos, ubicado en calle 9 (Chaves, 2018)."
+      "Descripción": "La Pensión Canadá, “primer gran hotel de Centroamérica”, se abrió para albergar a visitantes internacionales. Actualmente, su ubicación corresponde al Hotel Don Carlos, ubicado en calle 9 (Chaves, 2018).",
+      "ImageURL": "1947"
     },
-    { "Año": "1953",
-      "Acontecimiento": "Cambio de Administración del Parque Zoológico Simón Bolívar",
-      "Descripción": "Desde su creación, el parque fue administrado por el Museo Nacional  hasta  1953 cuando, a través de la Ley de la República No 1542, el cuido y las instalaciones del parque pasaron a la dirección del Ministerio de Agricultura y Ganadería (Vargas y Zamora, 2000)."
+    { "Año": "1949",
+      "Acontecimiento": "Edificio Escuela Técnica Nacional",
+      "Descripción": "En este año, el Ing. Rafael Keith Alvarado (conocido como Rafles) junto al Ing. Antonio Fernández y el Lic. Mariano Ramírez emprenden la creación de la Escuela Técnica Nacional; la cual se ubicará en lo que actualmente es el Centro Académico de San José del TEC (Montero, 2017).",
+      "ImageURL": "1949"
     },
     { "Año": "Mediados de 1950",
       "Acontecimiento": "Construcción del edificio Rafles",
-      "Descripción": "Se construyó para ser la sede de la Escuela Técnica Nacional (ETN). Hasta el 23 de junio de 1977 se realizó el traspaso de la ETN al Tecnológico de Costa Rica. El Consejo Institucional acordó llamar al edificio Rafael Keith Alvarado (Rafles) en honor a quién donó el inmueble (Montero, 2017)."
+      "Descripción": "Se construyó para ser la sede de la Escuela Técnica Nacional (ETN). Hasta el 23 de junio de 1977 se realizó el traspaso de la ETN al Tecnológico de Costa Rica. El Consejo Institucional acordó llamar al edificio Rafael Keith Alvarado (Rafles) en honor a quién donó el inmueble (Montero, 2017).",
+      "ImageURL": "1950"
+    },
+    { "Año": "1953",
+      "Acontecimiento": "Cambio de Administración del Parque Zoológico Simón Bolívar",
+      "Descripción": "Desde su creación, el parque fue administrado por el Museo Nacional  hasta  1953 cuando, a través de la Ley de la República No 1542, el cuido y las instalaciones del parque pasaron a la dirección del Ministerio de Agricultura y Ganadería (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1964",
       "Acontecimiento": "Remodelación de la casa Guardián Agüero (actual Casa Museo)",
-      "Descripción": "La casa fue construida a principios de siglo XX por la familia Guardián Agüero. En 1964 Mireya Guardián de Varona (destacada educadora y pintora) remodela la casa, con la idea de construir una obra urbana para embellecer la capital josefina (LX Team, 2015)."
+      "Descripción": "La casa fue construida a principios de siglo XX por la familia Guardián Agüero. En 1964 Mireya Guardián de Varona (destacada educadora y pintora) remodela la casa, con la idea de construir una obra urbana para embellecer la capital josefina (LX Team, 2015).",
+      "ImageURL": null
     },
     { "Año": "1965",
       "Acontecimiento": "Instalación del Centro Cultural Franco Costarricense en Barrio Amón",
-      "Descripción": "El Centro Cultural Franco Costarricense alquila la antigua vivienda Sandoval Jiménez para ubicar sus instalaciones (Vargas y Zamora, 2000)."
+      "Descripción": "El Centro Cultural Franco Costarricense alquila la antigua vivienda Sandoval Jiménez para ubicar sus instalaciones (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1965",
       "Acontecimiento": "Constitución del Partido Unificación Nacional",
-      "Descripción": "En enero de 1965, en la casa del Dr. Aguilar Peralta  se reunieron Francisco Calderón y Otilio Ulate para constituir el Partido Unificación Nacional. Dicho partido ganaría las elecciones en 1966 con José Joaquín Trejos Fernández como candidato a la presidencia (Hernández y Hidalgo, 2010)."
+      "Descripción": "En enero de 1965, en la casa del Dr. Aguilar Peralta  se reunieron Francisco Calderón y Otilio Ulate para constituir el Partido Unificación Nacional. Dicho partido ganaría las elecciones en 1966 con José Joaquín Trejos Fernández como candidato a la presidencia (Hernández y Hidalgo, 2010).",
+      "ImageURL": null
     },
     { "Año": "1970 - 1974",
       "Acontecimiento": "Construcción del INS",
-      "Descripción": "Diseñado por los arquitectos Rafael Esquivel y Roberto Villalobos, el edificio del INS consta de un volumen horizontal en su base de doble altura que alberga el vestíbulo general y las áreas de servicio al cliente, los demás pisos se distribuyen en una torre vertical (Sanou, 2010)."
+      "Descripción": "Diseñado por los arquitectos Rafael Esquivel y Roberto Villalobos, el edificio del INS consta de un volumen horizontal en su base de doble altura que alberga el vestíbulo general y las áreas de servicio al cliente, los demás pisos se distribuyen en una torre vertical (Sanou, 2010).",
+      "ImageURL": "1970_1974"
     },
     { "Año": "1973",
       "Acontecimiento": "Compra del inmueble Ford Iglesias por el  Centro de Cine",
-      "Descripción": "Tras años de abandono y de ser desmantelada por ladrones; el recién creado Centro de Cine, del Ministerio de Cultura y Juventud, adquirió y remodeló la casa Ford Iglesias para ubicar sus nuevas instalaciones en este inmueble (Madrigal, 2018)."
+      "Descripción": "Tras años de abandono y de ser desmantelada por ladrones; el recién creado Centro de Cine, del Ministerio de Cultura y Juventud, adquirió y remodeló la casa Ford Iglesias para ubicar sus nuevas instalaciones en este inmueble (Madrigal, 2018).",
+      "ImageURL": "1973"
     },
     { "Año": "1977",
       "Acontecimiento": "Escuela Técnica Nacional es donado al TEC",
-      "Descripción": "El Ing. Rafael Keith Alvarado traspasa todos los bienes de la Escuela Técnica Nacional al Instituto Tecnológico de Costa Rica (Montero, 2017)."
+      "Descripción": "El Ing. Rafael Keith Alvarado traspasa todos los bienes de la Escuela Técnica Nacional al Instituto Tecnológico de Costa Rica (Montero, 2017).",
+      "ImageURL": null
     },
     { "Año": "1982",
       "Acontecimiento": "Creación del Centro Académico San José",
-      "Descripción": "Tras varios años de funcionamiento del TEC en San José, se creó oficialmente el Centro Académico de San José. Después de varios trámites legales, es hasta el 26 de agosto del 2016 cuando finalmente, a través de una donación, el edificio Rafles pasa a ser del TEC (Montero, 2017)."
+      "Descripción": "Tras varios años de funcionamiento del TEC en San José, se creó oficialmente el Centro Académico de San José. Después de varios trámites legales, es hasta el 26 de agosto del 2016 cuando finalmente, a través de una donación, el edificio Rafles pasa a ser del TEC (Montero, 2017).",
+      "ImageURL": "1982"
     },
     { "Año": "1989",
       "Acontecimiento": "Alianza Francesa adquiere la casa Sandoval Jiménez",
-      "Descripción": "La Alianza Cultural Franco Costarricense, tras alquilar el edificio por 24 años, decide adquirir la propiedad por la suma de 900 mil francos (Vargas y Zamora, 2000)."
-    },
-    { "Año": "1993 – 1996",
-      "Acontecimiento": "Construcción del Hotel Amstel Amón",
-      "Descripción": "Este hotel funcionó por varios años, ubicado sobre Av. 11 en la calle 3A. Actualmente, se localiza el Hotel y Casino Taormina. Antiguamente, en esta propiedad se localizaba la casa de don Jaime Bennett."
+      "Descripción": "La Alianza Cultural Franco Costarricense, tras alquilar el edificio por 24 años, decide adquirir la propiedad por la suma de 900 mil francos (Vargas y Zamora, 2000).",
+      "ImageURL": null
     },
     { "Año": "1990",
       "Acontecimiento": "Restauración del edificio de la Alianza Francesa",
-      "Descripción": "Con motivo del centenario de la construcción del inmueble, la Alianza Francesa inició un proceso de restauración total dirigido por el Arquitecto Bruno Stagno y la asesoría de expertos franceses (Vargas y Zamora, 2000)."
+      "Descripción": "Con motivo del centenario de la construcción del inmueble, la Alianza Francesa inició un proceso de restauración total dirigido por el Arquitecto Bruno Stagno y la asesoría de expertos franceses (Vargas y Zamora, 2000).",
+      "ImageURL": "1990"
+    },
+    { "Año": "1993",
+      "Acontecimiento": "Demolición de la casa de Jaime Bennett en la propiedad del actual Hotel Amstel Amón",
+      "Descripción": "Sin descripción.",
+      "ImageURL": "1993"
+    },
+    { "Año": "1993 – 1996",
+      "Acontecimiento": "Construcción del Hotel Amstel Amón",
+      "Descripción": "Este hotel funcionó por varios años, ubicado sobre Av. 11 en la calle 3A. Actualmente, se localiza el Hotel y Casino Taormina. Antiguamente, en esta propiedad se localizaba la casa de don Jaime Bennett.",
+      "ImageURL": "1993_1996"
     },
     { "Año": "1998",
       "Acontecimiento": "Creación de la Casa Cultural Amón",
-      "Descripción": "Es un programa de extensión cultural adscrito a la Escuela de Cultura y Deporte del CASJ. Su modelo se basó en la Casa de la Ciudad de Cartago; contextualizado a la ciudad capital y a las características patrimoniales del barrio."
+      "Descripción": "Es un programa de extensión cultural adscrito a la Escuela de Cultura y Deporte del CASJ. Su modelo se basó en la Casa de la Ciudad de Cartago; contextualizado a la ciudad capital y a las características patrimoniales del barrio.",
+      "ImageURL": "1998"
     },
     { "Año": "1999",
       "Acontecimiento": "Fundación TEOR/éTica",
-      "Descripción": "Fundada por Virginia Pérez Ratton, artista, curadora e investigadora costarricense. Es una plataforma para la investigación y difusión de las prácticas artísticas contemporáneas, con énfasis en Centroamérica y el Caribe. Su nombre deriva de teoría, estética y ética (TEOR/éTica , 2018)."
+      "Descripción": "Fundada por Virginia Pérez Ratton, artista, curadora e investigadora costarricense. Es una plataforma para la investigación y difusión de las prácticas artísticas contemporáneas, con énfasis en Centroamérica y el Caribe. Su nombre deriva de teoría, estética y ética (TEOR/éTica , 2018).",
+      "ImageURL": "1999"
     },
     { "Año": "2000",
       "Acontecimiento": "Creación de la Escuela de Arquitectura y Urbanismo",
-      "Descripción": "La Escuela de Arquitectura y Urbanismo del TEC inició sus labores desde el I semestre del 2000, cuando recibe al primer grupo de estudiantes. Es la única escuela del TEC que no cuenta con sede en Cartago, concentrando toda su actividad en el Centro Académico de San José"
+      "Descripción": "La Escuela de Arquitectura y Urbanismo del TEC inició sus labores desde el I semestre del 2000, cuando recibe al primer grupo de estudiantes. Es la única escuela del TEC que no cuenta con sede en Cartago, concentrando toda su actividad en el Centro Académico de San José",
+      "ImageURL": "2000"
     },
     { "Año": "2001",
       "Acontecimiento": "Electrificación subterránea de barrio Amón",
-      "Descripción": "El proyecto de la CNFL se propuso dotar a San José de una red moderna y segura de alimentación eléctrica, esto disminuyó significativamente el costo de mantenimiento y contribuyó al embellecimiento de la ciudad y la calidad de vida de sus habitantes."
+      "Descripción": "El proyecto de la CNFL se propuso dotar a San José de una red moderna y segura de alimentación eléctrica, esto disminuyó significativamente el costo de mantenimiento y contribuyó al embellecimiento de la ciudad y la calidad de vida de sus habitantes.",
+      "ImageURL": null
     },
     { "Año": "2006",
       "Acontecimiento": "Construcción del Boulevard República de Argentina",
-      "Descripción": "Se peatonizó la sección de calle 11, ubicada entre el costado este del edificio del INS y la Casa Amarilla a través de un bulevar en el que comparten espacio el vehículo y el peatón."
+      "Descripción": "Se peatonizó la sección de calle 11, ubicada entre el costado este del edificio del INS y la Casa Amarilla a través de un bulevar en el que comparten espacio el vehículo y el peatón.",
+      "ImageURL": null
     },
     { "Año": "2009",
       "Acontecimiento": "Proyecto Memoria Urbana de Barrio Amón",
-      "Descripción": "Es un proyecto de la Casa Cultural Amón, donde artistas de la Asociación Costarricense de Artistas Visuales apoyan con sus obras, trabajos y exposiciones artísticas, para poner en valor la riqueza histórica, arquitectónica y paisajística del Barrio (García, 2016)."
+      "Descripción": "Es un proyecto de la Casa Cultural Amón, donde artistas de la Asociación Costarricense de Artistas Visuales apoyan con sus obras, trabajos y exposiciones artísticas, para poner en valor la riqueza histórica, arquitectónica y paisajística del Barrio (García, 2016).",
+      "ImageURL": "2009"
     },
     { "Año": "2010",
       "Acontecimiento": "Investigación ‘Barrio Amón Memoria y Desarrollo’",
-      "Descripción": "Trabajo de investigación realizado por los antropólogos Enrique Hernández Camacho y Estibaliz Hidalgo, junto a estudiantes de la Escuela de Arquitectura y Urbanismo; respecto al estado sociocultural de barrio Amón y su memoria (Hernández e Hidalgo, 2010)."
+      "Descripción": "Trabajo de investigación realizado por los antropólogos Enrique Hernández Camacho y Estibaliz Hidalgo, junto a estudiantes de la Escuela de Arquitectura y Urbanismo; respecto al estado sociocultural de barrio Amón y su memoria (Hernández e Hidalgo, 2010).",
+      "ImageURL": "2010_1"
     },
     { "Año": "2010",
       "Acontecimiento": "Chepecletas",
-      "Descripción": "Con la intención de lograr un  cambio cultural en San José a través del movimiento sin emisiones nace Chepecletas. Este grupo apoya la revitalización de la ciudad a través de una nueva cultura urbana con diferentes recorridos urbanos que incluyen barrio Amón (Chepecletas, 2018)."
+      "Descripción": "Con la intención de lograr un  cambio cultural en San José a través del movimiento sin emisiones nace Chepecletas. Este grupo apoya la revitalización de la ciudad a través de una nueva cultura urbana con diferentes recorridos urbanos que incluyen barrio Amón (Chepecletas, 2018).",
+      "ImageURL": "2010_2"
     },
     { "Año": "2011",
       "Acontecimiento": "Aparición de vivienda multifamiliar en Barrio Amón",
-      "Descripción": "Sustitución de viviendas unifamiliares por edificios de apartamentos cerca de la entrada del Parque Zoológico Simón Bolívar."
+      "Descripción": "Sustitución de viviendas unifamiliares por edificios de apartamentos cerca de la entrada del Parque Zoológico Simón Bolívar.",
+      "ImageURL": null
     },
     { "Año": "2012",
       "Acontecimiento": "Brunch del Patrimonio",
-      "Descripción": "Esta actividad organizada por la Alianza Francesa, consiste en conferencias impartida por un arquitecto e historiador, seguidas por una caminata guiada y un brunch para al final del evento. Su finalidad es generar conocimiento y sensibilidad por el patrimonio arquitectónico de Costa Rica (Alianza Francesa, 2018)."
+      "Descripción": "Esta actividad organizada por la Alianza Francesa, consiste en conferencias impartida por un arquitecto e historiador, seguidas por una caminata guiada y un brunch para al final del evento. Su finalidad es generar conocimiento y sensibilidad por el patrimonio arquitectónico de Costa Rica (Alianza Francesa, 2018).",
+      "ImageURL": null
     },
     { "Año": "2012",
       "Acontecimiento": "Nuit Blanche",
-      "Descripción": "Esta iniciativa de la Alianza Francesa y GAM Cultural consiste en una serie de actividades que buscan fomentar la vida cultural citadina y atraer a nuevos públicos a sus espacios culturales y artísticos (GAM Cultural, 2018)."
+      "Descripción": "Esta iniciativa de la Alianza Francesa y GAM Cultural consiste en una serie de actividades que buscan fomentar la vida cultural citadina y atraer a nuevos públicos a sus espacios culturales y artísticos (GAM Cultural, 2018).",
+      "ImageURL": null
     },
     { "Año": "2013",
       "Acontecimiento": "Apertura de la carrera de Ingeniería en Computación en el CASJ",
-      "Descripción": "Dada la alta demanda de la Escuela de Ingeniería en Computación, el TEC decidió abrir una nueva opción académica en el CASJ. Actualmente, esta escuela se ubica en el inmueble conocido como Casa Verde."
+      "Descripción": "Dada la alta demanda de la Escuela de Ingeniería en Computación, el TEC decidió abrir una nueva opción académica en el CASJ. Actualmente, esta escuela se ubica en el inmueble conocido como Casa Verde.",
+      "ImageURL": null
     },
     { "Año": "2014",
       "Acontecimiento": "Casa Verde adquirida por el TEC",
-      "Descripción": "En diciembre del 2014, el TEC adquirió el inmueble conocido como Casa Verde. El edificio pasó a formar parte del Centro Académico de San José, actualmente alberga actividades administrativas de la Escuela de Computación y la Escuela de Administración de Empresas (Montero, 2016)."
+      "Descripción": "En diciembre del 2014, el TEC adquirió el inmueble conocido como Casa Verde. El edificio pasó a formar parte del Centro Académico de San José, actualmente alberga actividades administrativas de la Escuela de Computación y la Escuela de Administración de Empresas (Montero, 2016).",
+      "ImageURL": "2014"
     },
     { "Año": "2014",
       "Acontecimiento": "I Festival Amón Cultural",
-      "Descripción": "Amón Cultural es una plataforma de difusión artística y cultural del barrio Amón, mediante una red de tejido vivo conformada por vecinos, emprendimientos, comercios, instituciones y gestores locales. Anualmente se realiza el festival Amón Cultural el primer sábado de marzo."
+      "Descripción": "Amón Cultural es una plataforma de difusión artística y cultural del barrio Amón, mediante una red de tejido vivo conformada por vecinos, emprendimientos, comercios, instituciones y gestores locales. Anualmente se realiza el festival Amón Cultural el primer sábado de marzo.",
+      "ImageURL": null
     },
     { "Año": "2015",
       "Acontecimiento": "Construcción del Nuevo Edificio en el CASJ",
-      "Descripción": "Como respuesta a la demanda de infraestructura del CASJ a causa de la creciente matrícula, el 7 de septiembre de 2015, se realizó el acto simbólico de inicio de la  construcción del  nuevo edificio para biblioteca  y aulas."
+      "Descripción": "Como respuesta a la demanda de infraestructura del CASJ a causa de la creciente matrícula, el 7 de septiembre de 2015, se realizó el acto simbólico de inicio de la  construcción del  nuevo edificio para biblioteca  y aulas.",
+      "ImageURL": null
     },
     { "Año": "2016",
       "Acontecimiento": "Rutas Naturbanas",
-      "Descripción": "Proyecto que busca crear rutas de uso compartido y de desplazamiento no motorizado para conectar más de 25 km al norte y sur de la ciudad de San José (Rutas Naturbanas, 2018)."
+      "Descripción": "Proyecto que busca crear rutas de uso compartido y de desplazamiento no motorizado para conectar más de 25 km al norte y sur de la ciudad de San José (Rutas Naturbanas, 2018).",
+      "ImageURL": null
     },
     { "Año": "2017",
       "Acontecimiento": "Inicio del proyecto Amón_RA",
-      "Descripción": "Gracias al financiamiento de la Vicerrectoría de Investigación y Extensión del TEC se da inicio al proyecto Amón_RA, el cual busca utilizar la realidad aumentada para la puesta en valor del paisaje urbano histórico de barrio Amón."
+      "Descripción": "Gracias al financiamiento de la Vicerrectoría de Investigación y Extensión del TEC se da inicio al proyecto Amón_RA, el cual busca utilizar la realidad aumentada para la puesta en valor del paisaje urbano histórico de barrio Amón.",
+      "ImageURL": null
     },
     { "Año": "2017",
       "Acontecimiento": "IV Festival Amón Cultural",
-      "Descripción": "Participación del proyecto Amón_RA  en el marco del festival Amón Cultural con la actividad ‘Dibujando Amón’."
+      "Descripción": "Participación del proyecto Amón_RA  en el marco del festival Amón Cultural con la actividad ‘Dibujando Amón’.",
+      "ImageURL": null
     },
     { "Año": "2018",
       "Acontecimiento": "V Festival Amón Cultural",
-      "Descripción": "Participación del proyecto Amón_RA  en el marco del festival Amón Cultural con la actividad ‘Explorando con Amón_RA’."
+      "Descripción": "Participación del proyecto Amón_RA  en el marco del festival Amón Cultural con la actividad ‘Explorando con Amón_RA’.",
+      "ImageURL": null
     },
     { "Año": "2018",
       "Acontecimiento": "Inauguración Nuevo Edificio CASJ",
-      "Descripción": "Gracias a los fondos del Banco Mundial, el 5 de abril se inauguró un nuevo edificio para albergar aulas, un laboratorio de cómputo y la biblioteca del CASJ (Chinchilla, 2018)."
+      "Descripción": "Gracias a los fondos del Banco Mundial, el 5 de abril se inauguró un nuevo edificio para albergar aulas, un laboratorio de cómputo y la biblioteca del CASJ (Chinchilla, 2018).",
+      "ImageURL": null
     }
   ]
 }

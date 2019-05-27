@@ -12,7 +12,10 @@ import {
   Text,
   View,
   StyleSheet,
-  TouchableHighlight
+  TouchableHighlight,
+  Dimensions,
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 import {
@@ -41,14 +44,19 @@ export default class ViromediaController extends Component {
 
     super(props);
 
+    this._getARNavigator = this._getARNavigator.bind(this);
+    this._getVRNavigator = this._getVRNavigator.bind(this);
+    this.showInformation = this.showInformation.bind(this);
+
     this.state = {
       sharedProps : sharedProps,
       navigatorType : this.props.navigation.state.params.do,
+      viroAppProps: {showInformation: this.showInformation},
+      informationVisible: false,
+      informationText: "Sin datos",      
       vrMode : null,
+      dataSheetVisible: false,
     }
-
-    this._getARNavigator = this._getARNavigator.bind(this);
-    this._getVRNavigator = this._getVRNavigator.bind(this);
   }   
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -73,11 +81,50 @@ export default class ViromediaController extends Component {
   // Returns the ViroARSceneNavigator which will start the AR experience
   _getARNavigator() {
     return (
-      <ViroARSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialARScene}} onExitViro={this._exitViro} />
+      <View style={{flex: 1}}>
+        <ViroARSceneNavigator {...this.state.sharedProps}
+          initialScene={{scene: InitialARScene}} onExitViro={this._exitViro} viroAppProps={this.state.viroAppProps}/>
+
+        {this.state.informationVisible
+          ?   <View style={localStyles.infoContainer}>
+                <Text style={{color:'white',fontSize: 16, marginBottom: 15}}> {this.state.informationText} </Text>
+
+                <TouchableOpacity style={localStyles.infoButton}>
+                  <Image source={require('../../images/icons/RA/ficha-tecnica.png')} />
+                  <Text style={{color:"##1a606b",fontSize: 14}}> Ficha técnica</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={localStyles.infoButton}>
+                  <Image source={require('../../images/icons/RA/vivenciass.png')} />
+                  <Text style={{color:"##1a606b",fontSize: 14}}> Vivencias</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={localStyles.infoButton}>
+                  <Image  source={require('../../images/icons/RA/mas-info.png')} />
+                  <Text style={{color:"##1a606b",fontSize: 14}}> Info</Text>
+                </TouchableOpacity>
+              </View>
+          : null
+        }
+
+        {this.state.dataSheetVisible // Ficha técnica
+          ? <View style={localStyles.infoContainer}>
+            </View>
+          : null
+        }
+      </View>
     );
   }
-  
+
+  // Show extra information of a building.
+  showInformation(){
+    console.log("Activando información ");
+    this.setState({
+      informationVisible: true,
+      informationText: "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001)."
+    });
+  }
+
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
     return (
@@ -190,7 +237,22 @@ var localStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#fff',
+  },
+  infoContainer : {
+    flex:14, 
+    flexDirection: 'row', 
+    padding:15, 
+    bottom: 68,
+    position:"absolute",
+    backgroundColor:'rgba(54, 145, 160, 0.8)',
+    width: Dimensions.get('window').width,
+    flexWrap: 'wrap',
+    justifyContent:'space-around',
+  },
+  infoButton: {
+    flexDirection: 'row', 
   }
+
 });
 
 module.exports = ViromediaController

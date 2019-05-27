@@ -299,7 +299,7 @@ export default class Navigator extends Component {
                        />
                      </TouchableOpacity>
 
-                     <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("Viromedia", {goToScreen: this.goToScreen})} >
+                     <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("Viromedia", {goToScreen: this.goToScreen, do: "AR"})} >
                        <Image style={styles.squareButton}  source={lastScreen === "Viromedia" ?
                                                                          require(RAIconURL + png) :
                                                                          require(RAIconURL + "_gris" + png) }
@@ -343,7 +343,7 @@ export default class Navigator extends Component {
                           />
                         </TouchableOpacity>
                         
-                        <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("Viromedia", {goToScreen: this.goToScreen})} >
+                        <TouchableOpacity style={styles.button} onPress={() => this.goToScreen("Viromedia", {goToScreen: this.goToScreen, do: "AR"})} >
                           <Image style={styles.squareButton}  source={lastScreen === "Viromedia" ?
                                                                             require(RAIconURL + "_blanco"+ png) :
                                                                             require(RAIconURL + "_turquesa" + png) }
