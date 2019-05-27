@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -58,6 +57,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		C5BA1CC6584D439882807532 /* Barlow-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 86280B03CB0448659EFC7363 /* Barlow-SemiBold.otf */; };
 		C9EBD50AA8383866BD23A85F /* libPods-amonra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 993BBF2EDCEF08E332629E38 /* libPods-amonra.a */; };
+		E7EE6C0B03D54E7F8646416F /* libRNSimpleCompass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 610705772816469A8BAC37A4 /* libRNSimpleCompass.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -420,6 +420,8 @@
 		DD05E8B7CE6891437C6F0503 /* libPods-amonra-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-amonra-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC710575BBAA40E191A17DCA /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
 		F72F9232CA6A49DCBC57CFC5 /* Barlow-MediumItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Barlow-MediumItalic.otf"; path = "../resources/barlow_font/Barlow-MediumItalic.otf"; sourceTree = "<group>"; };
+		3F882C98424443BF9473517A /* RNSimpleCompass.xcodeproj */ = {isa = PBXFileReference; name = "RNSimpleCompass.xcodeproj"; path = "../node_modules/react-native-simple-compass/ios/RNSimpleCompass.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		610705772816469A8BAC37A4 /* libRNSimpleCompass.a */ = {isa = PBXFileReference; name = "libRNSimpleCompass.a"; path = "libRNSimpleCompass.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -461,6 +463,7 @@
 				434C48C73C3B4EA88299B1F0 /* AddressBook.framework in Frameworks */,
 				2AC2CF21006F46F6A2085583 /* libRNFirebase.a in Frameworks */,
 				1FF545BC54B94B1BBDF1BE04 /* libRNUnityView.a in Frameworks */,
+				E7EE6C0B03D54E7F8646416F /* libRNSimpleCompass.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +723,7 @@
 				EC710575BBAA40E191A17DCA /* RNGoogleSignin.xcodeproj */,
 				311CFC862111751E00B0DEB2 /* RCTOrientation.xcodeproj */,
 				CCDE381450A14784A27FA81D /* RNFirebase.xcodeproj */,
+				3F882C98424443BF9473517A /* RNSimpleCompass.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1450,12 +1454,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-unity-view/ios",
+					"$(SRCROOT)/../node_modules/react-native-simple-compass/ios",
 				);
 				INFOPLIST_FILE = amonraTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1481,12 +1487,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-unity-view/ios",
+					"$(SRCROOT)/../node_modules/react-native-simple-compass/ios",
 				);
 				INFOPLIST_FILE = amonraTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1523,6 +1531,7 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/node_modules/react-native-orientation/iOS/RCTOrientation/**",
 					"$(SRCROOT)/../node_modules/react-native-unity-view/ios",
+					"$(SRCROOT)/../node_modules/react-native-simple-compass/ios",
 				);
 				INFOPLIST_FILE = amonra/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1560,6 +1569,7 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/node_modules/react-native-orientation/iOS/RCTOrientation/**",
 					"$(SRCROOT)/../node_modules/react-native-unity-view/ios",
+					"$(SRCROOT)/../node_modules/react-native-simple-compass/ios",
 				);
 				INFOPLIST_FILE = amonra/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1593,11 +1603,13 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-unity-view/ios",
+					"$(SRCROOT)/../node_modules/react-native-simple-compass/ios",
 				);
 				INFOPLIST_FILE = "amonra-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1633,11 +1645,13 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-unity-view/ios",
+					"$(SRCROOT)/../node_modules/react-native-simple-compass/ios",
 				);
 				INFOPLIST_FILE = "amonra-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1672,11 +1686,13 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-unity-view/ios",
+					"$(SRCROOT)/../node_modules/react-native-simple-compass/ios",
 				);
 				INFOPLIST_FILE = "amonra-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1711,11 +1727,13 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-unity-view/ios",
+					"$(SRCROOT)/../node_modules/react-native-simple-compass/ios",
 				);
 				INFOPLIST_FILE = "amonra-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

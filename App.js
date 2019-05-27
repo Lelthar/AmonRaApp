@@ -16,10 +16,10 @@ export default class App extends Component<Props> {
     constructor(props) {
         super(props);
         this.state = {
-            hasUserRegistered: null
+            userData: null
         }
-        AsyncStorage.getItem('hasUserRegistered').then((value) => {
-            this.setState({hasUserRegistered: value});
+        AsyncStorage.getItem('userData').then((value) => {
+            this.setState({userData: value});
         });
         //requestPermissions();
 
@@ -28,8 +28,8 @@ export default class App extends Component<Props> {
       const register = <RegisterMain />;
       const mainApp = <MainApp />;
 
-      //return (this.state.hasUserRegistered ? mainApp : register)
-      return (mainApp);
+      return (this.state.userData ? mainApp : register);
+      //return (mainApp);
       //return (register);
     }
 }

@@ -4,6 +4,14 @@ import android.app.Application;
 
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.facebook.react.ReactApplication;
+import com.brentvatne.react.ReactVideoPackage;
+import com.reactlibrary.RNSimpleCompassPackage;
+import com.github.yamill.orientation.OrientationPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
+import io.invertase.firebase.RNFirebasePackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
