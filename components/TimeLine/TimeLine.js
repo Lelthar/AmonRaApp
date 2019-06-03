@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet,AppRegistry,Image } from 'react-native';
-import Timeline from '../../lib/index'
+import Timeline from './index'
 
 const data = require('../../data/data.json');
 var linea = data.Linea_Del_Tiempo;
-
-
 
 export default class TimeLine extends Component  {
     constructor(){
@@ -15,6 +13,7 @@ export default class TimeLine extends Component  {
         event.title = obj.Acontecimiento;
         event.description = obj.Descripción;
         event.time = obj.Año;
+        event.image = obj.ImageURL;
         return event;
       });
     }
