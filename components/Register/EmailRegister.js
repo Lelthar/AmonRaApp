@@ -1,10 +1,13 @@
 import React from 'react';
-import firebase from 'react-native-firebase';
 import {StackActions, NavigationActions} from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-//import GoogleSignIn from 'react-native-google-sign-in';
-import {saveDataFirebase} from '../../firebase/functions';
 import MainApp from '../../MainApp';
+
+import { 
+  FEATURES_URL,
+  USER_DATA,
+} from '../../constants/constants';
+
 
 import {
   Alert,
@@ -19,6 +22,7 @@ import {
   Picker,
   Icon,
   ScrollView,
+  AsyncStorage,
   KeyboardAvoidingView,
 } from 'react-native';
 
@@ -35,8 +39,6 @@ const {
   LoginManager,
 } = FBSDK;
 
-
-
 const logo = '../../images/marca-02.png';
 const background = '../../resources/img/casa-verde-I.jpg';
 const nombre = '../../resources/img/user.png';
@@ -45,32 +47,33 @@ const anho = [];
 
 export default class RegisterMain extends React.Component {
 
- static navigationOptions = {
- title: 'Email Register',
- }
-
-constructor (props) {
-  super(props);
-  this.state = {
-    name: '',
-    lastName: '',
-    email: '',
-    country: '',
-    gender: '',
-    date: '',
-    method: 'email',
-    validated: false,
-    one: false,
-    two: false,
-    isConfidencialityAlertVisible: false,
-    checkedH:false,
-    checkedM:false
-
+  static navigationOptions = {
+    title: 'Email Register',
   }
-  for(let i = 1900; i < 2100; i++){
-    anho.push(i.toString());
-  }
-};
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      name: '',
+      lastName: '',
+      email: '',
+      country: '',
+      gender: '',
+      date: '',
+      method: 'email',
+      validated: false,
+      one: false,
+      two: false,
+      isConfidencialityAlertVisible: false,
+      checkedH:false,
+      checkedM:false,
+      buttonDisabled: false,
+
+    }
+    for(let i = 1900; i < 2100; i++){
+      anho.push(i.toString());
+    }
+  };
 
 _showConfidencialityAlert(){
   this.setState({ isConfidencialityAlertVisible: !this.state.isConfidencialityAlertVisible });
@@ -92,114 +95,115 @@ _goToBackApp(){
   this.props.navigation.dispatch(resetAction);
 }
 
+changeButtonToDisabled(){
+  this.setState(
+    {buttonDisabled: true}
+  );
+}
+
+changeButtonToAbled(){
+  this.setState(
+    {buttonDisabled: false}
+  );
+}
+
 async _emailRegister(){
+  const response = await fetch(REGISTRATION_URL, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email: this.state.email,
+      password: this.state.email,
+      password_confirmation: this.state.email,
+      name: this.state.name,
+      lastname: this.state.lastName,
+      country: this.state.country,
+      year_birth: this.state.date,
+      gender: this.state.gender
+    }),
+  }).catch((error) => {
+      console.error(error);
+    });
+  const responseJson = await response.json();
+  const headersJson = await response.headers.map;
+  
+  if (responseJson.status === 'success') {
 
-  //if (this.validate() == true)
-  //{
-      const user = this.state;
-      //la variable new user se utiliza para guardar los mismos datos que user
-      //así, en el formulario no se concatenará el nombre con el apellido, sino que sucederá solo "por debajo"
-      var newUser = user;
-      if (user.lastName != null && user.lastName != '') {
-        //newUser.name += " " + newUser.lastName;  //comentar esto para que no se copie el apellido al nombre
-      }
-      await firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(user.email, user.email).then (async (result) =>{
-        //Se creó el usuario
-        newUser.id = result.user.uid;
-        saveDataFirebase(newUser);
-        alert(JSON.stringify(newUser))
-        //this._showConfidencialityAlert();
-      }, async (err) => {
-        if (err.code == "auth/email-already-in-use"){
-          console.log ("AmónRA: Se ha registrado un correo ya en uso.");
-          //Iniciar sesión para obtener el id
-          await firebase.auth().signInAndRetrieveDataWithEmailAndPassword(user.email, user.email).then(async (existingUser) => {
-            //alert(existingUser.user.uid);
-            newUser.id = existingUser.user.uid
-            saveDataFirebase(newUser);
-            this._showConfidencialityAlert();
-          }, function (err) {
-            alert("Mensaje de desarrollo:\nFirebase error: \n" + JSON.stringify(err, null, '  '));
-        });
+    const userData = {
+      'access-token': headersJson['access-token'],
+      client: headersJson.client,
+      uid: headersJson.uid,
+      email: responseJson.data.email
+    };
+    AsyncStorage.setItem(USER_DATA, JSON.stringify(userData));
 
-        }
-        else if (err.code == "auth/wrong-password"){
-          console.log("Un usuario se ha intentado registrar con un correo ya utilizado por otro método");
-        }
-        else if (err.code == "auth/unknown"){
-          console.log("Error desconocido/no hay internet");
-          Alert.alert(
-            'Ups! Algo salió mal',
-            'No se ha completado el registro, verifique su conexión a internet o utilice otro método',
-          );
-          alert(JSON.stringify(err))
-        }
-        else{
-          alert("Ha ocurrido un error \n" + err.code);
-        }
-
-      });
-
-  //
-  //}
+    this._showConfidencialityAlert();
+    
+  } else {
+    alert(responseJson.errors.full_messages[0]);
+    this.changeButtonToAbled();
+  }
 }
 
 
-CheckTextInputIsEmptyOrNot(){
+isNoTextInputEmpty() {
 
- const { name }  = this.state ;
- const { lastName }  = this.state ;
- const { email }  = this.state ;
- const { date }  = this.state ;
- const { country }  = this.state ;
+  const name = this.state.name;
+  const lastName = this.state.lastName;
+  const email = this.state.email;
+  const date = this.state.date;
+  const country = this.state.country;
 
-  if(name == '')
-      {
-        Alert.alert("El nombre es obligatorio");
-        this.setState({name})
-      }
-    else if(lastName == ''  )
-      {
-        Alert.alert("El apellido es obligatorio");
-        this.setState({lastName})
-      }
-    else if(email == ''  )
-      {
-        Alert.alert("El correo es obligatorio");
-        this.setState({email})
-      }
-    else if(date == '' )
-      {
-        Alert.alert("El año de nacimiento es obligatorio");
-        this.setState({date})
-      }
+  let message = "";
 
-    else
-      {
-        return true;
-      }
+  if(name == '') {
+    message += "El nombre es obligatorio.\n";
+    this.setState({name});
+  }
+  if(lastName == '') {
+    message += "El apellido es obligatorio.\n";
+    this.setState({lastName})
+  } 
+  if(email == '') {
+    message += "El correo es obligatorio.\n";
+    this.setState({email})
+  }
+  if(date == '') {
+    message += "El año de nacimiento es obligatorio.\n";
+    this.setState({date})
+  }
+
+  if (message == "") {
+    return true;
+  } else {
+    Alert.alert(message);
+    return false;
+  }
 
 }
 
+hasEmailGoodFormat(email) {
+  const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return reg.test(email);
+}
 
-// Valida que el correo ingresado sea válido
-validate( ){
 
-  if (this.CheckTextInputIsEmptyOrNot() == true)
-  {
-    const { email }  = this.state ;
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      if(reg.test(email) == false )
-        {
-        Alert.alert("El email no es válido");
-        this.setState({email})
-        return false;
-        }
-        else
-        {
-          this.setState({email})
-          this._emailRegister()
-        }
+pre_register( ){
+
+  if (this.isNoTextInputEmpty()) {
+    const email = this.state.email;
+
+    if (this.hasEmailGoodFormat(email)) {
+      this.setState({email});
+      this.changeButtonToDisabled();
+      this._emailRegister();
+    } else {
+      Alert.alert("El email no es válido");
+      this.setState({email});
+    }
   }
 }
 
@@ -396,7 +400,8 @@ render (){
             <View style={{flex:0.5}}/>
             <View style={styles.containerbotonaceptar}>
               <TouchableOpacity style={styles.button}
-                onPress = {this.validate.bind(this)}>
+                disabled={this.state.buttonDisabled}
+                onPress = {this.pre_register.bind(this)}>
                 <Text style={styles.btntext}>ACEPTAR</Text>
               </TouchableOpacity>
             </View>

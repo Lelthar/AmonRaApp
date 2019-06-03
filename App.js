@@ -5,6 +5,9 @@ import {
 
 import RegisterMain from './components/Register/RegisterMain';
 import MainApp from './MainApp'
+import { 
+  USER_DATA,
+} from '../../constants/constants';
 
 import {
     requestCameraPermission,
@@ -18,7 +21,7 @@ export default class App extends Component<Props> {
         this.state = {
             userData: null
         }
-        AsyncStorage.getItem('userData').then((value) => {
+        AsyncStorage.getItem(USER_DATA).then((value) => {
             this.setState({userData: value});
         });
         //requestPermissions();

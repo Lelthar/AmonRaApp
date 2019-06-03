@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 
 import {StackNavigator, StackActions, NavigationActions} from 'react-navigation';
-import EmailRegister1 from './EmailRegister1';
+import EmailRegister from './EmailRegister';
 import MainApp from '../../MainApp';
 import {saveDataFirebase} from '../../firebase/functions';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
@@ -203,7 +203,7 @@ renderModal(){
               <View style={{flex:1.5}}/>
 
               <View style={{flex:5}}>
-                  <TouchableOpacity style={styles.registerButton} onPress={() => {this.props.navigation.navigate("EmailRegister1")}}>
+                  <TouchableOpacity style={styles.registerButton} onPress={() => {this.props.navigation.navigate("EmailRegister")}}>
                       <Text style={styles.RegisterButtonText}> Registrarse </Text>
                   </TouchableOpacity>
 
@@ -317,7 +317,7 @@ const navigationOptions = {
 const RegisterNavigator = StackNavigator (
     {
         RegisterMain: {screen: RegisterMain},
-        EmailRegister1: {screen: EmailRegister1},
+        EmailRegister: {screen: EmailRegister},
         MainApp: {screen: MainApp},
     },
     navigationOptions
