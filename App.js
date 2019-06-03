@@ -28,8 +28,8 @@ export default class App extends Component<Props> {
       const register = <RegisterMain />;
       const mainApp = <MainApp />;
 
-      return (this.state.userData ? mainApp : register);
-      //return (mainApp);
+      //return (this.state.userData ? mainApp : register);
+      return (mainApp);
       //return (register);
     }
 }
