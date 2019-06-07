@@ -20,8 +20,13 @@ import SlidingUpPanel from 'rn-sliding-up-panel';
 
 import { 
   FEATURES_URL,
+  PERIMETER_URL,
   USER_DATA,
 } from '../../constants/constants';
+
+import {
+  makeBackendRequest,
+} from '../../helpers/helpers'
 
 var userLocation = null;
 const data = require('../../data/data.json');
@@ -93,6 +98,7 @@ export default class Map extends Component {
       checkerTel: "Vacio",
       checkerFacebook: "Vacio",
       current_category: "",
+      barrio_amon_coordinates = [],
     };
     this.toggleFilters = this.props.screenProps.showFunctions.toggleFilters;
     this.props.screenProps.getNavigationProp(this.props.navigation);
@@ -279,10 +285,17 @@ export default class Map extends Component {
     else { return; }      
   }
 
+  componentDidMount(){
+    AsyncStorage.getItem(USER_DATA).then((user_data) => {
+      let perimeter_response = makeBackendRequest(PERIMETER_URL,"GET",{},user_data);
+      this.setState({barrio_amon_coordinates: perimeter_response});
+      console.log(perimeter_response);
+    });
+  }
     
   render() {
 
-    const BarrioAmonCoordinates = this.arrayOfCoordinatesToLatLng(poligono[0]);
+    //const BarrioAmonCoordinates = this.arrayOfCoordinatesToLatLng(poligono[0]);
     return (
       //Ver mapa
       <View style={styles.container}>
@@ -302,7 +315,7 @@ export default class Map extends Component {
       >
 
       <MapView.Polygon
-          coordinates={BarrioAmonCoordinates}
+          coordinates={this.state.barrio_amon_coordinates}
           strokeWidth={2}
           tappable={false}
           strokeColor="#fd3c00"
