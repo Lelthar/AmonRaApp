@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import MainApp from '../../MainApp';
 
 import { 
-  FEATURES_URL,
+  REGISTRATION_URL,
   USER_DATA,
 } from '../../constants/constants';
 
