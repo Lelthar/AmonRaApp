@@ -70,7 +70,7 @@ export default class HelloWorldSceneAR extends Component {
                   require('./res/emoji_smile/emoji_smile_normal.png'),
                   require('./res/emoji_smile/emoji_smile_specular.png')]}
               position={[this.state.objectXPos, 2, this.state.objectZPos]}
-              scale={this.state.scaleObj1}
+              scale={[10,10,10]}
               type="VRX" />
           </ViroNode>
 
