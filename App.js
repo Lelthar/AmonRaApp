@@ -7,7 +7,7 @@ import RegisterMain from './components/Register/RegisterMain';
 import MainApp from './MainApp'
 import { 
   USER_DATA,
-} from '../../constants/constants';
+} from './constants/constants';
 
 import {
     requestCameraPermission,
@@ -31,8 +31,8 @@ export default class App extends Component<Props> {
       const register = <RegisterMain />;
       const mainApp = <MainApp />;
 
-      //return (this.state.userData ? mainApp : register);
-      return (mainApp);
+      return (this.state.userData ? mainApp : register);
+      //return (mainApp);
       //return (register);
     }
 }
