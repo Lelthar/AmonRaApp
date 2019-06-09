@@ -22,7 +22,7 @@ export default class HelloWorldSceneVR extends Component {
     return (
       <ViroScene>
         <Viro360Image source={require('./res/Casa_González_Feo_1.jpg')} />
-        <ViroText text="Hello World!" width={2} height={2} position={[0, 0, -2]} style={styles.helloWorldTextStyle} />
+        {/*<ViroText text="Hello World!" width={2} height={2} position={[0, 0, -2]} style={styles.helloWorldTextStyle} />*/}
       </ViroScene>
     );
   }

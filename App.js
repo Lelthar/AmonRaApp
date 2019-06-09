@@ -7,7 +7,7 @@ import RegisterMain from './components/Register/RegisterMain';
 import MainApp from './MainApp'
 import { 
   USER_DATA,
-} from '../../constants/constants';
+} from './constants/constants';
 
 import {
     requestCameraPermission,
