@@ -11,20 +11,34 @@ import Image from 'react-native-scalable-image'
 
 const data = require('../../data/data.json');
 
+const features = [
+    "Patrimonio Arquitectónico",
+    "Pasado perdido",
+    "Secretos",
+    "Naturaleza",
+    "Cultura y arte",
+    "Gastronimía",
+    "Institucional",
+    "Hospedaje",
+    "Fotos 360°",
+    "Modelos 3D",
+    "Realidad Aumentada"
+]
+
 export default class FilterMenu extends Component{
 
     constructor(props){
         super(props);
-        var categories = Object.keys(data.features);
+        let categories = features;
+        let filter_categories = []
         //fetches each category from data.json and makes an array of objects with each category
         for (category in categories){
-          categories[category] = {key: categories[category], active: false};
-          console.debug("KEYS: " + JSON.stringify(categories[category]));
+            filter_categories.push({key: categories[category], active: false});
         }
         this.state = {
             filters: [],
             activeFilters: this.props.activeFilters,
-            filters: categories,
+            filters: filter_categories,
             allowDragging: true
         }
     }

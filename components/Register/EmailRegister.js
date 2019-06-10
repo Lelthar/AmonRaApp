@@ -1,10 +1,9 @@
 import React from 'react';
 import {StackActions, NavigationActions} from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import MainApp from '../../MainApp';
 
 import { 
-  FEATURES_URL,
+  REGISTRATION_URL,
   USER_DATA,
 } from '../../constants/constants';
 
@@ -14,16 +13,12 @@ import {
   StyleSheet,
   ImageBackground,
   Image,
-  Button,
   Text,
   View,
   TextInput,
   TouchableOpacity,
   Picker,
-  Icon,
-  ScrollView,
   AsyncStorage,
-  KeyboardAvoidingView,
 } from 'react-native';
 
 import * as countries from '../../data/countries';
@@ -41,8 +36,6 @@ const {
 
 const logo = '../../images/marca-02.png';
 const background = '../../resources/img/casa-verde-I.jpg';
-const nombre = '../../resources/img/user.png';
-const backgroundColor = '../../resources/img/pantalla de inicio.png';
 const anho = [];
 
 export default class RegisterMain extends React.Component {
