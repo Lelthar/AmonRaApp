@@ -11,19 +11,6 @@ import { View,
 import Swiper from 'react-native-swiper';
 const { width } = Dimensions.get('window');
 
-const place_data = {
-	title: "Hotel Kekoldi",
-	description: "Somos la entidad pública responsable de ejecutar las políticas y planes en materia de ordenamiento y desarrollo territorial a nivel nacional, así como diseñar, coordinar y promover programas habitacionales dirigidos a diversos segmentos de la líder y auto sostenible financieramente",
-	direction: "calle 5 avenida 3,5",
-	phone_number: "8888-8888",
-	facebook: "hotel kekoldi",
-	images_url: [
-		'https://docs.google.com/uc?id=1nlAejq56XLcd5Ik4R8xPGpwuCAzDtrgk',
-		'https://facebook.github.io/react-native/docs/assets/favicon.png',
-		'https://docs.google.com/uc?id=1nlAejq56XLcd5Ik4R8xPGpwuCAzDtrgk'
-	]
-}
-
 export default class Place extends Component  {
   constructor(props){
     super(props);
@@ -34,17 +21,21 @@ export default class Place extends Component  {
     	phone_number: "",
     	facebook: "",
     	images_url: [],
-    };
+		};
   }
 
   componentDidMount(){
+		const category = this.props.navigation.state.params.category;
+
+		console.log(category);
+
     this.setState({
-    	title: place_data.title,
-    	description: place_data.description,
-    	direction: place_data.direction,
-    	phone_number: place_data.phone_number,
-    	facebook: place_data.facebook,
-    	images_url: place_data.images_url
+    	title: category.title,
+    	description: category.description,
+    	direction: category.direction,
+    	phone_number: category.tel,
+    	facebook: category.facebook,
+    	images_url: category.images_url
     });
   }
 

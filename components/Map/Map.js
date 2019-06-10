@@ -99,7 +99,7 @@ export default class Map extends Component {
             checkerDir: "Vacio",
             checkerTel: "Vacio",
             checkerFacebook: "Vacio",
-            current_category: "",
+            current_marker: null,
             userData: null,
             perimeter_data_loaded: false,
             barrio_amon_coordinates: []
@@ -159,6 +159,7 @@ export default class Map extends Component {
             facebook: markers[i].facebook,
             category: markers[i].category,
             marker_id: 1,
+            images_url: [markers[i].image1_url,markers[i].image2_url,markers[i].image3_url],
           };
           activeMarkers.push(newMarker);
         }
@@ -176,7 +177,7 @@ export default class Map extends Component {
         checkerTel:marker.tel,
         checkerFacebook:marker.facebook,
         checkerId:marker.marker_id,
-        current_category:marker.category,
+        current_marker:marker,
       });
     };
     
@@ -284,8 +285,6 @@ export default class Map extends Component {
     }
 
     async get_perimeters(){
-
-      console.log("Segundo");
   
       const response = await makeBackendRequest(PERIMETER_URL,"GET",this.state.userData);
         
@@ -301,8 +300,6 @@ export default class Map extends Component {
     }
 
     async get_features(){
-
-      console.log("Tercero");
       
       const response = await makeBackendRequest(FEATURES_URL,"GET",this.state.userData);
         
@@ -317,7 +314,6 @@ export default class Map extends Component {
     async get_user_data() {
       const user_data_storage = await AsyncStorage.getItem(USER_DATA);
       this.setState({ userData: JSON.parse(user_data_storage)});
-      console.log("Primero");
     }
 
     async get_backend_data() {
@@ -492,7 +488,7 @@ export default class Map extends Component {
                     </TouchableOpacity>
                   </View>
                   <View style={{flex:1, marginTop: 20}}>
-                    <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={()=> this.goTo('Place',{place_id:this.state.checkerId, title:this.state.current_category})} >
+                    <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={()=> this.goTo('Place',{place_id:this.state.checkerId, title: this.state.current_marker.category, category: this.state.current_marker})} >
                       
                     <Image source={require('../../images/icons-temp/masinfo.png')}/>
                      
