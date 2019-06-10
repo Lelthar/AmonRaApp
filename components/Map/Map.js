@@ -33,7 +33,6 @@ import {
 
 //------------------------
 var userLocation = null;
-const data = require('../../data/data.json');
 
 const barrio_amon_location = {
   latitude: 9.938232,
@@ -47,7 +46,6 @@ const destination = {latitude: 9.864605, longitude:  -83.926220};
 const GOOGLE_MAPS_APIKEY = "AIzaSyClk_-24I-chIehpLCDp17fpOhSDbqPSbo";
 
 const filtros_url = require( '../../images/icons/PantallaPrincipal/mapa_filtros.png' );
-const puntos = data.features;
 
 //const poligono = data["Perímetro Barrio Amón"];
 const imagenes = {
@@ -70,7 +68,7 @@ export default class Map extends Component {
         this.state = {
             marginBottom: null,
             activeFilters: [],
-            markers: puntos,
+            markers: [],
             map_style: 'standard',
             capasOpen: false,
             screen_style: 'MapScreen',
@@ -127,34 +125,45 @@ export default class Map extends Component {
       return state;
     }
 
-    //Toma los filtros activos, revisa la lista de markers, y crea un nuevo markers con propiedades
-    // más amigables para el renderizado
     getActiveMarkers(){
-        let activeFilters = this.state.activeFilters.slice()
-        let markers = this.state.markers
-        let activeMarkers = []
+      const activeFilters = this.state.activeFilters.slice()
+      const markers = this.state.markers
 
-        for(filter in activeFilters){
-          let markersOfOneCategoryList =  markers[activeFilters[filter].key];
-          for (marker in markersOfOneCategoryList){
-            let newMarker =
-            {
-              coordinates: {
-                latitude: markersOfOneCategoryList[marker].geometry.coordinates[1],
-                longitude: markersOfOneCategoryList[marker].geometry.coordinates[0]
-              },
-              title: markersOfOneCategoryList[marker].properties.Name,
-              direction: markersOfOneCategoryList[marker].properties.direction,
-              tel: markersOfOneCategoryList[marker].properties.tel,
-              facebook: markersOfOneCategoryList[marker].facebook,
-              category: activeFilters[filter].key,
-              marker_id: 1,
-            };
-            activeMarkers.push(newMarker);
-          }
+      const activeFiltersKeys = this.filter_filters_by_key(activeFilters);
+
+      return (activeFiltersKeys.length > 0) ? this.filter_markers_by_active_filter(markers,activeFiltersKeys) : [];
+    }
+
+    filter_filters_by_key(activeFilters) {
+      let activeFiltersKeys = [];
+
+      for(filter in activeFilters){
+        activeFiltersKeys.push(activeFilters[filter].key);
+      }
+      return activeFiltersKeys;
+    }
+
+    filter_markers_by_active_filter(markers,filters) {
+      let activeMarkers = []
+
+      for (let i = 0; i < markers.length; i++) {
+        if (filters.includes(markers[i].category)) {
+          let newMarker = {
+            coordinates: {
+              latitude: markers[i].latitude,
+              longitude: markers[i].longitude
+            },
+            title: markers[i].name,
+            direction: markers[i].direction,
+            tel: markers[i].phone_number,
+            facebook: markers[i].facebook,
+            category: markers[i].category,
+            marker_id: 1,
+          };
+          activeMarkers.push(newMarker);
         }
-
-        return activeMarkers
+      } 
+      return activeMarkers;
     }
 
     openInformation(marker) {
@@ -274,10 +283,9 @@ export default class Map extends Component {
       else { return; }      
     }
 
-    async set_perimeters(){
-      const user_data_storage = await AsyncStorage.getItem(USER_DATA);
-  
-      this.setState({ userData: JSON.parse(user_data_storage)});
+    async get_perimeters(){
+
+      console.log("Segundo");
   
       const response = await makeBackendRequest(PERIMETER_URL,"GET",this.state.userData);
         
@@ -291,9 +299,35 @@ export default class Map extends Component {
       });
   
     }
+
+    async get_features(){
+
+      console.log("Tercero");
+      
+      const response = await makeBackendRequest(FEATURES_URL,"GET",this.state.userData);
+        
+      const responseJson = await response.json();
+  
+      this.setState({
+        markers: responseJson,
+      });
+  
+    }
+
+    async get_user_data() {
+      const user_data_storage = await AsyncStorage.getItem(USER_DATA);
+      this.setState({ userData: JSON.parse(user_data_storage)});
+      console.log("Primero");
+    }
+
+    async get_backend_data() {
+      await this.get_user_data()
+      await this.get_perimeters();
+      await this.get_features();
+    }
   
     componentDidMount(){
-      this.set_perimeters();
+      this.get_backend_data();
     }
 
     
