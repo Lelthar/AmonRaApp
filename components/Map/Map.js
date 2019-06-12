@@ -11,13 +11,16 @@ import {
     TouchableHighlight,
     Geolocation,
     ScrollView,
-    AsyncStorage
+    AsyncStorage,
+    Linking
 } from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import Image from 'react-native-scalable-image';
 import FilterMenu from '../FilterMenu/FilterMenu';
 import SlidingUpPanel from 'rn-sliding-up-panel';
+
+import Hyperlink from 'react-native-hyperlink';
 
 //------------------------
 import { 
@@ -473,7 +476,13 @@ export default class Map extends Component {
                   <View style={{flex:1,marginBottom:5}}>
                     <Text style={{color:'white',fontSize: 16}}>{"Dirección: "+this.state.checkerDir}</Text>
                     <Text style={{color:'white',fontSize: 16}}>{"Tel: "+this.state.checkerTel}</Text>
-                    <Text style={{color:'white',fontSize: 16}}>{"Facebook: "+this.state.checkerFacebook}</Text>
+                    <Hyperlink
+                      linkStyle={ {fontWeight: 'bold'} }
+                      onPress={ (url, text) => this.state.checkerFacebook ? Linking.openURL(this.state.checkerFacebook) : "" }
+                      linkText={ url => url === this.state.checkerFacebook ? 'presiona aquí' : url }
+                    >
+                      <Text style={{color:'white',fontSize: 16}}>{"Facebook: "+this.state.checkerFacebook}</Text>
+                    </Hyperlink>
                   </View>
                   <View style={{flex:0.5}}/>
                   <View style={{flex:1}}>

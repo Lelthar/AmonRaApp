@@ -6,10 +6,15 @@ import { View,
 				 ScrollView,
 				 StyleSheet,
 				 Dimensions,
+				 Linking,
 				} from 'react-native';
 
 import Swiper from 'react-native-swiper';
-const { width } = Dimensions.get('window');
+import Hyperlink from 'react-native-hyperlink';
+
+const {
+	width
+} = Dimensions.get('window');
 
 export default class Place extends Component  {
   constructor(props){
@@ -65,7 +70,13 @@ export default class Place extends Component  {
 		    			<View style={styles.inferiorPart}>
 			    			<Text style={styles.informationText}>Dirección: {this.state.direction}</Text>
 			    			<Text style={styles.informationText}>Teléfono: {this.state.phone_number}</Text>
-			    			<Text style={styles.informationText}>Facebook: {this.state.facebook}</Text>
+								<Hyperlink
+                      linkStyle={ {fontWeight: 'bold'} }
+                      onPress={ (url, text) => this.state.facebook ? Linking.openURL(url) : "" }
+                      linkText={ url => url === this.state.facebook ? 'presiona aquí' : url }
+                    >
+                    <Text style={styles.informationText}>Facebook: {this.state.facebook}</Text>
+                  </Hyperlink>
 		    			</View>
 		    	<View style={{height:85}} />
 			  </ScrollView>
