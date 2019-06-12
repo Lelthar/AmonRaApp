@@ -64,7 +64,7 @@ export default class UseGuide extends Component {
                 >
                     <Video
                         ref={(ref: Video) => { this.video = ref }}
-                        source={require('../../media/test.mp4')}
+                        source={require('../../media/amonra_video.mp4')}
                         style={styles.fullScreen}
                         rate={this.state.rate}
                         paused={this.state.paused}
