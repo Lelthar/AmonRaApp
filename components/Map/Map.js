@@ -47,6 +47,8 @@ const GOOGLE_MAPS_APIKEY = "AIzaSyClk_-24I-chIehpLCDp17fpOhSDbqPSbo";
 
 const filtros_url = require( '../../images/icons/PantallaPrincipal/mapa_filtros.png' );
 
+let {height, width} = Dimensions.get('window');
+
 //const poligono = data["Perímetro Barrio Amón"];
 const imagenes = {
   "Cultura y arte":require("../../images/icons/maps/Culturayarte.png"),
@@ -107,6 +109,7 @@ export default class Map extends Component {
         this.toggleFilters = this.props.screenProps.showFunctions.toggleFilters;
         this.props.screenProps.getNavigationProp(this.props.navigation);
         this.resetAll = this.props.screenProps.showFunctions.resetAll;
+        console.log(width-110);
     }
 
     //Cuando los props cambian (en MainApp.js) este método se ejecuta
@@ -449,7 +452,7 @@ export default class Map extends Component {
                             
 
               {/* Boton de filtros */}
-              <View style={{ flex:3, position:'absolute', right:-13, bottom:13 ,width:90}}>   
+              <View style={{ flex:3, position:'absolute',left:0, bottom:13 ,width:90}}>   
                   <TouchableOpacity style={ styles.arrow_button } onPress={ () => this.show_filters('MapScreen') }>
                     <Image source={ filtros_url }/>
                   </TouchableOpacity>              
@@ -477,7 +480,7 @@ export default class Map extends Component {
                   </View>
                   <View style={{flex:0.5}}/>
                   <View style={{flex:1}}>
-                    <Text style={{color:'white',fontSize: 14}}>{"Visita este lugar para descrubir más RA"}</Text>
+                    <Text style={{color:'white',fontSize: 14}}>{"Visita este lugar para descubrir más RA"}</Text>
                   </View>
                 </View>
                 <View style={{flex:1}}>
@@ -614,10 +617,10 @@ const styles = StyleSheet.create({
       },
       filters: {
         flex:23,
-        flexDirection: 'row',
+        //flexDirection: 'row',
         justifyContent: 'center',
         position:'absolute', 
-        right:0, 
+        right: (width-250), //250 mide el elemento 
         bottom:126,
         width: 750,
         height:450
