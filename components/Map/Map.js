@@ -154,6 +154,7 @@ export default class Map extends Component {
               longitude: markers[i].longitude
             },
             title: markers[i].name,
+            description: markers[i].description,
             direction: markers[i].direction,
             tel: markers[i].phone_number,
             facebook: markers[i].facebook,

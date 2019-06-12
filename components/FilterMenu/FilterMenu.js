@@ -17,7 +17,7 @@ const features = [
     "Secretos",
     "Naturaleza",
     "Cultura y arte",
-    "Gastronimía",
+    "Gastronomía",
     "Institucional",
     "Hospedaje",
     "Fotos 360°",
