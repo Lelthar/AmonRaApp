@@ -16,6 +16,7 @@ import {
 import Navigator from './components/Navigator/Navigator'
 import Map from './components/Map/Map'
 import Directory from './components/Directory/Directory';
+import SeeMore from './components/Directory/SeeMore/SeeMore';
 import CultureArt from './components/Directory/CultureArt/CultureArt';
 import Hotels from './components/Directory/Hotels/Hotels';
 import Institutional from './components/Directory/Institutional/Institutional';
@@ -115,6 +116,9 @@ const RootStack = StackNavigator(
         },
         Viromedia:{
             screen: ViromediaController
+        },
+        SeeMore: {
+            screen: SeeMore
         }
 
     },

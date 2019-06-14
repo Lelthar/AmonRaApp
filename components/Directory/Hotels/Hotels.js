@@ -20,20 +20,22 @@ export default class Hotels extends Component{
       // para controlar la navegación desde Navigator.js
       this.props.screenProps.getNavigationProp(this.props.navigation)
   }
+
+  goTo(screen,params){
+        var goToScreen = this.props.navigation.state.params.goToScreen
+        goToScreen(screen, params)
+    }
+    
   state = {
       places: [
-         {'name': 'Hotel Dunn Inn', 'direction': 'Avenida 11, Calle 5.', 'number': '2222-3232 / 800-545-4801','facebook': 'https://www.facebook.com/HotelDunnInn/' },
-         {'name': 'Hotel Don Carlos', 'direction': 'Avenida 9, Calle 9.', 'number': '2221-6707','facebook': 'https://www.facebook.com/HotelDonCarlosCostaRica/' },
-         {'name': 'Hotel Castillo', 'direction': 'Avenida 9, Entre calle 9 y 11.', 'number': '2258-0021','facebook': 'https://www.facebook.com/hotelcastillocostarica/' },
-         {'name': 'Hotel Inca Real San José', 'direction': 'Avenida 11, Calle 3 y 3A.', 'number': '22238883 / 22332640 / 88282108','facebook': 'https://www.facebook.com/Hotel-Inca-Real-140910712588711'},
-         {'name': 'Hotel y Casino Taormina San José', 'direction': 'Avenida 11, entre calle 3A', 'number': '40555555 (según google maps) 2222 6952 / 6142 6633','facebook': 'https://www.facebook.com/hotelycasinotaormina/'},
-         {'name': 'Número 6', 'direction': 'dir 6', 'number': 'num 6','facebook': 'face 6'},
-         {'name': 'Número 7', 'direction': 'dir 7', 'number': 'num 7','facebook': 'face 7'},
-         {'name': 'Número 8', 'direction': 'dir 8', 'number': 'num 8','facebook': 'face 8'},
-         {'name': 'Número 9', 'direction': 'dir 9', 'number': 'num 9','facebook': 'face 9'},
-         {'name': 'Número 10', 'direction': 'dir 10', 'number': 'num 10','facebook': 'face 10'},
-         {'name': 'Número 11', 'direction': 'dir 11', 'number': 'num 11','facebook': 'face 11'},
-         {'name': 'Número 12', 'direction': 'dir 12', 'number': 'num 12','facebook': 'face 12'}
+         {'name': 'Hotel Dunn Inn', 'direction': 'Avenida 11, Calle 5.', 'number': '2222-3232 / 800-545-4801','facebook': 'fb.com/HotelDunnInn' },
+         {'name': 'Hotel Don Carlos', 'direction': 'Avenida 9, Calle 9.', 'number': '2221-6707','facebook': 'fb.com/HotelDonCarlosCostaRica' },
+         {'name': 'Hotel Castillo', 'direction': 'Avenida 9, Entre calle 9 y 11.', 'number': '2258-0021','facebook': 'fb.com/hotelcastillocostarica' },
+         {'name': 'Hotel Inca Real San José', 'direction': 'Avenida 11, Calle 3 y 3A.', 'number': '2223-8883 / 2233-2640 / 8828-2108','facebook': 'fb.com/Hotel-Inca-Real-140910712588711'},
+         {'name': 'Hotel y Casino Taormina San José', 'direction': 'Avenida 11, entre calle 3A', 'number': '4055-5555 (según google maps) 2222-6952 / 6142-6633','facebook': 'fb.com/hotelycasinotaormina'},
+         {'name': 'Hotel Kekoldi', 'direction': 'Avenida 9, entre calle 7 y 5', 'number': '2248-0804','facebook': 'fb.com/Kekoldi/'},
+         {'name': 'Hostel Van Gogh', 'direction': 'Calle 7, entre avenida 9 y 7', 'number': '2221-3554','facebook': 'fb.com/HostelVanGogh'},
+         {'name': 'Hostel Pangea', 'direction': 'Avenida 7, entre calle 3 y 3A', 'number': '2221-1992','facebook': 'fb.com/Hostel-Pangea-239092546120739'},
       ]
    }
 
@@ -63,12 +65,12 @@ export default class Hotels extends Component{
                   <View style={{flexDirection: "row",padding:10}}>
                   <TouchableOpacity style={{width: 15}} />
                   <View  style={{backgroundColor: 'rgba(127, 140, 141, 0.7)', width: 60,height: 60}}/>
-                  <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 300}}>
+                  <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200}}>
                   <Text style={styles.name_place} >  Hotel {hotel.name}</Text>
                   <Text style={styles.text} >  Dirección: {hotel.direction} </Text>
                   <Text style={styles.text}>  Tel: {hotel.number}</Text>
                   <Text style={styles.text}>  Facebook: {hotel.facebook}</Text>
-                  <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={console.log("más")} >
+                  <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , name: hotel.name, direction: hotel.direction, phone: hotel.number,facebook: hotel.facebook} )} >
                     <View style={{flexDirection: 'row'}}>
                       <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                     </View>

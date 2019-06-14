@@ -22,6 +22,11 @@ export default class Gastronomy extends Component{
       this.props.screenProps.getNavigationProp(this.props.navigation)
   }
 
+  goTo(screen,params){
+        var goToScreen = this.props.navigation.state.params.goToScreen
+        goToScreen(screen, params)
+    }
+
   state = {
       places: [
          {'name': 'Alma de Amón', 'direction': 'Avenida 9 y 11, Calle 5.', 'number': '"4700 2637 (facebook) / 8309-7227 / 2222 3232"','facebook': 'https://www.facebook.com/AlmadeAmon/ ' },
@@ -67,12 +72,12 @@ export default class Gastronomy extends Component{
                 <View style={{flexDirection: "row",padding:10}}>
                 <TouchableOpacity style={{width: 15}} />
                 <View  style={{backgroundColor: 'rgba(127, 140, 141, 0.7)', width: 60,height: 60}}/>
-                <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 300}}>
+                <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200}}>
                 <Text style={styles.name_place} >  {place.name}</Text>
                 <Text style={styles.text}>  Dirección: {place.direction} </Text>
                 <Text style={styles.text}>  Tel: {place.number}</Text>
                 <Text style={styles.text}>  Facebook: {place.facebook}</Text>
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={console.log("más")} >
+                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , name: place.name, direction: place.direction, phone: place.number,facebook: place.facebook} )} >
                   <View style={{flexDirection: 'row'}}>
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                   </View>
