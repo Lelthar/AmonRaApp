@@ -21,20 +21,27 @@ export default class Institutional extends Component{
       this.props.screenProps.getNavigationProp(this.props.navigation)
   }
 
+  goTo(screen,params){
+        var goToScreen = this.props.navigation.state.params.goToScreen
+        goToScreen(screen, params)
+    }
+    
+
   state = {
       places: [
-         {'name': 'Invu', 'direction': 'dir 1', 'number': 'num 1','facebook': 'face 1' },
-         {'name': 'Número 2', 'direction': 'dir 2', 'number': 'num 2','facebook': 'face 2' },
-         {'name': 'Número 3', 'direction': 'dir 3', 'number': 'num 3','facebook': 'face 3' },
-         {'name': 'Número 4', 'direction': 'dir 4', 'number': 'num 4','facebook': 'face 4'},
-         {'name': 'Número 5', 'direction': 'dir 5', 'number': 'num 5','facebook': 'face 5'},
-         {'name': 'Número 6', 'direction': 'dir 6', 'number': 'num 6','facebook': 'face 6'},
-         {'name': 'Número 7', 'direction': 'dir 7', 'number': 'num 7','facebook': 'face 7'},
-         {'name': 'Número 8', 'direction': 'dir 8', 'number': 'num 8','facebook': 'face 8'},
-         {'name': 'Número 9', 'direction': 'dir 9', 'number': 'num 9','facebook': 'face 9'},
-         {'name': 'Número 10', 'direction': 'dir 10', 'number': 'num 10','facebook': 'face 10'},
-         {'name': 'Número 11', 'direction': 'dir 11', 'number': 'num 11','facebook': 'face 11'},
-         {'name': 'Número 12', 'direction': 'dir 12', 'number': 'num 12','facebook': 'face 12'}
+         {'name': 'Alianza Cultural Franco Costarricense', 'direction': 'Avenida 7, Calle 5.', 'number': '2257-1438','facebook': 'fb.com/AlianzaFrancesaCostaRica' },
+         {'name': 'Instituto Nacional de Vivienda y Urbanismo (INVU)', 'direction': 'Avenida 9, entre Calle 3 y 5', 'number': '2211-0000','facebook': 'fb.com/INVU.porelbiencomun' },
+         {'name': 'Tecnológico de Costa Rica (TEC)', 'direction': 'Entre calles 5 y 7, y avenidas 9 y 11', 'number': '2257-0470','facebook': 'fb.com/tecnologicocostarica' },
+         {'name': 'Escuela de Computación - Administración de Empresas - TEC', 'direction': 'Avenida 9, calle 7', 'number': '2257-9585 2550-9064','facebook': 'fb.com/Ing-Computaci%C3%B3n-TEC-707508426041351 fb.com/EscuelaDeAdministacionDeEmpresasDelTec'},
+         {'name': 'Casa Cultural Amón - TEC', 'direction': 'Avenida 11, calle 5', 'number': '2550-9449 / 2550-9447','facebook': 'fb.com/casaculturalamonsj'},
+         {'name': 'Escuela de Arquitectura y Urbanismo - TEC', 'direction': 'Avenida 9, calle 5', 'number': '2550-9036','facebook': 'fb.com/aeau.tec'},
+         {'name': 'Fondo de Desarrollo Social y Asignaciones Familiares (FODESAF)', 'direction': 'Avenida 11, calle 3', 'number': '2547-3600 / 2547-3601 / 2547-3602','facebook': 'N/A'},
+         {'name': 'Instituto Nacional de Seguros (INS)', 'direction': 'Avenida 7, entre calles 9 y 11', 'number': '2287-6000','facebook': 'fb.com/InstitutoNacionaldeSeguros'},
+         {'name': 'Cooperativa Coopemep R.L.', 'direction': 'Calle Central, avenida 11', 'number': '2295-0600','facebook': 'fb.com/coopemep.cooperativa'},
+         {'name': 'Instituto Mixto de Ayuda Social (IMAS)', 'direction': 'Avenida 7, calle 7', 'number': '2202-4000 / 800-000-4627','facebook': 'fb.com/InstitutoMixtodeAyudaSocial'},
+         {'name': 'Fundación Pro Zoológicos (FUNDAZOO)', 'direction': 'Diagonal 11, Avenidas 11 y 11A', 'number': '2233-6701 / 2256-0012','facebook': 'fb.com/FundazooCR'},
+         {'name': 'Casa Santa Margarita', 'direction': 'Calle 3A, entre avenidas 9 y 11', 'number': '22217713 / 22576160','facebook': 'N/A'},
+         {'name': 'Centro Costarricense de Producción Cinematográfica', 'direction': 'Avenida 11, calle 11', 'number': '2542-5200','facebook': 'fb.com/cine.mcj.cr'},
       ]
    }
 
@@ -64,12 +71,12 @@ export default class Institutional extends Component{
                 <View style={{flexDirection: "row",padding:10}}>
                 <TouchableOpacity style={{width: 15}} />
                 <Image  source={require('../../../images/icons/Directory/invu.jpg')}/>
-                <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 300}}>
+                <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200}}>
                 <Text style={styles.name_place} >  {place.name}</Text>
                 <Text style={styles.text}>  Dirección: {place.direction} </Text>
                 <Text style={styles.text}>  Tel: {place.number}</Text>
                 <Text style={styles.text}>  Facebook: {place.facebook}</Text>
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={console.log("más")} >
+                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , name: place.name, direction: place.direction, phone: place.number,facebook: place.facebook} )} >
                   <View style={{flexDirection: 'row'}}>
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                   </View>

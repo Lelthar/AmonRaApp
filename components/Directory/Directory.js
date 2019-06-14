@@ -12,7 +12,7 @@ import {
 import Swiper from 'react-native-swiper';
 import firebase from 'react-native-firebase';
 
-const { width } = Dimensions.get('window')
+const { width } = Dimensions.get('window').width
 
 export default class Directory extends Component{
 
@@ -24,9 +24,9 @@ export default class Directory extends Component{
     }
 
 
-    goTo(screen){
+    goTo(screen,params){
         var goToScreen = this.props.navigation.state.params.goToScreen
-        goToScreen(screen, [])
+        goToScreen(screen,params)
     }
 
 
@@ -92,14 +92,14 @@ export default class Directory extends Component{
                       <View style={{flex:2}}/>
 
                       
-                      <TouchableOpacity style={styles.squareButton} onPress={() =>  this.goTo('CultureArt')} >
+                      <TouchableOpacity style={styles.squareButton} onPress={() =>  this.goTo('CultureArt', {goToScreen: this.props.navigation.state.params.goToScreen} )} >
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/culturagris.png')} />
                       </TouchableOpacity>
                     
 
                       <View style={{flex:1}}/>
 
-                      <TouchableOpacity style={styles.squareButton} onPress={ () => this.goTo('Gastronomy') }>
+                      <TouchableOpacity style={styles.squareButton} onPress={ () => this.goTo('Gastronomy', {goToScreen: this.props.navigation.state.params.goToScreen} )}>
 
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/gastrogris.png')} />
                       </TouchableOpacity>
@@ -118,13 +118,13 @@ export default class Directory extends Component{
                     <View style={styles.buttonsRow}>
                       <View style={{flex:2}}/>
 
-                      <TouchableOpacity style={styles.squareButton} onPress={() => this.goTo('Hotels') } >
+                      <TouchableOpacity style={styles.squareButton} onPress={() => this.goTo('Hotels', {goToScreen: this.props.navigation.state.params.goToScreen}) } >
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/hospedajegris.png')} />
                       </TouchableOpacity>
 
                       <View style={{flex:1}}/>
 
-                      <TouchableOpacity style={styles.squareButton} onPress={() =>  this.goTo('Institutional')} >
+                      <TouchableOpacity style={styles.squareButton} onPress={() =>  this.goTo('Institutional', {goToScreen: this.props.navigation.state.params.goToScreen })} >
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/instigris.png')} />
                       </TouchableOpacity>
 

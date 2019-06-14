@@ -7,9 +7,12 @@ import {
     Button,
     ScrollView,
     TouchableOpacity,
-    Image
+    Image,
+    Dimensions
 } from 'react-native';
 
+
+const {widthWindow} = Dimensions.get('window');
 
 
 export default class CultureArt extends Component{
@@ -20,6 +23,12 @@ export default class CultureArt extends Component{
       // para controlar la navegación desde Navigator.js
       this.props.screenProps.getNavigationProp(this.props.navigation)
   }
+  
+  goTo(screen,params){
+        var goToScreen = this.props.navigation.state.params.goToScreen
+        goToScreen(screen, params)
+    }
+
 
   state = {
       places: [
@@ -64,12 +73,12 @@ export default class CultureArt extends Component{
                 <View style={{flexDirection: "row",padding:10}}>
                 <TouchableOpacity style={{width: 15}} />
                 <View  style={{backgroundColor: 'rgba(127, 140, 141, 0.7)', width: 60,height: 60}}/>
-                <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 300}}>
+                <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200 }}>
                 <Text style={styles.name_place} >  {place.name}</Text>
                 <Text style={{fontFamily: "Roboto",color:'grey',fontSize: 16}}>  Dirección: {place.direction} </Text>
                 <Text style={styles.text}>  Tel: {place.number}</Text>
                 <Text style={styles.text}>  Facebook: {place.facebook}</Text>
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={console.log("más")} >
+                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , name: place.name, direction: place.direction, phone: place.number,facebook: place.facebook} )} >
                   <View style={{flexDirection: 'row'}}>
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                   </View>
@@ -101,7 +110,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
-    title:  	{
+    title:    {
       textAlign: "center",
       fontSize: 35,
       fontFamily: "vincHand",
