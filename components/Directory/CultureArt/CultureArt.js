@@ -8,8 +8,22 @@ import {
     ScrollView,
     TouchableOpacity,
     Image,
-    Dimensions
+    Dimensions,
+    AsyncStorage
 } from 'react-native';
+
+//------------------------
+import { 
+  FEATURES_URL,
+  PERIMETER_URL,
+  USER_DATA,
+} from '../../../constants/constants';
+
+import {
+  makeBackendRequest,
+} from '../../../helpers/helpers'
+
+
 
 
 const {widthWindow} = Dimensions.get('window');
@@ -22,16 +36,11 @@ export default class CultureArt extends Component{
       // Se le pasa el controlador de la navegación a App.js
       // para controlar la navegación desde Navigator.js
       this.props.screenProps.getNavigationProp(this.props.navigation)
-  }
-  
-  goTo(screen,params){
-        var goToScreen = this.props.navigation.state.params.goToScreen
-        goToScreen(screen, params)
-    }
+      this.state = {
 
-
-  state = {
-      places: [
+        markers: [],
+        userData: null,
+        places: [
          {'name': 'TEOR/éTica', 'direction': 'Calle 7, entre avenidas 11 y 9.', 'number': '22334881','facebook': 'https://www.facebook.com/teoreticapagina/' },
          {'name': 'Lado V. Centro de estudio y documentación ', 'direction': 'Calle 7, entre avenidas 11 y 9.', 'number': '22211051','facebook': 'https://www.facebook.com/teoreticapagina/' },
          {'name': 'Libros Duluoz', 'direction': 'Avenida 7, entre calles 3 y 3A.', 'number': '22560414','facebook': 'https://www.facebook.com/libros.duluoz/' },
@@ -45,15 +54,50 @@ export default class CultureArt extends Component{
          {'name': 'Boutique Annemarie Gift & Shop', 'direction': 'Avenida 9, Calle 9.', 'number': '2221 6707','facebook': 'https://www.facebook.com/HotelDonCarlosCostaRica/'},
          {'name': 'Insólita ', 'direction': 'Avenida 9 y 11, Calle 3A.', 'number': '8492 9090','facebook': 'https://www.facebook.com/insolitacr/'}
       ]
-   }
 
-     getPlaces(){
+      }
+  }
+  
+  goTo(screen,params){
+        var goToScreen = this.props.navigation.state.params.goToScreen
+        goToScreen(screen, params)
+    }
 
-         var places = this.state.places
 
-         return places
 
-     }
+   // AmonRa's backoffice query
+
+   async get_features(){
+      
+      const cultureArtUrl = "?category=Cultura%20y%20arte" ; 
+      const response = await makeBackendRequest(FEATURES_URL+cultureArtUrl,"GET",this.state.userData);
+      const responseJson = await response.json();
+  
+      this.setState({
+        markers: responseJson,
+      });
+  
+    }
+
+    async get_user_data() {
+      const user_data_storage = await AsyncStorage.getItem(USER_DATA);
+      this.setState({ userData: JSON.parse(user_data_storage)});
+    }
+
+    async get_backend_data() {
+      await this.get_user_data()
+      await this.get_features();
+    }
+
+    componentDidMount(){
+      this.get_backend_data();
+    }
+  
+
+    // End backoffice consult
+
+
+ 
 
     render() {
 
@@ -69,16 +113,16 @@ export default class CultureArt extends Component{
               <View style={{flex:2}} >
               <ScrollView>
 
-              {this.getPlaces().map(place => (
+              {this.state.markers.map(place => (
                 <View style={{flexDirection: "row",padding:10}}>
                 <TouchableOpacity style={{width: 15}} />
                 <View  style={{backgroundColor: 'rgba(127, 140, 141, 0.7)', width: 60,height: 60}}/>
                 <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200 }}>
                 <Text style={styles.name_place} >  {place.name}</Text>
                 <Text style={{fontFamily: "Roboto",color:'grey',fontSize: 16}}>  Dirección: {place.direction} </Text>
-                <Text style={styles.text}>  Tel: {place.number}</Text>
+                <Text style={styles.text}>  Tel: {place.phone_number}</Text>
                 <Text style={styles.text}>  Facebook: {place.facebook}</Text>
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , name: place.name, direction: place.direction, phone: place.number,facebook: place.facebook} )} >
+                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , placeInfo: place} )} >
                   <View style={{flexDirection: 'row'}}>
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                   </View>

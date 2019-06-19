@@ -7,8 +7,20 @@ import {
     Button,
     ScrollView,
     TouchableOpacity,
-    Image
+    Image,
+    AsyncStorage
 } from 'react-native';
+
+//------------------------
+import { 
+  FEATURES_URL,
+  PERIMETER_URL,
+  USER_DATA,
+} from '../../../constants/constants';
+
+import {
+  makeBackendRequest,
+} from '../../../helpers/helpers'
 
 
 
@@ -19,16 +31,11 @@ export default class Institutional extends Component{
       // Se le pasa el controlador de la navegación a App.js
       // para controlar la navegación desde Navigator.js
       this.props.screenProps.getNavigationProp(this.props.navigation)
-  }
+      this.state = {
 
-  goTo(screen,params){
-        var goToScreen = this.props.navigation.state.params.goToScreen
-        goToScreen(screen, params)
-    }
-    
-
-  state = {
-      places: [
+        markers: [],
+        userData: null,
+        places: [
          {'name': 'Alianza Cultural Franco Costarricense', 'direction': 'Avenida 7, Calle 5.', 'number': '2257-1438','facebook': 'fb.com/AlianzaFrancesaCostaRica' },
          {'name': 'Instituto Nacional de Vivienda y Urbanismo (INVU)', 'direction': 'Avenida 9, entre Calle 3 y 5', 'number': '2211-0000','facebook': 'fb.com/INVU.porelbiencomun' },
          {'name': 'Tecnológico de Costa Rica (TEC)', 'direction': 'Entre calles 5 y 7, y avenidas 9 y 11', 'number': '2257-0470','facebook': 'fb.com/tecnologicocostarica' },
@@ -42,16 +49,49 @@ export default class Institutional extends Component{
          {'name': 'Fundación Pro Zoológicos (FUNDAZOO)', 'direction': 'Diagonal 11, Avenidas 11 y 11A', 'number': '2233-6701 / 2256-0012','facebook': 'fb.com/FundazooCR'},
          {'name': 'Casa Santa Margarita', 'direction': 'Calle 3A, entre avenidas 9 y 11', 'number': '22217713 / 22576160','facebook': 'N/A'},
          {'name': 'Centro Costarricense de Producción Cinematográfica', 'direction': 'Avenida 11, calle 11', 'number': '2542-5200','facebook': 'fb.com/cine.mcj.cr'},
-      ]
-   }
+         ]
 
-     getPlaces(){
+      }
+  }
 
-         var places = this.state.places
+  goTo(screen,params){
+        var goToScreen = this.props.navigation.state.params.goToScreen
+        goToScreen(screen, params)
+    }
 
-         return places
+       // AmonRa's backoffice query
 
-     }
+   async get_features(){
+      
+      const institutionalUrl = "?category=Institucional" ; 
+      const response = await makeBackendRequest(FEATURES_URL+institutionalUrl,"GET",this.state.userData);
+      const responseJson = await response.json();
+  
+      this.setState({
+        markers: responseJson,
+      });
+  
+    }
+
+    async get_user_data() {
+      const user_data_storage = await AsyncStorage.getItem(USER_DATA);
+      this.setState({ userData: JSON.parse(user_data_storage)});
+    }
+
+    async get_backend_data() {
+      await this.get_user_data()
+      await this.get_features();
+    }
+
+    componentDidMount(){
+      this.get_backend_data();
+    }
+  
+
+    // End backoffice consult
+
+  
+
 
     render() {
 
@@ -67,16 +107,16 @@ export default class Institutional extends Component{
               <View style={{flex:2}} >
               <ScrollView>
 
-              {this.getPlaces().map(place => (
+              {this.state.markers.map(place => (
                 <View style={{flexDirection: "row",padding:10}}>
                 <TouchableOpacity style={{width: 15}} />
                 <Image  source={require('../../../images/icons/Directory/invu.jpg')}/>
                 <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200}}>
                 <Text style={styles.name_place} >  {place.name}</Text>
                 <Text style={styles.text}>  Dirección: {place.direction} </Text>
-                <Text style={styles.text}>  Tel: {place.number}</Text>
+                <Text style={styles.text}>  Tel: {place.phone_number}</Text>
                 <Text style={styles.text}>  Facebook: {place.facebook}</Text>
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , name: place.name, direction: place.direction, phone: place.number,facebook: place.facebook} )} >
+                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , placeInfo: place} )} >
                   <View style={{flexDirection: 'row'}}>
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                   </View>
