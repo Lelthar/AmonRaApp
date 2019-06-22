@@ -92,9 +92,7 @@ export default class Hotels extends Component{
 
         return (
             <View style={styles.container}>
-
             <View style={{flex:0.3}} />
-
              <View style={{flex:0.3}}>
                     <Text style={styles.title} >Hospedaje</Text>
                 </View>
@@ -103,9 +101,10 @@ export default class Hotels extends Component{
                 <ScrollView>
 
                 {this.state.markers.map(hotel => (
+
                   <View style={{flexDirection: "row",padding:10}}>
                   <TouchableOpacity style={{width: 15}} />
-                  <View  style={{backgroundColor: 'rgba(127, 140, 141, 0.7)', width: 60,height: 60}}/>
+                  <Image  source= {{uri: hotel.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
                   <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200}}>
                   <Text style={styles.name_place} >  Hotel: {hotel.name}</Text>
                   <Text style={styles.text} >  Dirección: {hotel.direction} </Text>
@@ -113,7 +112,7 @@ export default class Hotels extends Component{
                   <Text style={styles.text}>  Facebook: {hotel.facebook}</Text>
                   <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , placeInfo: hotel} )} >
                     <View style={{flexDirection: 'row'}}>
-                      <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
+                      <Image  source={ require('../../../images/icons/Directory/masinfogris.png') }/>
                     </View>
                   </TouchableOpacity>
                   <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={console.log("ir")} >

@@ -108,9 +108,11 @@ export default class Institutional extends Component{
               <ScrollView>
 
               {this.state.markers.map(place => (
+
+
                 <View style={{flexDirection: "row",padding:10}}>
                 <TouchableOpacity style={{width: 15}} />
-                <Image  source={require('../../../images/icons/Directory/invu.jpg')}/>
+                <Image  source= {{uri: place.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
                 <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200}}>
                 <Text style={styles.name_place} >  {place.name}</Text>
                 <Text style={styles.text}>  Dirección: {place.direction} </Text>

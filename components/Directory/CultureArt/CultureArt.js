@@ -116,7 +116,7 @@ export default class CultureArt extends Component{
               {this.state.markers.map(place => (
                 <View style={{flexDirection: "row",padding:10}}>
                 <TouchableOpacity style={{width: 15}} />
-                <View  style={{backgroundColor: 'rgba(127, 140, 141, 0.7)', width: 60,height: 60}}/>
+                <Image  source= {{uri: place.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
                 <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200 }}>
                 <Text style={styles.name_place} >  {place.name}</Text>
                 <Text style={{fontFamily: "Roboto",color:'grey',fontSize: 16}}>  Dirección: {place.direction} </Text>
