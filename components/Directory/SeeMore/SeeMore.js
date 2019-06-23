@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-const {widthWindow} = Dimensions.get('window');
+var {windowHeight, windowWidth} = Dimensions.get('window');
 
 export default class SeeMore extends Component{
 
@@ -49,7 +49,6 @@ componentDidMount(){
 
   render() {
 
-
     // Empieza prueba 
 
     var pic = {uri: this.state.images_url[0] } ; 
@@ -59,8 +58,6 @@ componentDidMount(){
     return (
 
       <View style = {styles.container}>
-
-        <View style = {{flex:2}} />
 
           <View style = {styles.swiper}>
 
@@ -82,7 +79,7 @@ componentDidMount(){
 
         </View>
 
-        <View style={{alignItems: 'center', flex: 50}}>
+        <View style={ styles.information }>
             <Text style={styles.title} >{this.state.title}</Text>
             <Text style = {styles.description}> {this.state.description} </Text>
             <Text style = {styles.direction}>  Direccion: {this.state.direction } </Text> 
@@ -98,66 +95,73 @@ componentDidMount(){
 
 const styles = StyleSheet.create({
 
+   nothing: {
+   },
 
+   information:{
+    height: windowHeight
+   },
 	slide: {
-    flex: 1,
-    justifyContent: 'center',
+    height:250,
     backgroundColor: 'transparent'
 	},
   swiper:{
-    flex:9
+    height:250
   },
-	swiperSty: {
-		flex:3,
-		height:50
-	},
 	image: {
-		width: widthWindow,
-		height: 100
+		width: windowWidth,
+		height: 250
 	},
 	
 	title: {
-		textAlign: "center", fontSize:35,
+		textAlign: "center", fontSize:20,
 		fontFamily: "vincHand",
     color: "#0C5B60",
-    marginTop: 10,
-    marginBottom: 10
+    marginTop: 20,
+    marginBottom: 20,
+    fontWeight: 'bold',
+    textAlign: 'center'
 	},
 
 	description: {
 		textAlign: "center", fontSize:18,
-		color: "grey"
+		color: "#0C5B60",
+    textAlign: 'left',
+    marginLeft: 20,
+    marginRight: 20
 	},
 
   direction:{
-    textAlign: "center", fontSize: 18,
+    textAlign: "center", fontSize:15,
     color: "grey",
-    marginLeft: 50, 
+    marginLeft: 20, 
     marginRight: 50,
-    marginTop: 50 
+    marginTop: 50,
+    textAlign: 'left'
   },
 
   phone:{
-    textAlign: "center", fontSize: 18,
+    textAlign: "center", fontSize: 15,
     color: "grey",
-    marginLeft: 50, 
-    marginRight: 50,
+    marginLeft: 20, 
+    marginRight: 20,
+    textAlign: 'left'
     
   },
   facebook:{
-    textAlign: "center", fontSize: 18,
+    textAlign: "center", fontSize: 15,
     color: "grey",
-    marginLeft: 50, 
-    marginRight: 50,
+    marginLeft: 20, 
+    marginRight: 20,
+    textAlign: 'left'
    
   },
   wrapper: {
   },
 
   container: {
-    flex: 1,
+    flex:1,
     backgroundColor: 'white',
-    justifyContent: 'center',
   }
 
 });

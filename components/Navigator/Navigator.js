@@ -67,6 +67,7 @@ export default class Navigator extends Component {
                 "Secrets", 
                 "ArchitectureView",
                 "Place",
+                "SeeMore"
             ],
             colorScreensSpanish: [
               "Oferta Urbana", 
@@ -87,16 +88,17 @@ export default class Navigator extends Component {
               "Narraciones", 
               "Secretos", 
               "Arquitectura",
-              "Oferta Urbana" //Se debe de cambiar
+              "Oferta Urbana", //Se debe de cambiar
+              "Ver Más"
             ],
             directoryScreens: [],
             screensRecord: ['MapScreen'],
             datosColorScreens: {
             	Directory: "Oferta Urbana",
-            	CultureArt: "Cultura y Arte",
-            	Institutional: "Institucional",
-            	Hotels: "Hoteles",
-            	Gastronomy: "Gastronomía", 
+            	CultureArt: "Oferta Urbana",
+            	Institutional: "Oferta Urbana",
+            	Hotels: "Oferta Urbana",
+            	Gastronomy: "Oferta Urbana", 
               Experiences: "Vivencias",
               Architecture: "Arquitectura", 
               MoreAmonRA: "Más de Amón_RA", 
@@ -111,6 +113,7 @@ export default class Navigator extends Component {
               Secrets: "Secretos", 
               ArchitectureView: "Arquitectura",
               Place: "Place",
+              SeeMore: "Oferta Urbana"
             }
         }
 

@@ -106,7 +106,7 @@ export default class Gastronomy extends Component{
                 <View style={{flexDirection: "row",padding:10}}>
                 <TouchableOpacity style={{width: 15}} />
                 <Image  source= {{uri: place.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
-                <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200}}>
+                <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 300}}>
                 <Text style={styles.name_place} >  {place.name}</Text>
                 <Text style={styles.text}>  Dirección: {place.direction} </Text>
                 <Text style={styles.text}>  Tel: {place.phone_number}</Text>
@@ -145,9 +145,12 @@ const styles = StyleSheet.create({
     },
     title:  	{
       textAlign: "center",
-      fontSize: 35,
+      fontSize: 20,
       fontFamily: "vincHand",
-      color: "#0C5B60"
+      color: "#0C5B60",
+      marginTop:20,
+      marginBottom:20,
+      fontWeight: 'bold'
     },
     name_place: {
       color: "#0C5B60",
