@@ -35,7 +35,7 @@ const {
 } = FBSDK;
 
 const logo = '../../images/marca-02.png';
-const background = '../../resources/img/casa-verde-I.jpg';
+const background = '../../resources/img/casa-verde-I.png';
 const anho = [];
 
 export default class RegisterMain extends React.Component {
