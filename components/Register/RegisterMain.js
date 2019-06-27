@@ -3,6 +3,8 @@ import firebase from 'react-native-firebase';
 import * as constants from '../../data/constants'
 import * as colors from '../../data/colors'
 
+//react-native run-android --variant=gvrDebug
+
 import {
   StyleSheet,
   ImageBackground,
@@ -36,7 +38,7 @@ const {
 
 
 const logo = '../../images/marca-02-smaller.png';
-const background = '../../resources/img/casa-verde-I.jpg';
+const background = '../../resources/img/casa-verde-I.png';
 
 
 class RegisterMain extends React.Component {
@@ -188,86 +190,42 @@ renderModal(){
       <ImageBackground source={require(background)}  style={{flex:1}}>
       {this.renderModal()}
       {!this.state.isConfidencialityAlertVisible &&
-        <View style={styles.body}>
+      <View style={{flex:1}}>
+        <View style={styles.LogoContainer}>
+          <Image source={require(logo)} style={styles.LogoRegisterScreen}/>
+        </View>
+        <View style={{flex:1}}>
+          <TouchableOpacity style={styles.buttonRegister} onPress={() => {this.props.navigation.navigate("EmailRegister")}}>
+            <Text style={styles.RegisterButtonText}>Registrarse</Text>
+          </TouchableOpacity>
 
-            <View style={{flex:2}}/>
-            <View style={styles.logoContainer}>
-              <View style={{flex:1}}/>
-              <Image source={require(logo)} style={styles.logoRegisterScreen}/>
-              <View style={{flex:1}}/>
-            </View>
-            <View style={{flex:4}}/>
+          <TouchableOpacity style={styles.FacebookStyle} activeOpacity={0.5}>
+            <Image 
+              source={require('../../images/icons/social/fb.png')} 
+              style={styles.ImageIconStyle} 
+              />
+            <Text style={styles.TextStyle}>Registrarse con Facebook</Text>
+          </TouchableOpacity>
 
-            <View style={{flex:4, flexDirection:'row'}}>
+        </View>
 
-              <View style={{flex:1.5}}/>
-
-              <View style={{flex:5}}>
-                  <TouchableOpacity style={styles.registerButton} onPress={() => {this.props.navigation.navigate("EmailRegister")}}>
-                      <Text style={styles.RegisterButtonText}> Registrarse </Text>
-                  </TouchableOpacity>
-
-                  <View style={{flex:0.5}}/>
-
-                  <TouchableOpacity style={styles.FbButton} onPress={this._fbAuth.bind(this)}>
-                      <View style={styles.imgContainer}>
-                        <View style ={{flex:0.5}}/>
-                        <Image style={styles.imgButton} source={require('../../images/icons/social/fb.png')} />
-                        <View style ={{flex:0.5}}/>
-                      </View>
-                      <Text style={styles.ButtonText}> Registrarse con Facebook </Text>
-                  </TouchableOpacity>
-
-                  <View style={{flex:0.5}}/>
-
-                  <TouchableOpacity style={styles.GPlusButton} onPress={this._gAuth.bind(this)}>
-                  <View style={styles.imgContainer}>
-                    <View style ={{flex:0.5}}/>
-                    <Image style={styles.imgButton} source={require('../../images/icons/social/gp.png')} />
-                    <View style ={{flex:0.5}}/>
-                  </View>
-                      <Text style={styles.ButtonText}> Registrarse con Google+ </Text>
-                  </TouchableOpacity>
-              </View>
-
-              <View style={{flex:1.5}}/>
-          </View>
-
-
-          <View style={{flex:2.5}}/>
       </View>
       }
-
     </ImageBackground>
   );}
 
 }
 
 const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    justifyContent: 'center',
+  LogoContainer:{
+    flex:1,
     alignItems: 'center',
+    justifyContent: 'center'
   },
-  logoContainer:{
-    flex:1.5,
-    flexDirection:'row'
-  },
-  logoRegisterScreen: {
+  LogoRegisterScreen: {
     resizeMode: 'center',
-    flex:2
-  },
-  ButtonsContainer:{
-
-  },
-  imgContainer:{
-    flex:1,
-    justifyContent: 'center',
-    alignItems: 'center'
-},
-  imgButton:{
-    flex:1,
-    resizeMode:'center',
+    aspectRatio: 0.72,
+    marginTop: 40
   },
   ButtonText:{
     flex: 4,
@@ -277,33 +235,49 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   RegisterButtonText:{
-    color: '#000000',
+    color: "#6D6E71",
     fontFamily: 'Barlow-Regular',
     fontSize: constants.FONT_SIZE,
-    alignSelf: 'center',
-
+    padding:15,
+    textAlign: 'center'
   },
-  FbButton:{
-    flex:1,
-    flexDirection: 'row',
-    backgroundColor: '#3B5998',
-
-  },
-  GPlusButton:{
-    flex:1,
-    flexDirection: 'row',
-    alignItems:'stretch',
-    justifyContent: 'center',
-    backgroundColor: '#dc4b3e',
-
-  },
-  registerButton:{
-    flex:1,
-    flexDirection: 'row',
+  buttonRegister:{
     alignItems:'stretch',
     justifyContent: 'center',
     backgroundColor: '#FFFFFF',
+    marginLeft:50,
+    marginRight: 50,
+  },
 
+  FacebookStyle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#485a96',
+    marginTop:25,
+    marginLeft:50,
+    marginRight: 50,
+  },
+   
+  ImageIconStyle: {
+    marginTop: 5,
+    marginLeft: 5,
+    marginBottom: 10,
+    marginRight: 5,
+    height: 32,
+    width: 32,
+    resizeMode : 'stretch',
+  },
+   
+  TextStyle :{
+    color: "#FFF",
+    marginBottom : 4,
+    marginRight :20,
+    fontFamily: 'Barlow-Regular',
+    fontSize: constants.FONT_SIZE,
+    paddingTop: 15,
+    paddingRight: 15,
+    paddingBottom: 15,
+    paddingLeft: 5
   },
 
 });
