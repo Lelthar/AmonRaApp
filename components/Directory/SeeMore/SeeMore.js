@@ -82,8 +82,8 @@ componentDidMount(){
         <View style={ styles.information }>
             <Text style={styles.title} >{this.state.title}</Text>
             <Text style = {styles.description}> {this.state.description} </Text>
-            <Text style = {styles.direction}>  Direccion: {this.state.direction } </Text> 
-            <Text style = {styles.phone}> Telefono: {this.state.phone_number} </Text> 
+            <Text style = {styles.direction}>  Dirección: {this.state.direction } </Text> 
+            <Text style = {styles.phone}> Tel: {this.state.phone_number} </Text> 
             <Text style = {styles.facebook}> Facebook: {this.state.facebook} </Text>
             
         </View>

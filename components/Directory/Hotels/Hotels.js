@@ -85,6 +85,32 @@ export default class Hotels extends Component{
 
     // End backoffice consult
 
+    fixPlaceNameWithParenthesis(name){
+
+      var placeName = "";
+      if(name.includes("(")){
+
+        var i;
+        var character;
+        for( i = 0 ; i < name.length ; i++){
+
+          character = name.charAt(i);
+          if(character == '(' ){
+            break;
+          }
+          else{
+            placeName += character;
+          }
+        }
+      }
+
+      else{
+        placeName = name;
+      }
+
+      return placeName;
+    }
+
     
 
   
@@ -106,7 +132,7 @@ export default class Hotels extends Component{
                   <TouchableOpacity style={{width: 15}} />
                   <Image  source= {{uri: hotel.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
                   <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200}}>
-                  <Text style={styles.name_place} >  Hotel: {hotel.name}</Text>
+                  <Text style={styles.name_place} >  Hotel: {this.fixPlaceNameWithParenthesis(hotel.name)}</Text>
                   <Text style={styles.text} >  Dirección: {hotel.direction} </Text>
                   <Text style={styles.text}>  Tel: {hotel.phone_number}</Text>
                   <Text style={styles.text}>  Facebook: {hotel.facebook}</Text>

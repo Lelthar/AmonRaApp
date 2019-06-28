@@ -94,10 +94,32 @@ export default class CultureArt extends Component{
     }
   
 
-    // End backoffice consult
+    // End backoffice query
+    fixPlaceNameWithParenthesis(name){
 
+      var placeName = "";
+      if(name.includes("(")){
 
- 
+        var i;
+        var character;
+        for( i = 0 ; i < name.length ; i++){
+
+          character = name.charAt(i);
+          if(character == '(' ){
+            break;
+          }
+          else{
+            placeName += character;
+          }
+        }
+      }
+
+      else{
+        placeName = name;
+      }
+
+      return placeName;
+    }
 
     render() {
 
@@ -114,14 +136,16 @@ export default class CultureArt extends Component{
               <ScrollView>
 
               {this.state.markers.map(place => (
+
+               
                 <View style={{flexDirection: "row",padding:10}}>
                 <TouchableOpacity style={{width: 15}} />
                 <Image  source= {{uri: place.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
                 <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', width: 200 }}>
-                <Text style={styles.name_place} >  {place.name}</Text>
-                <Text style={{fontFamily: "Roboto",color:'grey',fontSize: 16}}>  Dirección: {place.direction} </Text>
-                <Text style={styles.text}>  Tel: {place.phone_number}</Text>
-                <Text style={styles.text}>  Facebook: {place.facebook}</Text>
+                <Text style={styles.name_place} >  { this.fixPlaceNameWithParenthesis(place.name) }</Text>
+                <Text style={{fontFamily: "Roboto",color:'grey',fontSize: 16}}>Dirección: {place.direction}</Text>
+                <Text style={styles.text}>Tel: {place.phone_number}</Text>
+                <Text style={styles.text}>Facebook: {place.facebook}</Text>
                 <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , placeInfo: place} )} >
                   <View style={{flexDirection: 'row'}}>
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
