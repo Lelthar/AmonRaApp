@@ -11,14 +11,25 @@ import {
     TouchableOpacity,
     PixelRatio,
   	FlatList,
-  	TouchableHighlight
+  	TouchableHighlight,
+    AsyncStorage
 } from 'react-native';
+
 import Swiper from 'react-native-swiper';
 const { width } = Dimensions.get('window');
 const imageRatio = PixelRatio.getPixelSizeForLayoutSize(60);
 const fiveRatio = PixelRatio.getPixelSizeForLayoutSize(5);
 const sevenRatio = PixelRatio.getPixelSizeForLayoutSize(7);
-var amonData = require("../../data/data.json");
+
+import { 
+  FEATURES_URL,
+  PERIMETER_URL,
+  USER_DATA,
+} from '../../constants/constants';
+
+import {
+  makeBackendRequest,
+} from '../../helpers/helpers'
 
 
 const tabs = ["3D","360"];
@@ -28,8 +39,6 @@ const tabs = ["3D","360"];
 //requires to repair state
 export default class VirtualVisit extends Component{
 
-
-
     constructor(props){
         super(props);
         // Se le pasa el controlador de la navegación a App.js
@@ -37,7 +46,8 @@ export default class VirtualVisit extends Component{
         this.props.screenProps.getNavigationProp(this.props.navigation)
         this.state = {
             "currentTab":"3D",
-            current:true
+            current:true,
+            markers: []
         };
     this.handleClick = this.handleClick.bind(this);
     this.onNavBarClick = this.onNavBarClick.bind(this);
@@ -48,8 +58,40 @@ export default class VirtualVisit extends Component{
 		//let keys = Object.keys(amonData);
     }
 
+    async get_features(){
+      
+      let url3D = "?category=Cultura%20y%20arte" ; 
+      let response3D = await makeBackendRequest(FEATURES_URL+url3D,"GET",this.state.userData);
+      let responseJson3D = await response3D.json();
+
+      let url360 = "?category=Gastronomía" ; 
+      let response360 = await makeBackendRequest(FEATURES_URL+url360,"GET",this.state.userData);
+      let responseJson360 = await response360.json();
+
+      this.setState({
+        markers: [responseJson3D,responseJson360],
+      });
+
+
+      //console.log(this.state.markers);
+    }
+
+    async get_user_data() {
+      const user_data_storage = await AsyncStorage.getItem(USER_DATA);
+      this.setState({ userData: JSON.parse(user_data_storage)});
+    }
+
+    async get_backend_data() {
+      await this.get_user_data()
+      await this.get_features();
+    }
+
+    componentDidMount(){
+      this.get_backend_data();
+    }
+
     handleClick(item) {
-	   let name = item.properties.Name;
+	   let name = item.name;
      if(this.state.currentTab == "3D"){
         this.open3dModel(name);
      }else{
@@ -71,12 +113,10 @@ export default class VirtualVisit extends Component{
     }
 
 
-
-
     render() {
         let nabvarClickFunction =this.onNavBarClick;
         let currentTab = this.state.currentTab;
-        let FlatListContent = currentTab == "3D" ? amonData.features["Patrimonio Arquitectónico"] : amonData.features["Fotografías 360"];
+        let FlatListContent = currentTab == "3D" ? this.state.markers[0] : this.state.markers[1];
         return (
           <View style={styles.container}>
             <View  style={styles.barMargin}/>
@@ -93,7 +133,7 @@ export default class VirtualVisit extends Component{
                     })
                   }
                 </View>
-        				<FlatList
+        				<FlatList style={{flex: 15}}
         				  data={FlatListContent}
         				  numColumns={3}
                   keyExtractor={(item, index) => index}
@@ -103,17 +143,19 @@ export default class VirtualVisit extends Component{
           					onPress={() => this.handleClick(item)}
           					>
           					<View >
-                       <Image source={ require('../../images/Swiper/DEFAULT.jpg')} style={styles.imageResizeAndFillParent} />
-          						<Text numberOfLines={1} style={styles.list_text}>{item.properties.Name}</Text>
+                        <View style={{flex:7}}>
+                          <Image source={{uri: item.miniature_image_url}} style={styles.imageResizeAndFillParent} />
+                      </View>
+                      <View style={{flex:2, backgroundColor:"#42bff4",width:(Dimensions.get('window').width)*0.29}}>
+                        <Text numberOfLines={2} style={styles.list_text}>{item.name}</Text>
+                      </View>
           					</View>
         					</TouchableHighlight>
         					)
         				  }
         				/>
-
-
                 </View>
-
+                <View  style={{flex: 2}}/>
             </View>
         );
     }
@@ -123,36 +165,17 @@ export default class VirtualVisit extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:"#FFFFFF"
-  },
-  wrapper: {
+    backgroundColor:"#ffffff",
   },
   body:{
-    flex:23,
-  },
-  swiper:{
-    flex: 9
+    flex:25,
   },
   barMargin:{
-    flex:2
-  },
-  contentUnderSwiper:{
-    flex:14
-  },
-  image: {
-    resizeMode: "cover",
-    flex: 1
-  },
-  slide: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'transparent'
+    flex:3,
   },
   imageResizeAndFillParent: {
     flex: 1,
-    width: null,
-    height: null,
-    resizeMode: "cover",
+    resizeMode: "stretch",
   },
   title:  	{
     textAlign: "center",
@@ -183,30 +206,32 @@ const styles = StyleSheet.create({
     backgroundColor:"#42bff4",
     justifyContent: 'center',
   },
+  navigation_bar:{
+    height: "6%",
+    flexDirection:"row",
+    backgroundColor: "#000"
+  },
   list_text:{
+    width:(Dimensions.get('window').width)*0.29,
+    textAlign: 'center',
+    color: "#fff",
     backgroundColor:"#42bff4",
     fontFamily: "Barlow-Regular",
-    alignSelf: "flex-end"
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   list_item:{
     height: imageRatio,
     width: "33.3%",
-    padding: "3%",
+    padding: "2%",
     backgroundColor:"#ffffff",
-    flexDirection:"row",
-    alignItems:'flex-end',
-  },
-    navigation_bar:{
-    flexDirection:"row",
-    flexGrow:0.03
-
+    alignItems:'center',
   },
   list_style: {
-    flexGrow:0.97,
     marginLeft: "4%",
     marginRight: "4%",
-    marginTop: "5%",
-    width:"92%",
+    paddingTop: "5%",
+    width:"93%",
     justifyContent: "space-evenly",
 
   }
