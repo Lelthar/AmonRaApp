@@ -1,6 +1,7 @@
 import React from 'react';
 import {StackActions, NavigationActions} from 'react-navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Dropdown } from 'react-native-material-dropdown';
 
 import { 
   REGISTRATION_URL,
@@ -36,7 +37,8 @@ const {
 
 const logo = '../../images/marca-02.png';
 const background = '../../resources/img/casa-verde-I.png';
-const anho = [];
+let anho = [];
+const paises = [];
 
 export default class RegisterMain extends React.Component {
 
@@ -61,10 +63,15 @@ export default class RegisterMain extends React.Component {
       checkedH:false,
       checkedM:false,
       buttonDisabled: false,
-
+      titulo_pais: "País",
+      titulo_anhos: "Año"
     }
-    for(let i = 1900; i < 2100; i++){
-      anho.push(i.toString());
+    for(let i = 1900; i < 2020; i++){
+      anho.push({value:i.toString()});
+    }
+    anho = anho.reverse();
+    for(let i = 0; i < countries.countries.length; i++) {
+      paises.push({value:countries.countries[i]});
     }
   };
 
@@ -208,216 +215,166 @@ renderModal(){
 
 render (){
   return(
-    <KeyboardAwareScrollView
-      enableOnAndroid={true}
-      contentContainerStyle={{flexGrow: 1}}
-      style = {{flex: 1}}
-    >
+
     <ImageBackground source={require(background)} style={styles.body} >
       {this.renderModal()}
       {!this.state.isConfidencialityAlertVisible &&
       <View style={styles.body}>
-        {/* Espaciador vertical */}
-        <View style={{flex:1}}/>
-        <TouchableOpacity style={styles.buttonback} onPress = {this._goToBackApp.bind(this)}>
-          <Image source={require('../../images/icons/PantallaPrincipal/atras.png')} style={styles.checkImage} />
-        </TouchableOpacity>
-        <View style={{flex:1}}/>
-        <Image source={require(logo)} style={styles.logoRegisterScreen}/>
-        <View style={{flex:1}}/>
-        <View style={styles.horizontalContainer}>
-          {/* Espaciador horizontal */}
-          <View style={{flex:1}}/>
+        <View style={styles.LogoContainer}>
+        <View style={{flex:1,position: 'absolute',left:10,top:10}}>
+          <TouchableOpacity style={styles.BackButton} onPress = {this._goToBackApp.bind(this)}>
+            <Image source={require('../../images/icons/PantallaPrincipal/atras.png')} style={styles.backArrow} />
+          </TouchableOpacity>
+          </View>
+          <View style={{flex:2,marginTop:70,marginBottom:20}}>
+            <Image source={require(logo)} style={styles.LogoRegisterScreen}/>
+          </View>
+        </View>
+        <View style={{flex:6}}>
           <View style={styles.InputsContainer}>
-            <View style={styles.InputGroup}>
-              {/* Nombre */}
-              <View style={styles.TextComponentContainer}>
-                <Image style={styles.imgButton} source={require('../../images/icons/nombre.png')} />
-                <TextInput
-                  style={styles.inputBox}
-                  placeholder ="Nombre"
-                  underlineColorAndroid="transparent"
-                  autoCapitalize = "words"
-                  onChangeText={(name) => this.setState({name})}
-                  value = {this.state.name}
-                  onSubmitEditing= {()=> this.lastName.focus()}
-                  //onFocus= {() => this.setState({one: true})}
-                />
-              </View>
-              {/* Línea divisoria */}
-              <View
-                style={{
-                  borderBottomColor: 'black',
-                  borderBottomWidth: 1,
-              }}/>
-              {/* Apellido */}
-              <View style={styles.TextComponentContainer}>
-                <Image style={styles.imgButton}/>
-                <TextInput style={styles.inputBox2} placeholder ="Apellido"
-                  underlineColorAndroid={'transparent'}
-                  //onChangeText={(lastName) => this.CheckTextInputIsEmptyOrNot(lastName)}
-                  onChangeText={(lastName) => this.setState({lastName})}
-                  value = {this.state.lastName}
-                  ref= {(input) => this.lastName = input}
-                  onSubmitEditing= {()=> this.email.focus()}
+            <View style={styles.InputData}>
+              <Image style={styles.imgButton} source={require('../../images/icons/register/nombre.png')} />
+              <TextInput
+                style={styles.inputBox}
+                placeholder ="Nombre"
+                underlineColorAndroid="transparent"
+                autoCapitalize = "words"
+                onChangeText={(name) => this.setState({name})}
+                value = {this.state.name}
+                onSubmitEditing= {()=> this.lastName.focus()}
+              />
+            </View>
+            <View style={styles.InputData}>
+              <Image style={styles.imgButton} source={require('../../images/icons/register/blank_background.png')} />
+              <TextInput
+                style={styles.inputBox} 
+                placeholder ="Apellidos"
+                underlineColorAndroid={'transparent'}
+                onChangeText={(lastName) => this.setState({lastName})}
+                value = {this.state.lastName}
+                ref= {(input) => this.lastName = input}
+                onSubmitEditing= {()=> this.email.focus()}
+            />
+            </View>
+            <View style={styles.InputData}>
+              <Image style={styles.imgButton} source={require('../../images/icons/register/correo.png')} />
+              <TextInput style={styles.inputBox}
+                placeholder ="Correo electrónico"
+                underlineColorAndroid={'transparent'}
+                keyboardType= "email-address"
+                onChangeText={(email)=> this.setState({email})}
+                value = {this.state.email}
+                ref= {(input) => this.email = input}
+              />
+            </View>
+            <View style={styles.InputData}>
+              <Image style={styles.imgButton} source={require('../../images/icons/register/pais.png')} />
+              <View style={styles.paisesBox}>
+                <Dropdown
+                  label={this.state.titulo_pais}
+                  data={paises}
+                  dropdownPosition={0}
+                  value={this.state.country}
+                  dropdownOffset={{ top: 17, left: 0 }}
+                  onChangeText={(itemValue, itemIndex) => this.setState({country: itemValue, titulo_pais: ""})}
                 />
               </View>
             </View>
-            {/* Espaciador vertical */}
-            <View style={{flex:0.5}}/>
-            <View style={styles.InputGroup}>
-              {/* Correo */}
-              <View style={styles.TextComponentContainer}>
-                <Image style={styles.imgButton} source={require('../../images/correo.png')} />
-                <TextInput style={styles.inputBox}
-                  placeholder ="Correo electrónico"
-                  underlineColorAndroid={'transparent'}
-                  keyboardType= "email-address"
-                  onChangeText={(email)=> this.setState({email})}
-                  value = {this.state.email}
-                  ref= {(input) => this.email = input}
-                  //onFocus= {() => this.setState({two: true})}
-                />
-              </View>
-              <View
-                style={{
-                  borderBottomColor: 'black',
-                  borderBottomWidth: 1,
-              }}/>
-              {/* País */}
-              <View style={styles.TextComponentContainer}>
-                <Image style={styles.imgButton} source={require('../../images/pais.png')} />
-                <Picker
-                  selectedValue={this.state.country}
-                  style={styles.pickerBox}
-                  mode="dropdown"
-                  onValueChange={(itemValue, itemIndex) => this.setState({country: itemValue})}>
-                  <Picker.Item label="País" value="País" />
-                  {countries.countries.map((l, i) => {return <Picker.Item value={l} label={l} key={i}  /> })}
-                </Picker>
-              </View>
-            </View>
-            {/* Espaciador vertical */}
-            <View style={{flex:0.5}}/>
-            <View style={styles.InputGroup}>
-              {/* Género */}
-              <View style={styles.TextComponentContainer}>
-                <TextInput style={styles.inputBox} placeholder ="Género:"
-                  editable={false}
-                  selectTextOnFocus={false}
-                  underlineColorAndroid={'transparent'}
-                />
-                <CheckBox style={styles.checkbox}
+            <View style={styles.InputData}>
+              <Text style={styles.GeneroInput}>Género:</Text>
+              <View style={{flex:6, flexDirection:"row"}}>
+                <CheckBox 
+                  style={styles.checkbox}
                   onClick={()=>{
-                    this.setState({
-                      checkedM:!this.state.checkedM
-                    })
-                    this.setState({
-                      checkedH:false
-                    })
-                    if (!this.state.checkedM){
-                      this.setState({gender: "Femenino"});
+                      this.setState({
+                        checkedM:!this.state.checkedM
+                      })
+                      this.setState({
+                        checkedH:false
+                      })
+                      if (!this.state.checkedM){
+                        this.setState({gender: "Femenino"});
+                      }
+                      else{
+                        this.setState({gender: ''});
+                      }
+                    }}
+                    isChecked={this.state.checkedM}
+                    checkedImage={
+                      <Image source={require('../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
                     }
-                    else{
-                      this.setState({gender: ''});
+                    unCheckedImage={
+                      <Image source={require('../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
                     }
-                  }}
-                  isChecked={this.state.checkedM}
-                  checkedImage={
-                    <Image source={require('../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
-                  }
-                  unCheckedImage={
-                    <Image source={require('../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
-                  }
-                />
-                <TextInput style={styles.inputBox} placeholder ="Femenino"
-                  editable={false}
-                  selectTextOnFocus={false}
-                  underlineColorAndroid={'transparent'}
-                />
-                <CheckBox style={styles.checkbox}
-                  onClick={()=>{
-                    this.setState({
-                      checkedH:!this.state.checkedH
-                    })
-                    this.setState({
-                      checkedM:false
-                    })
-                    if (!this.state.checkedH){
-                      this.setState({gender: "Masculino"});
+                  />
+                  <TextInput style={styles.inputBox} placeholder ="Femenino"
+                    editable={false}
+                    selectTextOnFocus={false}
+                    underlineColorAndroid={'transparent'}
+                  />
+                  <CheckBox style={styles.checkbox}
+                    onClick={()=>{
+                      this.setState({
+                        checkedH:!this.state.checkedH
+                      })
+                      this.setState({
+                        checkedM:false
+                      })
+                      if (!this.state.checkedH){
+                        this.setState({gender: "Masculino"});
+                      }
+                      else {
+                        this.setState({gender: ''});
+                      }
+                    }}
+                    isChecked={this.state.checkedH}
+                    checkedImage={
+                      <Image source={require('../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
                     }
-                    else {
-                      this.setState({gender: ''});
+                    unCheckedImage={
+                      <Image source={require('../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
                     }
-                  }}
-                  isChecked={this.state.checkedH}
-                  checkedImage={
-                    <Image source={require('../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
-                  }
-                  unCheckedImage={
-                    <Image source={require('../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
-                  }
-                />
-                <TextInput style={styles.inputBox} placeholder ="Masculino"
-                  editable={false}
-                  selectTextOnFocus={false}
-                  underlineColorAndroid={'transparent'}
-                />
-              </View>
-              <View
-                style={{
-                  borderBottomColor: 'black',
-                  borderBottomWidth: 1,
-              }}/>
-              {/* Fecha de nacimiento */}
-              <View style={styles.TextComponentContainer}>
-                <Image style={styles.imgButton}/>
-                <TextInput
-                  style={styles.inputBox}
-                  placeholder ="Año de nacimiento: "
-                  underlineColorAndroid={'transparent'}
-                  editable={false}
-                  selectTextOnFocus={false}
-                />
-                <Picker
-                  selectedValue={this.state.date}
-                  style={styles.pickerBox}
-                  mode="dropdown"
-                  onValueChange={(itemValue, itemIndex) => this.setState({date: itemValue})}>
-                  <Picker.Item label="Año" value="Año" />
-                  {anho.map((l, i) => {return <Picker.Item value={l} label={l} key={i}  /> })}
-                </Picker>
+                  />
+                  <TextInput style={styles.inputBox} placeholder ="Masculino"
+                    editable={false}
+                    selectTextOnFocus={false}
+                    underlineColorAndroid={'transparent'}
+                  />
               </View>
             </View>
-            {/* Espaciador vertical */}
-            <View style={{flex:0.5}}/>
-            <View style={styles.containerbotonaceptar}>
-              <TouchableOpacity style={styles.button}
+            <View style={styles.InputDataYears}>
+              <Text style={styles.AnhoInput}>Año de nacimiento:</Text>
+              <View style={styles.anhosBox}>
+                <Dropdown
+                  label={this.state.titulo_anhos}
+                  data={anho}
+                  dropdownPosition={0}
+                  value={this.state.date}
+                  dropdownOffset={{ top: 17, left: 0 }}
+                  onChangeText={(itemValue, itemIndex) => this.setState({date: itemValue, titulo_anhos: ""})}
+                />
+              </View>
+            </View>
+            <View style={styles.SubmitButtonContainer}>
+              <TouchableOpacity 
+                style={styles.SubmitButton}
                 disabled={this.state.buttonDisabled}
-                onPress = {this.pre_register.bind(this)}>
+                onPress = {this.pre_register.bind(this)}
+              >
                 <Text style={styles.btntext}>ACEPTAR</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{flex:1}}/>
-          {/* Fin del contenedor Horizontal */}
         </View>
-        {/* Espaciador vertical */}
-        <View style={[{flex:1}, this.state.one && styles.bottomSpace1, this.state.two && styles.bottomSpace2]}/>
       </View>
       }
     </ImageBackground>
-    </KeyboardAwareScrollView>
   );
 }
 }
-
-
   const styles = StyleSheet.create({
     body: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
     },
     InputGroup:{
       flex: 2,
@@ -436,23 +393,40 @@ render (){
       height: 20,
       alignSelf: 'center',
     },
+    backArrow:{
+      width: 30,
+      height: 30,
+      alignSelf: 'center',
+    },
     horizontalContainer:{
       flex:10,
       flexDirection: 'row',
       justifyContent: 'center',
     },
     imgButton:{
-        width: 20,
-        height: 20,
-        alignSelf: 'center',
-        marginRight: 10,
+      flex:1,
+      width: 20,
+      height: 20,
+      alignSelf: 'center',
+      resizeMode: 'contain'
+    },
+    GeneroInput: {
+      flex:2,
+      alignSelf: 'center',
+      fontSize: 18,
+      color: '#6D6E71',
+    },
+    AnhoInput: {
+      flex:6,
+      alignSelf: 'center',
+      fontSize: 18,
+      color: '#6D6E71',
     },
     logoRegisterScreen: {
       width : 200,
       height : 100,
       resizeMode: 'contain',
       flex:1,
-      alignSelf: 'center'
     },
     textinput: {
       flex: 1,
@@ -466,17 +440,22 @@ render (){
       backgroundColor: '#00A2B5',
       padding: 10,
     },
-    btntext: {
-      color: 'white',
-      fontWeight: 'bold'
-    },
-
     inputBox: {
-      flex:1,
+      flex:7,
       backgroundColor: 'white',
       borderRadius: 25,
       fontSize: 16,
       color: '#000000',
+    },
+    paisesBox: {
+      flex:7,
+      borderRadius: 25,
+    },
+    anhosBox: {
+      flex:3,
+      borderRadius: 25,
+      marginLeft:20,
+      marginRight:20, 
     },
     inputBox2: {
       flex:1,
@@ -494,17 +473,12 @@ render (){
       color: '#A6A8AA',
       marginRight: -80,
     },
-
     contentContainer: {
       paddingVertical: 20
     },
     KeyboardOn:{
       flex: 1
     },
-    InputsContainer:{
-      flex: 6
-    },
-
     bottomSpace1:{
       flex: 1,
       marginBottom: 100
@@ -514,12 +488,60 @@ render (){
       marginBottom: 200
     },
     buttonback:{
-      marginRight: 350,
+      
     },
     containerbotonaceptar:{
       flex: 1,
       justifyContent: 'center',
       paddingHorizontal: 105
+    },
+    LogoContainer:{
+      flex:2,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    LogoRegisterScreen: {
+      resizeMode: 'center',
+      width : 180,
+      height : 80,
+      marginBottom: 30,
+    },
+    InputData: {
+      flexDirection:"row",
+      borderBottomColor: 'black',
+      borderBottomWidth: 1,
+      marginRight:10,
+      marginLeft:10,
+    },
+    InputDataYears: {
+      flexDirection:"row",
+      marginRight:10,
+      marginLeft:10,
+    },
+    SubmitButtonContainer: {
+      marginRight:10,
+      marginLeft:10,
+      marginBottom: 20,
+      marginTop: 20,
+      alignItems: "center",
+    },
+    SubmitButton: {
+      alignItems: 'center',
+      backgroundColor: '#00A2B5',
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+    },
+    InputsContainer: {
+      backgroundColor:"#fff",
+      marginRight:30,
+      marginLeft:30,
+      marginTop:20
+    },
+    btntext: {
+      color: 'white',
+      fontSize: 18
+    },
+    BackButton: {
+      
     }
-
   });
