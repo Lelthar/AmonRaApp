@@ -55,7 +55,7 @@ componentDidMount(){
     var pic = {uri: this.state.images_url[0] } ; 
     var pic2 = {uri: this.state.images_url[1] } ; 
     var pic3 = {uri : this.state.images_url[2] } ; 
-    
+
     return (
 
        <View style={styles.container}>
