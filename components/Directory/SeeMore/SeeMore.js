@@ -8,7 +8,8 @@ import {
 	Button,
 	Image,
 	Dimensions,
-	TouchableOpacity
+	TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
@@ -54,7 +55,7 @@ componentDidMount(){
     var pic = {uri: this.state.images_url[0] } ; 
     var pic2 = {uri: this.state.images_url[1] } ; 
     var pic3 = {uri : this.state.images_url[2] } ; 
-
+    
     return (
 
        <View style={styles.container}>
@@ -89,11 +90,15 @@ componentDidMount(){
                     <View style={styles.contentUnderSwiper}>
 
                       <View style={ styles.information }>
-                      <Text style={styles.titleOr} >{this.state.title}</Text>
-                      <Text style = {styles.descriptionOr}> {this.state.description} </Text>
-                      <Text style = {styles.directionOr}>  Dirección: {this.state.direction } </Text> 
-                      <Text style = {styles.phoneOr}> Tel: {this.state.phone_number} </Text> 
-                      <Text style = {styles.facebookOr}> Facebook: {this.state.facebook} </Text>
+
+                        <Text style={styles.titleOr} >{this.state.title}</Text>
+
+                        <ScrollView>
+                          <Text style = {styles.descriptionOr}> {this.state.description} </Text>
+                          <Text style = {styles.directionOr}>  Dirección: {this.state.direction } </Text> 
+                          <Text style = {styles.phoneOr}> Tel: {this.state.phone_number} </Text> 
+                          <Text style = {styles.facebookOr}> Facebook: {this.state.facebook} </Text>
+                        </ScrollView>
                     
                     </View>
 
@@ -178,6 +183,7 @@ const styles = StyleSheet.create({
     color: "grey",
     marginLeft: 20, 
     marginRight: 20,
+    marginBottom: 150,
     textAlign: 'left'
    
   },
