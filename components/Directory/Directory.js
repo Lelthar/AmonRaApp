@@ -49,8 +49,8 @@ export default class Directory extends Component{
     render() {
 
         return (
-            <View style={styles.container}>
 
+            <View style={styles.container}>
             {/* Navigator uses flex 10. 1 up, 1 down, 8 body */}
                <View style={{flex:2}} />
 
@@ -152,6 +152,7 @@ export default class Directory extends Component{
 
 
 const styles = StyleSheet.create({
+  
   container: {
     flex: 1,
     backgroundColor: 'white',
