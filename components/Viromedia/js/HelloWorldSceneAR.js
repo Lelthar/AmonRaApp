@@ -64,7 +64,7 @@ export default class HelloWorldSceneAR extends Component {
             position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
           <ViroNode position={[this.state.objectXPos, 0, this.state.objectZPos]} dragType="FixedToWorld" onDrag={()=>{}} >
             <Viro3DObject
-              onClick={this.props.arSceneNavigator.viroAppProps.showInformation}
+              onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
               source={require('./res/emoji_smile/emoji_smile.vrx')}
               resources={[require('./res/emoji_smile/emoji_smile_diffuse.png'),
                   require('./res/emoji_smile/emoji_smile_normal.png'),
@@ -76,7 +76,7 @@ export default class HelloWorldSceneAR extends Component {
 
           <ViroNode position={[0, 0, -1]} dragType="FixedToWorld">
             <Viro3DObject
-              onClick={this.props.arSceneNavigator.viroAppProps.showInformation}
+              onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
               source={require('./res/emoji_smile/emoji_smile.vrx')}
               resources={[require('./res/emoji_smile/emoji_smile_diffuse.png'),
                   require('./res/emoji_smile/emoji_smile_normal.png'),
@@ -85,6 +85,13 @@ export default class HelloWorldSceneAR extends Component {
               scale={[.5,.5,.5]}
               type="VRX" />
           </ViroNode>
+
+          {/*<ViroFlexView style={{flexDirection: 'row', padding: .1}} 
+              width={5.0} height={5.0} 
+              position={[-5.0, 0.0, -2.0]}>
+            <ViroImage source={require('./res/Casa_González_Feo_1.jpg')} />
+      </ViroFlexView>*/}
+
         </ViroARScene>
     );
   }

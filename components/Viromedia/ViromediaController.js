@@ -1,12 +1,3 @@
-/**
- * Copyright (c) 2017-present, Viro, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 import React, { Component } from 'react';
 import {
   Text,
@@ -36,9 +27,13 @@ var VR_NAVIGATOR_TYPE = "VR";
 var AR_NAVIGATOR_TYPE = "AR";
 var D3_NAVIGATOR_TYPE = "3D";
 
+var informationVisible = false;
+var vrMode = null;
+var dataSheetVisible = false;
+var imageVisible = false;
+
 
 export default class ViromediaController extends Component {
-
 
   constructor(props) {
 
@@ -46,22 +41,21 @@ export default class ViromediaController extends Component {
 
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
-    this.showInformation = this.showInformation.bind(this);
+    this.showInformationMenu = this.showInformationMenu.bind(this);
+    this.showDataSheet = this.showDataSheet.bind(this);
+    this.setInformation = this.setInformation.bind(this);
 
     this.state = {
       sharedProps : sharedProps,
       navigatorType : this.props.navigation.state.params.do,
-      viroAppProps: {showInformation: this.showInformation},
-      informationVisible: false,
-      informationText: "Sin datos",      
-      vrMode : null,
-      dataSheetVisible: false,
+      viroAppProps: {setInformation: this.setInformation},
+      informationText : "Sin datos",
     }
   }   
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
-  render() {  // this.props.screenProps.getNavigationProp(this.props.navigation)
+  render() { 
     if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
       if (this.state.vrMode == null) {
         return this._getSelectionButtons();
@@ -78,37 +72,27 @@ export default class ViromediaController extends Component {
     }*/
   }
 
+
   // Returns the ViroARSceneNavigator which will start the AR experience
   _getARNavigator() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex:1}}>
         <ViroARSceneNavigator {...this.state.sharedProps}
           initialScene={{scene: InitialARScene}} onExitViro={this._exitViro} viroAppProps={this.state.viroAppProps}/>
 
-        {this.state.informationVisible
-          ?   <View style={localStyles.infoContainer}>
-                <Text style={{color:'white',fontSize: 16, marginBottom: 15}}> {this.state.informationText} </Text>
-
-                <TouchableOpacity style={localStyles.infoButton}>
-                  <Image source={require('../../images/icons/RA/ficha-tecnica.png')} />
-                  <Text style={{color:"##1a606b",fontSize: 14}}> Ficha técnica</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={localStyles.infoButton}>
-                  <Image source={require('../../images/icons/RA/vivenciass.png')} />
-                  <Text style={{color:"##1a606b",fontSize: 14}}> Vivencias</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={localStyles.infoButton}>
-                  <Image  source={require('../../images/icons/RA/mas-info.png')} />
-                  <Text style={{color:"##1a606b",fontSize: 14}}> Info</Text>
-                </TouchableOpacity>
-              </View>
+        {informationVisible
+          ? this.showInformationMenu()
           : null
         }
 
-        {this.state.dataSheetVisible // Ficha técnica
-          ? <View style={localStyles.infoContainer}>
+        {dataSheetVisible // Ficha técnica
+          ? this.showDataSheet()
+          : null
+        }
+
+        {imageVisible // Imagen
+          ? <View>
+              <Image source={require('../../images/Images_TimeLine/1895.png')}/>
             </View>
           : null
         }
@@ -116,11 +100,72 @@ export default class ViromediaController extends Component {
     );
   }
 
+  showDataSheet(){
+    return( 
+      <View style={{alignItems: 'center'}}>
+        <View style={localStyles.dataSheet}>
+          {/*<TouchableOpacity>
+              <Image source={require('../../images/icons/RA/close.png')}  style={localStyles.closeButton}/>
+          </TouchableOpacity>*/}
+
+          <Text style={localStyles.title}> Casa Saborío González (Casa Verde) </Text>
+        
+          <Text style={localStyles.title}> Motivos de la declaratoria: 
+           <Text style={localStyles.text}> El inmueble fue construido a principios del sigio XX. Durante la época del auge en los mercados mundiales de la exportación del café de Costa Rica por lo que presenta importantes valores históricos, culturales y contextuales {'\n'}</Text>
+          </Text>
+          
+          <Text style={localStyles.title}> Año de construcción: 
+            <Text style={localStyles.text}> 1913-1915 {'\n'}</Text>
+          </Text> 
+        
+          <Text style={localStyles.title}> Influencia: 
+            <Text style={localStyles.text}> Estilo Victoriano{'\n'}</Text>
+          </Text> 
+          
+          <Text style={localStyles.title}> Propietario actual: 
+            <Text style={localStyles.text}> Instituto Tecnológico de Costa Rica{'\n'}</Text>
+          </Text> 
+
+          <Text style={localStyles.title}> Fecha de la declaratoria: 
+            <Text style={localStyles.text}> 14/Dic/2017{'\n'}</Text>
+          </Text> 
+          
+          <Text style={localStyles.title}> Decreto N:
+            <Text style={localStyles.text}> 40662-C. La Gaceta N 232{'\n'}</Text>
+          </Text> 
+        </View>
+      </View>
+    );
+  }
+
+  showInformationMenu(){ //
+    return (
+      <View style={localStyles.infoContainer}>
+        <Text style={{color:'white',fontSize: 16, marginBottom: 15}}> {this.state.informationText} </Text>
+
+        <TouchableOpacity style={localStyles.infoButton}>
+          <Image source={require('../../images/icons/RA/ficha-tecnica.png')} />
+          <Text style={{color:"##1a606b",fontSize: 14}}> Ficha técnica</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={localStyles.infoButton}>
+          <Image source={require('../../images/icons/RA/vivenciass.png')} />
+          <Text style={{color:"##1a606b",fontSize: 14}}> Vivencias</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={localStyles.infoButton}>
+          <Image  source={require('../../images/icons/RA/mas-info.png')} />
+          <Text style={{color:"##1a606b",fontSize: 14}}> Info</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   // Show extra information of a building.
-  showInformation(){
+  setInformation(){
     console.log("Activando información ");
+    informationVisible = true;
     this.setState({
-      informationVisible: true,
       informationText: "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001)."
     });
   }
@@ -251,7 +296,33 @@ var localStyles = StyleSheet.create({
   },
   infoButton: {
     flexDirection: 'row', 
-  }
+  },
+  dataSheet : {
+    position: 'absolute', 
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    width: (Dimensions.get('window').width) * 0.9,
+    height: (Dimensions.get('window').height) * 0.6,
+    bottom: (Dimensions.get('window').height)/2 * 0.4,
+  },
+  title: {
+    fontSize: 15,
+    fontFamily: "Barlow-Regular",
+    color: "#0C5B60",
+    fontWeight: 'bold',
+  },
+  text: {
+    fontWeight: 'normal',
+    color: '#6D6F70',
+    fontSize: 13,
+    fontFamily: "Barlow-Regular",
+  },
+  /*closeButton: {
+    flexDirection: 'row',
+    width: (Dimensions.get('window').width) * 0.1,
+    height: (Dimensions.get('window').height) * 0.1, 
+
+  }*/
 
 });
 
