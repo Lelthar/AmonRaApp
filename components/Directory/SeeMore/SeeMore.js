@@ -57,38 +57,62 @@ componentDidMount(){
 
     return (
 
-      <View style = {styles.container}>
+       <View style={styles.container}>
+            {/* Navigator uses flex 10. 1 up, 1 down, 8 body */}
+               <View style={{flex:2}} />
 
-          <View style = {styles.swiper}>
+                {/* Full body container. Flex 8. Hay 23 flexes en el full body */}
+                <View style={styles.body}>
 
-            <Swiper style = {styles.wrapper} loop>
+                  {/* Swiper Flex 9*/}
+                  <View style={styles.swiper}>
 
-              <View style={styles.slide}>
-                <Image source = {pic} style = {styles.image} resizeMode='stretch' />
-              </View>
+                    <Swiper style={styles.wrapper}  loop>
 
-            <View style={styles.slide}>
-              <Image source = {pic2} style = {styles.image} resizeMode='stretch' />
-            </View>
+                      <View style={styles.slide}>
+                        <Image resizeMode='center' style={styles.image} source={pic } />
+                      </View>
 
-            <View style={styles.slide}>
-              <Image source = {pic3} style = {styles.image} resizeMode='stretch' />
-            </View>
+                      <View style={styles.slide}>
+                        <Image resizeMode='center' style={styles.image} source={pic2 } />
+                      </View>
 
-          </Swiper>
+                      <View style={styles.slide}>
+                        <Image resizeMode='center' style={styles.image} source={ pic3 } />
+                      </View>
+                      
+                    </Swiper>
 
-        </View>
+                    {/* Ends Swiper Flex 9*/}
+                  </View>
 
-        <View style={ styles.information }>
-            <Text style={styles.title} >{this.state.title}</Text>
-            <Text style = {styles.description}> {this.state.description} </Text>
-            <Text style = {styles.direction}>  Dirección: {this.state.direction } </Text> 
-            <Text style = {styles.phone}> Tel: {this.state.phone_number} </Text> 
-            <Text style = {styles.facebook}> Facebook: {this.state.facebook} </Text>
-            
-        </View>
+                    <View style={styles.contentUnderSwiper}>
 
-      </View>
+                      <View style={ styles.information }>
+                      <Text style={styles.titleOr} >{this.state.title}</Text>
+                      <Text style = {styles.descriptionOr}> {this.state.description} </Text>
+                      <Text style = {styles.directionOr}>  Dirección: {this.state.direction } </Text> 
+                      <Text style = {styles.phoneOr}> Tel: {this.state.phone_number} </Text> 
+                      <Text style = {styles.facebookOr}> Facebook: {this.state.facebook} </Text>
+                    
+                    </View>
+
+                      <View style={{flex:1}}/>
+
+                      </View>
+
+                     
+                    {/* Ends flex 14*/}
+                    </View>
+
+                    
+
+
+                {/* Ends full body flex 8*/}
+                </View>
+
+
+          
     );
   }
 }
@@ -101,19 +125,20 @@ const styles = StyleSheet.create({
    information:{
     height: windowHeight
    },
-	slide: {
+	slideOr: {
     height:250,
     backgroundColor: 'transparent'
 	},
-  swiper:{
+  swiperOr:{
+    marginTop:70,
     height:250
   },
-	image: {
+	imageOr: {
 		width: windowWidth,
 		height: 250
 	},
 	
-	title: {
+	titleOr: {
 		textAlign: "center", fontSize:20,
 		fontFamily: "vincHand",
     color: "#0C5B60",
@@ -123,7 +148,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
 	},
 
-	description: {
+	descriptionOr: {
 		textAlign: "center", fontSize:18,
 		color: "#0C5B60",
     textAlign: 'left',
@@ -131,7 +156,7 @@ const styles = StyleSheet.create({
     marginRight: 20
 	},
 
-  direction:{
+  directionOr:{
     textAlign: "center", fontSize:15,
     color: "grey",
     marginLeft: 20, 
@@ -140,7 +165,7 @@ const styles = StyleSheet.create({
     textAlign: 'left'
   },
 
-  phone:{
+  phoneOr:{
     textAlign: "center", fontSize: 15,
     color: "grey",
     marginLeft: 20, 
@@ -148,7 +173,7 @@ const styles = StyleSheet.create({
     textAlign: 'left'
     
   },
-  facebook:{
+  facebookOr:{
     textAlign: "center", fontSize: 15,
     color: "grey",
     marginLeft: 20, 
@@ -156,12 +181,48 @@ const styles = StyleSheet.create({
     textAlign: 'left'
    
   },
-  wrapper: {
+  wrapperOr: {
   },
 
   container: {
     flex:1,
     backgroundColor: 'white',
+  },
+
+  body:{
+    flex:23
+  },
+  swiper:{
+    flex: 9
+  },
+  contentUnderSwiper:{
+    flex:14
+  },
+  buttonsRow:{
+    flex:5,
+    flexDirection: "row"
+  },
+  wrapper: {
+  },
+  squareButton:{
+    flex:5
+  },
+  imageResizeAndFillParent: {
+    flex: 1,
+    width: null,
+    height: null
+  },
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'transparent'
+  },
+
+  image: {
+    
+    height:250,
+    flex:1
+
   }
 
 });
