@@ -27,29 +27,30 @@ var VR_NAVIGATOR_TYPE = "VR";
 var AR_NAVIGATOR_TYPE = "AR";
 var D3_NAVIGATOR_TYPE = "3D";
 
-var informationVisible = false;
-var vrMode = null;
-var dataSheetVisible = false;
-var imageVisible = false;
-
-
 export default class ViromediaController extends Component {
 
   constructor(props) {
 
     super(props);
-
+    
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this.showInformationMenu = this.showInformationMenu.bind(this);
     this.showDataSheet = this.showDataSheet.bind(this);
     this.setInformation = this.setInformation.bind(this);
+    this.toggleDataSheet = this.toggleDataSheet.bind(this);
 
     this.state = {
       sharedProps : sharedProps,
       navigatorType : this.props.navigation.state.params.do,
       viroAppProps: {setInformation: this.setInformation},
+      vrMode : null,
+
       informationText : "Sin datos",
+      informationVisible : false,
+      dataSheetVisible : false,
+      imageVisible : false,
+      descriptionVisible : true,
     }
   }   
 
@@ -80,17 +81,17 @@ export default class ViromediaController extends Component {
         <ViroARSceneNavigator {...this.state.sharedProps}
           initialScene={{scene: InitialARScene}} onExitViro={this._exitViro} viroAppProps={this.state.viroAppProps}/>
 
-        {informationVisible
+        {this.state.informationVisible
           ? this.showInformationMenu()
           : null
         }
 
-        {dataSheetVisible // Ficha técnica
+        {this.state.dataSheetVisible // Ficha técnica
           ? this.showDataSheet()
           : null
         }
 
-        {imageVisible // Imagen
+        {this.state.imageVisible // Imagen
           ? <View>
               <Image source={require('../../images/Images_TimeLine/1895.png')}/>
             </View>
@@ -104,11 +105,11 @@ export default class ViromediaController extends Component {
     return( 
       <View style={{alignItems: 'center'}}>
         <View style={localStyles.dataSheet}>
-          {/*<TouchableOpacity>
+          <TouchableOpacity onPress={() => this.toggleDataSheet()}>
               <Image source={require('../../images/icons/RA/close.png')}  style={localStyles.closeButton}/>
-          </TouchableOpacity>*/}
+          </TouchableOpacity>
 
-          <Text style={localStyles.title}> Casa Saborío González (Casa Verde) </Text>
+          <Text style={localStyles.title}> Casa Saborío González (Casa Verde) {'\n'}</Text>
         
           <Text style={localStyles.title}> Motivos de la declaratoria: 
            <Text style={localStyles.text}> El inmueble fue construido a principios del sigio XX. Durante la época del auge en los mercados mundiales de la exportación del café de Costa Rica por lo que presenta importantes valores históricos, culturales y contextuales {'\n'}</Text>
@@ -138,35 +139,45 @@ export default class ViromediaController extends Component {
     );
   }
 
-  showInformationMenu(){ //
+  showInformationMenu(){ 
     return (
       <View style={localStyles.infoContainer}>
-        <Text style={{color:'white',fontSize: 16, marginBottom: 15}}> {this.state.informationText} </Text>
-
-        <TouchableOpacity style={localStyles.infoButton}>
+        {this.state.descriptionVisible
+          ? <Text style={{color:'white',fontSize: 16, marginBottom: 15}}> {this.state.informationText} </Text>
+          : null
+        }
+        <TouchableOpacity style={localStyles.infoButton} onPress={() => this.toggleDataSheet()} >
           <Image source={require('../../images/icons/RA/ficha-tecnica.png')} />
-          <Text style={{color:"##1a606b",fontSize: 14}}> Ficha técnica</Text>
+          <Text style={{color:"#1a606b",fontSize: 14}}> Ficha técnica</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={localStyles.infoButton}>
           <Image source={require('../../images/icons/RA/vivenciass.png')} />
-          <Text style={{color:"##1a606b",fontSize: 14}}> Vivencias</Text>
+          <Text style={{color:"#1a606b",fontSize: 14}}> Vivencias</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={localStyles.infoButton}>
           <Image  source={require('../../images/icons/RA/mas-info.png')} />
-          <Text style={{color:"##1a606b",fontSize: 14}}> Info</Text>
+          <Text style={{color:"#1a606b",fontSize: 14}}> Info</Text>
         </TouchableOpacity>
       </View>
     );
   }
 
+  toggleDataSheet(){
+    console.log("ficha tecnica");
+    this.setState({
+      dataSheetVisible : !this.state.dataSheetVisible,
+      descriptionVisible : !this.state.descriptionVisible
+    });
+  }
+
   // Show extra information of a building.
   setInformation(){
-    console.log("Activando información ");
-    informationVisible = true;
+    console.log("Activando información "+(Dimensions.get('window').width));
     this.setState({
-      informationText: "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001)."
+      informationText: "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001).",
+      informationVisible : true
     });
   }
 
@@ -304,6 +315,7 @@ var localStyles = StyleSheet.create({
     width: (Dimensions.get('window').width) * 0.9,
     height: (Dimensions.get('window').height) * 0.6,
     bottom: (Dimensions.get('window').height)/2 * 0.4,
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 15,
@@ -317,12 +329,14 @@ var localStyles = StyleSheet.create({
     fontSize: 13,
     fontFamily: "Barlow-Regular",
   },
-  /*closeButton: {
-    flexDirection: 'row',
-    width: (Dimensions.get('window').width) * 0.1,
-    height: (Dimensions.get('window').height) * 0.1, 
+  closeButton: {
+    justifyContent: 'flex-end',
+    //position: 'absolute',
+    width: 10,
+    height: 10,
+    left: (Dimensions.get('window').width)*0.8,
 
-  }*/
+  }
 
 });
 
