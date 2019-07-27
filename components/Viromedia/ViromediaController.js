@@ -19,9 +19,9 @@ var sharedProps = {
 }
 
 // Sets the default scene you want for AR and VR
-var InitialARScene = require('./js/HelloWorldSceneAR');
-var InitialVRScene = require('./js/HelloWorldSceneVR');
-var Initial3DScene = require('./js/HelloWorldScene3D');
+var InitialARScene = require('./js/AR_Scene');
+var InitialVRScene = require('./js/VR_Scene');
+var Initial3DScene = require('./js/3D_Scene');
 
 var VR_NAVIGATOR_TYPE = "VR";
 var AR_NAVIGATOR_TYPE = "AR";
@@ -49,7 +49,6 @@ export default class ViromediaController extends Component {
       informationText : "Sin datos",
       informationVisible : false,
       dataSheetVisible : false,
-      imageVisible : false,
       descriptionVisible : true,
     }
   }   
@@ -88,13 +87,6 @@ export default class ViromediaController extends Component {
 
         {this.state.dataSheetVisible // Ficha técnica
           ? this.showDataSheet()
-          : null
-        }
-
-        {this.state.imageVisible // Imagen
-          ? <View>
-              <Image source={require('../../images/Images_TimeLine/1895.png')}/>
-            </View>
           : null
         }
       </View>

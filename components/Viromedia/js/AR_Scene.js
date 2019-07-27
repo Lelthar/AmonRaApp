@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
-  PermissionsAndroid
+  PermissionsAndroid,
+  Dimensions
 } from 'react-native';
 
 import {
@@ -24,12 +25,15 @@ import {
   ViroARImageMarker,
   ViroSphere,
   ViroConstants,
-  ViroImage
+  ViroImage,
+  Viro360Image,
+  ViroCamera,
+  ViroFlexView
 } from 'react-viro';
 
 import Geolocation from 'react-native-geolocation-service';
 import RNSimpleCompass from 'react-native-simple-compass';
-export default class HelloWorldSceneAR extends Component {
+export default class AR_Scene extends Component {
 
   constructor() {
     super();
@@ -38,6 +42,7 @@ export default class HelloWorldSceneAR extends Component {
     this._latLongToMerc = this._latLongToMerc.bind(this);
     this._transformPointToAR = this._transformPointToAR.bind(this);
     this._setCompass = this._setCompass.bind(this);
+
     this.state = {
       latitude: 0,
       longitude: 0,
@@ -55,46 +60,43 @@ export default class HelloWorldSceneAR extends Component {
         <ViroARScene onTrackingUpdated={this._onInitialized}>
           {/*<ViroText text={this.state.heading+"||"+this.state.coordinateLatLongString + " || " +this.state.coordinateXYZString}
               scale={[.1, .1, .1]} height={5} width={4} position={[0, 0, -.1]} style={styles.helloWorldTextStyle} />
-        */}
+          
           <ViroText text={"Casa Verde"}
             scale={[7, 7, 7]} height={7} width={5} position={[this.state.objectXPos, 0, this.state.objectZPos]} style={styles.helloWorldTextStyle} />
-
+          */}
+          
+          
           <ViroAmbientLight color={"#aaaaaa"} />
           <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]}
             position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
           <ViroNode position={[this.state.objectXPos, 0, this.state.objectZPos]} dragType="FixedToWorld" onDrag={()=>{}} >
-            <Viro3DObject
-              onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-              source={require('./res/emoji_smile/emoji_smile.vrx')}
-              resources={[require('./res/emoji_smile/emoji_smile_diffuse.png'),
-                  require('./res/emoji_smile/emoji_smile_normal.png'),
-                  require('./res/emoji_smile/emoji_smile_specular.png')]}
-              position={[this.state.objectXPos, 2, this.state.objectZPos]}
-              scale={[10,10,10]}
-              type="VRX" />
+            <ViroImage
+            onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
+            scale={[.5,.5,.5]}
+            position={[this.state.objectXPos, 2, this.state.objectZPos]}
+            source={require('./res/icon_info.png')}
+            />
           </ViroNode>
+        
+          <ViroImage
+          position={[0, 0, -0.8]}
+          resizeMode='ScaleToFit'
+          source={require('./res/imgSample.jpg')}
+          />
 
-          <ViroNode position={[0, 0, -1]} dragType="FixedToWorld">
-            <Viro3DObject
-              onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-              source={require('./res/emoji_smile/emoji_smile.vrx')}
-              resources={[require('./res/emoji_smile/emoji_smile_diffuse.png'),
-                  require('./res/emoji_smile/emoji_smile_normal.png'),
-                  require('./res/emoji_smile/emoji_smile_specular.png')]}
-              position={[0, 0, -0.1]}
-              scale={[.5,.5,.5]}
-              type="VRX" />
-          </ViroNode>
+          <ViroImage
+          onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
+          scale={[.2,.2,.2]}
+          position={[0, 0.3, -0.5]}
+          source={require('./res/icon_info.png')}
+          />
 
-          {/*<ViroFlexView style={{flexDirection: 'row', padding: .1}} 
-              width={5.0} height={5.0} 
-              position={[-5.0, 0.0, -2.0]}>
-            <ViroImage source={require('./res/Casa_González_Feo_1.jpg')} />
-      </ViroFlexView>*/}
+
 
         </ViroARScene>
     );
   }
+
 
   componentDidMount(){
     this._setCompass();
@@ -111,6 +113,7 @@ export default class HelloWorldSceneAR extends Component {
         RNSimpleCompass.stop();
       });
   }
+
   _transformPointToAR(lat, long,latPlace,LongPlace) {
     let objPoint = this._latLongToMerc(latPlace, LongPlace); 
     let devicePoint = this._latLongToMerc(lat, long);
@@ -201,14 +204,4 @@ async function checkLocalizationPermission(){
 }
 
 
-var styles = StyleSheet.create({
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 30,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',  
-  }
-});
-
-module.exports = HelloWorldSceneAR;
+module.exports = AR_Scene;
