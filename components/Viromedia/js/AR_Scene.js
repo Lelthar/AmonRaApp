@@ -13,51 +13,77 @@ import {
 import {
   ViroARScene,
   ViroText,
-  ViroMaterials,
   ViroBox,
-  Viro3DObject,
+  Viro3DObject, 
   ViroAmbientLight,
   ViroSpotLight,
-  ViroARPlaneSelector,
   ViroNode,
-  ViroAnimations,
-  ViroARTrackingTargets,
-  ViroARImageMarker,
-  ViroSphere,
   ViroConstants,
   ViroImage,
-  Viro360Image,
-  ViroCamera,
-  ViroFlexView
 } from 'react-viro';
 
 import Geolocation from 'react-native-geolocation-service';
 import RNSimpleCompass from 'react-native-simple-compass';
+
+
+const coordTEC = [{place: "Centro de las Artes", lat: 9.857535, lon: -83.911538},
+                  {place: "Financiero", lat: 9.856955, lon: -83.912267}, 
+                  {place: "Editorial TEC", lat: 9.856614, lon: -83.912142},
+                  {place: "Soda El Ferrocarril", lat: 9.857331, lon: -83.910869}, 
+                  {place: "Gimnasio Institucional", lat: 9.857003, lon: -83.910855}, 
+                  {place: "Gimnasio ASETEC", lat: 9.856535, lon: -83.910827}, 
+                  {place: "Escuela Cultura y Deporte", lat: 9.856302, lon: -83.911833}, 
+                  {place: "Escuela de Computacion", lat: 9.856713, lon: -83.912661}, 
+                  {place: "Escuela de Matematica", lat: 9.856136, lon: -83.913089}, 
+                  {place: "Pretil", lat: 9.855712, lon: -83.912805}, 
+                  {place: "Soda ASETEC", lat: 9.855463, lon: -83.912314}, 
+                  {place: "Lab H", lat: 9.856300, lon: -83.912591}, 
+                  {place: "Biblioteca", lat: 9.855000, lon: -83.912591},  
+                 ];
+
+const mercatorTEC = [{place: "Centro de las Artes", X: -9340989.681840425, Y: 1102789.7035470225},
+                     {place: "Financiero", X: -9341070.833749214, Y: 1102724.1708053024},
+                     {place: "Editorial TEC", X: -9341056.918812865, Y: 1102685.642126478},
+                     {place: "Soda El Ferrocarril", X: -9340915.209101086, Y: 1102766.6540867938}, 
+                     {place: "Gimnasio Institucional", X: -9340913.650628215, Y: 1102729.594200243}, 
+                     {place: "Gimnasio ASETEC", X: -9340910.533682471, Y: 1102676.7161332557}, 
+                     {place: "Escuela Cultura y Deporte", X: -9341022.52109021, Y: 1102650.3901150657}, 
+                     {place: "Escuela de Computacion", X: -9341114.693628585, Y: 1102696.827867839}, 
+                     {place: "Escuela de Matematica", X: -9341162.338370645, Y: 1102631.634250793}, 
+                     {place: "Pretil", X: -9341130.723635262, Y: 1102583.7277487542}, 
+                     {place: "Soda ASETEC", X: -9341076.06576528, Y: 1102555.5940062169}, 
+                     {place: "Lab H", X: -9341106.90126423, Y: 1102650.164140742}, 
+                     {place: "Biblioteca", X: -9341106.90126423, Y: 1102503.2811197315},  
+                     {place: "Super Cartago", X: -9342335.86844259, Y: 1102024.005848375},  
+                     {place: "Esquina sur", X: -9342342.324973054, Y: 1101922.3079511977},  
+                    ];
+
 export default class AR_Scene extends Component {
 
   constructor() {
     super();
 
-    this._onInitialized = this._onInitialized.bind(this);
-    this._latLongToMerc = this._latLongToMerc.bind(this);
+    this._onTrackingUpdated = this._onTrackingUpdated.bind(this);
+    this._coordLatLongToMercator = this._coordLatLongToMercator.bind(this);
     this._transformPointToAR = this._transformPointToAR.bind(this);
-    this._setCompass = this._setCompass.bind(this);
-
+    this._calibrateCompass = this._calibrateCompass.bind(this);
+    this._setObjectPositions = this._setObjectPositions.bind(this);
+    
     this.state = {
-      latitude: 0,
-      longitude: 0,
+      userLatitude: 0,
+      userLongitude: 0,
       objectXPos: 0,
       objectZPos: 0,
-      heading: 0,
+      compassHeading: 0,
       coordinateString: "Sin datos",
       coordinateLatLongString: "Sin datos",
       error: null
     };
   }
-
+  
   render() { 
     return (
-        <ViroARScene onTrackingUpdated={this._onInitialized}>
+        <ViroARScene onTrackingUpdated={this._onTrackingUpdated}>
           {/*<ViroText text={this.state.heading+"||"+this.state.coordinateLatLongString + " || " +this.state.coordinateXYZString}
               scale={[.1, .1, .1]} height={5} width={4} position={[0, 0, -.1]} style={styles.helloWorldTextStyle} />
           
@@ -69,29 +95,19 @@ export default class AR_Scene extends Component {
           <ViroAmbientLight color={"#aaaaaa"} />
           <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]}
             position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
-          <ViroNode position={[this.state.objectXPos, 0, this.state.objectZPos]} dragType="FixedToWorld" onDrag={()=>{}} >
-            <ViroImage
+
+          <ViroImage
             onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
             scale={[.5,.5,.5]}
-            position={[this.state.objectXPos, 2, this.state.objectZPos]}
+            position={[this.state.objectXPos, 1, this.state.objectZPos]}
             source={require('./res/icon_info.png')}
-            />
-          </ViroNode>
-        
-          <ViroImage
-          position={[0, 0, -0.8]}
-          resizeMode='ScaleToFit'
-          source={require('./res/imgSample.jpg')}
           />
 
           <ViroImage
-          onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-          scale={[.2,.2,.2]}
-          position={[0, 0.3, -0.5]}
-          source={require('./res/icon_info.png')}
+            position={[0, 0, 0.8]}
+            resizeMode='ScaleToFit'
+            source={require('./res/imgSample.jpg')}
           />
-
-
 
         </ViroARScene>
     );
@@ -99,34 +115,77 @@ export default class AR_Scene extends Component {
 
 
   componentDidMount(){
-    this._setCompass();
+    if (checkLocalizationPermission()) {
+      this._calibrateCompass();
+      this._setObjectPositions();
+    } 
+    else {
+      this.setState({
+        error : "Permission Denied"
+      });
+    }
   }
   
-  _setCompass(){
+  _setObjectPositions(){
+    Geolocation.watchPosition(
+      (position) => {
+        console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
+
+        let objetPositionAR;
+        let objectProportionsArray = [];
+        let objectsArray = [];
+
+        mercatorTEC.forEach((element) => {
+          objetPositionAR = this._transformPointToAR(position.coords.latitude, position.coords.longitude, element.X, element.Y);
+          objectsArray.push(objetPositionAR);
+          objectProportionsArray.push(Math.abs(objetPositionAR.x / objetPositionAR.z));
+        });
+
+        let maxProportion = Math.max(...objectProportionsArray);
+        objetPositionAR = objectsArray[objectProportionsArray.indexOf(maxProportion)];
+        
+        this.setState({
+          userLatitude: position.coords.latitude,
+          userLongitude: position.coords.longitude,
+          objectXPos: objetPositionAR.x,
+          objectZPos: objetPositionAR.z,
+          coordinateXYZString: "[" + String(objetPositionAR.x) + ", 0, " + String(objetPositionAR.z) + "]",
+          coordinateLatLongString: "Lat: " + String(position.coords.latitude) + " ** Lng: " + String(position.coords.longitude),
+          error: null   
+        });
+      },
+      (error) => {
+          this.setState({
+            error: error.message
+          });
+      },
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 0, distanceFilter: 25}
+    );
+  }
+
+  _calibrateCompass(){
     let myself = this;
     const degree_update_rate = 3; // Number of degrees changed before the callback is triggered
       RNSimpleCompass.start(degree_update_rate, (degree) => {
         console.log('You are facing', degree);
         myself.setState({
-          heading: degree
+          compassHeading: degree
         });
         RNSimpleCompass.stop();
       });
   }
+  
+  _transformPointToAR(lat, long, objectPoint_x, objectPoint_y) {
+    let userPoint = this._coordLatLongToMercator(lat, long);
+    //let superChospi = this._coordLatLongToMercator(9.8507581, -83.923631);
+    //let esquina = this._coordLatLongToMercator(9.849858, -83.923689);
 
-  _transformPointToAR(lat, long,latPlace,LongPlace) {
-    let objPoint = this._latLongToMerc(latPlace, LongPlace); 
-    let devicePoint = this._latLongToMerc(lat, long);
-    
     // latitude(north,south) maps to the z axis in AR
     // longitude(east, west) maps to the x axis in AR
 
-    let objFinalPosZ = objPoint.y - devicePoint.y;
-    let objFinalPosX = objPoint.x - devicePoint.x;
-    let angle = this.state.heading * Math.PI/180;
-    console.log("heading:" + this.state.heading);
-    console.log("Cos: "+ Math.cos(angle));
-    console.log("Sen: "+ Math.sin(angle));
+    let objFinalPosZ = objectPoint_y - userPoint.y;
+    let objFinalPosX = objectPoint_x - userPoint.x;
+    let angle = this.state.compassHeading * Math.PI/180;
     let newRotatedX = objFinalPosX * Math.cos(angle) - objFinalPosZ * Math.sin(angle);
     let newRotatedZ = objFinalPosZ * Math.cos(angle) + objFinalPosX * Math.sin(angle);  
 
@@ -135,59 +194,19 @@ export default class AR_Scene extends Component {
   }
 
   // Converts Lat and Long to Mercator projection
-  _latLongToMerc(lat_deg, lon_deg) { 
-    let lon_rad = (lon_deg / 180.0 * Math.PI)
-    let lat_rad = (lat_deg / 180.0 * Math.PI)
-    let sm_a = 6378137.0
-    let xmeters  = sm_a * lon_rad
-    let ymeters = sm_a * Math.log((Math.sin(lat_rad) + 1) / Math.cos(lat_rad))
+  _coordLatLongToMercator(lat_degree, lon_degree) { 
+    let lon_radians = (lon_degree / 180.0 * Math.PI);
+    let lat_radians = (lat_degree / 180.0 * Math.PI);
+    let earth_radius = 6378137.0;
+    let xmeters  = earth_radius * lon_radians;
+    let ymeters = earth_radius * Math.log((Math.sin(lat_radians) + 1) / Math.cos(lat_radians));
     return ({x:xmeters, y:ymeters});
  }
   
-  _onInitialized(state, reason) {
+  _onTrackingUpdated(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL){
-      if (checkLocalizationPermission()) {
-        Geolocation.watchPosition(
-          (position) => {
-          
-            /*
-                Frente al H: 9.856204, -83.912598
-                Escuela Ciencias Sociales y Matemática: 9.856110, -83.913026
-                Pretil: 9.855782, -83.912626
-                Casa Verde: 9.937658, -84.074725
-            */
-            let objetPositionAR = this._transformPointToAR(position.coords.latitude, position.coords.longitude,9.937658, -84.074725);
-
-            this.setState({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-              objectXPos: objetPositionAR.x,
-              objectZPos: objetPositionAR.z,
-              coordinateXYZString: "[" + String(objetPositionAR.x) + ", 0, " + String(objetPositionAR.z) + "]",
-              coordinateLatLongString: "Lat: " + String(position.coords.latitude) + " ** Lng: " + String(position.coords.longitude),
-              error: null   
-            });
-          },
-          (error) => {
-              this.setState({
-                error: error.message
-              });
-          },
-          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-        );
-      } 
-      else {
-        this.setState({
-          error : "Permission Denied"
-        });
-      }
-    } else if (state == ViroConstants.TRACKING_NONE){
-      this.setState({
-        coordinateXYZString: "Mueva el cel",
-        coordinateLatLongString: "porfis",
-        error: null   
-      });
-    }
+      console.log("Tracking normal");
+    } 
   }
 }
 

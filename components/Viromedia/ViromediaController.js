@@ -96,10 +96,12 @@ export default class ViromediaController extends Component {
   showDataSheet(){
     return( 
       <View style={{alignItems: 'center'}}>
+        
         <View style={localStyles.dataSheet}>
           <TouchableOpacity onPress={() => this.toggleDataSheet()}>
-              <Image source={require('../../images/icons/RA/close.png')}  style={localStyles.closeButton}/>
-          </TouchableOpacity>
+          
+              {//<Image source={require('../../images/icons/RA/close.png')}  style={localStyles.closeButton}/>
+              }
 
           <Text style={localStyles.title}> Casa Saborío González (Casa Verde) {'\n'}</Text>
         
@@ -126,7 +128,9 @@ export default class ViromediaController extends Component {
           <Text style={localStyles.title}> Decreto N:
             <Text style={localStyles.text}> 40662-C. La Gaceta N 232{'\n'}</Text>
           </Text> 
+          </TouchableOpacity>
         </View>
+        
       </View>
     );
   }
@@ -157,7 +161,6 @@ export default class ViromediaController extends Component {
   }
 
   toggleDataSheet(){
-    console.log("ficha tecnica");
     this.setState({
       dataSheetVisible : !this.state.dataSheetVisible,
       descriptionVisible : !this.state.descriptionVisible
