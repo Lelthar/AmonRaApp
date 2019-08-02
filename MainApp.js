@@ -125,9 +125,7 @@ const RootStack = StackNavigator(
     navigationOptions
 );
 
-type Props = {};
-
-export default class MainApp extends Component<Props> {
+export default class MainApp extends Component {
 
     constructor (props) {
         super(props);
@@ -290,7 +288,7 @@ export default class MainApp extends Component<Props> {
         updateNavigationToScreen: this.updateNavigationToScreen.bind(this),
       }
         return (
-            <View style={styles.container}>
+            /*<View style={styles.container}>
 
 
                 <View style={{position: 'absolute', width: this.state.width, height: this.state.height}}>
@@ -300,6 +298,9 @@ export default class MainApp extends Component<Props> {
                 </View>
 
                 <Navigator screenProps={screenProps} navigation={this.state.navigation} />
+
+            </View>*/
+            <View>
 
             </View>
 
