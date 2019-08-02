@@ -223,7 +223,7 @@ render (){
         <View style={styles.LogoContainer}>
         <View style={{flex:1,position: 'absolute',left:10,top:10}}>
           <TouchableOpacity style={styles.BackButton} onPress = {this._goToBackApp.bind(this)}>
-            <Image source={require('../../images/icons/PantallaPrincipal/atras.png')} style={styles.backArrow} />
+            <Image source={require('../../images/icons/PantallaPrincipal/flechaatras.png')} style={styles.backArrow} />
           </TouchableOpacity>
           </View>
           <View style={{flex:2,marginTop:70,marginBottom:20}}>
