@@ -1,6 +1,5 @@
 import React from 'react';
 import {StackActions, NavigationActions} from 'react-navigation';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Dropdown } from 'react-native-material-dropdown';
 
 import { 
@@ -11,20 +10,20 @@ import {
 
 import {
   Alert,
-  StyleSheet,
   ImageBackground,
   Image,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-  Picker,
   AsyncStorage,
 } from 'react-native';
 
+import styles from "../../src/assets/styles/pages/email_register";
+
 import * as countries from '../../data/countries';
 import ConfidencialityAlertModal from '../ConfidencialityAlertModal/ConfidencialityAlertModal';
-import CheckBox from 'react-native-check-box'
+import CheckBox from 'react-native-check-box';
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -220,19 +219,19 @@ render (){
       {this.renderModal()}
       {!this.state.isConfidencialityAlertVisible &&
       <View style={styles.body}>
-        <View style={styles.LogoContainer}>
+        <View style={styles.logoContainer}>
         <View style={{flex:1,position: 'absolute',left:10,top:10}}>
-          <TouchableOpacity style={styles.BackButton} onPress = {this._goToBackApp.bind(this)}>
+          <TouchableOpacity onPress = {this._goToBackApp.bind(this)}>
             <Image source={require('../../images/icons/PantallaPrincipal/flechaatras.png')} style={styles.backArrow} />
           </TouchableOpacity>
           </View>
           <View style={{flex:2,marginTop:70,marginBottom:20}}>
-            <Image source={require(logo)} style={styles.LogoRegisterScreen}/>
+            <Image source={require(logo)} style={styles.logoRegisterScreen}/>
           </View>
         </View>
         <View style={{flex:6}}>
-          <View style={styles.InputsContainer}>
-            <View style={styles.InputData}>
+          <View style={styles.inputsContainer}>
+            <View style={styles.inputData}>
               <Image style={styles.imgButton} source={require('../../images/icons/register/nombre.png')} />
               <TextInput
                 style={styles.inputBox}
@@ -244,7 +243,7 @@ render (){
                 onSubmitEditing= {()=> this.lastName.focus()}
               />
             </View>
-            <View style={styles.InputData}>
+            <View style={styles.inputData}>
               <Image style={styles.imgButton} source={require('../../images/icons/register/blank_background.png')} />
               <TextInput
                 style={styles.inputBox} 
@@ -256,7 +255,7 @@ render (){
                 onSubmitEditing= {()=> this.email.focus()}
             />
             </View>
-            <View style={styles.InputData}>
+            <View style={styles.inputData}>
               <Image style={styles.imgButton} source={require('../../images/icons/register/correo.png')} />
               <TextInput style={styles.inputBox}
                 placeholder ="Correo electrónico"
@@ -267,7 +266,7 @@ render (){
                 ref= {(input) => this.email = input}
               />
             </View>
-            <View style={styles.InputData}>
+            <View style={styles.inputData}>
               <Image style={styles.imgButton} source={require('../../images/icons/register/pais.png')} />
               <View style={styles.paisesBox}>
                 <Dropdown
@@ -280,8 +279,8 @@ render (){
                 />
               </View>
             </View>
-            <View style={styles.InputData}>
-              <Text style={styles.GeneroInput}>Género:</Text>
+            <View style={styles.inputData}>
+              <Text style={styles.generoInput}>Género:</Text>
               <View style={{flex:6, flexDirection:"row"}}>
                 <CheckBox 
                   style={styles.checkbox}
@@ -342,8 +341,8 @@ render (){
                   />
               </View>
             </View>
-            <View style={styles.InputDataYears}>
-              <Text style={styles.AnhoInput}>Año de nacimiento:</Text>
+            <View style={styles.inputDataYears}>
+              <Text style={styles.anhoInput}>Año de nacimiento:</Text>
               <View style={styles.anhosBox}>
                 <Dropdown
                   label={this.state.titulo_anhos}
@@ -355,13 +354,13 @@ render (){
                 />
               </View>
             </View>
-            <View style={styles.SubmitButtonContainer}>
+            <View style={styles.submitButtonContainer}>
               <TouchableOpacity 
-                style={styles.SubmitButton}
+                style={styles.submitButton}
                 disabled={this.state.buttonDisabled}
                 onPress = {this.pre_register.bind(this)}
               >
-                <Text style={styles.btntext}>ACEPTAR</Text>
+                <Text style={styles.acceptButtonText}>ACEPTAR</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -370,178 +369,5 @@ render (){
       }
     </ImageBackground>
   );
+  }
 }
-}
-  const styles = StyleSheet.create({
-    body: {
-      flex: 1,
-    },
-    InputGroup:{
-      flex: 2,
-      backgroundColor: 'white',
-      paddingHorizontal: 10,
-    },
-    checkbox:{
-      alignSelf: 'center'
-    },
-    TextComponentContainer:{
-      flex: 1,
-      flexDirection:'row',
-    },
-    checkImage:{
-      width: 20,
-      height: 20,
-      alignSelf: 'center',
-    },
-    backArrow:{
-      width: 30,
-      height: 30,
-      alignSelf: 'center',
-    },
-    horizontalContainer:{
-      flex:10,
-      flexDirection: 'row',
-      justifyContent: 'center',
-    },
-    imgButton:{
-      flex:1,
-      width: 20,
-      height: 20,
-      alignSelf: 'center',
-      resizeMode: 'contain'
-    },
-    GeneroInput: {
-      flex:2,
-      alignSelf: 'center',
-      fontSize: 18,
-      color: '#6D6E71',
-    },
-    AnhoInput: {
-      flex:6,
-      alignSelf: 'center',
-      fontSize: 18,
-      color: '#6D6E71',
-    },
-    logoRegisterScreen: {
-      width : 200,
-      height : 100,
-      resizeMode: 'contain',
-      flex:1,
-    },
-    textinput: {
-      flex: 1,
-      flexDirection: 'row',
-      alignSelf: 'stretch',
-      color: '#FF00FF',
-      justifyContent: 'center',
-    },
-    button:{
-      alignItems: 'center',
-      backgroundColor: '#00A2B5',
-      padding: 10,
-    },
-    inputBox: {
-      flex:7,
-      backgroundColor: 'white',
-      borderRadius: 25,
-      fontSize: 16,
-      color: '#000000',
-    },
-    paisesBox: {
-      flex:7,
-      borderRadius: 25,
-    },
-    anhosBox: {
-      flex:3,
-      borderRadius: 25,
-      marginLeft:20,
-      marginRight:20, 
-    },
-    inputBox2: {
-      flex:1,
-      backgroundColor: 'white',
-      borderRadius: 25,
-      fontSize: 16,
-      color: '#000000',
-      marginLeft: 30,
-    },
-    pickerBox: {
-      flex: 1,
-      backgroundColor: 'white',
-      borderRadius: 0,
-      alignSelf: 'center',
-      color: '#A6A8AA',
-      marginRight: -80,
-    },
-    contentContainer: {
-      paddingVertical: 20
-    },
-    KeyboardOn:{
-      flex: 1
-    },
-    bottomSpace1:{
-      flex: 1,
-      marginBottom: 100
-    },
-    bottomSpace2:{
-      flex: 1,
-      marginBottom: 200
-    },
-    buttonback:{
-      
-    },
-    containerbotonaceptar:{
-      flex: 1,
-      justifyContent: 'center',
-      paddingHorizontal: 105
-    },
-    LogoContainer:{
-      flex:2,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    LogoRegisterScreen: {
-      resizeMode: 'center',
-      width : 180,
-      height : 80,
-      marginBottom: 30,
-    },
-    InputData: {
-      flexDirection:"row",
-      borderBottomColor: 'black',
-      borderBottomWidth: 1,
-      marginRight:10,
-      marginLeft:10,
-    },
-    InputDataYears: {
-      flexDirection:"row",
-      marginRight:10,
-      marginLeft:10,
-    },
-    SubmitButtonContainer: {
-      marginRight:10,
-      marginLeft:10,
-      marginBottom: 20,
-      marginTop: 20,
-      alignItems: "center",
-    },
-    SubmitButton: {
-      alignItems: 'center',
-      backgroundColor: '#00A2B5',
-      paddingHorizontal: 10,
-      paddingVertical: 5,
-    },
-    InputsContainer: {
-      backgroundColor:"#fff",
-      marginRight:30,
-      marginLeft:30,
-      marginTop:20
-    },
-    btntext: {
-      color: 'white',
-      fontSize: 18
-    },
-    BackButton: {
-      
-    }
-  });

@@ -67,5 +67,5 @@ Para el keystore de debug, el password puede ser vacío, y puede ser el que tien
 ### release
 `keytool -list -v -keystore ./android/app/my-release-key.keystore -alias androiddebugkey`
 
-###Execution
+# Execution
 react-native run-android --variant=gvrDebug
