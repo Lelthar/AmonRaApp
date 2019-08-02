@@ -72,8 +72,10 @@ export default class AR_Scene extends Component {
     this.state = {
       userLatitude: 0,
       userLongitude: 0,
-      objectXPos: 0,
-      objectZPos: 0,
+      objectXPos1: 0,
+      objectZPos1: 0,
+      objectXPos2: 0,
+      objectZPos2: 0,
       compassHeading: 0,
       coordinateString: "Sin datos",
       coordinateLatLongString: "Sin datos",
@@ -99,7 +101,14 @@ export default class AR_Scene extends Component {
           <ViroImage
             onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
             scale={[.5,.5,.5]}
-            position={[this.state.objectXPos, 1, this.state.objectZPos]}
+            position={[this.state.objectXPos1, 1, this.state.objectZPos1]}
+            source={require('./res/icon_info.png')}
+          />
+
+          <ViroImage
+            onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
+            scale={[.5,.5,.5]}
+            position={[this.state.objectXPos2, 1, this.state.objectZPos2]}
             source={require('./res/icon_info.png')}
           />
 
@@ -112,7 +121,6 @@ export default class AR_Scene extends Component {
         </ViroARScene>
     );
   }
-
 
   componentDidMount(){
     if (checkLocalizationPermission()) {
@@ -131,26 +139,33 @@ export default class AR_Scene extends Component {
       (position) => {
         console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
 
-        let objetPositionAR;
-        let objectProportionsArray = [];
+        let objetPositionAR1;
+        let objetPositionAR2;
+        let objectDistanceArray = [];
         let objectsArray = [];
 
         mercatorTEC.forEach((element) => {
-          objetPositionAR = this._transformPointToAR(position.coords.latitude, position.coords.longitude, element.X, element.Y);
-          objectsArray.push(objetPositionAR);
-          objectProportionsArray.push(Math.abs(objetPositionAR.x / objetPositionAR.z));
+          objetPositionAR1 = this._transformPointToAR(position.coords.latitude, position.coords.longitude, element.X, element.Y);
+          objectsArray.push(objetPositionAR1);
+          objectDistanceArray.push(Math.abs(objetPositionAR1.x) +  Math.abs(objetPositionAR1.z));
         });
 
-        let maxProportion = Math.max(...objectProportionsArray);
-        objetPositionAR = objectsArray[objectProportionsArray.indexOf(maxProportion)];
-        
+        let indexNearestObject = objectDistanceArray.indexOf(Math.min(...objectDistanceArray));
+        objetPositionAR1 = objectsArray[indexNearestObject];
+
+        objectDistanceArray.splice(indexNearestObject, 1); 
+        objectsArray.splice(indexNearestObject, 1);
+
+        indexNearestObject = objectDistanceArray.indexOf(Math.min(...objectDistanceArray));
+        objetPositionAR2 = objectsArray[indexNearestObject];
+
         this.setState({
           userLatitude: position.coords.latitude,
           userLongitude: position.coords.longitude,
-          objectXPos: objetPositionAR.x,
-          objectZPos: objetPositionAR.z,
-          coordinateXYZString: "[" + String(objetPositionAR.x) + ", 0, " + String(objetPositionAR.z) + "]",
-          coordinateLatLongString: "Lat: " + String(position.coords.latitude) + " ** Lng: " + String(position.coords.longitude),
+          objectXPos1: objetPositionAR1.x,
+          objectZPos1: objetPositionAR1.z,
+          objectXPos2: objetPositionAR2.x,
+          objectZPos2: objetPositionAR2.z,
           error: null   
         });
       },
