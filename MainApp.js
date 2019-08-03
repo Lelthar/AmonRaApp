@@ -9,121 +9,11 @@ import {
 } from 'react-native';
 
 import Orientation from 'react-native-orientation';
-import {
-    StackNavigator
-} from 'react-navigation';
 
-import Navigator from './components/Navigator/Navigator'
-import Map from './components/Map/Map'
-import Directory from './components/Directory/Directory';
-import SeeMore from './components/Directory/SeeMore/SeeMore';
-import CultureArt from './components/Directory/CultureArt/CultureArt';
-import Hotels from './components/Directory/Hotels/Hotels';
-import Institutional from './components/Directory/Institutional/Institutional';
-import Gastronomy from './components/Directory/Gastronomy/Gastronomy';
-import Origin from './components/MenuSide/Origin/Origin';
-import Experiences from './components/MenuSide/Experiences/Experiences';
-import Architecture from './components/MenuSide/Architecture/Architecture';
-import ArchitectureView from './components/MenuSide/Architecture/ArchitectureView';
-import TimeLine from './components/TimeLine/TimeLine';
-import MoreAmonRA from './components/MenuSide/MoreAmonRA/MoreAmonRA';
-import InfoAmon_RA from './components/MenuSide/MoreAmonRA/InfoAmon_RA';
-import AsociacionVecinos from './components/MenuSide/MoreAmonRA/AsociacionVecinos';
-import Activities from './components/MenuSide/Experiences/Activities/Activities';
-import Characters from './components/MenuSide/Experiences/Characters/Characters';
-import Houses from './components/MenuSide/Experiences/Houses/Houses';
-import Literature from './components/MenuSide/Experiences/Literature/Literature';
-import Narrations from './components/MenuSide/Experiences/Narrations/Narrations';
-import VirtualVisit from './components/VirtualVisit/VirtualVisit';
-import Secrets from './components/MenuSide/Experiences/Secrets/Secrets';
-import Place from './components/Map/Place/Place';
-import ViromediaController from './components/Viromedia/ViromediaController';
-//import LocationLoader from './components/LocationLoaderView/LocationLoader';
+import ApplicationNavigator from "./src/components/pages/navigation";
 
-
-const navigationOptions = {
-    title: 'Home',
-    headerMode: 'none'
-}
-
-const RootStack = StackNavigator(
-    {
-        MapScreen: {
-            screen: Map
-        },
-        Directory:{
-            screen: Directory
-        },
-        CultureArt:{ //Directory CultureArt
-            screen: CultureArt
-        },
-        Institutional:{ //Directory Institutional
-            screen: Institutional
-        },
-        Hotels:{ //Directory Hotels
-            screen: Hotels
-        },
-        Gastronomy:{ //Directory Gastronomy
-            screen: Gastronomy
-        },
-        TimeLine:{
-            screen: TimeLine
-        },
-        Origin: {
-            screen: Origin
-        },
-        Experiences: {
-            screen: Experiences
-        },
-        Architecture: {
-            screen: Architecture
-        },
-        ArchitectureView: {
-            screen: ArchitectureView
-        },
-        MoreAmonRA: {
-            screen: MoreAmonRA
-        },
-        InfoAmon_RA:{
-            screen: InfoAmon_RA
-        },
-        AsociacionVecinos:{
-            screen: AsociacionVecinos
-        },
-        Activities:{
-            screen: Activities
-        },
-        Characters:{
-            screen: Characters
-        },
-        Houses:{
-            screen: Houses
-        },
-        Literature:{
-            screen: Literature
-        },
-        Narrations:{
-            screen: Narrations
-        },
-        Secrets:{
-            screen: Secrets
-        },
-        Place:{
-            screen: Place
-        },
-        VirtualVisit:{
-            screen: VirtualVisit
-        },
-        Viromedia:{
-            screen: ViromediaController
-        },
-        SeeMore: {
-            screen: SeeMore
-        }
-
-    },
-    navigationOptions
-);
+import { Provider } from "react-redux";
+import setupStore from "./src/redux/setupStore";
 
 export default class MainApp extends Component {
 
@@ -283,39 +173,11 @@ export default class MainApp extends Component {
           guideScreen: this.state.guideScreen,
           first: this.state.first
         },
-
-        navigatorMethod:this.state.navigatorMethod,
-        updateNavigationToScreen: this.updateNavigationToScreen.bind(this),
       }
         return (
-            /*<View style={styles.container}>
-
-
-                <View style={{position: 'absolute', width: this.state.width, height: this.state.height}}>
-                    <RootStack
-                        screenProps={screenProps}
-                        params={this.state}/>
-                </View>
-
-                <Navigator screenProps={screenProps} navigation={this.state.navigation} />
-
-            </View>*/
-            <View>
-
-            </View>
-
+            <Provider store={setupStore}>
+                <ApplicationNavigator />
+            </Provider>
         );
     }
 }
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    screenStyle: {
-        position: 'absolute',
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height
-    }
-});

@@ -18,7 +18,7 @@ import {
   PixelRatio,
 } from 'react-native';
 
-import {StackNavigator, StackActions, NavigationActions} from 'react-navigation';
+import {createStackNavigator,createAppContainer, StackActions, NavigationActions} from 'react-navigation';
 import EmailRegister from './EmailRegister';
 import MainApp from '../../MainApp';
 import {saveDataFirebase} from '../../firebase/functions';
@@ -282,14 +282,13 @@ const navigationOptions = {
     headerMode: 'none'
 }
 
-const RegisterNavigator = StackNavigator (
+const RegisterNavigator = createStackNavigator (
     {
-        RegisterMain: {screen: RegisterMain},
-        EmailRegister: {screen: EmailRegister},
-        MainApp: {screen: MainApp},
+        RegisterMain: RegisterMain,
+        EmailRegister: EmailRegister,
+        MainApp: MainApp,
     },
     navigationOptions
 );
 
-
-export default RegisterNavigator;
+export default createAppContainer(RegisterNavigator);

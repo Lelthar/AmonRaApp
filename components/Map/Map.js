@@ -106,10 +106,18 @@ export default class Map extends Component {
             perimeter_data_loaded: false,
             barrio_amon_coordinates: []
         };
-        this.toggleFilters = this.props.screenProps.showFunctions.toggleFilters;
-        this.props.screenProps.getNavigationProp(this.props.navigation);
-        this.resetAll = this.props.screenProps.showFunctions.resetAll;
+        //this.toggleFilters = this.props.screenProps.showFunctions.toggleFilters;
+        //this.props.screenProps.getNavigationProp(this.props.navigation);
+        //this.resetAll = this.props.screenProps.showFunctions.resetAll;
         console.log(width-110);
+    }
+
+    resetAll() {
+      console.log("I do nothing!!!");
+    }
+
+    toggleFilters() {
+      console.log("I do nothingx2!!!");
     }
 
     //Cuando los props cambian (en MainApp.js) este método se ejecuta
@@ -119,12 +127,12 @@ export default class Map extends Component {
     //
     //Su función es ver los filtros activos
     goTo(screen,params){
-        let goToScreen = this.props.screenProps.navigatorMethod;
-        goToScreen(screen, params);
+        /*let goToScreen = this.props.screenProps.navigatorMethod;
+        goToScreen(screen, params);*/
     }
 
     static getDerivedStateFromProps(props, state) {
-      state.activeFilters = props.screenProps.activeFilters;
+      /*state.activeFilters = props.screenProps.activeFilters;*/
       return state;
     }
 
@@ -449,23 +457,23 @@ export default class Map extends Component {
                 <View style={{flex:0.10}}/>                  
 
               </View>
-                            
 
               {/* Boton de filtros */}
-              <View style={{ flex:3, position:'absolute',left:0, bottom:13 ,width:90}}>   
-                  <TouchableOpacity style={ styles.arrow_button } onPress={ () => this.show_filters('MapScreen') }>
-                    <Image source={ filtros_url }/>
-                  </TouchableOpacity>              
-              </View>
+
+              <View style={styles.bottom}>
+                <TouchableOpacity style={ styles.arrow_button } onPress={ () => this.show_filters('MapScreen') }>
+                  <Image source={ filtros_url }/>
+                </TouchableOpacity>  
+              </View> 
 
               {/* Menu de filtros del mapa */}
               <View style={ styles.filters }>            
               {
-                this.props.screenProps.showProps.filterMenu &&                
+                /*this.props.screenProps.showProps.filterMenu &&                
                   <FilterMenu activeFilters={this.props.screenProps.activeFilters} 
                             getActiveFilters={this.props.screenProps.getActiveFilters}/>         
                   
-              }              
+              */}              
               </View>
 
               {this.state.informationVisible && <View style={{flex:14, flexDirection: 'row', padding:15, width:300,position:"absolute",bottom:68,backgroundColor:'rgba(54, 145, 160, 0.8)'}} >
@@ -511,7 +519,8 @@ export default class Map extends Component {
 
               <View style={{ flex: 5.5 }}/>                  
 
-            </View>
+            </View>  
+                    
         </View>
       );
     }
@@ -570,8 +579,7 @@ const styles = StyleSheet.create({
         backgroundColor:'blue'
     },
     container: {
-      ...StyleSheet.absoluteFillObject,
-        flex: 1
+      flex: 1
     },
     welcome: {
         fontSize: 20,
@@ -610,10 +618,17 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject
       },
       arrow_button: {
-        flex:1, 
-        flexDirection:'row', 
-        justifyContent: 'center', 
-        //marginLeft:"86%"
+        flex:1,
+        height: 28,
+        width: 90,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor:"red",
+      },
+      bottom: {
+        position:'absolute', 
+        left:0, 
+        bottom:0,
       },
       filters: {
         flex:23,
