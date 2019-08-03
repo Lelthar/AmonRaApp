@@ -124,7 +124,6 @@ export default class AR_Scene extends Component {
 
   componentDidMount(){
     if (checkLocalizationPermission()) {
-      this._calibrateCompass();
       this._setObjectPositions();
     } 
     else {
@@ -137,6 +136,7 @@ export default class AR_Scene extends Component {
   _setObjectPositions(){
     Geolocation.watchPosition(
       (position) => {
+        this._calibrateCompass();
         console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
 
         let objetPositionAR1;
