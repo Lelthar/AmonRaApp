@@ -11,13 +11,14 @@ import {
     TouchableHighlight,
     Geolocation,
     ScrollView,
-    AsyncStorage
 } from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import Image from 'react-native-scalable-image';
 import FilterMenu from '../../../components/FilterMenu/FilterMenu';
 import SlidingUpPanel from 'rn-sliding-up-panel';
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 //------------------------
 import { 
@@ -145,7 +146,6 @@ class MapComponent extends Component {
             barrio_amon_coordinates: [],
             data: this.props.data,
         };
-        //this.props.screenProps.getNavigationProp(this.props.navigation);
     }
 
     toggleFilters() {
@@ -319,7 +319,7 @@ class MapComponent extends Component {
 
     updateData() {
       this.setState({
-        data: this.props.datas
+        data: this.props.data
       })
     }
 
@@ -495,10 +495,10 @@ class MapComponent extends Component {
 
               {/* Menu de filtros del mapa */}
               <View style={ styles.filters }>            
-              {/*
+              {
                 this.state.data.FILTERMENU &&                
                   <FilterMenu />         
-                  */
+                  
               }              
               </View>
 

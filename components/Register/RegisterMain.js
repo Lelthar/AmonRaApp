@@ -26,17 +26,6 @@ import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 import ConfidencialityAlertModal from '../ConfidencialityAlertModal/ConfidencialityAlertModal';
 
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginButton,
-  AccessToken,
-  GraphRequest,
-  GraphRequestManager,
-  LoginManager,
-} = FBSDK;
-
-
-
 const logo = '../../images/marca-02-smaller.png';
 const background = '../../resources/img/casa-verde-I.png';
 

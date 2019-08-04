@@ -15,8 +15,9 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  AsyncStorage,
 } from 'react-native';
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 import styles from "../../src/assets/styles/pages/email_register";
 
