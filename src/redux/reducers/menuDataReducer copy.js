@@ -13,7 +13,7 @@ const defaultData = {
   MENUSIDE: false,
   RATESCREEN: false,
   GUIDESCREEN: false,
-};
+}
 
 const menuDataReducer = (data = defaultData, action) => {
   switch (action.type) {

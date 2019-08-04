@@ -9,7 +9,7 @@ import {
   TimeLine, TimeLineDisable
 } from '../../assets/images/navigation';
 
-import mapComponent from '../../../components/Map/Map';
+import mapComponent from './map';
 import augmentedRealityComponent from '../../../components/Viromedia/ViromediaController';
 import virtualVisitComponent from '../../../components/VirtualVisit/VirtualVisit';
 import urbanOfferComponent from '../../../components/Directory/Directory';

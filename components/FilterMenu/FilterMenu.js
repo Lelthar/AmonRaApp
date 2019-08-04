@@ -25,7 +25,7 @@ const features = [
     "Realidad Aumentada"
 ]
 
-export default class FilterMenu extends Component{
+class FilterMenu extends Component{
 
     constructor(props){
         super(props);
@@ -170,4 +170,4 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent('FilterMenu', () => FilterMenu);
+export default FilterMenu;
