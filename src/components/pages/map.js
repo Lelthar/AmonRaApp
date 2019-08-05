@@ -10,7 +10,7 @@ import {
     Button,
     TouchableHighlight,
     Geolocation,
-    ScrollView,
+    Modal,
 } from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
@@ -77,7 +77,8 @@ import {
 
 const mapStateToProps = state => {
   return {
-    data: state.menuDataReducer
+    activeFilters: state.menuDataReducer.ACTIVEFILTERS,
+    filterMenu: state.menuDataReducer.FILTERMENU
   }
 };
 
@@ -146,12 +147,21 @@ class MapComponent extends Component {
             barrio_amon_coordinates: [],
             data: this.props.data,
         };
+        console.log(this.props);
     }
 
     toggleFilters() {
+      this.props.setFilterMenu(!this.props.filterMenu);
+    }
+
+    closeMenu() {
       this.props.resetAll();
-      this.props.setFilterMenu(true);
-      this.updateData();
+    }
+
+    menuFilterChanged() {
+      this.setState({
+        wasMenuFilterChanged: true,
+      });
     }
 
     //Cuando los props cambian (en MainApp.js) este método se ejecuta
@@ -165,14 +175,9 @@ class MapComponent extends Component {
         goToScreen(screen, params);*/
     }
 
-    static getDerivedStateFromProps(props, state) {
-      /*state.activeFilters = props.screenProps.activeFilters;*/
-      return state;
-    }
-
     getActiveMarkers(){
-      const activeFilters = this.state.activeFilters.slice()
-      const markers = this.state.markers
+      const activeFilters = this.props.activeFilters.slice();
+      const markers = this.state.markers;
 
       const activeFiltersKeys = this.filter_filters_by_key(activeFilters);
 
@@ -214,7 +219,7 @@ class MapComponent extends Component {
     }
 
     openInformation(marker) {
-      //this.resetAll();
+      this.closeMenu();
 
       this.setState({
         informationVisible:true,
@@ -367,9 +372,7 @@ class MapComponent extends Component {
 
     
     render() {
-
       return (
-        //Ver mapa
         <View style={styles.container}>
 
           <MapView
@@ -384,6 +387,7 @@ class MapComponent extends Component {
           chacheEnabled={false}
           zoomEnabled={true}
           onRegionChangeComplete={res=>this.setState({region:res})}
+          onPress = {() => this.closeMenu()}
         >
         
         { this.state.perimeter_data_loaded &&
@@ -393,7 +397,6 @@ class MapComponent extends Component {
             strokeWidth={2}
             tappable={false}
             strokeColor="#fd3c00"
-            onPress={() => this.props.resetAll()}
         /> }
             {/*Marker si estoy en barrio amón:agarrar localizacion, sino estoy en barrio amón: no ponerlo*/}
 
@@ -493,16 +496,15 @@ class MapComponent extends Component {
                 </TouchableOpacity>  
               </View> 
 
-              {/* Menu de filtros del mapa */}
-              <View style={ styles.filters }>            
+              {/* Menu de filtros del mapa */}          
               {
-                this.state.data.FILTERMENU &&                
-                  <FilterMenu />         
-                  
-              }              
-              </View>
+                this.props.filterMenu &&
+                <View style={ styles.filters }>
+                  <FilterMenu />
+                </View> 
+              }            
 
-              {this.state.informationVisible && <View style={{flex:14, flexDirection: 'row', padding:15, width:300,position:"absolute",bottom:68,backgroundColor:'rgba(54, 145, 160, 0.8)'}} >
+              {this.state.informationVisible && <View style={{flex:14, flexDirection: 'row', padding:15, width:300,position:"absolute",bottom:0,backgroundColor:'rgba(54, 145, 160, 0.8)'}} >
                 <View style={{flex:6}}>
                   <View style={{flex:1, marginBottom:5}}>
                     <Text style={{color:'white',fontSize: 18,fontWeight:"bold"}}>{this.state.checkerTitle}</Text>
@@ -526,8 +528,7 @@ class MapComponent extends Component {
                     </TouchableOpacity>
                   </View>
                   <View style={{flex:1, marginTop: 20}}>
-                    <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={()=> this.goTo('Place',{place_id:this.state.checkerId, title: this.state.current_marker.category, category: this.state.current_marker})} >
-                      
+                    <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={()=> this.props.navigation.navigate('Place', {place_id:this.state.checkerId, title: this.state.current_marker.category, category: this.state.current_marker})} >
                     <Image source={require('../../assets/images/map/masinfo.png')}/>
                      
                     </TouchableOpacity>
@@ -554,127 +555,122 @@ class MapComponent extends Component {
 
 
 const styles = StyleSheet.create({
-    fullScreen: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0
-    },
-    box: {
-        flex:1
-    },
-    mapStyleControls: {
-        flex:1,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        marginLeft: 20
-    },
-    mapStyleControlss: {
-        flex:1,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        marginBottom: 50,
-        marginLeft: 20
-    },
-    mapStyleControlsss: {
-        flex:1,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        marginBottom: 100,
-        marginLeft: 20
-    },
-    radius: {
-        height: 50,
-        width: 50,
-        borderRadius: 50 / 2,
-        overflow: 'hidden',
-        backgroundColor:'rgba(0,122,255,0.1)',
-        borderWidth: 1,
-        borderColor:'rgba(0,112,255,0.3)',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    marker: {
-        height: 20,
-        width: 20,
-        borderWidth: 3,
-        borderColor: 'white',
-        borderRadius: 20 / 2,
-        overflow: 'hidden',
-        backgroundColor:'blue'
-    },
-    container: {
-      flex: 1
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-    imgContainer:{
-      flex:5,
+  fullScreen: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0
+  },
+  box: {
+      flex:1
+  },
+  mapStyleControls: {
+      flex:1,
       justifyContent: 'center',
+      alignItems: 'flex-start',
+      marginLeft: 20
+  },
+  mapStyleControlss: {
+      flex:1,
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      marginBottom: 50,
+      marginLeft: 20
+  },
+  mapStyleControlsss: {
+      flex:1,
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      marginBottom: 100,
+      marginLeft: 20
+  },
+  radius: {
+      height: 50,
+      width: 50,
+      borderRadius: 50 / 2,
+      overflow: 'hidden',
+      backgroundColor:'rgba(0,122,255,0.1)',
+      borderWidth: 1,
+      borderColor:'rgba(0,112,255,0.3)',
       alignItems: 'center',
+      justifyContent: 'center'
+  },
+  marker: {
+      height: 20,
+      width: 20,
+      borderWidth: 3,
+      borderColor: 'white',
+      borderRadius: 20 / 2,
+      overflow: 'hidden',
+      backgroundColor:'blue'
+  },
+  container: {
+    flex: 1
+  },
+  welcome: {
+      fontSize: 20,
+      textAlign: 'center',
+      margin: 10,
+  },
+  instructions: {
+      textAlign: 'center',
+      color: '#333333',
+      marginBottom: 5,
+  },
+  imgContainer:{
+    flex:5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  squareButton: {
+      resizeMode:'contain',
+      flex:1
     },
-    squareButton: {
-        resizeMode:'contain',
-        flex:1
-      },
-
-      capasMenu:{
-      backgroundColor: 'white',
-      flex:20,
-      flexDirection:'row',
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 3.84,
-      elevation: 5,
-      },
-      map: {
-        ...StyleSheet.absoluteFillObject
-      },
-      arrow_button: {
-        flex:1,
-        height: 28,
-        width: 90,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor:"red",
-      },
-      bottom: {
-        position:'absolute', 
-        left:0, 
-        bottom:0,
-      },
-      filters: {
-        flex:23,
-        justifyContent: 'center',
-        position:'absolute', 
-        right: (width-250), //250 mide el elemento 
-        bottom:126,
-        width: 750,
-        height:450
-      },
-      slide_menu: {
-        flex: 1,
-        zIndex: 1,
-        backgroundColor : "#13535C",
-        opacity: 0.8,
-        alignItems: 'flex-end',
-        justifyContent: 'flex-end',
-        marginLeft: 520,
-        marginTop: 92,
-    }
+  capasMenu:{
+    backgroundColor: 'white',
+    flex:20,
+    flexDirection:'row',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject
+  },
+  arrow_button: {
+    flex:1,
+    height: 28,
+    width: 90,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:"red",
+  },
+  bottom: {
+    position:'absolute', 
+    left:0, 
+    bottom:0,
+  },
+  filters: {
+    position:'absolute', 
+    left: 0,
+    bottom: 0,
+  },
+  slide_menu: {
+    flex: 1,
+    zIndex: 1,
+    backgroundColor : "#13535C",
+    opacity: 0.8,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
+    marginLeft: 520,
+    marginTop: 92,
+  }
 });
 
 //export default connect(mapStateToProps, mapDispatchToProps)(Map);

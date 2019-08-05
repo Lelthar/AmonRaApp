@@ -1,4 +1,4 @@
-import { createBottomTabNavigator, createAppContainer} from 'react-navigation'
+import { createBottomTabNavigator, createAppContainer, createStackNavigator} from 'react-navigation'
 import React from 'react'
 import { Image } from 'react-native'
 import {
@@ -10,6 +10,7 @@ import {
 } from '../../assets/images/navigation';
 
 import mapComponent from './map';
+import placeComponent from '../../../components/Map/Place/Place'
 import augmentedRealityComponent from '../../../components/Viromedia/ViromediaController';
 import virtualVisitComponent from '../../../components/VirtualVisit/VirtualVisit';
 import urbanOfferComponent from '../../../components/Directory/Directory';
@@ -18,23 +19,82 @@ import timeLineComponent from '../../../components/TimeLine/TimeLine';
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
 
-const AppNavigator = createBottomTabNavigator(
+const mapStack = createStackNavigator(
   {
     Map: {
+      screen: mapComponent,
+      navigationOptions: {
+        title: "map",
+        //header: null
+      },
+    },
+    Place: placeComponent,
+  },{
+    /*headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }*/
+   }
+);
+
+/*const mapStack = createStackNavigator(
+  {
+    Map: mapComponent,
+    FilterMenu: filterMenuComponent,
+  },
+  {
+    initialRouteName: 'Map',
+  }
+);
+
+const mapStack = createStackNavigator(
+  {
+    Map: mapComponent,
+    FilterMenu: filterMenuComponent,
+  },
+  {
+    initialRouteName: 'Map',
+  }
+);
+
+const mapStack = createStackNavigator(
+  {
+    Map: mapComponent,
+    FilterMenu: filterMenuComponent,
+  },
+  {
+    initialRouteName: 'Map',
+  }
+);
+
+const mapStack = createStackNavigator(
+  {
+    Map: mapComponent,
+    FilterMenu: filterMenuComponent,
+  },
+  {
+    initialRouteName: 'Map',
+  }
+);*/
+
+const AppNavigator = createBottomTabNavigator(
+  {
+    /*MapStack: {
       screen: mapComponent,
       navigationOptions: {
             title: 'Home',
             tabBarVisible: true,
             // other default options
       }
-    },
+    },*/
+    Map: mapStack,
     AumentedReality: augmentedRealityComponent,
     VirtualVisit: virtualVisitComponent,
     UrbanOffer: urbanOfferComponent,
     TimeLine: timeLineComponent,
   },
   {
-    initialRouteName: screenInformation.MAP,
+    initialRouteName: "Map",
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;

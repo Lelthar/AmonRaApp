@@ -18,29 +18,53 @@ const defaultData = {
 const menuDataReducer = (data = defaultData, action) => {
   switch (action.type) {
     case FILTERMENU:
-      data.FILTERMENU = action.data;
-      return data;
+      return {
+        FILTERMENU: action.data,
+        ACTIVEFILTERS: data.ACTIVEFILTERS,
+        MENUSIDE: data.MENUSIDE,
+        RATESCREEN: data.RATESCREEN,
+        GUIDESCREEN: data.GUIDESCREEN,
+      };
     case ACTIVEFILTERS:
-      data.ACTIVEFILTERS = action.data;
-      return data;
+      return {
+        FILTERMENU: data.FILTERMENU,
+        ACTIVEFILTERS: action.data,
+        MENUSIDE: data.MENUSIDE,
+        RATESCREEN: data.RATESCREEN,
+        GUIDESCREEN: data.GUIDESCREEN,
+      };
     case MENUSIDE:
-      data.MENUSIDE = action.data;
-      return data;
+      return {
+        FILTERMENU: data.FILTERMENU,
+        ACTIVEFILTERS: data.ACTIVEFILTERS,
+        MENUSIDE: action.data,
+        RATESCREEN: data.RATESCREEN,
+        GUIDESCREEN: data.GUIDESCREEN,
+      };
     case RATESCREEN:
-      data.RATESCREEN = action.data;
-      return data;
+      return {
+        FILTERMENU: data.FILTERMENU,
+        ACTIVEFILTERS: data.ACTIVEFILTERS,
+        MENUSIDE: data.MENUSIDE,
+        RATESCREEN: action.data,
+        GUIDESCREEN: data.GUIDESCREEN,
+      };
     case GUIDESCREEN:
-      data.GUIDESCREEN = action.data;
-      return data;
+      return {
+        FILTERMENU: data.FILTERMENU,
+        ACTIVEFILTERS: data.ACTIVEFILTERS,
+        MENUSIDE: data.MENUSIDE,
+        RATESCREEN: data.RATESCREEN,
+        GUIDESCREEN: action.data,
+      };
     case MENURESET:
-      data = {
+      return {
         FILTERMENU: false,
         ACTIVEFILTERS: data.ACTIVEFILTERS,
         MENUSIDE: false,
         RATESCREEN: false,
         GUIDESCREEN: false,
       };
-      return data;
     default:
       return data;
   }
