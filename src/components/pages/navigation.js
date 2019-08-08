@@ -11,9 +11,19 @@ import {
 
 import mapComponent from './map';
 import placeComponent from '../../../components/Map/Place/Place'
+
 import augmentedRealityComponent from '../../../components/Viromedia/ViromediaController';
+
 import virtualVisitComponent from '../../../components/VirtualVisit/VirtualVisit';
+import viromediaControllerComponent from '../../../components/Viromedia/ViromediaController';
+
 import urbanOfferComponent from '../../../components/Directory/Directory';
+import culturalComponent from '../../../components/Directory/CultureArt/CultureArt';
+import institutionalComponent from '../../../components/Directory/Institutional/Institutional';
+import hotelsComponent from '../../../components/Directory/Hotels/Hotels';
+import gastronomyComponent from '../../../components/Directory/Gastronomy/Gastronomy';
+import seeMoreComponent from '../../../components/Directory/SeeMore/SeeMore';
+
 import timeLineComponent from '../../../components/TimeLine/TimeLine';
 
 import styles from "../../assets/styles/pages/navigation";
@@ -24,7 +34,7 @@ const mapStack = createStackNavigator(
     Map: {
       screen: mapComponent,
       navigationOptions: {
-        title: "map",
+        title: "Mapa",
         //header: null
       },
     },
@@ -37,45 +47,45 @@ const mapStack = createStackNavigator(
    }
 );
 
-/*const mapStack = createStackNavigator(
+const virtualVisitStack = createStackNavigator(
   {
-    Map: mapComponent,
-    FilterMenu: filterMenuComponent,
+    VirtualVisit: virtualVisitComponent,
+    ViromediaController: {
+      screen: viromediaControllerComponent,
+      navigationOptions: {
+        header: null
+      },
+    }
+    
   },
   {
-    initialRouteName: 'Map',
+    initialRouteName: 'VirtualVisit',
   }
 );
 
-const mapStack = createStackNavigator(
+const urbanOfferStack = createStackNavigator(
   {
-    Map: mapComponent,
-    FilterMenu: filterMenuComponent,
+    UrbanOffer: urbanOfferComponent,
+    Cultural: culturalComponent,
+    Institutional: institutionalComponent,
+    Hotels: hotelsComponent,
+    Gastronomy: gastronomyComponent,
+    SeeMore: seeMoreComponent,
   },
   {
-    initialRouteName: 'Map',
+    initialRouteName: 'UrbanOffer',
   }
 );
 
-const mapStack = createStackNavigator(
+const augmentedRealityStack = createStackNavigator(
   {
-    Map: mapComponent,
-    FilterMenu: filterMenuComponent,
+    AumentedReality: viromediaControllerComponent,
   },
   {
-    initialRouteName: 'Map',
+    initialRouteName: 'AumentedReality',
   }
 );
 
-const mapStack = createStackNavigator(
-  {
-    Map: mapComponent,
-    FilterMenu: filterMenuComponent,
-  },
-  {
-    initialRouteName: 'Map',
-  }
-);*/
 
 const AppNavigator = createBottomTabNavigator(
   {
@@ -88,9 +98,9 @@ const AppNavigator = createBottomTabNavigator(
       }
     },*/
     Map: mapStack,
-    AumentedReality: augmentedRealityComponent,
-    VirtualVisit: virtualVisitComponent,
-    UrbanOffer: urbanOfferComponent,
+    AumentedReality: augmentedRealityStack,
+    VirtualVisit: virtualVisitStack,
+    UrbanOffer: urbanOfferStack,
     TimeLine: timeLineComponent,
   },
   {
