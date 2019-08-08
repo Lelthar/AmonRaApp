@@ -40,7 +40,10 @@ target 'amonra' do
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
   pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
-  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
   post_install do |installer|
   installer.pods_project.targets.each do |target|

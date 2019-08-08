@@ -25,7 +25,35 @@ const features = [
     "Realidad Aumentada"
 ]
 
-export default class FilterMenu extends Component{
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuResetAction,
+} from "../../src/redux/actions/menuDataActions";
+
+const mapStateToProps = state => {
+  return {
+    activeFilters: state.menuDataReducer.ACTIVEFILTERS,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+class FilterMenu extends Component{
 
     constructor(props){
         super(props);
@@ -37,7 +65,7 @@ export default class FilterMenu extends Component{
         }
         this.state = {
             filters: [],
-            activeFilters: this.props.activeFilters,
+            //activeFilters: this.props.data.ACTIVEFILTERS,
             filters: filter_categories,
             allowDragging: true
         }
@@ -51,8 +79,8 @@ export default class FilterMenu extends Component{
     // Sets the available filters
     setFilters(){
 
-        var activeFilters = this.state.activeFilters.slice()
-        var filters = this.state.filters.slice()
+        let activeFilters = this.props.activeFilters.slice()
+        let filters = this.state.filters.slice()
 
         for (activeIndex in activeFilters){
             if (activeFilters[activeIndex].active == true){
@@ -72,7 +100,7 @@ export default class FilterMenu extends Component{
     // Sets the state of the filter to active/innactive
     toggleFilter(key){
 
-        var tmpFilters = this.state.filters.slice()
+        let tmpFilters = this.state.filters.slice()
 
         for(i in tmpFilters){
             if (tmpFilters[i].key === key){
@@ -82,7 +110,7 @@ export default class FilterMenu extends Component{
                     filters: tmpFilters
                 })
 
-                this.sendActiveFilters()
+                this.sendActiveFilters();
                 return 1
             }
         }
@@ -92,8 +120,8 @@ export default class FilterMenu extends Component{
     // Sends a list with the active filters to Navigator
     sendActiveFilters(){
 
-        var tmpFilters = this.state.filters.slice()
-        var activeFilters = []
+        let tmpFilters = this.state.filters.slice()
+        let activeFilters = []
 
         for(i in tmpFilters){
             if (tmpFilters[i].active == true){
@@ -101,15 +129,10 @@ export default class FilterMenu extends Component{
             }
         }
 
-        this.setState({
-            activeFilter: activeFilters
-        })
-
-        this.props.getActiveFilters(activeFilters)
+        this.props.setActiveFilters(activeFilters);
     }
 
     render() {
-
         return (
           
             <View style={styles.container}>
@@ -147,15 +170,11 @@ export default class FilterMenu extends Component{
 
 const styles = StyleSheet.create({
     container: {
-        flex: 5,
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end'
+        position:'absolute', 
+        left: 0,
+        bottom: 0,
     },
     menu: {
-        flexDirection: 'column',
-        width: "34%",
-        height: "67%",
-        marginTop: "19.5%"
     },
     menuBox: {
         backgroundColor: 'rgba(0, 162, 181, 0.8)',
@@ -170,4 +189,5 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent('FilterMenu', () => FilterMenu);
+const filterMenuComponent = connect(mapStateToProps, mapDispatchToProps)(FilterMenu);
+export default filterMenuComponent;

@@ -18,24 +18,13 @@ import {
   PixelRatio,
 } from 'react-native';
 
-import {StackNavigator, StackActions, NavigationActions} from 'react-navigation';
+import {createStackNavigator,createAppContainer, StackActions, NavigationActions} from 'react-navigation';
 import EmailRegister from './EmailRegister';
 import MainApp from '../../MainApp';
 import {saveDataFirebase} from '../../firebase/functions';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 import ConfidencialityAlertModal from '../ConfidencialityAlertModal/ConfidencialityAlertModal';
-
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginButton,
-  AccessToken,
-  GraphRequest,
-  GraphRequestManager,
-  LoginManager,
-} = FBSDK;
-
-
 
 const logo = '../../images/marca-02-smaller.png';
 const background = '../../resources/img/casa-verde-I.png';
@@ -282,14 +271,13 @@ const navigationOptions = {
     headerMode: 'none'
 }
 
-const RegisterNavigator = StackNavigator (
+const RegisterNavigator = createStackNavigator (
     {
-        RegisterMain: {screen: RegisterMain},
-        EmailRegister: {screen: EmailRegister},
-        MainApp: {screen: MainApp},
+        RegisterMain: RegisterMain,
+        EmailRegister: EmailRegister,
+        MainApp: MainApp,
     },
     navigationOptions
 );
 
-
-export default RegisterNavigator;
+export default createAppContainer(RegisterNavigator);

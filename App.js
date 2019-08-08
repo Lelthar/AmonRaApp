@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AsyncStorage
 } from 'react-native';
 
 import RegisterMain from './components/Register/RegisterMain';
@@ -14,6 +13,8 @@ import {
     requestFineLocationPermission,
     requestPermissions
 } from './permission/permission';
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class App extends Component<Props> {
     constructor(props) {
