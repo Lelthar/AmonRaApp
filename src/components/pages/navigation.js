@@ -86,6 +86,20 @@ const augmentedRealityStack = createStackNavigator(
   }
 );
 
+const timeLineStack = createStackNavigator(
+  {
+    TimeLine: {
+      screen: timeLineComponent,
+      navigationOptions: {
+          title: "Time Line"
+      },
+    },
+  },
+    {
+      initialRouteName: 'TimeLine',
+    }
+);
+
 
 const AppNavigator = createBottomTabNavigator(
   {
@@ -101,7 +115,7 @@ const AppNavigator = createBottomTabNavigator(
     AumentedReality: augmentedRealityStack,
     VirtualVisit: virtualVisitStack,
     UrbanOffer: urbanOfferStack,
-    TimeLine: timeLineComponent,
+    TimeLine: timeLineStack,
   },
   {
     initialRouteName: "Map",
