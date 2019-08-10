@@ -168,8 +168,8 @@ export default class ViromediaController extends Component {
   }
 
   // Show extra information of a building.
-  setInformation(){
-    console.log("Activando información "+(Dimensions.get('window').width));
+  setInformation(place){
+    console.log(place);
     this.setState({
       informationText: "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001).",
       informationVisible : true

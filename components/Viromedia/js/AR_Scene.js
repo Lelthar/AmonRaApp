@@ -72,6 +72,8 @@ export default class AR_Scene extends Component {
     this.state = {
       userLatitude: 0,
       userLongitude: 0,
+      objectPlaceAR1: null,
+      objectPlaceAR2: null,
       objectXPos1: 0,
       objectZPos1: 0,
       objectXPos2: 0,
@@ -85,7 +87,7 @@ export default class AR_Scene extends Component {
   
   render() { 
     return (
-        <ViroARScene onTrackingUpdated={this._onTrackingUpdated}>
+        <ViroARScene>
           {/*<ViroText text={this.state.heading+"||"+this.state.coordinateLatLongString + " || " +this.state.coordinateXYZString}
               scale={[.1, .1, .1]} height={5} width={4} position={[0, 0, -.1]} style={styles.helloWorldTextStyle} />
           
@@ -95,28 +97,46 @@ export default class AR_Scene extends Component {
           
           
           <ViroAmbientLight color={"#aaaaaa"} />
+
           <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]}
             position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 
+          <ViroText text={this.state.objectPlaceAR1}
+            scale={[3, 3, 3]} height={5} width={4} 
+            position={[this.state.objectXPos1 + 0.5, 1, this.state.objectZPos1]}
+            style={styles.helloWorldTextStyle}/>
+
           <ViroImage
             onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-            scale={[.5,.5,.5]}
+            scale={[5,5,5]}
             position={[this.state.objectXPos1, 1, this.state.objectZPos1]}
             source={require('./res/icon_info.png')}
           />
 
+          <ViroText text={this.state.objectPlaceAR2}
+            scale={[3, 3, 3]} height={5} width={4} 
+            position={[this.state.objectXPos2 + 0.5, 1, this.state.objectZPos2]}
+            style={styles.helloWorldTextStyle}/>
+
           <ViroImage
             onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-            scale={[.5,.5,.5]}
+            scale={[5,5,5]}
             position={[this.state.objectXPos2, 1, this.state.objectZPos2]}
             source={require('./res/icon_info.png')}
           />
 
-          <ViroImage
-            position={[0, 0, 0.8]}
+           {/*<ViroImage
+            onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
+            scale={[0.5,0.5,0.5]}
+            position={[0, 1, 0.5]}
+            source={require('./res/icon_info.png')}
+          />
+
+         <ViroImage
+            position={[0, .1, 0.5]}
             resizeMode='ScaleToFit'
             source={require('./res/imgSample.jpg')}
-          />
+          />*/}
 
         </ViroARScene>
     );
@@ -137,7 +157,7 @@ export default class AR_Scene extends Component {
     Geolocation.watchPosition(
       (position) => {
         this._calibrateCompass();
-        console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
+      //  console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
 
         let objetPositionAR1;
         let objetPositionAR2;
@@ -145,7 +165,7 @@ export default class AR_Scene extends Component {
         let objectsArray = [];
 
         mercatorTEC.forEach((element) => {
-          objetPositionAR1 = this._transformPointToAR(position.coords.latitude, position.coords.longitude, element.X, element.Y);
+          objetPositionAR1 = this._transformPointToAR(position.coords.latitude, position.coords.longitude, element.X, element.Y, element.place);
           objectsArray.push(objetPositionAR1);
           objectDistanceArray.push(Math.abs(objetPositionAR1.x) +  Math.abs(objetPositionAR1.z));
         });
@@ -162,6 +182,8 @@ export default class AR_Scene extends Component {
         this.setState({
           userLatitude: position.coords.latitude,
           userLongitude: position.coords.longitude,
+          objectPlaceAR1: objetPositionAR1.p,
+          objectPlaceAR2: objetPositionAR2.p,
           objectXPos1: objetPositionAR1.x,
           objectZPos1: objetPositionAR1.z,
           objectXPos2: objetPositionAR2.x,
@@ -174,7 +196,7 @@ export default class AR_Scene extends Component {
             error: error.message
           });
       },
-      {enableHighAccuracy: true, timeout: 15000, maximumAge: 0, distanceFilter: 25}
+      {enableHighAccuracy: true, timeout: 15000, maximumAge: 0, distanceFilter: 10}
     );
   }
 
@@ -182,7 +204,7 @@ export default class AR_Scene extends Component {
     let myself = this;
     const degree_update_rate = 3; // Number of degrees changed before the callback is triggered
       RNSimpleCompass.start(degree_update_rate, (degree) => {
-        console.log('You are facing', degree);
+     //   console.log('You are facing', degree);
         myself.setState({
           compassHeading: degree
         });
@@ -190,7 +212,7 @@ export default class AR_Scene extends Component {
       });
   }
   
-  _transformPointToAR(lat, long, objectPoint_x, objectPoint_y) {
+  _transformPointToAR(lat, long, objectPoint_x, objectPoint_y, place) {
     let userPoint = this._coordLatLongToMercator(lat, long);
     //let superChospi = this._coordLatLongToMercator(9.8507581, -83.923631);
     //let esquina = this._coordLatLongToMercator(9.849858, -83.923689);
@@ -205,7 +227,7 @@ export default class AR_Scene extends Component {
     let newRotatedZ = objFinalPosZ * Math.cos(angle) + objFinalPosX * Math.sin(angle);  
 
     //flip the z, as negative z(is in front of us which is north, pos z is behind(south).
-    return ({x:newRotatedX, z:-newRotatedZ});
+    return ({x:newRotatedX, z:-newRotatedZ, p: place});
   }
 
   // Converts Lat and Long to Mercator projection
@@ -237,5 +259,14 @@ async function checkLocalizationPermission(){
   return false;
 }
 
+var styles = StyleSheet.create({
+  helloWorldTextStyle: {
+    fontFamily: 'Arial',
+    fontSize: 50,
+    color: '#ffffff',
+    textAlignVertical: 'center',
+    textAlign: 'center',
+  },
+});
 
 module.exports = AR_Scene;
