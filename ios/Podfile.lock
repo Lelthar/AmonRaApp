@@ -91,8 +91,6 @@ PODS:
     - React
   - react-native-orientation (3.1.3):
     - React
-  - react-native-video (3.2.0):
-    - React
   - React/Core (0.55.4):
     - yoga (= 0.55.4.React)
   - React/CxxBridge (0.55.4):
@@ -153,7 +151,6 @@ DEPENDENCIES:
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-orientation (from `../node_modules/react-native-orientation`)
-  - react-native-video (from `../node_modules/react-native-video`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -202,8 +199,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-orientation:
     :path: "../node_modules/react-native-orientation"
-  react-native-video:
-    :path: "../node_modules/react-native-video"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
 
@@ -230,7 +225,6 @@ SPEC CHECKSUMS:
   react-native-google-maps: 2cfe3b01f8422c7dae51d8764139fd70f888cfce
   react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
   react-native-orientation: 3d9a0a8273d18260f7528414093a6a36491382b6
-  react-native-video: 6db316323366025251a815c49ca0e2edabe30a2a
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
 PODFILE CHECKSUM: 39798c2384f54d549168737d8ee70623471800f7
