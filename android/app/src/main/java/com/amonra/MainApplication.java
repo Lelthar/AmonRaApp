@@ -27,6 +27,8 @@ import android.content.res.Configuration;
 import com.viromedia.bridge.ReactViroPackage;
 import com.reactlibrary.RNSimpleCompassPackage;
 
+import org.wonday.orientation.OrientationPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFirebaseDatabasePackage(),
             new RNFirebaseAuthPackage(),
             new MapsPackage(),
+            new OrientationPackage(),
             new RNFusedLocationPackage(),
             new ReactViroPackage(ReactViroPackage.ViroPlatform.valueOf(BuildConfig.VR_PLATFORM)),
             new RNSimpleCompassPackage()
@@ -72,11 +75,4 @@ public class MainApplication extends Application implements ReactApplication {
     SoLoader.init(this, /* native exopackage */ false);
   }
 
-  @Override
-      public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Intent intent = new Intent("onConfigurationChanged");
-        intent.putExtra("newConfig", newConfig);
-        this.sendBroadcast(intent);
-    }
 }

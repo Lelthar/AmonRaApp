@@ -43,7 +43,6 @@ export default class VirtualVisit extends Component{
         super(props);
         // Se le pasa el controlador de la navegación a App.js
         // para controlar la navegación desde Navigator.js
-        this.props.screenProps.getNavigationProp(this.props.navigation)
         this.state = {
             "currentTab":"3D",
             current:true,
@@ -53,7 +52,6 @@ export default class VirtualVisit extends Component{
     this.onNavBarClick = this.onNavBarClick.bind(this);
     this.open3dModel = this.open3dModel.bind(this);
 		this.open360Image = this.open360Image.bind(this);
-    this.goToScreen = this.props.navigation.state.params.goToScreen;
     this.navigation = this.props.navigation;
 		//let keys = Object.keys(amonData);
     }
@@ -101,11 +99,11 @@ export default class VirtualVisit extends Component{
     }
 
     open3dModel(modelName){
-      this.goToScreen("Viromedia",{goToScreen : this.goToScreen, do : "3D", fileName : modelName,});
+      this.props.navigation.navigate("Viromedia",{goToScreen : this.goToScreen, do : "3D", fileName : modelName,});
     }
 
     open360Image(imageName){
-      this.goToScreen("Viromedia",{goToScreen : this.goToScreen, do : "VR", filename : imageName,});
+      this.props.navigation.navigate("Viromedia",{goToScreen : this.goToScreen, do : "VR", filename : imageName,});
     }
 
     onNavBarClick(keyname){
@@ -119,7 +117,6 @@ export default class VirtualVisit extends Component{
         let FlatListContent = currentTab == "3D" ? this.state.markers[0] : this.state.markers[1];
         return (
           <View style={styles.container}>
-            <View  style={styles.barMargin}/>
               <View style={styles.body}>
 				        <View style={styles.navigation_bar}>
                   {
@@ -155,7 +152,6 @@ export default class VirtualVisit extends Component{
         				  }
         				/>
                 </View>
-                <View  style={{flex: 2}}/>
             </View>
         );
     }
@@ -169,9 +165,6 @@ const styles = StyleSheet.create({
   },
   body:{
     flex:25,
-  },
-  barMargin:{
-    flex:3,
   },
   imageResizeAndFillParent: {
     flex: 1,
@@ -207,7 +200,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   navigation_bar:{
-    height: "6%",
+    height: "8%",
     flexDirection:"row",
     backgroundColor: "#000"
   },
