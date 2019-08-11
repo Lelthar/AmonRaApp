@@ -23,9 +23,9 @@ var InitialARScene = require('./js/AR_Scene');
 var InitialVRScene = require('./js/VR_Scene');
 var Initial3DScene = require('./js/3D_Scene');
 
-var VR_NAVIGATOR_TYPE = "VR";
-var AR_NAVIGATOR_TYPE = "AR";
-var D3_NAVIGATOR_TYPE = "3D";
+var NAVIGATOR_TYPE_VR = "VR";
+var NAVIGATOR_TYPE_AR = "AR";
+var NAVIGATOR_TYPE_3D = "3D";
 
 export default class ViromediaController extends Component {
 
@@ -41,7 +41,7 @@ export default class ViromediaController extends Component {
 
     this.state = {
       sharedProps : sharedProps, 
-      navigatorType : AR_NAVIGATOR_TYPE || this.props.navigation.state.params.do,
+      navigatorType : NAVIGATOR_TYPE_AR || this.props.navigation.state.params.do,
       viroAppProps: {setInformation: this.setInformation},
       vrMode : null,
 
@@ -55,21 +55,20 @@ export default class ViromediaController extends Component {
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() { 
-    if (this.state.navigatorType == AR_NAVIGATOR_TYPE){
+    if (this.state.navigatorType == NAVIGATOR_TYPE_AR){
       return this._getARNavigator();
-    } else if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
+    } else if (this.state.navigatorType == NAVIGATOR_TYPE_VR) {
       if (this.state.vrMode == null) {
         return this._getSelectionButtons();
       } else {
         return this._getVRNavigator();
       }
-    } else if (this.state.navigatorType == D3_NAVIGATOR_TYPE) {
+    } else if (this.state.navigatorType == NAVIGATOR_TYPE_3D) {
       return this._get3DNavigator();
     }/*else{
       return this._getExperienceSelector();
     }*/
   }
-
 
   // Returns the ViroARSceneNavigator which will start the AR experience
   _getARNavigator() {
@@ -192,6 +191,7 @@ export default class ViromediaController extends Component {
 
    // This function "exits" Viro by setting the navigatorType to UNSET.
   _exitViro() {
+    console.log("hey")
     this.setState({
       navigatorType : "UNSET"
     })
