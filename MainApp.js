@@ -8,7 +8,6 @@ import {
     Dimensions,
 } from 'react-native';
 
-import Orientation from 'react-native-orientation';
 
 import ApplicationNavigator from "./src/components/pages/navigation";
 
@@ -42,17 +41,6 @@ export default class MainApp extends Component {
         this.getNavigationProp = this.getNavigationProp.bind(this);
         this.getActiveFilters = this.getActiveFilters.bind(this);
         this.updateNavigationToScreen  = this.updateNavigationToScreen.bind(this);
-    }
-
-    componentWillMount(){
-        const initial = Orientation.getInitialOrientation();
-
-        if (initial === 'PORTRAIT') {
-            console.log("Celular inicio en PORTRAIT")
-        } else {
-            console.log("Celular inicio en LANDSCAPE")
-        }
-
     }
 
     updateNavigationToScreen(goToScreen) {
@@ -104,42 +92,6 @@ export default class MainApp extends Component {
             rateScreen: false,
             guideScreen: false
         })
-    }
-
-    componentDidMount(){
-        // this locks the view to Portrait Mode
-        Orientation.lockToPortrait();
-
-        // this locks the view to Landscape Mode
-        //Orientation.lockToLandscape();
-
-        // this unlocks any previous locks to all Orientations
-        // Orientation.unlockAllOrientations();
-
-        Orientation.addOrientationListener(this._orientationDidChange);
-    }
-
-    _orientationDidChange = (orientation) => {
-        if (orientation === 'LANDSCAPE') {
-            console.log("Cambio la orientacion a LADSCAPE")
-            width=Dimensions.get('window').width;
-        } else {
-            console.log("Cambio la orientacion a PORTRAIT")
-            width=Dimensions.get('window').width;
-        }
-
-        this.setState({
-          width:width
-        });
-    }
-
-    componentWillUnmount() {
-        Orientation.getOrientation((err, orientation) => {
-            console.log(`Current Device Orientation: ${orientation}`);
-        });
-
-        // Remember to remove listener
-        Orientation.removeOrientationListener(this._orientationDidChange);
     }
 
     getActiveFilters(filters){
