@@ -7,7 +7,6 @@ import com.facebook.react.ReactApplication;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.reactlibrary.RNSimpleCompassPackage;
-import com.github.yamill.orientation.OrientationPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
@@ -22,7 +21,6 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
 import com.airbnb.android.react.maps.MapsPackage;
-import com.github.yamill.orientation.OrientationPackage;
 import android.content.Intent;
 import android.content.res.Configuration;
 
@@ -51,7 +49,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFirebaseDatabasePackage(),
             new RNFirebaseAuthPackage(),
             new MapsPackage(),
-            new OrientationPackage(),
             new RNFusedLocationPackage(),
             new ReactViroPackage(ReactViroPackage.ViroPlatform.valueOf(BuildConfig.VR_PLATFORM)),
             new RNSimpleCompassPackage()

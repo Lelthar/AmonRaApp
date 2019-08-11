@@ -177,13 +177,11 @@ dependencies {
     implementation project(':@react-native-community_async-storage')
     compile project(':react-native-gesture-handler')
     compile project(':react-native-simple-compass')
-    compile project(':react-native-orientation')
     compile project(':react-native-maps')
     compile project(':react-native-google-signin')
     compile project(':react-native-geolocation-service')
     compile project(':react-native-firebase')
     implementation 'com.android.support:multidex:1.0.3'
-    implementation project(':react-native-orientation')
     implementation (project(':react-native-firebase')){
       exclude group: 'com.google.android.gms', module: 'play-services-base'
     }
@@ -202,7 +200,6 @@ dependencies {
        exclude group: 'com.google.android.gms', module: 'play-services-base'
        exclude group: 'com.google.android.gms', module: 'play-services-maps'
    }
-   implementation project(':react-native-orientation')
    implementation project(':gvr_common')
    implementation project(':arcore_client')
    implementation project(path: ':react_viro')

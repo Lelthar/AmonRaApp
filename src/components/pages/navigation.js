@@ -53,7 +53,8 @@ const virtualVisitStack = createStackNavigator(
     ViromediaController: {
       screen: viromediaControllerComponent,
       navigationOptions: {
-        header: null
+        header: null,
+        tabBarVisible: false,
       },
     }
     
