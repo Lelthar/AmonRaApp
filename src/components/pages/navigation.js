@@ -36,6 +36,7 @@ const mapStack = createStackNavigator(
       navigationOptions: {
         title: "Mapa",
         //header: null
+        //tabBarVisible: false,
       },
     },
     Place: placeComponent,
@@ -104,17 +105,14 @@ const timeLineStack = createStackNavigator(
 
 const AppNavigator = createBottomTabNavigator(
   {
-    /*MapStack: {
-      screen: mapComponent,
-      navigationOptions: {
-            title: 'Home',
-            tabBarVisible: true,
-            // other default options
-      }
-    },*/
     Map: mapStack,
     AumentedReality: augmentedRealityStack,
-    VirtualVisit: virtualVisitStack,
+    VirtualVisit: {
+      screen: virtualVisitStack,
+      navigationOptions: ({ navigation }) => ({
+        tabBarVisible: !(navigation.state.index === 1)
+      }),
+    },
     UrbanOffer: urbanOfferStack,
     TimeLine: timeLineStack,
   },
