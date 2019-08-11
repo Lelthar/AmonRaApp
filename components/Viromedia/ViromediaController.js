@@ -32,7 +32,6 @@ export default class ViromediaController extends Component {
   constructor(props) {
 
     super(props);
-    
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this.showInformationMenu = this.showInformationMenu.bind(this);
@@ -42,7 +41,7 @@ export default class ViromediaController extends Component {
 
     this.state = {
       sharedProps : sharedProps, 
-      navigatorType : AR_NAVIGATOR_TYPE,
+      navigatorType : AR_NAVIGATOR_TYPE || this.props.navigation.state.params.do,
       viroAppProps: {setInformation: this.setInformation},
       vrMode : null,
 
@@ -308,7 +307,7 @@ var localStyles = StyleSheet.create({
     backgroundColor: 'white',
     width: (Dimensions.get('window').width) * 0.9,
     height: (Dimensions.get('window').height) * 0.6,
-    bottom: (Dimensions.get('window').height)/2 * 0.4,
+    bottom: (Dimensions.get('window').height)/2 * 0.2,
     paddingHorizontal: 20,
   },
   title: {

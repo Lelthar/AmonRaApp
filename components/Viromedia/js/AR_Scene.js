@@ -72,8 +72,8 @@ export default class AR_Scene extends Component {
     this.state = {
       userLatitude: 0,
       userLongitude: 0,
-      objectPlaceAR1: null,
-      objectPlaceAR2: null,
+      objectPlaceAR1: "Sin datos",
+      objectPlaceAR2: "Sin datos",
       objectXPos1: 0,
       objectZPos1: 0,
       objectXPos2: 0,
@@ -108,9 +108,10 @@ export default class AR_Scene extends Component {
 
           <ViroImage
             onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-            scale={[5,5,5]}
+            scale={[3,3,3]}
             position={[this.state.objectXPos1, 1, this.state.objectZPos1]}
-            source={require('./res/icon_info.png')}
+            //source={require('./res/icon_info.png')}
+            source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67'}}
           />
 
           <ViroText text={this.state.objectPlaceAR2}
@@ -120,9 +121,11 @@ export default class AR_Scene extends Component {
 
           <ViroImage
             onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-            scale={[5,5,5]}
+            scale={[3,3,3]}
             position={[this.state.objectXPos2, 1, this.state.objectZPos2]}
-            source={require('./res/icon_info.png')}
+            //source={require('./res/icon_info.png')}
+            source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67'}}
+  
           />
 
            {/*<ViroImage
@@ -135,7 +138,7 @@ export default class AR_Scene extends Component {
          <ViroImage
             position={[0, .1, 0.5]}
             resizeMode='ScaleToFit'
-            source={require('./res/imgSample.jpg')}
+            source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FIMG_1118.jpg?alt=media&token=40885398-5a20-4b3a-9bc5-2e5bf6dbbf73'}}
           />*/}
 
         </ViroARScene>
