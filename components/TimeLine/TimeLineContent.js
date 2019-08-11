@@ -130,7 +130,7 @@ let timeLine_images = {
   '1888' : require('../../images/Images_TimeLine/1888.png'),
  // '1892' : require('../../images/Images_TimeLine/1892.png'),
   '1895' : require('../../images/Images_TimeLine/1895.png'),
-  '1897' : require('../../images/Images_TimeLine/1897.png'),
+  //'1897' : require('../../images/Images_TimeLine/1897.png'),
   '1899' : require('../../images/Images_TimeLine/1899.png'),
   '1900' : require('../../images/Images_TimeLine/1900.png'),
   '1902' : require('../../images/Images_TimeLine/1902.png'),

@@ -41,8 +41,8 @@ export default class ViromediaController extends Component {
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
 
     this.state = {
-      sharedProps : sharedProps,
-      navigatorType : this.props.navigation.state.params.do,
+      sharedProps : sharedProps, 
+      navigatorType : AR_NAVIGATOR_TYPE,
       viroAppProps: {setInformation: this.setInformation},
       vrMode : null,
 
@@ -56,16 +56,15 @@ export default class ViromediaController extends Component {
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
   // if you are building a specific type of experience.
   render() { 
-    if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
+    if (this.state.navigatorType == AR_NAVIGATOR_TYPE){
+      return this._getARNavigator();
+    } else if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
       if (this.state.vrMode == null) {
         return this._getSelectionButtons();
       } else {
         return this._getVRNavigator();
       }
-    } else if (this.state.navigatorType == AR_NAVIGATOR_TYPE) {
-      return this._getARNavigator();
-    }else if (this.state.navigatorType == D3_NAVIGATOR_TYPE) {
-      console.log("FALSE 3D");
+    } else if (this.state.navigatorType == D3_NAVIGATOR_TYPE) {
       return this._get3DNavigator();
     }/*else{
       return this._getExperienceSelector();
@@ -293,7 +292,7 @@ var localStyles = StyleSheet.create({
     flex:14, 
     flexDirection: 'row', 
     padding:15, 
-    bottom: 68,
+    bottom: 0,
     position:"absolute",
     backgroundColor:'rgba(54, 145, 160, 0.8)',
     width: Dimensions.get('window').width,
