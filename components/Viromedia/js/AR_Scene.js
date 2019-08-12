@@ -112,7 +112,6 @@ export default class AR_Scene extends Component {
             dragType="FixedDistance" onDrag={()=>{}}
             source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FIMG_1118.jpg?alt=media&token=40885398-5a20-4b3a-9bc5-2e5bf6dbbf73'}}
         />
-
       </ViroNode>
     );
   }
@@ -171,7 +170,7 @@ export default class AR_Scene extends Component {
       (position) => {
         console.log("processing");
         this._calibrateCompass();
-        console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
+      //  console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
 
         let objetPositionAR1;
         let objetPositionAR2;
@@ -218,7 +217,7 @@ export default class AR_Scene extends Component {
     let myself = this;
     const degree_update_rate = 3; // Number of degrees changed before the callback is triggered
       RNSimpleCompass.start(degree_update_rate, (degree) => {
-        console.log('You are facing', degree);
+     //   console.log('You are facing', degree);
         myself.setState({
           compassHeading: degree
         });

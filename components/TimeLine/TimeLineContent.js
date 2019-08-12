@@ -83,12 +83,14 @@ export default class Timeline extends Component {
            : null
           }
           { item.image != null
-           ? <Image source={this.getTimeLineImage(item.image)} width={Dimensions.get('window').width * 0.7} resizeMode="contain"/> 
+           ? <Image source={{uri: item.image_url}} width={Dimensions.get('window').width * 0.7} resizeMode="contain"/> 
            : null
           }
       </View>
     )
   }
+
+  // <Image source={this.getTimeLineImage(item.image)} width={Dimensions.get('window').width * 0.7} resizeMode="contain"/> 
 
   renderCircleAndLineVertical = (item, index) => {
     return (
