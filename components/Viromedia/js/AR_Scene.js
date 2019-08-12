@@ -20,6 +20,7 @@ import {
   ViroNode,
   ViroConstants,
   ViroImage,
+  ViroScene,
 } from 'react-viro';
 
 import Geolocation from 'react-native-geolocation-service';
@@ -68,7 +69,8 @@ export default class AR_Scene extends Component {
     this._transformPointToAR = this._transformPointToAR.bind(this);
     this._calibrateCompass = this._calibrateCompass.bind(this);
     this._setObjectPositions = this._setObjectPositions.bind(this);
-    
+    this.getARModel = this.getARModel.bind(this);
+
     this.state = {
       userLatitude: 0,
       userLongitude: 0,
@@ -81,70 +83,78 @@ export default class AR_Scene extends Component {
       compassHeading: 0,
       coordinateString: "Sin datos",
       coordinateLatLongString: "Sin datos",
+      hasARInitialized: false,
       error: null
     };
   }
   
   render() { 
     return (
-        <ViroARScene>
-          {/*<ViroText text={this.state.heading+"||"+this.state.coordinateLatLongString + " || " +this.state.coordinateXYZString}
-              scale={[.1, .1, .1]} height={5} width={4} position={[0, 0, -.1]} style={styles.helloWorldTextStyle} />
-          
-          <ViroText text={"Casa Verde"}
-            scale={[7, 7, 7]} height={7} width={5} position={[this.state.objectXPos, 0, this.state.objectZPos]} style={styles.helloWorldTextStyle} />
-          */}
-          
-          
+        <ViroARScene onTrackingUpdated={this._onTrackingUpdated}> 
           <ViroAmbientLight color={"#aaaaaa"} />
-
-          <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]}
-            position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
-
-          <ViroText text={this.state.objectPlaceAR1}
-            scale={[3, 3, 3]} height={5} width={4} 
-            position={[this.state.objectXPos1 + 0.5, 1, this.state.objectZPos1]}
-            style={styles.helloWorldTextStyle}/>
-
-          <ViroImage
-            onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-            scale={[3,3,3]}
-            position={[this.state.objectXPos1, 1, this.state.objectZPos1]}
-            //source={require('./res/icon_info.png')}
-            source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67'}}
-          />
-
-          <ViroText text={this.state.objectPlaceAR2}
-            scale={[3, 3, 3]} height={5} width={4} 
-            position={[this.state.objectXPos2 + 0.5, 1, this.state.objectZPos2]}
-            style={styles.helloWorldTextStyle}/>
-
-          <ViroImage
-            onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-            scale={[3,3,3]}
-            position={[this.state.objectXPos2, 1, this.state.objectZPos2]}
-            //source={require('./res/icon_info.png')}
-            source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67'}}
-  
-          />
-
-           {/*<ViroImage
-            onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-            scale={[0.5,0.5,0.5]}
-            position={[0, 1, 0.5]}
-            source={require('./res/icon_info.png')}
-          />
-
-         <ViroImage
-            position={[0, .1, 0.5]}
-            resizeMode='ScaleToFit'
-            source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FIMG_1118.jpg?alt=media&token=40885398-5a20-4b3a-9bc5-2e5bf6dbbf73'}}
-          />*/}
-
+          {this.state.hasARInitialized
+            ? this.getARModel()
+            : null
+          }
         </ViroARScene>
     );
   }
 
+  getARModel(){
+    return(
+      <ViroNode>
+        {this.loadARObject1()}
+        {this.loadARObject2()}
+
+        <ViroImage
+            position={[0, 0.5, 1]}
+            resizeMode='StretchToFill'
+            scale={[-2,-2,-2]}
+            source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FIMG_1118.jpg?alt=media&token=40885398-5a20-4b3a-9bc5-2e5bf6dbbf73'}}
+        />
+
+      </ViroNode>
+    );
+  }
+
+  loadARObject1(){
+    return(
+      <ViroNode>
+        <ViroText text={this.state.objectPlaceAR1}
+          scale={[2,2,2]} height={5} width={4} 
+          position={[this.state.objectXPos1 + 0.5, 1, this.state.objectZPos1]}
+          style={styles.helloWorldTextStyle}
+        />
+
+        <ViroImage
+          onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
+          scale={[2,2,2]} 
+          position={[this.state.objectXPos1, 1, this.state.objectZPos1]}
+          source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67'}}
+        />
+      </ViroNode>
+    );
+  }
+
+  loadARObject2(){
+    return ( 
+      <ViroNode>
+        <ViroText text={this.state.objectPlaceAR2}
+          scale={[2,2,2]} height={5} width={4} 
+          position={[this.state.objectXPos2 + 0.5, 1, this.state.objectZPos2]}
+          style={styles.helloWorldTextStyle}
+        />
+
+        <ViroImage
+          onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
+          scale={[2,2,2]}
+          position={[this.state.objectXPos2, 0.5, this.state.objectZPos2]}
+          source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67'}}
+        />
+      </ViroNode>
+    );
+  }
+  
   componentDidMount(){
     if (checkLocalizationPermission()) {
       this._setObjectPositions();
@@ -159,8 +169,9 @@ export default class AR_Scene extends Component {
   _setObjectPositions(){
     Geolocation.watchPosition(
       (position) => {
+        console.log("processing");
         this._calibrateCompass();
-      //  console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
+        console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
 
         let objetPositionAR1;
         let objetPositionAR2;
@@ -199,7 +210,7 @@ export default class AR_Scene extends Component {
             error: error.message
           });
       },
-      {enableHighAccuracy: true, timeout: 15000, maximumAge: 0, distanceFilter: 10}
+      {enableHighAccuracy: true, maximumAge: 0, distanceFilter: 10}
     );
   }
 
@@ -207,7 +218,7 @@ export default class AR_Scene extends Component {
     let myself = this;
     const degree_update_rate = 3; // Number of degrees changed before the callback is triggered
       RNSimpleCompass.start(degree_update_rate, (degree) => {
-     //   console.log('You are facing', degree);
+        console.log('You are facing', degree);
         myself.setState({
           compassHeading: degree
         });
@@ -245,8 +256,13 @@ export default class AR_Scene extends Component {
   
   _onTrackingUpdated(state, reason) {
     if (state == ViroConstants.TRACKING_NORMAL){
+      this.setState({
+        hasARInitialized: true,
+      });
       console.log("Tracking normal");
-    } 
+    } else{
+      console.log("Move the camera around");
+    }
   }
 }
 

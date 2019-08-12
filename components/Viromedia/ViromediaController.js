@@ -41,7 +41,7 @@ export default class ViromediaController extends Component {
 
     this.state = {
       sharedProps : sharedProps, 
-      navigatorType : NAVIGATOR_TYPE_AR || this.props.navigation.state.params.do,
+      navigatorType : NAVIGATOR_TYPE_AR,
       viroAppProps: {setInformation: this.setInformation},
       vrMode : null,
 
