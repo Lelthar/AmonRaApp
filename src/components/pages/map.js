@@ -147,7 +147,6 @@ class MapComponent extends Component {
             barrio_amon_coordinates: [],
             data: this.props.data,
         };
-        console.log(this.props);
     }
 
     toggleFilters() {
