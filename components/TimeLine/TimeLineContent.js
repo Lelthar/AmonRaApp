@@ -82,7 +82,7 @@ export default class Timeline extends Component {
            ? <Text style={styles.description}>{item.description}</Text> 
            : null
           }
-          { item.image != null
+          { item.image_url != "null"
            ? <Image source={{uri: item.image_url}} width={Dimensions.get('window').width * 0.7} resizeMode="contain"/> 
            : null
           }
@@ -118,53 +118,6 @@ export default class Timeline extends Component {
       <View><View style={[styles.separator]}></View><View style={{padding:20}}></View></View>
      )
   }
-
-  getTimeLineImage(imageName){
-    return (timeLine_images[imageName]) ? timeLine_images[imageName] : null;
-  }
-}
-
-let timeLine_images = {
-  '1751' : require('../../images/Images_TimeLine/1751.png'),
-  '1854' : require('../../images/Images_TimeLine/1854.png'),
-  '1884' : require('../../images/Images_TimeLine/1884.png'),
-  '1887' : require('../../images/Images_TimeLine/1887.png'),
-  '1888' : require('../../images/Images_TimeLine/1888.png'),
- // '1892' : require('../../images/Images_TimeLine/1892.png'),
-  '1895' : require('../../images/Images_TimeLine/1895.png'),
-  //'1897' : require('../../images/Images_TimeLine/1897.png'),
-  '1899' : require('../../images/Images_TimeLine/1899.png'),
-  '1900' : require('../../images/Images_TimeLine/1900.png'),
-  '1902' : require('../../images/Images_TimeLine/1902.png'),
-  '1910_1' : require('../../images/Images_TimeLine/1910_1.png'),
-  '1910_2' : require('../../images/Images_TimeLine/1910_2.png'),
-  '1913' : require('../../images/Images_TimeLine/1913.png'),
-  '1919' : require('../../images/Images_TimeLine/1919.png'),
-  '1920' : require('../../images/Images_TimeLine/1920.png'),
-  '1921' : require('../../images/Images_TimeLine/1921.png'),
-  '1927' : require('../../images/Images_TimeLine/1927.png'),
-  '1929' : require('../../images/Images_TimeLine/1929.png'),
-  '1930_1' : require('../../images/Images_TimeLine/1930_1.png'),
-  //'1930_2' : require('../../images/Images_TimeLine/1930_2.png'),
-  '1938' : require('../../images/Images_TimeLine/1938.png'),
-  //'1947' : require('../../images/Images_TimeLine/1947.png'),
-  '1949' : require('../../images/Images_TimeLine/1949.png'),
-  '1950' : require('../../images/Images_TimeLine/1950.png'),
-  //'1956' : require('../../images/Images_TimeLine/1956.png'),
-  //'1960' : require('../../images/Images_TimeLine/1960.png'),
-  '1970_1974' : require('../../images/Images_TimeLine/1970_1974.png'),
-  '1973' : require('../../images/Images_TimeLine/1973.png'),
-  '1982' : require('../../images/Images_TimeLine/1982.png'),
-  '1990' : require('../../images/Images_TimeLine/1990.png'),
-  '1993' : require('../../images/Images_TimeLine/1993.png'),
-  '1993_1996' : require('../../images/Images_TimeLine/1993_1996.png'),
-  '1998' : require('../../images/Images_TimeLine/1998.png'),
-  '1999' : require('../../images/Images_TimeLine/1999.png'),
-  '2000' : require('../../images/Images_TimeLine/2000.png'),
-  '2009' : require('../../images/Images_TimeLine/2009.png'),
-  '2010_1' : require('../../images/Images_TimeLine/2010_1.png'),
-  '2010_2' : require('../../images/Images_TimeLine/2010_2.png'),
-  '2014' : require('../../images/Images_TimeLine/2014.png')
 }
 
 let styles = StyleSheet.create({

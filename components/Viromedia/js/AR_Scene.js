@@ -107,7 +107,7 @@ export default class AR_Scene extends Component {
         {this.loadARObject2()}
 
         <ViroImage
-            position={[this.state.objectXPos1 + 0.5, 0, this.state.objectZPos1]}
+            position={[0.1, 0, 0.7]}
             resizeMode='ScaleToFit'
             dragType="FixedDistance" onDrag={()=>{}}
             source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FIMG_1118.jpg?alt=media&token=40885398-5a20-4b3a-9bc5-2e5bf6dbbf73'}}

@@ -15,43 +15,33 @@ import {
 //-------------------------------
 
 
-const data = require('../../data/data.json');
-var linea = data.Linea_Del_Tiempo;
-
 export default class TimeLine extends Component  {
   constructor(){
     super()
+
     this.state = {
+      hasDownloadedInfo: false,
       userData: null,
-      data: linea.map(obj =>{
-        var event = {};
-        event.title = obj.Acontecimiento;
-        event.description = obj.Descripción;
-        event.time = obj.Año;
-        event.image = obj.ImageURL;
-        return event;
-      })
+      data: null,
     };
-    /*this.data = linea.map(obj =>{
-      var event = {};
-      event.title = obj.Acontecimiento;
-      event.description = obj.Descripción;
-      event.time = obj.Año;
-      event.image = obj.ImageURL;
-      return event;
-    });*/
   }
   
   render() {
     return (
-      <View style={styles.container}>
-       <View  style={{flex:2}}/>
-         <View style={{flex: 23}}>
-          <Timeline data={this.state.data}/>
-          </View>
-        <View  style={{flex:2}}/>
+      <View style={{flex:1}}>
+        <View style={{flex: 2}}>
+         {
+          this.state.hasDownloadedInfo
+          ? <Timeline data={this.state.data}/>
+          : null
+         }
+        </View>
       </View>
     );
+  }
+
+  componentDidMount(){
+    this.get_backend_data();
   }
 
   async get_user_data() {
@@ -62,36 +52,23 @@ export default class TimeLine extends Component  {
   async get_timeLine() {
     const response = await makeBackendRequest(TIME_LINE_URL,"GET",this.state.userData);
     const responseJson = await response.json();
-    console.log(responseJson);
     this.setState({
+      hasDownloadedInfo: true,
       data : responseJson.map(obj =>{
             var event = {};
             event.title = obj.title;
             event.description = obj.description;
             event.time = obj.year;
-            event.image = obj.image_url;
+            event.image_url = obj.image_url;
             return event;
           })
     });
-
-    console.log(this.data);
   }
 
   async get_backend_data() {
     await this.get_user_data()
     await this.get_timeLine();
   }
-
-  componentDidMount(){
-    this.get_backend_data();
-  }
-
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-});
 
 AppRegistry.registerComponent('TimeLine', () => TimeLine);
