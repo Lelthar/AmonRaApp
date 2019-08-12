@@ -81,7 +81,12 @@ const urbanOfferStack = createStackNavigator(
 
 const augmentedRealityStack = createStackNavigator(
   {
-    AumentedReality: viromediaControllerComponent,
+    AumentedReality: {
+      screen: viromediaControllerComponent,
+      params: {
+        do: "AR",
+      },
+    },
   },
   {
     initialRouteName: 'AumentedReality',
