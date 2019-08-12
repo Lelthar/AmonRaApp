@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text, View, Dimensions, VirtualizedList} from 'react-native'
 import Image from 'react-native-scalable-image';
-import Dash from 'react-native-dash';
 
-const totalItems = 80;
+const totalItems = 90;
 
 export default class Timeline extends Component {
   constructor(props) {
@@ -47,7 +46,6 @@ export default class Timeline extends Component {
             {this.renderEvent(item, index)}
           </View>
         </View>
-        <Dash style={{flex: 1, marginBottom: 6}} dashColor={'#E7E6E5'} dashThickness={4} />
       </View>
     );
   }
@@ -89,8 +87,6 @@ export default class Timeline extends Component {
       </View>
     )
   }
-
-  // <Image source={this.getTimeLineImage(item.image)} width={Dimensions.get('window').width * 0.7} resizeMode="contain"/> 
 
   renderCircleAndLineVertical = (item, index) => {
     return (
@@ -136,17 +132,10 @@ let styles = StyleSheet.create({
     minWidth: 55,
     flex: 1,
   },
-  time: {
-    textAlign: 'right',
-  },
   timeText: {
     color:'#006064',
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  timeMeridiem: {
-    fontSize: 12,
-    fontWeight: '200',
   },
   leftText: {
     textAlign: 'right'
