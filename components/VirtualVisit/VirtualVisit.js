@@ -62,7 +62,7 @@ export default class VirtualVisit extends Component{
       let response3D = await makeBackendRequest(FEATURES_URL+url3D,"GET",this.state.userData);
       let responseJson3D = await response3D.json();
 
-      let url360 = "?category=Gastronomía" ; 
+      let url360 = "?category=Fotos%20360°" ; 
       let response360 = await makeBackendRequest(FEATURES_URL+url360,"GET",this.state.userData);
       let responseJson360 = await response360.json();
 
@@ -89,7 +89,7 @@ export default class VirtualVisit extends Component{
     }
 
     handleClick(item) {
-	   let name = item.name;
+     let name = item.image1_url;
      if(this.state.currentTab == "3D"){
         this.open3dModel(name);
      }else{
@@ -99,11 +99,11 @@ export default class VirtualVisit extends Component{
     }
 
     open3dModel(modelName){
-      this.props.navigation.navigate("Viromedia",{goToScreen : this.goToScreen, do : "3D", fileName : modelName,});
+      this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "3D", fileName : modelName,});
     }
 
     open360Image(imageName){
-      this.props.navigation.navigate("Viromedia",{goToScreen : this.goToScreen, do : "VR", filename : imageName,});
+      this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "VR", filename : imageName,});
     }
 
     onNavBarClick(keyname){
