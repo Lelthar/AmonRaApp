@@ -17,7 +17,7 @@ export default class VR_Scene extends Component {
   render() {
     return (
       <ViroScene>
-        <Viro360Image source={require('./res/Casa_González_Feo_1.jpg')} />
+        <Viro360Image source={{uri:this.props.sceneNavigator.viroAppProps.data}} />
       </ViroScene>
     );
   }

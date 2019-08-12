@@ -44,6 +44,7 @@ export default class ViromediaController extends Component {
       navigatorType : this.props.navigation.state.params.do,
       viroAppProps: {setInformation: this.setInformation},
       vrMode : null,
+      content: this.props.navigation.state.params.filename,
 
       informationText : "Sin datos",
       informationVisible : false,
@@ -177,7 +178,7 @@ export default class ViromediaController extends Component {
   _getVRNavigator() {
     return (
       <ViroVRSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro} vrModeEnabled={this.state.vrMode}/>
+        initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro} vrModeEnabled={this.state.vrMode} viroAppProps={{data:this.state.content}}/>
     );
   }
 
