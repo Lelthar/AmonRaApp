@@ -18,24 +18,22 @@ var {windowHeight, windowWidth} = Dimensions.get('window');
 export default class SeeMore extends Component{
 
 	constructor(props){
-        super(props);
-        // Se le pasa el controlador de la navegación a App.js
-        // para controlar la navegación desde Navigator.js
-        this.props.screenProps.getNavigationProp(this.props.navigation)
+    super(props);
+    // Se le pasa el controlador de la navegación a App.js
+    // para controlar la navegación desde Navigator.js
+    this.navigation = this.props.navigation;
 
-         this.state = {
-
-          title: "",
-          description: "",
-          direction: "",
-          phone_number: "",
-          facebook: "",
-          images_url: [],
+    this.state = {
+      title: "",
+      description: "",
+      direction: "",
+      phone_number: "",
+      facebook: "",
+      images_url: [],
     };
-    }
+  }
 
-componentDidMount(){
-
+componentDidMount(){ 
     this.setState({
       title: this.props.navigation.state.params.placeInfo.name , 
       description: this.props.navigation.state.params.placeInfo.description, 

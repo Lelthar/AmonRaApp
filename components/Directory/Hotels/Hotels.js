@@ -30,7 +30,7 @@ export default class Hotels extends Component{
       super(props);
       // Se le pasa el controlador de la navegación a App.js
       // para controlar la navegación desde Navigator.js
-      this.props.screenProps.getNavigationProp(this.props.navigation)
+      this.navigation = this.props.navigation;
       this.state = {
 
         markers: [],
@@ -48,11 +48,6 @@ export default class Hotels extends Component{
 
       }
   }
-
-  goTo(screen,params){
-        var goToScreen = this.props.navigation.state.params.goToScreen
-        goToScreen(screen, params)
-    }
 
      // AmonRa's backoffice query
 
@@ -118,7 +113,8 @@ export default class Hotels extends Component{
 
         return (
             <View style={styles.container}>
-            <View style={{flex:0.3}} />
+           { //<View style={{flex:0.3}} />
+           }
              <View style={{flex:0.3}}>
                     <Text style={styles.title} >Hospedaje</Text>
                 </View>
@@ -136,7 +132,7 @@ export default class Hotels extends Component{
                   <Text style={styles.text} >  Dirección: {hotel.direction} </Text>
                   <Text style={styles.text}>  Tel: {hotel.phone_number}</Text>
                   <Text style={styles.text}>  Facebook: {hotel.facebook}</Text>
-                  <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , placeInfo: hotel} )} >
+                  <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}}  onPress={() => this.props.navigation.navigate('SeeMore',{goToScreen: this.navigation, placeInfo: hotel})} >
                     <View style={{flexDirection: 'row'}}>
                       <Image  source={ require('../../../images/icons/Directory/masinfogris.png') }/>
                     </View>
@@ -155,7 +151,8 @@ export default class Hotels extends Component{
                 </ScrollView>
                 </View>
 
-                <View style={{flex:0.4}} />
+             {//   <View style={{flex:0.4}} />
+             }
 
             </View>
 

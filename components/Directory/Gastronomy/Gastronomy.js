@@ -29,7 +29,7 @@ export default class Gastronomy extends Component{
       super(props);
       // Se le pasa el controlador de la navegación a App.js
       // para controlar la navegación desde Navigator.js
-      this.props.screenProps.getNavigationProp(this.props.navigation)
+      this.navigation = this.props.navigation;
       this.state = {
 
         markers: [], 
@@ -53,12 +53,6 @@ export default class Gastronomy extends Component{
          ]
       }
   }
-
-  goTo(screen,params){
-        var goToScreen = this.props.navigation.state.params.goToScreen
-        goToScreen(screen, params)
-    }
-
 
     // Amon Ra BackOffice query
     async get_features(){
@@ -119,7 +113,8 @@ export default class Gastronomy extends Component{
       return (
           <View style={styles.container}>
 
-          <View style={{flex:0.3}} />
+       {//   <View style={{flex:0.3}} />
+       }
 
            <View style={{flex:0.3}}>
                   <Text style={styles.title} >Gastronomía</Text>
@@ -136,8 +131,8 @@ export default class Gastronomy extends Component{
                 <Text style={styles.name_place} >  { this.fixPlaceNameWithParenthesis(place.name) }</Text>
                 <Text style={styles.text}>  Dirección: {place.direction} </Text>
                 <Text style={styles.text}>  Tel: {place.phone_number}</Text>
-                <Text style={styles.text}>  Facebook: {place.facebook}</Text>
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={ () =>  this.goTo('SeeMore', {goToScreen: this.props.navigation.state.params.goToScreen , placeInfo: place} )} >
+                <Text style={styles.text}>  Facebook: {place.facebook}</Text> 
+                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={() => this.props.navigation.navigate('SeeMore',{goToScreen: this.navigation, placeInfo: place})}>
                   <View style={{flexDirection: 'row'}}>
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                   </View>
@@ -156,7 +151,8 @@ export default class Gastronomy extends Component{
               </ScrollView>
               </View>
 
-              <View style={{flex:0.4}} />
+          {//    <View style={{flex:0.4}} />
+          }
 
           </View>
 

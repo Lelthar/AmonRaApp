@@ -20,34 +20,23 @@ export default class Directory extends Component{
         super(props);
         // Se le pasa el controlador de la navegación a App.js
         // para controlar la navegación desde Navigator.js
-        this.props.screenProps.getNavigationProp(this.props.navigation)
+        
+        this.navigation = this.props.navigation;
     }
-
-
-    goTo(screen,params){
-        var goToScreen = this.props.navigation.state.params.goToScreen
-        goToScreen(screen,params)
-    }
-
 
     pruebaFirebase(){
-
       var storageRef = firebase.storage().ref('ImageTest/prueba.png');
                         storageRef.getDownloadURL().then(function(url) {
-
                           console.log("Correcto")
                           console.log(url);
 
                         }, function(error){
-
                           console.log("Error");
                           console.log(error);
                         });
-
-
     }
-    render() {
 
+    render() {
         return (
 
             <View style={styles.container}>
@@ -90,17 +79,15 @@ export default class Directory extends Component{
                     <View style={{flex:1}}/>
                     <View style={styles.buttonsRow}>
                       <View style={{flex:2}}/>
-
                       
-                      <TouchableOpacity style={styles.squareButton} onPress={() =>  this.goTo('CultureArt', {goToScreen: this.props.navigation.state.params.goToScreen} )} >
+                      <TouchableOpacity style={styles.squareButton} onPress={() => this.props.navigation.navigate('Cultural',{goToScreen: this.navigation})} >
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/culturagris.png')} />
                       </TouchableOpacity>
                     
 
                       <View style={{flex:1}}/>
 
-                      <TouchableOpacity style={styles.squareButton} onPress={ () => this.goTo('Gastronomy', {goToScreen: this.props.navigation.state.params.goToScreen} )}>
-
+                      <TouchableOpacity style={styles.squareButton} onPress={() => this.props.navigation.navigate('Gastronomy',{goToScreen: this.navigation})}>
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/gastrogris.png')} />
                       </TouchableOpacity>
 
@@ -118,13 +105,13 @@ export default class Directory extends Component{
                     <View style={styles.buttonsRow}>
                       <View style={{flex:2}}/>
 
-                      <TouchableOpacity style={styles.squareButton} onPress={() => this.goTo('Hotels', {goToScreen: this.props.navigation.state.params.goToScreen}) } >
+                      <TouchableOpacity style={styles.squareButton}  onPress={() => this.props.navigation.navigate('Hotels',{goToScreen: this.navigation})} >
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/hospedajegris.png')} />
                       </TouchableOpacity>
 
                       <View style={{flex:1}}/>
 
-                      <TouchableOpacity style={styles.squareButton} onPress={() =>  this.goTo('Institutional', {goToScreen: this.props.navigation.state.params.goToScreen })} >
+                      <TouchableOpacity style={styles.squareButton}  onPress={() => this.props.navigation.navigate('Institutional',{goToScreen: this.navigation})} >
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/instigris.png')} />
                       </TouchableOpacity>
 
@@ -174,7 +161,7 @@ const styles = StyleSheet.create({
   wrapper: {
   },
   squareButton:{
-    flex:5
+    flex:3
   },
   imageResizeAndFillParent: {
     flex: 1,

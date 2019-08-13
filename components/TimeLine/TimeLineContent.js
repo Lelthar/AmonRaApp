@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {StyleSheet, Text, View, Dimensions, VirtualizedList} from 'react-native'
 import Image from 'react-native-scalable-image';
 
+
 const totalItems = 77;
 
 export default class Timeline extends Component {

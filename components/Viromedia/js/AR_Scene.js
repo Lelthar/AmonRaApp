@@ -55,7 +55,7 @@ const mercatorTEC = [{place: "Centro de las Artes", X: -9340989.681840425, Y: 11
                      {place: "Soda ASETEC", X: -9341076.06576528, Y: 1102555.5940062169}, 
                      {place: "Lab H", X: -9341106.90126423, Y: 1102650.164140742}, 
                      {place: "Biblioteca", X: -9341106.90126423, Y: 1102503.2811197315},  
-                     {place: "Super Cartago", X: -9342335.86844259, Y: 1102024.005848375},  
+                   //  {place: "Super Cartago", X: -9342335.86844259, Y: 1102024.005848375},  
                      {place: "Esquina sur", X: -9342342.324973054, Y: 1101922.3079511977},  
                     ];
 
@@ -107,8 +107,8 @@ export default class AR_Scene extends Component {
         {this.loadARObject2()}
 
         <ViroImage
-            position={[0.1, 0, 0.7]}
-            resizeMode='ScaleToFit'
+            position={[0, 0.5,-1.5]}
+            resizeMode='ScaleToFill'
             dragType="FixedDistance" onDrag={()=>{}}
             source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FIMG_1118.jpg?alt=media&token=40885398-5a20-4b3a-9bc5-2e5bf6dbbf73'}}
         />
@@ -138,16 +138,16 @@ export default class AR_Scene extends Component {
   loadARObject2(){
     return ( 
       <ViroNode>
-        <ViroText text={this.state.objectPlaceAR2}
-          scale={[2,2,2]} height={5} width={4} 
-          position={[this.state.objectXPos2 + 0.5, 1, this.state.objectZPos2]}
+        <ViroText text="Objeto de ejemplo"
+          scale={[0.4,0.4,0.4]} height={5} width={4} 
+          position={[0, 1, -1]}
           style={styles.helloWorldTextStyle}
         />
 
         <ViroImage
           onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-          scale={[2,2,2]}
-          position={[this.state.objectXPos2, 0.5, this.state.objectZPos2]}
+          scale={[.5,.5,.5]}
+          position={[0.5, 0, -1]}
           source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67'}}
         />
       </ViroNode>
@@ -168,7 +168,6 @@ export default class AR_Scene extends Component {
   _setObjectPositions(){
     Geolocation.watchPosition(
       (position) => {
-        console.log("processing");
         this._calibrateCompass();
       //  console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
 
@@ -254,15 +253,19 @@ export default class AR_Scene extends Component {
  }
   
   _onTrackingUpdated(state, reason) {
-    if (state == ViroConstants.TRACKING_NORMAL){
+    /*if (state == ViroConstants.TRACKING_NORMAL){
       this.setState({
         hasARInitialized: true,
       });
       console.log("Tracking normal");
     } else{
-      console.log("Move the camera around");
-    }
+      console.log("Error tracking " + state);
+    }*/
+    this.setState({
+      hasARInitialized: true,
+    });
   }
+
 }
 
 async function checkLocalizationPermission(){
