@@ -12,7 +12,7 @@ import {
 import mapComponent from './map';
 import placeComponent from '../../../components/Map/Place/Place'
 
-import augmentedRealityComponent from '../../../components/Viromedia/ViromediaController';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import virtualVisitComponent from '../../../components/VirtualVisit/VirtualVisit';
 import viromediaControllerComponent from '../../../components/Viromedia/ViromediaController';
@@ -37,6 +37,9 @@ const mapStack = createStackNavigator(
         title: "Mapa",
         //header: null
         //tabBarVisible: false,
+        headerRight: 
+        <Icon
+          name='reorder'  size={30} color="#000" style={{marginRight: 15}}/>,
       },
     },
     Place: placeComponent,
@@ -107,7 +110,6 @@ const timeLineStack = createStackNavigator(
     }
 );
 
-
 const AppNavigator = createBottomTabNavigator(
   {
     Map: mapStack,
@@ -115,7 +117,7 @@ const AppNavigator = createBottomTabNavigator(
     VirtualVisit: {
       screen: virtualVisitStack,
       navigationOptions: ({ navigation }) => ({
-        tabBarVisible: !(navigation.state.index === 1)
+        tabBarVisible: !(navigation.state.index === 1),
       }),
     },
     UrbanOffer: urbanOfferStack,

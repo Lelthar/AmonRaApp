@@ -506,17 +506,22 @@ class MapComponent extends Component {
               {this.state.informationVisible && <View style={{flex:14, flexDirection: 'row', padding:15, width:300,position:"absolute",bottom:0,backgroundColor:'rgba(54, 145, 160, 0.8)'}} >
                 <View style={{flex:6}}>
                   <View style={{flex:1, marginBottom:5}}>
-                    <Text style={{color:'white',fontSize: 18,fontWeight:"bold"}}>{this.state.checkerTitle}</Text>
+                    <Text style={{color:'white',fontSize: 17,fontWeight:"bold"}}>{this.state.checkerTitle}</Text>
                   </View>
                   <View style={{flex:1,marginBottom:5}}>
-                    <Text style={{color:'white',fontSize: 16}}>{"Dirección: "+this.state.checkerDir}</Text>
-                    <Text style={{color:'white',fontSize: 16}}>{"Tel: "+this.state.checkerTel}</Text>
-                    <Text style={{color:'white',fontSize: 16}}>{"Facebook: "+this.state.checkerFacebook}</Text>
+                    <Text style={{color:'white',fontSize: 15}}>{"Dirección: "+this.state.checkerDir}</Text>
+                    <Text style={{color:'white',fontSize: 15}}>{"Tel: "+this.state.checkerTel}</Text>
+                    { this.state.checkerFacebook != "" &&
+                      <Text style={{color:'white',fontSize: 15}}>{"Facebook: "+this.state.checkerFacebook}</Text>
+                      }
                   </View>
                   <View style={{flex:0.5}}/>
-                  <View style={{flex:1}}>
-                    <Text style={{color:'white',fontSize: 14}}>{"Visita este lugar para descubrir más RA"}</Text>
-                  </View>
+                  { this.state.current_marker.category == "Realidad Aumentada" &&
+                    <View style={{flex:1}}>
+                      <Text style={{color:'white',fontSize: 13}}>{"Visita este lugar para descubrir más RA"}</Text>
+                    </View>
+                  }
+                  
                 </View>
                 <View style={{flex:1}}>
                   <View style={{flex:1}}>

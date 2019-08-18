@@ -47,7 +47,7 @@ export default class MenuSide extends Component {
         }
     }
 
-    goTo(option, options){
+    /*goTo(option, options){
 
         var tmpOptions = options.slice()
 
@@ -81,7 +81,7 @@ export default class MenuSide extends Component {
         this.setState ({
             options: tmpOptions
         })
-    }
+    }*/
 
     render() {
 
@@ -96,7 +96,7 @@ export default class MenuSide extends Component {
                             return (
                                 <View style={styles.option}>
                                     <TouchableOpacity style={[styles.options_style, item.active && styles.options_style_active]}
-                                        onPress={() => this.goTo(item.key, this.state.options)}>
+                                        onPress={() => console.log("nothing")}>
                                         <Text style={styles.letters_appereance}>
                                             {item.key}
                                         </Text>
@@ -107,7 +107,7 @@ export default class MenuSide extends Component {
                                                 data={item.subOptions}
                                                 renderItem={({item}) =>
                                                         <TouchableOpacity style={styles.suboptions_style}
-                                                            onPress={() => this.goTo(item.key, parentData.subOptions)}>
+                                                            onPress={() => console.log("nothing")}>
                                                             <Text style={styles.letters_appereance}>
                                                                 {item.key}
                                                             </Text>
