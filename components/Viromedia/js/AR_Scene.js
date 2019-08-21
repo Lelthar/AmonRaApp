@@ -26,7 +26,7 @@ import {
 import Geolocation from 'react-native-geolocation-service';
 import RNSimpleCompass from 'react-native-simple-compass';
 
-
+/*
 const coordTEC = [{place: "Centro de las Artes", lat: 9.857535, lon: -83.911538},
                   {place: "Financiero", lat: 9.856955, lon: -83.912267}, 
                   {place: "Editorial TEC", lat: 9.856614, lon: -83.912142},
@@ -41,6 +41,41 @@ const coordTEC = [{place: "Centro de las Artes", lat: 9.857535, lon: -83.911538}
                   {place: "Lab H", lat: 9.856300, lon: -83.912591}, 
                   {place: "Biblioteca", lat: 9.855000, lon: -83.912591},  
                  ];
+
+const coordAmon = [ {place: "Vista Edificio Esquinero Av 7 y Calle 3", lat: 9.93711, lon: -84.07715},
+                    {place: "Vista Casa Alejo Aguilar Bolandi, desde esquina suroeste entre Avenida 9 y Calle 3", lat: 9.938, lon: -84.07718},
+                    {place: "Vista Saborío Iglesias (Casa Verde), desde esquina suroeste entre Avenida 9 y Calle 7", lat: 9.93762, lon: -84.07492 },                                       
+                    {place: "Vista Avenida 9 hacia el este (costado Casa Mariano Álvarez Melgar)", lat: 9.93791, lon: -84.07652},
+                    {place: "Vista Calle 3A hacia Avenida 11", lat: 9.93814, lon: -84.07627},
+                    {place: "Vista del muro de la Casa González Feo, desde Calle 9", lat: 9.93701, lon: -84.07409},  
+                    {place: "Vista Antiguo Hotel Tenerife, desde Calle 9", lat: 9.93814, lon: -84.07627},
+                    {place: "Vista Antiguo Hotel Rey Amón, desde esquina suroeste entre Avenida 7 y Calle 9", lat: 9.93648, lon: -84.07407}, 
+                    {place: "Vista Casa 936 (Casa Familia Castro Odio), desde calle 3A", lat: 9.93839, lon: -84.07633},
+                    {place: "Vista Restaurante Silvestre (Antigua Casa Peralta Zeller), desde esquina noreste entre Avenida 11 y Calle 3A", lat: 9.93862, lon: -84.07623}, 
+                    {place: "Vista Hotel Dunn Inn, desde Avenida 11", lat: 9.9385, lon: -84.0755},
+                    {place: "Vista Calle 5 sobre Avenida 11 hacia Avenida 9", lat: 9.9385, lon: -84.0755},
+                    {place: "Vista Castillo del Moro desde Calle 3", lat: 9.9392, lon: -84.07702},
+                    {place: "Vista Castillo del Moro desde esquina noreste entre Avenida 13 y Calle 3", lat: 9.93941, lon: -84.07696}, 
+                    {place: "Vista Antigua Casa Serrano Bonilla", lat: 9.93856, lon: -84.07595}, 
+                    {place: "Vista Antigua Escuela Técnica Nacional (Centro Académico de San José - TEC)", lat: 9.93816, lon: -84.07545}, 
+                    {place: "Vista Alianza Cultural Franco Costarricense desde la esquina suroeste de la Avenida 7 y Calle 5", lat: 9.93683, lon: -84.07583},
+                    {place: "Vista Casa entre Avenida 5 y Calles 5 y 7", lat: 9.93674, lon: -84.07539}, 
+                    {place: "Vista Antigua Fosforera (Instituto Mixto de Ayuda Social)", lat: 9.93667, lon: -84.07501},  
+                    {place: "Vista Anexo Hotel Don Carlos desde Calle 9", lat: 9.93729, lon: -84.07411},  
+                    {place: "Hotel Don Carlos desde Calle 9", lat: 9.93742, lon: -84.07412}, 
+                    {place: "Vista Antigua Casa Mariano Álvarez Melgar desde Avenida 9", lat: 9.93792, lon: -84.07619},  
+                    {place: "Vista Antigua Casa Mariano Álvarez Melgar desde Calle 3A", lat: 9.93779, lon: -84.07624}, 
+                    {place: "Vista Antiguo Anticuario San Ángel", lat: 9.93771, lon: -84.07622},  
+                    {place: "Vista Antigüedades Gobelino y Café Gournet, desde esquina sureste Avenida 9 y Calle 3A", lat: 9.93787, lon: -84.07626},
+                    {place: "Vista Antigua Casa Alejo Aguilar Bolandi, desde esquina noroeste entre Avenida 9 y Calle 3", lat: 9.93809, lon: -84.07717}, 
+                    {place: "Vista Antigua Casa Alejo Aguilar Bolandi, desde Calle 3", lat: 9.9378, lon: -84.07718}, 
+                    {place: "Vista Antigua Casa Cipriano Herrero, desde esquina suroeste entre Avenida 11 y Calle 3", lat: 9.93871, lon: -84.07712}, 
+                    {place: "Vista Hotel Don Carlos, desde esquina noroeste entre esquina Avenida 9 y Calle 9", lat: 9.93758, lon: -84.07418}, 
+                    {place: "Vista Antiguo Hotel Amstel Amón, desde esquina suroeste entre Avenida 11 y Calle 3A", lat: 9.93855, lon: -84.07635},
+                    {place: "Vista Antiguo Hotel Hemingway Inn, desde esquina suroeste entre Avenida 9 y Calle 9", lat: 9.9375, lon: -84.07419}, 
+                    {place: "Vista interna de la recepción Hotel Inn Casa Verde", lat: 9.93784, lon: -84.07474}, 
+
+                  ]
 
 const mercatorTEC = [{place: "Centro de las Artes", X: -9340989.681840425, Y: 1102789.7035470225},
                      {place: "Financiero", X: -9341070.833749214, Y: 1102724.1708053024},
@@ -58,6 +93,41 @@ const mercatorTEC = [{place: "Centro de las Artes", X: -9340989.681840425, Y: 11
                    //  {place: "Super Cartago", X: -9342335.86844259, Y: 1102024.005848375},  
                      {place: "Esquina sur", X: -9342342.324973054, Y: 1101922.3079511977},  
                     ];
+*/
+const mercatorAmon = [{place: "Vista Edificio Esquinero Av 7 y Calle 3", X: -9359425.52534968 , Y: 1111781.7786023072},
+                      {place: "Vista Casa Alejo Aguilar Bolandi, desde esquina suroeste entre Avenida 9 y Calle 3", X: -9359428.864934405, Y: 1111882.362060863},
+                      {place: "Vista Saborío Iglesias (Casa Verde), desde esquina suroeste entre Avenida 9 y Calle 7", X: -9359177.282885212, Y: 1111839.4162810256},                                       
+                      {place: "Vista Avenida 9 hacia el este (costado Casa Mariano Álvarez Melgar)", X: -9359355.394070482, Y: 1111872.1906874448},
+                      {place: "Vista Calle 3A hacia Avenida 11", X: -9359327.564197782, Y: 1111898.1842028568},
+                      {place: "Vista del muro de la Casa González Feo, desde Calle 9", X: -9359084.887707854, Y: 1111770.477107217},  
+                      {place: "Vista Antiguo Hotel Tenerife, desde Calle 9", X: -9359327.564197782, Y: 1111898.1842028568},
+                      {place: "Vista Antiguo Hotel Rey Amón, desde esquina suroeste entre Avenida 7 y Calle 9", X: -9359082.661318038, Y: 1111710.5792409254}, 
+                      {place: "Vista Casa 936 (Casa Familia Castro Odio), desde calle 3A", X: -9359334.243367229, Y: 1111926.4380446929},
+                      {place: "Vista Restaurante Silvestre (Antigua Casa Peralta Zeller), desde esquina noreste entre Avenida 11 y Calle 3A", X: -9359323.11141815, Y: 1111952.431598262}, 
+                      {place: "Vista Hotel Dunn Inn, desde Avenida 11", X: -9359241.848189872, Y: 1111938.8697419444},
+                      {place: "Vista Calle 5 sobre Avenida 11 hacia Avenida 9", X: -9359241.848189872, Y: 1111938.8697419444},
+                      {place: "Vista Castillo del Moro desde Calle 3", X: -9359411.053815877, Y: 1112017.9806406198},
+                      {place: "Vista Castillo del Moro desde esquina noreste entre Avenida 13 y Calle 3", X: -9359404.37464643, Y: 1112041.7139432493},                      
+                      {place: "Vista Antigua Casa Serrano Bonilla",  X: -9359291.941960732, Y: 1111945.650669481}, 
+                      {place: "Vista Antigua Escuela Técnica Nacional (Centro Académico de San José - TEC)", X: -9359236.282215333, Y: 1111900.4445094084}, 
+                      {place: "Vista Alianza Cultural Franco Costarricense desde la esquina suroeste de la Avenida 7 y Calle 5",X: -9359278.583621832, Y: 1111750.1344247607},
+                      {place: "Vista Casa entre Avenida 5 y Calles 5 y 7",  X: -9359229.603045885, Y: 1111739.9630877317}, 
+                      {place: "Vista Antigua Fosforera (Instituto Mixto de Ayuda Social)",X: -9359187.301639384, Y: 1111732.0520497558},  
+                      {place: "Vista Anexo Hotel Don Carlos desde Calle 9",  X: -9359087.11409767, Y: 1111802.1213021805},  
+                      {place: "Hotel Don Carlos desde Calle 9", X: -9359088.227292577, Y: 1111816.8132590507}, 
+                      {place: "Vista Antigua Casa Mariano Álvarez Melgar desde Avenida 9", X: -9359318.658638518, Y: 1111873.3208399075},  
+                      {place: "Vista Antigua Casa Mariano Álvarez Melgar desde Calle 3A", X: -9359324.22461306, Y: 1111858.6288605737}, 
+                      {place: "Vista Antiguo Anticuario San Ángel",  X: -9359321.998223243, Y: 1111849.58764542556},  
+                      {place: "Vista Antigüedades Gobelino y Café Gournet, desde esquina sureste Avenida 9 y Calle 3A", X: -9359326.451002875, Y: 1111867.670077934},
+                      {place: "Vista Antigua Casa Alejo Aguilar Bolandi, desde esquina noroeste entre Avenida 9 y Calle 3", X: -9359427.751739496, Y: 1111892.533437081}, 
+                      {place: "Vista Antigua Casa Alejo Aguilar Bolandi, desde Calle 3", X: -9359428.864934405, Y: 1111859.759012624}, 
+                      {place: "Vista Antigua Casa Cipriano Herrero, desde esquina suroeste entre Avenida 11 y Calle 3", X: -9359422.185764957, Y: 1111962.6029937635}, 
+                      {place: "Vista Hotel Don Carlos, desde esquina noroeste entre esquina Avenida 9 y Calle 9", X: -9359094.906462025, Y: 1111834.8956755253}, 
+                      {place: "Vista Antiguo Hotel Amstel Amón, desde esquina suroeste entre Avenida 11 y Calle 3A", X: -9359336.469757047, Y: 1111944.5205148042},
+                      {place: "Vista Antiguo Hotel Hemingway Inn, desde esquina suroeste entre Avenida 9 y Calle 9", X: -9359096.019656934, Y: 1111825.8544661829}, 
+                      {place: "Vista interna de la recepción Hotel Inn Casa Verde", X: -9359157.24537687, Y: 1111864.2796211652}, 
+
+                  ]
 
 export default class AR_Scene extends Component {
 
@@ -169,37 +239,31 @@ export default class AR_Scene extends Component {
     Geolocation.watchPosition(
       (position) => {
         this._calibrateCompass();
-      //  console.log("Current Lat " + position.coords.latitude + " Current Lng " + position.coords.longitude);
+        let objectAR, firstObject, secondObject; 
+        let firstObjectDistance = Number.MIN_VALUE, secondObjectDistance = Number.MIN_VALUE;
 
-        let objetPositionAR1;
-        let objetPositionAR2;
-        let objectDistanceArray = [];
-        let objectsArray = [];
-
-        mercatorTEC.forEach((element) => {
-          objetPositionAR1 = this._transformPointToAR(position.coords.latitude, position.coords.longitude, element.X, element.Y, element.place);
-          objectsArray.push(objetPositionAR1);
-          objectDistanceArray.push(Math.abs(objetPositionAR1.x) +  Math.abs(objetPositionAR1.z));
+        mercatorAmon.forEach((element) => {
+          objectAR = this._transformPointToAR(position.coords.latitude, position.coords.longitude, element.X, element.Y, element.place);
+          let distance = Math.abs(objectAR.x) +  Math.abs(objectAR.z);
+          if(distance > firstObjectDistance){
+            secondObject = firstObject;
+            firstObject = objectAR;
+            firstObjectDistance = Math.abs(objectAR.x) +  Math.abs(objectAR.z);
+          }else if(distance > secondObjectDistance){
+            secondObject = objectAR;
+            secondObjectDistance = Math.abs(objectAR.x) +  Math.abs(objectAR.z);
+          }
         });
-
-        let indexNearestObject = objectDistanceArray.indexOf(Math.min(...objectDistanceArray));
-        objetPositionAR1 = objectsArray[indexNearestObject];
-
-        objectDistanceArray.splice(indexNearestObject, 1); 
-        objectsArray.splice(indexNearestObject, 1);
-
-        indexNearestObject = objectDistanceArray.indexOf(Math.min(...objectDistanceArray));
-        objetPositionAR2 = objectsArray[indexNearestObject];
 
         this.setState({
           userLatitude: position.coords.latitude,
           userLongitude: position.coords.longitude,
-          objectPlaceAR1: objetPositionAR1.p,
-          objectPlaceAR2: objetPositionAR2.p,
-          objectXPos1: objetPositionAR1.x,
-          objectZPos1: objetPositionAR1.z,
-          objectXPos2: objetPositionAR2.x,
-          objectZPos2: objetPositionAR2.z,
+          objectPlaceAR1: firstObject.place,
+          objectPlaceAR2: secondObject.place,
+          objectXPos1: firstObject.x,
+          objectZPos1: firstObject.z,
+          objectXPos2: secondObject.x,
+          objectZPos2: secondObject.z,
           error: null   
         });
       },
@@ -226,8 +290,6 @@ export default class AR_Scene extends Component {
   
   _transformPointToAR(lat, long, objectPoint_x, objectPoint_y, place) {
     let userPoint = this._coordLatLongToMercator(lat, long);
-    //let superChospi = this._coordLatLongToMercator(9.8507581, -83.923631);
-    //let esquina = this._coordLatLongToMercator(9.849858, -83.923689);
 
     // latitude(north,south) maps to the z axis in AR
     // longitude(east, west) maps to the x axis in AR
@@ -239,7 +301,7 @@ export default class AR_Scene extends Component {
     let newRotatedZ = objFinalPosZ * Math.cos(angle) + objFinalPosX * Math.sin(angle);  
 
     //flip the z, as negative z(is in front of us which is north, pos z is behind(south).
-    return ({x:newRotatedX, z:-newRotatedZ, p: place});
+    return ({x:newRotatedX, z:-newRotatedZ, place: place});
   }
 
   // Converts Lat and Long to Mercator projection

@@ -27,6 +27,9 @@ var NAVIGATOR_TYPE_VR = "VR";
 var NAVIGATOR_TYPE_AR = "AR";
 var NAVIGATOR_TYPE_3D = "3D";
 
+var exampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel lacus molestie, blandit ante sit amet, sagittis risus.  ";
+var infoText = "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001).";
+
 export default class ViromediaController extends Component {
 
   constructor(props) {
@@ -36,13 +39,13 @@ export default class ViromediaController extends Component {
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this.showInformationMenu = this.showInformationMenu.bind(this);
     this.showDataSheet = this.showDataSheet.bind(this);
-    this.setInformation = this.setInformation.bind(this);
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
-
+    this.toggleBriefDescripcion = this.toggleBriefDescripcion.bind(this);
+    
     this.state = {
       sharedProps : sharedProps, 
       navigatorType : this.props.navigation.state.params.do,
-      viroAppProps: {setInformation: this.setInformation},
+      viroAppProps: {setInformation: this.toggleBriefDescripcion},
       vrMode : null,
       content: this.props.navigation.state.params.filename,
 
@@ -150,13 +153,14 @@ export default class ViromediaController extends Component {
           <Text style={{color:"#1a606b",fontSize: 14}}> Vivencias</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={localStyles.infoButton}>
+        <TouchableOpacity style={localStyles.infoButton} onPress={() => this.toggleBriefDescripcion()}>
           <Image  source={require('../../images/icons/RA/mas-info.png')} />
           <Text style={{color:"#1a606b",fontSize: 14}}> Info</Text>
         </TouchableOpacity>
       </View>
     );
   }
+  //
 
   toggleDataSheet(){
     this.setState({
@@ -166,11 +170,10 @@ export default class ViromediaController extends Component {
   }
 
   // Show extra information of a building.
-  setInformation(place){
-    console.log(place);
+  toggleBriefDescripcion(){ 
     this.setState({
-      informationText: "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001).",
-      informationVisible : true
+      informationText: this.state.informationText == infoText ? exampleText : infoText,
+      informationVisible : true,
     });
   }
 
@@ -192,7 +195,6 @@ export default class ViromediaController extends Component {
 
    // This function "exits" Viro by setting the navigatorType to UNSET.
   _exitViro() {
-    console.log("hey")
     this.setState({
       navigatorType : "UNSET"
     })
@@ -212,14 +214,14 @@ export default class ViromediaController extends Component {
         <View style={localStyles.inner} >
 
           <Text style={localStyles.titleText}>
-            Do you have a VR headset?
+            ¿Posee visores VR?
           </Text>
 
           <TouchableHighlight style={localStyles.buttons}
             onPress={this._getOnClick(true)}
             underlayColor={'#68a0ff'} >
 
-            <Text style={localStyles.buttonText}>YES</Text>
+            <Text style={localStyles.buttonText}>SÍ</Text>
           </TouchableHighlight>
 
           <TouchableHighlight style={localStyles.buttons}
