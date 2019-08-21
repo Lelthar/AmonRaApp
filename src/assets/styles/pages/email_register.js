@@ -27,20 +27,20 @@ const styles = StyleSheet.create({
   generoInput: {
     flex:2,
     alignSelf: 'center',
-    fontSize: 18,
+    fontSize: 16,
     color: '#6D6E71',
   },
   anhoInput: {
     flex:6,
     alignSelf: 'center',
-    fontSize: 18,
+    fontSize: 16,
     color: '#6D6E71',
   },
   inputBox: {
     flex:7,
     backgroundColor: 'white',
     borderRadius: 25,
-    fontSize: 16,
+    fontSize: 14,
     color: '#000000',
   },
   paisesBox: {
