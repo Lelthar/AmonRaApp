@@ -5219,14 +5219,6 @@ react-native-check-box@^2.1.0:
   dependencies:
     prop-types "^15.5.7"
 
-react-native-dash@0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/react-native-dash/-/react-native-dash-0.0.9.tgz#a07eb06a360530e42980e9cf90fd7f862705e2f2"
-  integrity sha1-oH6wajYFMOQpgOnPkP1/hicF4vI=
-  dependencies:
-    prop-types "^15.5.10"
-    react-native-measureme "0.0.1"
-
 react-native-datepicker@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/react-native-datepicker/-/react-native-datepicker-1.7.2.tgz#58d0822591a0ac9b32aba082650222a0ee29669d"
@@ -5353,11 +5345,6 @@ react-native-material-textfield@^0.12.0:
   integrity sha1-P7oZ12q4n2cFLIHgghUvwkPYKj8=
   dependencies:
     prop-types "^15.5.9"
-
-react-native-measureme@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-measureme/-/react-native-measureme-0.0.1.tgz#8b1c5595cdbb1cfdf85bff98fe36d33e98b6162c"
-  integrity sha1-ixxVlc27HP34W/+Y/jbTPpi2Fiw=
 
 react-native-modal-selector@0.0.27:
   version "0.0.27"
