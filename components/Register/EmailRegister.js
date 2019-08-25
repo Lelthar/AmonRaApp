@@ -278,10 +278,10 @@ render() {
             </View>
             <View style={styles.inputData}>
               <Text style={styles.generoInput}>Género:</Text>
-              <View style={{flex:6, flexDirection:"row"}}>
-                <CheckBox 
-                  style={styles.checkbox}
-                  onClick={()=>{
+              <View style={{flexDirection:"column"}}>
+                <View style={{flexDirection:"row"}}>
+                  <CheckBox style={styles.checkbox}
+                    onClick={()=>{
                       this.setState({
                         checkedM:!this.state.checkedM
                       })
@@ -303,11 +303,11 @@ render() {
                       <Image source={require('../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
                     }
                   />
-                  <TextInput style={styles.inputBox} placeholder ="Femenino"
-                    editable={false}
-                    selectTextOnFocus={false}
-                    underlineColorAndroid={'transparent'}
-                  />
+                  <Text style={styles.genderBox}>
+                    Femenino
+                  </Text>
+                </View>
+                <View style={{flexDirection:"row"}}>
                   <CheckBox style={styles.checkbox}
                     onClick={()=>{
                       this.setState({
@@ -331,11 +331,11 @@ render() {
                       <Image source={require('../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
                     }
                   />
-                  <TextInput style={styles.inputBox} placeholder ="Masculino"
-                    editable={false}
-                    selectTextOnFocus={false}
-                    underlineColorAndroid={'transparent'}
-                  />
+                  <Text style={styles.genderBox}>
+                    Masculino
+                  </Text>
+                    
+                </View>
               </View>
             </View>
             <View style={styles.inputDataYears}>
