@@ -15,6 +15,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  PermissionsAndroid
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -122,6 +123,8 @@ setUserDataStorage(response,header) {
     const userData = this.get_user_data(header,response);
     AsyncStorage.setItem(USER_DATA, JSON.stringify(userData));
 
+    checkLocalizationPermission();
+
     this._showConfidencialityAlert();
     
   } else {
@@ -191,7 +194,7 @@ hasEmailGoodFormat(email) {
 pre_register( ){
   if (this.isNoTextInputEmpty()) {
     const email = this.state.email;
-
+    
     if (this.hasEmailGoodFormat(email)) {
       this.setState({email});
       this.changeButtonToDisabled();
@@ -368,5 +371,28 @@ render() {
   );
   }
 }
+
+async function checkLocalizationPermission(){
+  try {
+    const granted = await PermissionsAndroid.requestMultiple([PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      PermissionsAndroid.PERMISSIONS.CAMERA]);
+      return true;
+  } catch (err) {
+    console.warn(err);
+  }
+  return false;
+}
+
+async function checkCameraPermission(){
+  try {
+    const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA);
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      return true;
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+  return false;
+  }
 
 export default RegisterMain;
