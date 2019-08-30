@@ -29,6 +29,8 @@ import timeLineComponent from '../../../components/TimeLine/TimeLine';
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
 
+import HamburgerMenu from '../partials/hamburger_button'
+
 const mapStack = createStackNavigator(
   {
     Map: {
@@ -37,23 +39,26 @@ const mapStack = createStackNavigator(
         title: "Mapa",
         //header: null
         //tabBarVisible: false,
-        headerRight: 
-        <Icon
-          name='reorder'  size={30} color="#000" style={{marginRight: 15}}/>,
+        headerRight: <HamburgerMenu />,
       },
     },
-    Place: placeComponent,
-  },{
-    /*headerMode: 'none',
-    navigationOptions: {
-      headerVisible: false,
-    }*/
-   }
+    Place: {
+      screen: placeComponent,
+      navigationOptions: {
+        headerRight: <HamburgerMenu />,
+      },
+    },
+  }
 );
 
 const virtualVisitStack = createStackNavigator(
   {
-    VirtualVisit: virtualVisitComponent,
+    VirtualVisit: {
+      screen: virtualVisitComponent,
+      navigationOptions: {
+        headerRight: <HamburgerMenu />,
+      },
+    },
     ViromediaController: {
       screen: viromediaControllerComponent,
       navigationOptions: {
@@ -70,12 +75,42 @@ const virtualVisitStack = createStackNavigator(
 
 const urbanOfferStack = createStackNavigator(
   {
-    UrbanOffer: urbanOfferComponent,
-    Cultural: culturalComponent,
-    Institutional: institutionalComponent,
-    Hotels: hotelsComponent,
-    Gastronomy: gastronomyComponent,
-    SeeMore: seeMoreComponent,
+    UrbanOffer: {
+      screen: urbanOfferComponent,
+      navigationOptions: {
+        headerRight: <HamburgerMenu />,
+      },
+    },
+    Cultural: {
+      screen: culturalComponent,
+      navigationOptions: {
+        headerRight: <HamburgerMenu />,
+      },
+    },
+    Institutional: {
+      screen: institutionalComponent,
+      navigationOptions: {
+        headerRight: <HamburgerMenu />,
+      },
+    },
+    Hotels: {
+      screen: hotelsComponent,
+      navigationOptions: {
+        headerRight: <HamburgerMenu />,
+      },
+    },
+    Gastronomy: {
+      screen: gastronomyComponent,
+      navigationOptions: {
+        headerRight: <HamburgerMenu />,
+      },
+    },
+    SeeMore: {
+      screen: seeMoreComponent,
+      navigationOptions: {
+        headerRight: <HamburgerMenu />,
+      },
+    },
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -89,6 +124,9 @@ const augmentedRealityStack = createStackNavigator(
       params: {
         do: "AR",
       },
+      navigationOptions: {
+        headerRight: <HamburgerMenu />,
+      },
     },
   },
   {
@@ -101,7 +139,8 @@ const timeLineStack = createStackNavigator(
     TimeLine: {
       screen: timeLineComponent,
       navigationOptions: {
-          title: "Time Line"
+        title: "Time Line",
+        headerRight: <HamburgerMenu />,
       },
     },
   },

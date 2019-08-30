@@ -1,10 +1,6 @@
 
 import React, { Component } from 'react';
 import {
-    Platform,
-    StyleSheet,
-    Text,
-    View,
     Dimensions,
 } from 'react-native';
 
@@ -39,9 +35,6 @@ export default class MainApp extends Component {
             height: Dimensions.get('window').height,
             navigatorMethod: null,
         }
-        this.getNavigationProp = this.getNavigationProp.bind(this);
-        this.getActiveFilters = this.getActiveFilters.bind(this);
-        this.updateNavigationToScreen  = this.updateNavigationToScreen.bind(this);
     }
 
     _onOrientationDidChange = (orientation) => {
@@ -67,115 +60,33 @@ export default class MainApp extends Component {
     
     componentDidMount() {
     
-        Orientation.getAutoRotateState((rotationLock) => this.setState({rotationLock}));
-        //this allows to check if the system autolock is enabled or not.
-    
-        Orientation.lockToPortrait(); //this will lock the view to Portrait
-        //Orientation.lockToLandscapeLeft(); //this will lock the view to Landscape
-        //Orientation.unlockAllOrientations(); //this will unlock the view to all Orientations
-    
-        //get current UI orientation
-        /*
-        Orientation.getOrientation((orientation)=> {
-          console.log("Current UI Orientation: ", orientation);
-        });
-    
-        //get current device orientation
-        Orientation.getDeviceOrientation((deviceOrientation)=> {
-          console.log("Current Device Orientation: ", deviceOrientation);
-        });
-        */
-    
-        Orientation.addOrientationListener(this._onOrientationDidChange);
-      }
-    
-      componentWillUnmount() {
-        Orientation.removeOrientationListener(this._onOrientationDidChange);
-      }
-
-    updateNavigationToScreen(goToScreen) {
-        this.setState(
-            {
-                navigatorMethod:goToScreen
-            });
+      Orientation.getAutoRotateState((rotationLock) => this.setState({rotationLock}));
+      //this allows to check if the system autolock is enabled or not.
+  
+      Orientation.lockToPortrait(); //this will lock the view to Portrait
+      //Orientation.lockToLandscapeLeft(); //this will lock the view to Landscape
+      //Orientation.unlockAllOrientations(); //this will unlock the view to all Orientations
+  
+      //get current UI orientation
+      /*
+      Orientation.getOrientation((orientation)=> {
+        console.log("Current UI Orientation: ", orientation);
+      });
+  
+      //get current device orientation
+      Orientation.getDeviceOrientation((deviceOrientation)=> {
+        console.log("Current Device Orientation: ", deviceOrientation);
+      });
+      */
+  
+      Orientation.addOrientationListener(this._onOrientationDidChange);
     }
-
-    // This function is use to open the FilterMenu and the map screen
-    toggleFilters() {
-        this.setState({
-            filterMenu: !(this.state.filterMenu)
-          })
-    }
-
-    // This function is use to open the MenuSide
-    toggleMenuSide(){
-        this.resetAll()
-        this.setState({
-            menuSide: !this.state.menuSide
-        })
-    }
-
-    toggleShowGuide(){
-        this.resetAll()
-        this.setState({
-            guideScreen: !this.state.guideScreen
-        })
-    }
-
-    toggleRateScreen(){
-        this.resetAll()
-        this.setState({
-            rateScreen: !this.state.rateScreen
-        })
-    }
-
-    setFirstFalse(){
-      this.setState({
-          first: false,
-      })
-    }
-
-    resetAll(){
-        this.setState({
-            filterMenu: false,
-            menuSide: false,
-            rateScreen: false,
-            guideScreen: false
-        })
-    }
-
-    getActiveFilters(filters){
-        this.setState({
-            activeFilters: filters
-        })
-    }
-
-    getNavigationProp(navProp){
-        this.setState({navigation: navProp});
+  
+    componentWillUnmount() {
+      Orientation.removeOrientationListener(this._onOrientationDidChange);
     }
 
     render() {
-      var screenProps = {
-        activeFilters:this.state.activeFilters,
-        getNavigationProp:this.getNavigationProp,
-        getActiveFilters:this.getActiveFilters,
-        showFunctions: {
-          toggleFilters: this.toggleFilters.bind(this),
-          toggleMenuSide: this.toggleMenuSide.bind(this),
-          toggleShowGuide: this.toggleShowGuide.bind(this),
-          toggleRateScreen: this.toggleRateScreen.bind(this),
-          setFirstFalse: this.setFirstFalse.bind(this),
-          resetAll: this.resetAll.bind(this),
-
-        },
-        showProps:{
-          filterMenu: this.state.filterMenu,
-          menuSide: this.state.menuSide,
-          rateScreen: this.state.rateScreen,
-          guideScreen: this.state.guideScreen,
-          first: this.state.first
-        },
-      }
         return (
             <Provider store={setupStore}>
                 <ApplicationNavigator />

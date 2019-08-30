@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
 import {
-    Platform,
-    AppRegistry,
     StyleSheet,
     Text,
     Dimensions,
     View,
     TouchableOpacity,
-    Button,
-    TouchableHighlight,
-    Geolocation,
-    Modal,
 } from 'react-native';
+
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import Image from 'react-native-scalable-image';
 import FilterMenu from '../../../components/FilterMenu/FilterMenu';
-import SlidingUpPanel from 'rn-sliding-up-panel';
-
 import AsyncStorage from '@react-native-community/async-storage';
 
 //------------------------
