@@ -10,7 +10,7 @@ import { menuSideAction } from "../../redux/actions/menuDataActions";
 const mapStateToProps = state => {
   return {
     menuSideState: state.menuDataReducer.MENUSIDE
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     setMenuSide: (data) => {
       dispatch(menuSideAction(data));
     },
-  }
+  };
 };
 
 const hamburgerMenu = (props) => {
@@ -36,7 +36,7 @@ const hamburgerMenu = (props) => {
         style={{ marginRight: 15 }}
       />
     </TouchableOpacity>
-    );
+  );
 }; 
 
 export default connect(mapStateToProps, mapDispatchToProps)(hamburgerMenu);
