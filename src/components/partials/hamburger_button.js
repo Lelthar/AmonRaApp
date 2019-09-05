@@ -20,7 +20,7 @@ let isTextDiscoverPressed = true;
 const mapStateToProps = state => {
   return {
     menuSideState: state.menuDataReducer.MENUSIDE
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
     setMenuSide: (data) => {
       dispatch(menuSideAction(data));
     },
-  }
+  };
 };
 
 function search(){ // TODO quitar 

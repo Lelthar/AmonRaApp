@@ -311,13 +311,14 @@ class MapComponent extends Component {
 
     //Para cada lista [Lat,Lng] en una lista (List<Lat,Lng>) genera un objeto latitude longitude
     arrayOfCoordinatesToLatLng(LonLatArray){
-      coordinates = []
+      let coordinates = []
       for (LonLat in LonLatArray){
         coordinates.push({
             latitude: LonLatArray[LonLat][1],
             longitude: LonLatArray[LonLat][0]
         })
       }
+      console.log(coordinates);
       return coordinates;
     }
 
@@ -691,8 +692,7 @@ const styles = StyleSheet.create({
     height: 28,
     width: 90,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:"red",
+    alignItems: "flex-start",
   },
   bottom: {
     position:'absolute', 
