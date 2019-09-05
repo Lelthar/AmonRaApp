@@ -1,3 +1,5 @@
+
+
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -11,8 +13,13 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import firebase from 'react-native-firebase';
+import { SearchBar} from 'react-native-elements';
 
 const { width } = Dimensions.get('window').width
+var isMenuVisible = true;
+let onPressTextDiscover = () =>{
+      return ;
+    }
 
 export default class Directory extends Component{
 
@@ -40,6 +47,8 @@ export default class Directory extends Component{
         return (
 
             <View style={styles.container}>
+            
+
             {/* Navigator uses flex 10. 1 up, 1 down, 8 body */}
                <View style={{flex:2}} />
 
@@ -130,7 +139,6 @@ export default class Directory extends Component{
                 </View>
                 <View style={{flex:2}}/>
 
-
             </View>
 
         );
@@ -176,7 +184,51 @@ const styles = StyleSheet.create({
   image: {
     width,
     flex: 1
+  },
+
+    // Styles for hamburguer menu:
+
+  searchBarInput:{
+    backgroundColor: '#00545D',
+
+  },
+
+  textList:{
+    color: 'white',
+    textAlign: 'left',
+    fontSize: 14, 
+    backgroundColor: '#268490',
+    padding:5,
+    marginLeft: 15
+  },
+  textMoreAmon:{
+    color: 'white',
+    textAlign: 'center',
+    fontSize:14,
+    backgroundColor: '#248B92',
+    padding:5
+
+  },
+
+  textDiscover:{
+    color: 'white',
+    textAlign: 'center',
+    fontSize:14,
+    backgroundColor: '#00545D',
+    padding:5
+  },
+
+  hamburgerMenu:{
+    backgroundColor:'#349AA9',
+    height: 200,
+    width: 200,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+
+
   }
 });
 
 AppRegistry.registerComponent('Directory', () => Directory);
+
