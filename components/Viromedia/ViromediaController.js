@@ -14,6 +14,19 @@ import {
   ViroARSceneNavigator
 } from 'react-viro';
 
+
+//----------Backend--------------
+import { 
+  TIME_LINE_URL,
+  USER_DATA,
+} from '../../constants/constants';
+
+import {
+  makeBackendRequest,
+} from '../../helpers/helpers'
+
+//-------------------------------
+
 var sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
 }
@@ -29,6 +42,8 @@ var NAVIGATOR_TYPE_3D = "3D";
 
 var exampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel lacus molestie, blandit ante sit amet, sagittis risus.  ";
 var infoText = "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001).";
+
+
 
 export default class ViromediaController extends Component {
 
@@ -69,17 +84,16 @@ export default class ViromediaController extends Component {
       }
     } else if (this.state.navigatorType == NAVIGATOR_TYPE_3D) {
       return this._get3DNavigator();
-    }/*else{
-      return this._getExperienceSelector();
-    }*/
+    }
   }
 
   // Returns the ViroARSceneNavigator which will start the AR experience
   _getARNavigator() {
     return (
       <View style={{flex:1}}>
+
         <ViroARSceneNavigator {...this.state.sharedProps}
-          initialScene={{scene: InitialARScene}} onExitViro={this._exitViro} viroAppProps={this.state.viroAppProps}/>
+            initialScene={{scene: InitialARScene}} onExitViro={this._exitViro} viroAppProps={this.state.viroAppProps}/>
 
         {this.state.informationVisible
           ? this.showInformationMenu()
@@ -195,9 +209,11 @@ export default class ViromediaController extends Component {
 
    // This function "exits" Viro by setting the navigatorType to UNSET.
   _exitViro() {
+    console.log("????");
     this.setState({
-      navigatorType : "UNSET"
+      navigatorType : "UNSET",
     })
+    this.props.navigation.pop();
   }
 
   _getOnClick(vrMode) {
@@ -234,7 +250,6 @@ export default class ViromediaController extends Component {
       </View>
     );
   }
-
 }
 
 var localStyles = StyleSheet.create({
