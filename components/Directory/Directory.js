@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -15,13 +13,61 @@ import Swiper from 'react-native-swiper';
 import firebase from 'react-native-firebase';
 import { SearchBar} from 'react-native-elements';
 
+//Imports for redux
+
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../src/redux/actions/menuDataActions";
+
+import HamburguerComponent from '../MenuSide/HamburguerMenu'
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+// End of redux imports
+
+
 const { width } = Dimensions.get('window').width
 var isMenuVisible = true;
 let onPressTextDiscover = () =>{
       return ;
     }
 
-export default class Directory extends Component{
+class Directory extends Component{
 
     constructor(props){
         super(props);
@@ -47,7 +93,6 @@ export default class Directory extends Component{
         return (
 
             <View style={styles.container}>
-            
 
             {/* Navigator uses flex 10. 1 up, 1 down, 8 body */}
                <View style={{flex:2}} />
@@ -139,6 +184,12 @@ export default class Directory extends Component{
                 </View>
                 <View style={{flex:2}}/>
 
+                {/*Start of hamburguer menu */}
+                {this.props.menuSideState &&
+                  < HamburguerComponent />
+                }
+            {/*End of hamburguer menu */}
+
             </View>
 
         );
@@ -186,49 +237,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
 
-    // Styles for hamburguer menu:
-
-  searchBarInput:{
-    backgroundColor: '#00545D',
-
-  },
-
-  textList:{
-    color: 'white',
-    textAlign: 'left',
-    fontSize: 14, 
-    backgroundColor: '#268490',
-    padding:5,
-    marginLeft: 15
-  },
-  textMoreAmon:{
-    color: 'white',
-    textAlign: 'center',
-    fontSize:14,
-    backgroundColor: '#248B92',
-    padding:5
-
-  },
-
-  textDiscover:{
-    color: 'white',
-    textAlign: 'center',
-    fontSize:14,
-    backgroundColor: '#00545D',
-    padding:5
-  },
-
-  hamburgerMenu:{
-    backgroundColor:'#349AA9',
-    height: 200,
-    width: 200,
-    position: 'absolute',
-    top: 0,
-    right: 0,
-
-
-  }
 });
 
+const dirComponent = connect(mapStateToProps,mapDispatchToProps)(Directory)
+export default dirComponent;
 AppRegistry.registerComponent('Directory', () => Directory);
 

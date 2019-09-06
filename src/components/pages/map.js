@@ -105,6 +105,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
+import hamburgerComponent from '../../../components/MenuSide/HamburguerMenu'
 class MapComponent extends Component {
     constructor (props) {
         super(props);
