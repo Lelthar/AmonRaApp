@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import {
-    Platform,
-    AppRegistry,
     StyleSheet,
     Text,
     Dimensions,
     View,
     TouchableOpacity,
-    Button,
-    TouchableHighlight,
-    Geolocation,
-    Modal,
 } from 'react-native';
+
+import { SearchBar} from 'react-native-elements';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import Image from 'react-native-scalable-image';
 import FilterMenu from '../../../components/FilterMenu/FilterMenu';
-import SlidingUpPanel from 'rn-sliding-up-panel';
-
 import AsyncStorage from '@react-native-community/async-storage';
 
 //------------------------
@@ -33,6 +27,10 @@ import {
 
 //------------------------
 var userLocation = null;
+
+let onPressTextDiscover = () =>{
+      return ;
+    }
 
 const barrio_amon_location = {
   latitude: 9.938232,
@@ -78,7 +76,8 @@ import {
 const mapStateToProps = state => {
   return {
     activeFilters: state.menuDataReducer.ACTIVEFILTERS,
-    filterMenu: state.menuDataReducer.FILTERMENU
+    filterMenu: state.menuDataReducer.FILTERMENU,
+    menuSideState: state.menuDataReducer.MENUSIDE
   }
 };
 
@@ -92,6 +91,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     setMenuSide: (data) => {
       dispatch(menuSideAction(data));
+
     },
     setRateScreen: (data) => {
       dispatch(rateScreenAction(data));
@@ -311,13 +311,14 @@ class MapComponent extends Component {
 
     //Para cada lista [Lat,Lng] en una lista (List<Lat,Lng>) genera un objeto latitude longitude
     arrayOfCoordinatesToLatLng(LonLatArray){
-      coordinates = []
+      let coordinates = []
       for (LonLat in LonLatArray){
         coordinates.push({
             latitude: LonLatArray[LonLat][1],
             longitude: LonLatArray[LonLat][0]
         })
       }
+      console.log(coordinates);
       return coordinates;
     }
 
@@ -372,7 +373,9 @@ class MapComponent extends Component {
     
     render() {
       return (
+
         <View style={styles.container}>
+
 
           <MapView
           style={styles.map}
@@ -550,9 +553,46 @@ class MapComponent extends Component {
 
               <View style={{ flex: 5.5 }}/>                  
 
-            </View>  
+            </View>
+
+             {/* Start of hamburguer menu */}
+         {this.props.menuSideState &&
+        <View style={styles.hamburgerMenu}>
+          <SearchBar
+            round={true}
+            containerStyle={styles.containerInput}
+            inputContainerStyle={styles.searchBarInput}
+            inputStyle={styles.searchBarInput}
+            leftIconContainerStyle={styles.searchBarInput}
+            rightIconContainerStyle={styles.searchBarInput}
+            placeholder= "Busqueda"
+            placeholderTextColor='white'
+            lightTheme={true}
+            
+          />
+          <TouchableOpacity onPress={ onPressTextDiscover } >
+            <Text style={styles.textDiscover}>Descubri Barrio Amon</Text>
+          </TouchableOpacity>
+          
+            <View style={{backgroundColor:'#00A2B5'}}>
+              <TouchableOpacity onPress= {onPressTextDiscover}>
+                <Text style={styles.textList} >•Origen del Barrio</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress= {onPressTextDiscover}>
+                <Text style={styles.textList} >•Vivencias</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress= {onPressTextDiscover}>
+                <Text style={styles.textList} >•Arquitectura</Text>
+              </TouchableOpacity>
+            </View>
+          <Text style={styles.textMoreAmon}>Mas de Amon_RA</Text>
+        </View>
+        }
+          {/*End of hamburguer menu*/}
+          
                     
         </View>
+
       );
     }
 }
@@ -652,8 +692,7 @@ const styles = StyleSheet.create({
     height: 28,
     width: 90,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:"red",
+    alignItems: "flex-start",
   },
   bottom: {
     position:'absolute', 
@@ -674,7 +713,53 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginLeft: 520,
     marginTop: 92,
+  },
+
+  // Styles for hamburguer menu:
+
+  searchBarInput:{
+    backgroundColor: '#10535D',
+
+  },
+  containerInput:{
+    backgroundColor: '#00A2B5'
+
+  },
+  textList:{
+    color: 'white',
+    textAlign: 'left',
+    fontSize: 14, 
+    backgroundColor: '#00A2B5',
+    padding:5,
+    marginLeft: 15
+  },
+  textMoreAmon:{
+    color: 'white',
+    textAlign: 'center',
+    fontSize:14,
+    backgroundColor: '#00A2B5',
+    padding:5
+
+  },
+
+  textDiscover:{
+    color: 'white',
+    textAlign: 'center',
+    fontSize:14,
+    backgroundColor: '#10535D',
+    padding:5
+  },
+
+  hamburgerMenu:{
+    backgroundColor:'#00A2B5',
+    height: 200,
+    width: 200,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+
   }
+
 });
 
 //export default connect(mapStateToProps, mapDispatchToProps)(Map);

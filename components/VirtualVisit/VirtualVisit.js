@@ -139,13 +139,8 @@ export default class VirtualVisit extends Component{
         				    <TouchableHighlight style= {styles.list_item}
           					onPress={() => this.handleClick(item)}
           					>
-          					<View >
-                        <View style={{flex:7}}>
+          				  <View style={{flex:1}}>
                           <Image source={{uri: item.miniature_image_url}} style={styles.imageResizeAndFillParent} />
-                      </View>
-                      <View style={{flex:2, backgroundColor:"#42bff4",width:(Dimensions.get('window').width)*0.29}}>
-                        <Text numberOfLines={2} style={styles.list_text}>{item.name}</Text>
-                      </View>
           					</View>
         					</TouchableHighlight>
         					)
@@ -204,21 +199,11 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     backgroundColor: "#000"
   },
-  list_text:{
-    width:(Dimensions.get('window').width)*0.29,
-    textAlign: 'center',
-    color: "#fff",
-    backgroundColor:"#42bff4",
-    fontFamily: "Barlow-Regular",
-    paddingLeft: 5,
-    paddingRight: 5,
-  },
   list_item:{
     height: imageRatio,
     width: "33.3%",
     padding: "2%",
     backgroundColor:"#ffffff",
-    alignItems:'center',
   },
   list_style: {
     marginLeft: "4%",
