@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
 
-	StyleSheet,
+  StyleSheet,
     Text,
     Dimensions,
     View,
@@ -12,15 +12,35 @@ import {
 import { SearchBar } from 'react-native-elements';
 import { connect } from "react-redux";
 
-let onPressTextDiscover = () => {
-	return;
-}
 
 const hamburguerComponent = () => {
 
-	return (
+  var isTextDiscoverPressed = false;
+  var discoverText = 'Descubri Barrio Amon'
 
-		<View style={styles.hamburgerMenu}>
+  onPressTextDiscover = () => {
+    isTextDiscoverPressed = !isTextDiscoverPressed;
+  }
+
+  onPressTextMoreAmonRa = () => {
+
+  }
+
+  onPressTextOrigin= () => {
+    
+  }
+
+  onPressTextVivencias = () => {
+    
+  }
+
+  onPressTextArquitectura= () => {
+    
+  }
+
+  return (
+
+    <View style={styles.hamburgerMenu}>
 
           <SearchBar
             round={true}
@@ -29,29 +49,34 @@ const hamburguerComponent = () => {
             inputStyle={styles.searchBarInput}
             leftIconContainerStyle={styles.searchBarInput}
             rightIconContainerStyle={styles.searchBarInput}
-            placeholder= "Busqueda"
+            placeholder= 'Busqueda'
             placeholderTextColor='white'
             lightTheme={true} 
           />
           <TouchableOpacity onPress={ onPressTextDiscover } >
-            <Text style={styles.textDiscover}>Descubri Barrio Amon</Text>
+            <Text style={styles.textDiscover}>{discoverText}</Text>
           </TouchableOpacity>
+
           
             <View style={{backgroundColor:'#00A2B5'}}>
               <TouchableOpacity onPress= {onPressTextDiscover}>
-                <Text style={styles.textList} >•Origen del Barrio</Text>
+                <Text style={styles.textList} >     •Origen del Barrio</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress= {onPressTextDiscover}>
-                <Text style={styles.textList} >•Vivencias</Text>
+                <Text style={styles.textList} >     •Vivencias</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress= {onPressTextDiscover}>
-                <Text style={styles.textList} >•Arquitectura</Text>
+                <Text style={styles.textList} >     •Arquitectura</Text>
               </TouchableOpacity>
             </View>
-          <Text style={styles.textMoreAmon}>Mas de Amon_RA</Text>
+
+          <TouchableOpacity onPress= {onPressTextMoreAmonRa}>
+            <Text style={styles.textMoreAmon}>Mas de Amon_RA</Text>
+          </TouchableOpacity>
+          
         </View>
 
-	);
+  );
 };
 
 const styles = StyleSheet.create({
@@ -94,7 +119,6 @@ const styles = StyleSheet.create({
 
   hamburgerMenu:{
     backgroundColor:'#00A2B5',
-    height: 200,
     width: 200,
     position: 'absolute',
     top: 0,

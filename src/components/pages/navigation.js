@@ -139,7 +139,7 @@ const timeLineStack = createStackNavigator(
     TimeLine: {
       screen: timeLineComponent,
       navigationOptions: {
-        title: "Time Line",
+        title: "Línea del Tiempo",
         headerRight: <HamburgerMenu />,
       },
     },

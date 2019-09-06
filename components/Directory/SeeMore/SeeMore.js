@@ -15,7 +15,54 @@ import Swiper from 'react-native-swiper';
 
 var {windowHeight, windowWidth} = Dimensions.get('window');
 
-export default class SeeMore extends Component{
+//Imports for redux
+
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../../src/redux/actions/menuDataActions";
+
+import HamburguerComponent from '../../../src/components/partials/HamburguerMenu'
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+// End of redux imports
+
+class SeeMore extends Component{
 
 	constructor(props){
     super(props);
@@ -108,9 +155,8 @@ componentDidMount(){
                     {/* Ends flex 14*/}
                     </View>
 
-                    
-
-
+                    {this.props.menuSideState &&
+                    < HamburguerComponent /> }
                 {/* Ends full body flex 8*/}
                 </View>
 
@@ -232,5 +278,7 @@ const styles = StyleSheet.create({
 });
 
 
+const seeMoreComponent = connect(mapStateToProps,mapDispatchToProps)(SeeMore);
+export default seeMoreComponent;
 
-    AppRegistry.registerComponent('SeeMore', () => SeeMore);
+AppRegistry.registerComponent('SeeMore', () => SeeMore);

@@ -26,7 +26,7 @@ import {
   menuResetAction,
 } from "../../src/redux/actions/menuDataActions";
 
-import HamburguerComponent from '../MenuSide/HamburguerMenu'
+import HamburguerComponent from '../../src/components/partials/HamburguerMenu'
 
 const mapStateToProps = state => {
   return {
