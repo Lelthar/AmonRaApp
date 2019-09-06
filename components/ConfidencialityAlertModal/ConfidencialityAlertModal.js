@@ -6,6 +6,7 @@ import {
   View,
   Text,
   PixelRatio,
+  Dimensions
 } from 'react-native';
 
 import * as constants from '../../data/constants'
@@ -50,13 +51,13 @@ render() {
    <Modal isVisible={this.props.isVisible}>
      <View style={styles.modal}>
 
-       <View style={{flex:1}}/>
+       
 
        <View style={styles.modalBody} >
 
-           <View style={styles.modalImageContainer}>
+           {<View style={styles.modalImageContainer}>
              <Image source={require("../../images/marca-01.png")} style={styles.modalLogoImage}/>
-           </View>
+           </View>}
 
            <View style={styles.modalTextContainer}>
              <Text style={styles.modalText}> {constants.ALERTA_DE_CONFIDENCIALIDAD} </Text>
@@ -79,7 +80,7 @@ render() {
 
        </View>
 
-       <View style={{flex:1}}/>
+       
 
      </View>
    </Modal>
@@ -89,12 +90,12 @@ render() {
 
 const styles = StyleSheet.create({
   modal: {
-    flex: 1,
+    //flex: 1,
     marginLeft: modalMarginSides,
     marginRight: modalMarginSides
   },
   modalBody:{
-    flex:1.5,
+    //flex:1.5,
     backgroundColor: "white",
     padding: 22,
     alignItems: "center",
@@ -109,25 +110,26 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   modalLogoImage:{
-    flex:1,
-    resizeMode: 'center',
+    height: 42,
+    width: 150,
+    resizeMode: 'contain',
   },
   modalImageContainer:{
-    flex:1,
+    //flex:1,
   },
   modalTextContainer:{
-    flex: 2.5,
+    //flex: 2.5,
+    marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center'
   },
   modalCheckboxContainer:{
-    flex: 1.25,
+    //flex: 1.25,
     flexDirection: "row",
     justifyContent: 'center',
     alignItems: 'center'
   },
   modalButtonContainer:{
-    flex:1,
     flexDirection: 'row',
   },
   modalText:{
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     fontSize: constants.FONT_SIZE,
   },
   okButton:{
-    flex:1,
+    //flex:1,
     backgroundColor:colors.TURQUOISE,
     margin:10,
     justifyContent: 'center',
