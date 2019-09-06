@@ -14,10 +14,56 @@ import {
 
 //-------------------------------
 
+//Imports for redux
 
-export default class TimeLine extends Component  {
-  constructor(){
-    super()
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../src/redux/actions/menuDataActions";
+
+import HamburguerComponent from '../../src/components/partials/HamburguerMenu'
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+// End of redux imports
+
+class TimeLine extends Component  {
+  constructor(props){
+    super(props);
 
     this.state = {
       hasDownloadedInfo: false,
@@ -36,6 +82,8 @@ export default class TimeLine extends Component  {
           : null
          }
         </View>
+        {this.props.menuSideState &&
+                < HamburguerComponent /> }
       </View>
     );
   }
@@ -71,4 +119,6 @@ export default class TimeLine extends Component  {
   }
 }
 
+const timeLineComponent = connect(mapStateToProps,mapDispatchToProps)(TimeLine);
+export default timeLineComponent;
 AppRegistry.registerComponent('TimeLine', () => TimeLine);

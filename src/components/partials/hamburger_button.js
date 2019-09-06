@@ -42,7 +42,7 @@ const hamburgerMenu = (props) => {
       <Icon
         name='reorder'
         size={30}
-        color="#000"
+        color="#127C8A"
         style={{ marginRight: 15 }}
       />
       </TouchableOpacity>

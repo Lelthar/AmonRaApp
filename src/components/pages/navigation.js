@@ -1,6 +1,6 @@
 import { createBottomTabNavigator, createAppContainer, createStackNavigator} from 'react-navigation'
 import React from 'react'
-import { Image } from 'react-native'
+import { Image, View} from 'react-native'
 import {
   Map, MapDisable,
   AugmentedReality, AugmentedRealityDisable,
@@ -36,10 +36,17 @@ const mapStack = createStackNavigator(
     Map: {
       screen: mapComponent,
       navigationOptions: {
-        title: "Mapa",
-        //header: null
-        //tabBarVisible: false,
         headerRight: <HamburgerMenu />,
+        title: "Mapa",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        },
+        headerLeft: (<View />)
       },
     },
     Place: {
@@ -57,6 +64,16 @@ const virtualVisitStack = createStackNavigator(
       screen: virtualVisitComponent,
       navigationOptions: {
         headerRight: <HamburgerMenu />,
+        title: "Oferta Urbana",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        },
+        headerLeft: (<View />)
       },
     },
     ViromediaController: {
@@ -77,38 +94,96 @@ const urbanOfferStack = createStackNavigator(
   {
     UrbanOffer: {
       screen: urbanOfferComponent,
+
       navigationOptions: {
         headerRight: <HamburgerMenu />,
+        title: "Oferta Urbana",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        },
+        headerLeft: (<View />)
       },
     },
     Cultural: {
       screen: culturalComponent,
       navigationOptions: {
         headerRight: <HamburgerMenu />,
+        title: "Oferta Urbana",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        }
       },
+
     },
     Institutional: {
       screen: institutionalComponent,
       navigationOptions: {
         headerRight: <HamburgerMenu />,
+        title: "Oferta Urbana",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        }
       },
     },
     Hotels: {
       screen: hotelsComponent,
       navigationOptions: {
         headerRight: <HamburgerMenu />,
+        title: "Oferta Urbana",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        }
       },
     },
     Gastronomy: {
       screen: gastronomyComponent,
       navigationOptions: {
         headerRight: <HamburgerMenu />,
+        title: "Oferta Urbana",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        }
       },
     },
     SeeMore: {
       screen: seeMoreComponent,
       navigationOptions: {
         headerRight: <HamburgerMenu />,
+        title: "Oferta Urbana",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        }
+        
       },
     },
   },
@@ -139,8 +214,17 @@ const timeLineStack = createStackNavigator(
     TimeLine: {
       screen: timeLineComponent,
       navigationOptions: {
-        title: "Línea del Tiempo",
         headerRight: <HamburgerMenu />,
+        title: "Linea del Tiempo",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        },
+        headerLeft: (<View />)
       },
     },
   },
@@ -185,6 +269,9 @@ const AppNavigator = createBottomTabNavigator(
     }),
     tabBarOptions: {
       showLabel: false,
+      style:{
+        backgroundColor:'#00A2B5'
+      }
     },
   }
 );
