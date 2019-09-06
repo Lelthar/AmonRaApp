@@ -139,10 +139,10 @@ componentDidMount(){
                         <Text style={styles.titleOr} >{this.state.title}</Text>
 
                         <ScrollView>
-                          <Text style = {styles.descriptionOr}> {this.state.description} </Text>
-                          <Text style = {styles.directionOr}>  Dirección: {this.state.direction } </Text> 
-                          <Text style = {styles.phoneOr}> Tel: {this.state.phone_number} </Text> 
-                          <Text style = {styles.facebookOr}> Facebook: {this.state.facebook} </Text>
+                          <Text style = {styles.descriptionOr}>{this.state.description} </Text>
+                          <Text style = {styles.directionOr}>Dirección: {this.state.direction } </Text> 
+                          <Text style = {styles.phoneOr}>Tel{this.state.phone_number} </Text> 
+                          <Text style = {styles.facebookOr}>Facebook: {this.state.facebook} </Text>
                         </ScrollView>
                     
                     </View>
@@ -191,18 +191,16 @@ const styles = StyleSheet.create({
 		textAlign: "center", fontSize:20,
 		fontFamily: "vincHand",
     color: "#0C5B60",
-    marginTop: 20,
-    marginBottom: 20,
+    padding:20,
     fontWeight: 'bold',
     textAlign: 'center'
 	},
 
 	descriptionOr: {
-		textAlign: "center", fontSize:18,
+		textAlign: "justify", fontSize:18,
 		color: "#0C5B60",
-    textAlign: 'left',
-    marginLeft: 20,
-    marginRight: 20
+    paddingLeft:20,
+    paddingRight:20,
 	},
 
   directionOr:{

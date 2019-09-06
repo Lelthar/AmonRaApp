@@ -183,12 +183,12 @@ class CultureArt extends Component{
 
               {this.state.markers.map(place => (
 
-                <View style={{flexDirection: "row",padding:10}}>
+                <View style={{flexDirection: "row",padding: 10}}>
                 <TouchableOpacity style={{width: 15}} />
                 <Image  source= {{uri: place.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
                 <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', flex: 1 }}>
                 <Text style={styles.name_place} >  { this.fixPlaceNameWithParenthesis(place.name) }</Text>
-                <Text style={{fontFamily: "Roboto",color:'grey',fontSize: 16}}>Dirección: {place.direction}</Text>
+                <Text style={styles.text}>Dirección: {place.direction}</Text>
                 <Text style={styles.text}>Tel: {place.phone_number}</Text>
                 <Text style={styles.text}>Facebook: {place.facebook}</Text> 
                 <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}}  onPress={() => this.props.navigation.navigate('SeeMore',{goToScreen: this.navigation, placeInfo: place})}>
@@ -246,11 +246,14 @@ const styles = StyleSheet.create({
      name_place: {
        color: "#0C5B60",
        fontWeight: 'bold',
-       fontSize: 16
+       fontSize: 16,
+       paddingLeft:5,
+       paddingTop:10
      },
      text: {
        color:'grey',
-       fontSize: 16
+       fontSize: 16,
+       paddingLeft: 10
      }
 });
 

@@ -228,11 +228,14 @@ const styles = StyleSheet.create({
     name_place: {
       color: "#0C5B60",
       fontWeight: 'bold',
-      fontSize: 16
+      fontSize: 16,
+      paddingLeft:5,
+      paddingTop:10
     },
     text: {
       color:'grey',
-      fontSize: 16
+      fontSize: 16,
+      paddingLeft: 10
     }
 });
 
