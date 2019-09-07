@@ -2,41 +2,39 @@ import { createBottomTabNavigator, createAppContainer, createStackNavigator} fro
 import React from 'react'
 import { Image, View} from 'react-native'
 import {
-  Map, MapDisable,
-  AugmentedReality, AugmentedRealityDisable,
-  VirtualVisit, VirtualVisitDisable,
-  UrbanOffer,  UrbanOfferDisable,
-  TimeLine, TimeLineDisable
+  mapAble, mapDisable,
+  augmentedRealityAble, augmentedRealityDisable,
+  virtualVisitAble, virtualVisitDisable,
+  urbanOfferAble,  urbanOfferDisable,
+  timeLineAble, timeLineDisable
 } from '../../assets/images/navigation';
 
-import mapComponent from './map';
-import placeComponent from '../../../components/Map/Place/Place'
+import Map from './Map';
+import Place from '../../../components/Map/Place/Place'
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import VirtualVisit from '../../../components/VirtualVisit/VirtualVisit';
+import ViromediaController from '../../../components/Viromedia/ViromediaController';
 
-import virtualVisitComponent from '../../../components/VirtualVisit/VirtualVisit';
-import viromediaControllerComponent from '../../../components/Viromedia/ViromediaController';
+import UrbanOffer from '../../../components/Directory/Directory';
+import CultureArt from '../../../components/Directory/CultureArt/CultureArt';
+import Institutional from '../../../components/Directory/Institutional/Institutional';
+import Hotels from '../../../components/Directory/Hotels/Hotels';
+import Gastronomy from '../../../components/Directory/Gastronomy/Gastronomy';
+import SeeMore from '../../../components/Directory/SeeMore/SeeMore';
 
-import urbanOfferComponent from '../../../components/Directory/Directory';
-import culturalComponent from '../../../components/Directory/CultureArt/CultureArt';
-import institutionalComponent from '../../../components/Directory/Institutional/Institutional';
-import hotelsComponent from '../../../components/Directory/Hotels/Hotels';
-import gastronomyComponent from '../../../components/Directory/Gastronomy/Gastronomy';
-import seeMoreComponent from '../../../components/Directory/SeeMore/SeeMore';
+import TimeLine from '../../../components/TimeLine/TimeLine';
 
-import timeLineComponent from '../../../components/TimeLine/TimeLine';
+import HamburgerButton from '../partials/HamburgerButton'
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
 
-import HamburgerMenu from '../partials/hamburger_button'
-
 const mapStack = createStackNavigator(
   {
     Map: {
-      screen: mapComponent,
+      screen: Map,
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
         title: "Mapa",
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -50,9 +48,9 @@ const mapStack = createStackNavigator(
       },
     },
     Place: {
-      screen: placeComponent,
+      screen: Place,
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
       },
     },
   }
@@ -61,9 +59,9 @@ const mapStack = createStackNavigator(
 const virtualVisitStack = createStackNavigator(
   {
     VirtualVisit: {
-      screen: virtualVisitComponent,
+      screen: VirtualVisit,
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
         title: "Oferta Urbana",
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -77,7 +75,7 @@ const virtualVisitStack = createStackNavigator(
       },
     },
     ViromediaController: {
-      screen: viromediaControllerComponent,
+      screen: ViromediaController,
       navigationOptions: {
         header: null,
         tabBarVisible: false,
@@ -93,10 +91,10 @@ const virtualVisitStack = createStackNavigator(
 const urbanOfferStack = createStackNavigator(
   {
     UrbanOffer: {
-      screen: urbanOfferComponent,
+      screen: UrbanOffer,
 
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
         title: "Oferta Urbana",
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -109,10 +107,10 @@ const urbanOfferStack = createStackNavigator(
         headerLeft: (<View />)
       },
     },
-    Cultural: {
-      screen: culturalComponent,
+    CultureArt: {
+      screen: CultureArt,
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
         title: "Oferta Urbana",
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -126,9 +124,9 @@ const urbanOfferStack = createStackNavigator(
 
     },
     Institutional: {
-      screen: institutionalComponent,
+      screen: Institutional,
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
         title: "Oferta Urbana",
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -141,9 +139,9 @@ const urbanOfferStack = createStackNavigator(
       },
     },
     Hotels: {
-      screen: hotelsComponent,
+      screen: Hotels,
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
         title: "Oferta Urbana",
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -156,9 +154,9 @@ const urbanOfferStack = createStackNavigator(
       },
     },
     Gastronomy: {
-      screen: gastronomyComponent,
+      screen: Gastronomy,
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
         title: "Oferta Urbana",
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -171,9 +169,9 @@ const urbanOfferStack = createStackNavigator(
       },
     },
     SeeMore: {
-      screen: seeMoreComponent,
+      screen: SeeMore,
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
         title: "Oferta Urbana",
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -195,12 +193,12 @@ const urbanOfferStack = createStackNavigator(
 const augmentedRealityStack = createStackNavigator(
   {
     AumentedReality: {
-      screen: viromediaControllerComponent,
+      screen: ViromediaController,
       params: {
         do: "AR",
       },
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
       },
     },
   },
@@ -212,9 +210,9 @@ const augmentedRealityStack = createStackNavigator(
 const timeLineStack = createStackNavigator(
   {
     TimeLine: {
-      screen: timeLineComponent,
+      screen: TimeLine,
       navigationOptions: {
-        headerRight: <HamburgerMenu />,
+        headerRight: <HamburgerButton />,
         title: "Linea del Tiempo",
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -253,15 +251,15 @@ const AppNavigator = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === screenInformation.MAP) {
-          iconName = focused ? Map : MapDisable;
+          iconName = focused ? mapAble : mapDisable;
         } else if (routeName === screenInformation.AUGMENTEDREALITY) {
-          iconName = focused ? AugmentedReality : AugmentedRealityDisable;
+          iconName = focused ? augmentedRealityAble : augmentedRealityDisable;
         } else if (routeName === screenInformation.VIRTUALVISIT) {
-          iconName = focused ? VirtualVisit : VirtualVisitDisable;
+          iconName = focused ? virtualVisitAble : virtualVisitDisable;
         } else if (routeName === screenInformation.URBANOFFER) {
-          iconName = focused ? UrbanOffer : UrbanOfferDisable;
+          iconName = focused ? urbanOfferAble : urbanOfferDisable;
         } else if (routeName === screenInformation.TIMELINE) {
-          iconName = focused ? TimeLine : TimeLineDisable;
+          iconName = focused ? timeLineAble : timeLineDisable;
         }
 
         return <Image style={ styles.iconDimensions } source={iconName} />;

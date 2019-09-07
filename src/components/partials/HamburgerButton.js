@@ -1,22 +1,15 @@
 import React from 'react';
 import {
   TouchableOpacity,
-  Text,
-  StyleSheet,
   View,
-  Flatlist
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { SearchBar} from 'react-native-elements';
 import { connect } from "react-redux";
 import { menuSideAction } from "../../redux/actions/menuDataActions";
 
-
-// end test
-
 const mapStateToProps = state => {
   return {
-    menuSideState: state.menuDataReducer.MENUSIDE
+    menuSideState: state.menuDataReducer.MENUSIDE,
   };
 };
 
@@ -28,27 +21,24 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-
-const hamburgerMenu = (props) => {
+const HamburgerButton = (props) => {
 
   toggleMenuSide = () => {
     props.setMenuSide(!props.menuSideState);
-
   };
 
   return (
     <View>
-      <TouchableOpacity onPress={ toggleMenuSide } >
-      <Icon
-        name='reorder'
-        size={30}
-        color="#127C8A"
-        style={{ marginRight: 15 }}
-      />
+      <TouchableOpacity onPress={toggleMenuSide} >
+        <Icon
+          name='reorder'
+          size={30}
+          color="#127C8A"
+          style={{ marginRight: 15 }}
+        />
       </TouchableOpacity>
     </View>
-   
-    );
+  );
 }; 
 
-export default connect(mapStateToProps, mapDispatchToProps)(hamburgerMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(HamburgerButton);

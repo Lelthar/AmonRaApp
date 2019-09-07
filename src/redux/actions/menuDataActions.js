@@ -14,17 +14,17 @@ export const filterMenuAction = (data) => ({
 
 export const activeFiltersAction = (data) => ({
   data: data,
-  type: ACTIVEFILTERS
+  type: ACTIVEFILTERS,
 });
 
 export const menuSideAction = (data) => ({
   data: data,
-  type: MENUSIDE
+  type: MENUSIDE,
 });
 
 export const rateScreenAction = (data) => ({
   data: data,
-  type: RATESCREEN
+  type: RATESCREEN,
 });
 
 export const guideScreenAction = (data) => ({
@@ -33,5 +33,5 @@ export const guideScreenAction = (data) => ({
 });
 
 export const menuResetAction = () => ({
-  type: MENURESET
+  type: MENURESET,
 });
