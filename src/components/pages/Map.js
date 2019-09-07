@@ -7,7 +7,6 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-import { SearchBar} from 'react-native-elements';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import Image from 'react-native-scalable-image';
