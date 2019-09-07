@@ -25,17 +25,15 @@ export default class Place extends Component  {
   }
 
   componentDidMount(){
-		const category = this.props.navigation.state.params.category;
-
-		console.log(category);
+		const marker = this.props.navigation.state.params.marker;
 
     this.setState({
-    	title: category.title,
-    	description: category.description,
-    	direction: category.direction,
-    	phone_number: category.tel,
-    	facebook: category.facebook,
-    	images_url: category.images_url
+    	title: marker.title,
+    	description: marker.description,
+    	direction: marker.direction,
+    	phone_number: marker.tel,
+    	facebook: marker.facebook,
+    	images_url: marker.images_url
     });
   }
 
