@@ -16,6 +16,7 @@ import {
 
 import DataSheet from "./js/AR_Components/DataSheet"
 import InfoMenu from "./js/AR_Components/InfoMenu"
+import MenuImages from "./js/D3_Components/MenuImages"
 
 var sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
@@ -54,6 +55,7 @@ export class ViromediaController extends Component {
       houseArPressed: null,
 
       // VR Components Props
+      informationImage3D: true,
     }
   }   
 
@@ -123,10 +125,15 @@ export class ViromediaController extends Component {
   // Returns the ViroSceneNavigator which will start the 3D experience
   _get3DNavigator() {
     return (
-      <ViroVRSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: Initial3DScene}} 
-        onExitViro={this._exitViro}
-        rModeEnabled={false}/>
+      <View style={{flex:1}}>
+        <ViroVRSceneNavigator {...this.state.sharedProps}
+          initialScene={{scene: Initial3DScene}} onExitViro={this._exitViro} vrModeEnabled={false}/>
+
+        {this.state.informationImage3D
+          ? <MenuImages houseArPressed={this.state.houseArPressed} />
+          : null
+        }
+      </View>
     );
   }
 
