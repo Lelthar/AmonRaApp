@@ -14,7 +14,6 @@ import {
   ViroARSceneNavigator
 } from 'react-viro';
 
-import { connect } from "react-redux"
 import DataSheet from "./js/AR_Components/DataSheet"
 import InfoMenu from "./js/AR_Components/InfoMenu"
 
@@ -44,18 +43,20 @@ export class ViromediaController extends Component {
     this.state = {
       sharedProps : sharedProps, 
       navigatorType : this.props.navigation.state.params.do,
-      viroAppProps: {setInformation: this.showInfoMenu},
       vrMode : null,
       content: this.props.navigation.state.params.filename,
+
+      // AR Components Props
+      viroAppProps: {setInformation: this.showInfoMenu},
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
       houseArPressed: null,
+
+      // VR Components Props
     }
   }   
 
-  // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
-  // if you are building a specific type of experience.
   render() { 
     if (this.state.navigatorType == NAVIGATOR_TYPE_AR){
       return this._getARNavigator();
@@ -81,12 +82,12 @@ export class ViromediaController extends Component {
             viroAppProps={this.state.viroAppProps}/>
                                 
         {this.state.infoMenuVisible // Menu
-          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} descriptionVisible={this.state.descriptionVisible} houseInfo={this.state.houseArPressed}/>
+          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} descriptionVisible={this.state.descriptionVisible} houseArPressed={this.state.houseArPressed}/>
           : null
         }
 
         {this.state.dataSheetVisible // Ficha técnica
-          ? <DataSheet handlePress={this.toggleDataSheet} houseInfo={this.state.houseArPressed}/>
+          ? <DataSheet handlePressDataSheet={this.toggleDataSheet} houseArPressed={this.state.houseArPressed}/>
           : null
         }
       </View>
@@ -104,6 +105,7 @@ export class ViromediaController extends Component {
   showInfoMenu(place){ 
     this.setState({
       infoMenuVisible : true,
+      houseArPressed: place,
     });
   }
 
@@ -226,10 +228,5 @@ var localStyles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
-  return {
-    placePressed: state.viromediaArReducer.PLACE,
-  };
-};
 
-export default connect(mapStateToProps, null)(ViromediaController)
+export default ViromediaController;

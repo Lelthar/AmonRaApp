@@ -19,7 +19,7 @@ export default class DataSheet extends Component {
             <View style={{alignItems: 'center'}}>
                 
                 <View style={localStyles.dataSheet}>
-                    <TouchableOpacity onPress={() => this.props.handlePress()}>
+                    <TouchableOpacity onPress={() => this.props.handlePressDataSheet()}>
                     {//<Image source={require('../../images/icons/RA/close.png')}  style={localStyles.closeButton}/>
                     }
         

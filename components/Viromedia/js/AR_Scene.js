@@ -16,8 +16,6 @@ import {
 
 import Geolocation from 'react-native-geolocation-service';
 import RNSimpleCompass from 'react-native-simple-compass';
-import { connect } from "react-redux";
-import { setPlaceArAction } from "../../../src/redux/actions/viromediaArAction";
 
 const mercatorAmon = [{place: "Vista Edificio Esquinero Av 7 y Calle 3", X: -9359425.52534968 , Y: 1111781.7786023072, img: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FIMG_1118.jpg?alt=media&token=40885398-5a20-4b3a-9bc5-2e5bf6dbbf73"},
                       {place: "Vista Casa Alejo Aguilar Bolandi, desde esquina suroeste entre Avenida 9 y Calle 3", X: -9359428.864934405, Y: 1111882.362060863, img: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F2.VistaCasaAlejoAguilarBolandiDesdeEsquinaSuroesteEntreAvenida9yCalle3%2FNP-002109.jpg?alt=media&token=e893373f-feba-498b-9256-ec64e985277f"},
@@ -219,15 +217,7 @@ async function checkLocalizationPermission(){
   return false;
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setPlaceArAction: (data) => {
-      dispatch(setPlaceArAction(data));
-    },
-  };
-};
-
-module.exports = connect(null, mapDispatchToProps)(AR_Scene);
+module.exports = AR_Scene;
 
 
 /*
