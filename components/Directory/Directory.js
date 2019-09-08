@@ -11,10 +11,63 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import firebase from 'react-native-firebase';
+import { SearchBar} from 'react-native-elements';
+
+//Imports for redux
+
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../src/redux/actions/menuDataActions";
+
+import HamburguerComponent from '../../src/components/partials/HamburguerMenu'
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+// End of redux imports
+
 
 const { width } = Dimensions.get('window').width
+var isMenuVisible = true;
+let onPressTextDiscover = () =>{
+      return ;
+    }
 
-export default class Directory extends Component{
+class Directory extends Component{
 
     constructor(props){
         super(props);
@@ -40,6 +93,7 @@ export default class Directory extends Component{
         return (
 
             <View style={styles.container}>
+
             {/* Navigator uses flex 10. 1 up, 1 down, 8 body */}
                <View style={{flex:2}} />
 
@@ -130,6 +184,11 @@ export default class Directory extends Component{
                 </View>
                 <View style={{flex:2}}/>
 
+                {/*Start of hamburguer menu */}
+                {this.props.menuSideState &&
+                  < HamburguerComponent />
+                }
+            {/*End of hamburguer menu */}
 
             </View>
 
@@ -176,7 +235,11 @@ const styles = StyleSheet.create({
   image: {
     width,
     flex: 1
-  }
+  },
+
 });
 
+const dirComponent = connect(mapStateToProps,mapDispatchToProps)(Directory)
+export default dirComponent;
 AppRegistry.registerComponent('Directory', () => Directory);
+

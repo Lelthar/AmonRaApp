@@ -7,21 +7,21 @@ import {
   Dimensions,
   TouchableOpacity,
   Image
-} from 'react-native';
+} from 'react-native'; 
 
 import {
   ViroVRSceneNavigator,
   ViroARSceneNavigator
 } from 'react-viro';
 
+import { connect } from "react-redux"
+import DataSheet from "./js/AR_Components/DataSheet"
+import InfoMenu from "./js/AR_Components/InfoMenu"
+
 var sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
 }
 
-const view_normal = require('../../images/icons/virtualVisit/normal.png');
-const view_vr = require('../../images/icons/virtualVisit/vr.png');
-
-// Sets the default scene you want for AR and VR
 var InitialARScene = require('./js/AR_Scene');
 var InitialVRScene = require('./js/VR_Scene');
 var Initial3DScene = require('./js/3D_Scene');
@@ -30,32 +30,27 @@ var NAVIGATOR_TYPE_VR = "VR";
 var NAVIGATOR_TYPE_AR = "AR";
 var NAVIGATOR_TYPE_3D = "3D";
 
-var exampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel lacus molestie, blandit ante sit amet, sagittis risus.  ";
-var infoText = "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001).";
-
-export default class ViromediaController extends Component {
+export class ViromediaController extends Component {
 
   constructor(props) {
 
     super(props);
+   
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
-    this.showInformationMenu = this.showInformationMenu.bind(this);
-    this.showDataSheet = this.showDataSheet.bind(this);
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
-    this.toggleBriefDescripcion = this.toggleBriefDescripcion.bind(this);
+    this.showInfoMenu = this.showInfoMenu.bind(this);
     
     this.state = {
       sharedProps : sharedProps, 
       navigatorType : this.props.navigation.state.params.do,
-      viroAppProps: {setInformation: this.toggleBriefDescripcion},
+      viroAppProps: {setInformation: this.showInfoMenu},
       vrMode : null,
       content: this.props.navigation.state.params.filename,
-
-      informationText : "Sin datos",
-      informationVisible : false,
+      infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
+      houseArPressed: null,
     }
   }   
 
@@ -72,99 +67,32 @@ export default class ViromediaController extends Component {
       }
     } else if (this.state.navigatorType == NAVIGATOR_TYPE_3D) {
       return this._get3DNavigator();
-    }/*else{
-      return this._getExperienceSelector();
-    }*/
+    }
   }
 
   // Returns the ViroARSceneNavigator which will start the AR experience
-  _getARNavigator() {
+  _getARNavigator() { 
     return (
       <View style={{flex:1}}>
-        <ViroARSceneNavigator {...this.state.sharedProps}
-          initialScene={{scene: InitialARScene}} onExitViro={this._exitViro} viroAppProps={this.state.viroAppProps}/>
 
-        {this.state.informationVisible
-          ? this.showInformationMenu()
+        <ViroARSceneNavigator {...this.state.sharedProps}
+            initialScene={{scene: InitialARScene}} 
+            onExitViro={this._exitViro} 
+            viroAppProps={this.state.viroAppProps}/>
+                                
+        {this.state.infoMenuVisible // Menu
+          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} descriptionVisible={this.state.descriptionVisible} houseInfo={this.state.houseArPressed}/>
           : null
         }
 
         {this.state.dataSheetVisible // Ficha técnica
-          ? this.showDataSheet()
+          ? <DataSheet handlePress={this.toggleDataSheet} houseInfo={this.state.houseArPressed}/>
           : null
         }
       </View>
     );
   }
-
-  showDataSheet(){
-    return( 
-      <View style={{alignItems: 'center'}}>
-        
-        <View style={localStyles.dataSheet}>
-          <TouchableOpacity onPress={() => this.toggleDataSheet()}>
-          
-              {//<Image source={require('../../images/icons/RA/close.png')}  style={localStyles.closeButton}/>
-              }
-
-          <Text style={localStyles.title}> Casa Saborío González (Casa Verde) {'\n'}</Text>
-        
-          <Text style={localStyles.title}> Motivos de la declaratoria: 
-           <Text style={localStyles.text}> El inmueble fue construido a principios del sigio XX. Durante la época del auge en los mercados mundiales de la exportación del café de Costa Rica por lo que presenta importantes valores históricos, culturales y contextuales {'\n'}</Text>
-          </Text>
-          
-          <Text style={localStyles.title}> Año de construcción: 
-            <Text style={localStyles.text}> 1913-1915 {'\n'}</Text>
-          </Text> 
-        
-          <Text style={localStyles.title}> Influencia: 
-            <Text style={localStyles.text}> Estilo Victoriano{'\n'}</Text>
-          </Text> 
-          
-          <Text style={localStyles.title}> Propietario actual: 
-            <Text style={localStyles.text}> Instituto Tecnológico de Costa Rica{'\n'}</Text>
-          </Text> 
-
-          <Text style={localStyles.title}> Fecha de la declaratoria: 
-            <Text style={localStyles.text}> 14/Dic/2017{'\n'}</Text>
-          </Text> 
-          
-          <Text style={localStyles.title}> Decreto N:
-            <Text style={localStyles.text}> 40662-C. La Gaceta N 232{'\n'}</Text>
-          </Text> 
-          </TouchableOpacity>
-        </View>
-        
-      </View>
-    );
-  }
-
-  showInformationMenu(){ 
-    return (
-      <View style={localStyles.infoContainer}>
-        {this.state.descriptionVisible
-          ? <Text style={{color:'white',fontSize: 16, marginBottom: 15}}> {this.state.informationText} </Text>
-          : null
-        }
-        <TouchableOpacity style={localStyles.infoButton} onPress={() => this.toggleDataSheet()} >
-          <Image source={require('../../images/icons/RA/ficha-tecnica.png')} />
-          <Text style={{color:"#1a606b",fontSize: 14}}> Ficha técnica</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={localStyles.infoButton}>
-          <Image source={require('../../images/icons/RA/vivenciass.png')} />
-          <Text style={{color:"#1a606b",fontSize: 14}}> Vivencias</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={localStyles.infoButton} onPress={() => this.toggleBriefDescripcion()}>
-          <Image  source={require('../../images/icons/RA/mas-info.png')} />
-          <Text style={{color:"#1a606b",fontSize: 14}}> Info</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-  //
-
+  
   toggleDataSheet(){
     this.setState({
       dataSheetVisible : !this.state.dataSheetVisible,
@@ -173,10 +101,9 @@ export default class ViromediaController extends Component {
   }
 
   // Show extra information of a building.
-  toggleBriefDescripcion(){ 
+  showInfoMenu(place){ 
     this.setState({
-      informationText: this.state.informationText == infoText ? exampleText : infoText,
-      informationVisible : true,
+      infoMenuVisible : true,
     });
   }
 
@@ -184,7 +111,10 @@ export default class ViromediaController extends Component {
   _getVRNavigator() {
     return (
       <ViroVRSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro} vrModeEnabled={this.state.vrMode} viroAppProps={{data:this.state.content}}/>
+        initialScene={{scene: InitialVRScene}} 
+        onExitViro={this._exitViro} 
+        vrModeEnabled={this.state.vrMode} 
+        viroAppProps={{data:this.state.content}}/>
     );
   }
 
@@ -192,14 +122,16 @@ export default class ViromediaController extends Component {
   _get3DNavigator() {
     return (
       <ViroVRSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: Initial3DScene}} onExitViro={this._exitViro} vrModeEnabled={false}/>
+        initialScene={{scene: Initial3DScene}} 
+        onExitViro={this._exitViro}
+        rModeEnabled={false}/>
     );
   }
 
    // This function "exits" Viro by setting the navigatorType to UNSET.
   _exitViro() {
     this.setState({
-      navigatorType : "UNSET"
+      navigatorType : "UNSET",
     })
   }
 
@@ -213,25 +145,30 @@ export default class ViromediaController extends Component {
 
   _getSelectionButtons() {
     return (
-      <View style={localStyles.outer} >
+      <View style={localStyles.outer} >         
         <View style={localStyles.inner} >
 
-        <TouchableHighlight style={{marginBottom:"20%"}}
-            onPress={this._getOnClick(true)}>
+          <Text style={localStyles.titleText}>
+            ¿Posee visores VR?
+          </Text>
 
-            <Image source={ view_vr }/>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._getOnClick(true)}
+            underlayColor={'#68a0ff'} >
+
+            <Text style={localStyles.buttonText}>SÍ</Text>
           </TouchableHighlight>
 
-          <TouchableHighlight style={{marginTop:"20%"}}
-            onPress={this._getOnClick(false)}>
+          <TouchableHighlight style={localStyles.buttons}
+            onPress={this._getOnClick(false)}
+            underlayColor={'#68a0ff'} >
 
-            <Image source={ view_normal }/>
+            <Text style={localStyles.buttonText}>NO</Text>
           </TouchableHighlight>
         </View>
       </View>
     );
   }
-
 }
 
 var localStyles = StyleSheet.create({
@@ -243,13 +180,13 @@ var localStyles = StyleSheet.create({
     flex : 1,
     flexDirection: 'row',
     alignItems:'center',
-    backgroundColor: "#08545c",
+    backgroundColor: "black",
   },
   inner: {
     flex : 1,
     flexDirection: 'column',
     alignItems:'center',
-    backgroundColor: "#08545c",
+    backgroundColor: "black",
   },
   titleText: {
     paddingTop: 30,
@@ -287,50 +224,12 @@ var localStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
   },
-  infoContainer : {
-    flex:14, 
-    flexDirection: 'row', 
-    padding:15, 
-    bottom: 0,
-    position:"absolute",
-    backgroundColor:'rgba(54, 145, 160, 0.8)',
-    width: Dimensions.get('window').width,
-    flexWrap: 'wrap',
-    justifyContent:'space-around',
-  },
-  infoButton: {
-    flexDirection: 'row', 
-  },
-  dataSheet : {
-    position: 'absolute', 
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    width: (Dimensions.get('window').width) * 0.9,
-    height: (Dimensions.get('window').height) * 0.6,
-    bottom: (Dimensions.get('window').height)/2 * 0.2,
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 15,
-    fontFamily: "Barlow-Regular",
-    color: "#0C5B60",
-    fontWeight: 'bold',
-  },
-  text: {
-    fontWeight: 'normal',
-    color: '#6D6F70',
-    fontSize: 13,
-    fontFamily: "Barlow-Regular",
-  },
-  closeButton: {
-    justifyContent: 'flex-end',
-    //position: 'absolute',
-    width: 10,
-    height: 10,
-    left: (Dimensions.get('window').width)*0.8,
-
-  }
-
 });
 
-module.exports = ViromediaController
+const mapStateToProps = state => {
+  return {
+    placePressed: state.viromediaArReducer.PLACE,
+  };
+};
+
+export default connect(mapStateToProps, null)(ViromediaController)
