@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Text,
   View,
-  StyleSheet,
-  TouchableHighlight,
-  Dimensions,
-  TouchableOpacity,
-  Image
 } from 'react-native'; 
 
 import {
@@ -17,6 +11,7 @@ import {
 import DataSheet from "./js/AR_Components/DataSheet"
 import InfoMenu from "./js/AR_Components/InfoMenu"
 import MenuImages from "./js/D3_Components/MenuImages"
+import VRSelectionMode from "./js/VR_Components/VRSelectionMode"
 
 var sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
@@ -30,9 +25,6 @@ var NAVIGATOR_TYPE_VR = "VR";
 var NAVIGATOR_TYPE_AR = "AR";
 var NAVIGATOR_TYPE_3D = "3D";
 
-const view_normal = require('../../images/icons/virtualVisit/normal.png');
-const view_vr = require('../../images/icons/virtualVisit/vr.png');
-
 export class ViromediaController extends Component {
 
   constructor(props) {
@@ -43,6 +35,7 @@ export class ViromediaController extends Component {
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
     this.showInfoMenu = this.showInfoMenu.bind(this);
+    this.setVRMode = this.setVRMode.bind(this);
     
     this.state = {
       sharedProps : sharedProps, 
@@ -80,38 +73,25 @@ export class ViromediaController extends Component {
   _getARNavigator() { 
     return (
       <View style={{flex:1}}>
-
         <ViroARSceneNavigator {...this.state.sharedProps}
             initialScene={{scene: InitialARScene}} 
             onExitViro={this._exitViro} 
-            viroAppProps={this.state.viroAppProps}/>
+            viroAppProps={this.state.viroAppProps} />
                                 
         {this.state.infoMenuVisible // Menu
-          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} descriptionVisible={this.state.descriptionVisible} houseArPressed={this.state.houseArPressed}/>
+          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} 
+                      descriptionVisible={this.state.descriptionVisible} 
+                      houseArPressed={this.state.houseArPressed} />
           : null
         }
 
         {this.state.dataSheetVisible // Ficha técnica
-          ? <DataSheet handlePressDataSheet={this.toggleDataSheet} houseArPressed={this.state.houseArPressed}/>
+          ? <DataSheet handlePressDataSheet={this.toggleDataSheet} 
+                       houseArPressed={this.state.houseArPressed} />
           : null
         }
       </View>
     );
-  }
-  
-  toggleDataSheet(){
-    this.setState({
-      dataSheetVisible : !this.state.dataSheetVisible,
-      descriptionVisible : !this.state.descriptionVisible
-    });
-  }
-
-  // Show extra information of a building.
-  showInfoMenu(place){ 
-    this.setState({
-      infoMenuVisible : true,
-      houseArPressed: place,
-    });
   }
 
   // Returns the ViroSceneNavigator which will start the VR experience
@@ -140,6 +120,28 @@ export class ViromediaController extends Component {
     );
   }
 
+  _getSelectionButtons() {
+    return (
+      <VRSelectionMode handleOptionClick={this.setVRMode}/>
+    );
+  }
+  
+  // Enable or Disable DataSheet
+  toggleDataSheet(){
+    this.setState({
+      dataSheetVisible : !this.state.dataSheetVisible,
+      descriptionVisible : !this.state.descriptionVisible
+    });
+  }
+
+  // Show extra information of a building.
+  showInfoMenu(place){ 
+    this.setState({
+      infoMenuVisible : true,
+      houseArPressed: place,
+    });
+  }
+
    // This function "exits" Viro by setting the navigatorType to UNSET.
   _exitViro() {
     this.setState({
@@ -147,90 +149,11 @@ export class ViromediaController extends Component {
     })
   }
 
-  _getOnClick(vrMode) {
-    return () => {
-      this.setState({
+  setVRMode(vrMode) {
+    this.setState({
         vrMode : vrMode
-      })
-    }
-  }
-
-  _getSelectionButtons() {
-    return (
-      <View style={localStyles.outer} >
-        <View style={localStyles.inner} >
-
-        <TouchableHighlight style={{marginBottom:"20%"}}
-            onPress={this._getOnClick(true)}>
-
-            <Image source={ view_vr }/>
-          </TouchableHighlight>
-
-          <TouchableHighlight style={{marginTop:"20%"}}
-            onPress={this._getOnClick(false)}>
-
-            <Image source={ view_normal }/>
-          </TouchableHighlight>
-        </View>
-      </View>
-    );
+    });
   }
 }
-
-var localStyles = StyleSheet.create({
-  viroContainer :{
-    flex : 1,
-    backgroundColor: "black",
-  },
-  outer : {
-    flex : 1,
-    flexDirection: 'row',
-    alignItems:'center',
-    backgroundColor: "#08545c",
-  },
-  inner: {
-    flex : 1,
-    flexDirection: 'column',
-    alignItems:'center',
-    backgroundColor: "#08545c",
-  },
-  titleText: {
-    paddingTop: 30,
-    paddingBottom: 20,
-    color:'#fff',
-    textAlign:'center',
-    fontSize : 25
-  },
-  buttonText: {
-    color:'#fff',
-    textAlign:'center',
-    fontSize : 20
-  },
-  buttons : {
-    height: 80,
-    width: 150,
-    paddingTop:20,
-    paddingBottom:20,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor:'#68a0cf',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
-  },
-  exitButton : {
-    height: 50,
-    width: 100,
-    paddingTop:10,
-    paddingBottom:10,
-    marginTop: 10,
-    marginBottom: 10,
-    backgroundColor:'#68a0cf',
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#fff',
-  },
-});
-
 
 export default ViromediaController;

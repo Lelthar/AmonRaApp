@@ -9,9 +9,14 @@ import {
   } from 'react-native';
 
 
+const dataSheetIcon = require('../../../../images/icons/RA/ficha-tecnica.png');
+const vivenciasIcon = require('../../../../images/icons/RA/vivenciass.png');
+const extraInfoIcon = require('../../../../images/icons/RA/mas-info.png');
+
+// TODO: Delete and connect to DB.
 var exampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel lacus molestie, blandit ante sit amet, sagittis risus.  ";
 var infoText = "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001).";
-  
+
 export default class InfoMenu extends Component {
     constructor(props) {
         super(props);
@@ -32,22 +37,22 @@ export default class InfoMenu extends Component {
         return (
             <View style={localStyles.infoContainer}>
               {this.props.descriptionVisible
-                ? <Text style={{color:'white',fontSize: 16, marginBottom: 15}}> {this.state.informationText} </Text>
+                ? <Text style={localStyles.description}> {this.state.informationText} </Text>
                 : null
               }
               <TouchableOpacity style={localStyles.infoButton} onPress={() => this.toggleDataSheet()} >
-                <Image source={require('../../../../images/icons/RA/ficha-tecnica.png')} />
-                <Text style={{color:"#1a606b",fontSize: 14}}> Ficha técnica</Text>
+                <Image source={dataSheetIcon} />
+                <Text style={localStyles.text}> Ficha técnica</Text>
               </TouchableOpacity>
       
               <TouchableOpacity style={localStyles.infoButton}>
-                <Image source={require('../../../../images/icons/RA/vivenciass.png')} />
-                <Text style={{color:"#1a606b",fontSize: 14}}> Vivencias</Text>
+                <Image source={vivenciasIcon} />
+                <Text style={localStyles.text}> Vivencias</Text>
               </TouchableOpacity>
       
               <TouchableOpacity style={localStyles.infoButton} onPress={() => this.toggleBriefDescripcion()}>
-                <Image  source={require('../../../../images/icons/RA/mas-info.png')} />
-                <Text style={{color:"#1a606b",fontSize: 14}}> Info</Text>
+                <Image  source={extraInfoIcon} />
+                <Text style={localStyles.text}> Info</Text>
               </TouchableOpacity>
             </View>
         );
@@ -78,9 +83,17 @@ var localStyles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent:'space-around',
     },
-
     infoButton: {
         flexDirection: 'row', 
+    },
+    text:{
+        color:"#1a606b",
+        fontSize: 14
+    },
+    description:{
+        color:'white',
+        fontSize: 16, 
+        marginBottom: 15
     },
 });
 
