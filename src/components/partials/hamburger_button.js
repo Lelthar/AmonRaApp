@@ -11,7 +11,6 @@ import { SearchBar} from 'react-native-elements';
 import { connect } from "react-redux";
 import { menuSideAction } from "../../redux/actions/menuDataActions";
 
-
 // test for menu 
 let isMenuVisible = false; //  TODO QUITAR
 let isTextDiscoverPressed = true;
