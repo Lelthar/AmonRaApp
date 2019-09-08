@@ -30,6 +30,9 @@ var NAVIGATOR_TYPE_VR = "VR";
 var NAVIGATOR_TYPE_AR = "AR";
 var NAVIGATOR_TYPE_3D = "3D";
 
+const view_normal = require('../../images/icons/virtualVisit/normal.png');
+const view_vr = require('../../images/icons/virtualVisit/vr.png');
+
 export class ViromediaController extends Component {
 
   constructor(props) {
@@ -154,25 +157,19 @@ export class ViromediaController extends Component {
 
   _getSelectionButtons() {
     return (
-      <View style={localStyles.outer} >         
+      <View style={localStyles.outer} >
         <View style={localStyles.inner} >
 
-          <Text style={localStyles.titleText}>
-            ¿Posee visores VR?
-          </Text>
+        <TouchableHighlight style={{marginBottom:"20%"}}
+            onPress={this._getOnClick(true)}>
 
-          <TouchableHighlight style={localStyles.buttons}
-            onPress={this._getOnClick(true)}
-            underlayColor={'#68a0ff'} >
-
-            <Text style={localStyles.buttonText}>SÍ</Text>
+            <Image source={ view_vr }/>
           </TouchableHighlight>
 
-          <TouchableHighlight style={localStyles.buttons}
-            onPress={this._getOnClick(false)}
-            underlayColor={'#68a0ff'} >
+          <TouchableHighlight style={{marginTop:"20%"}}
+            onPress={this._getOnClick(false)}>
 
-            <Text style={localStyles.buttonText}>NO</Text>
+            <Image source={ view_normal }/>
           </TouchableHighlight>
         </View>
       </View>
@@ -189,13 +186,13 @@ var localStyles = StyleSheet.create({
     flex : 1,
     flexDirection: 'row',
     alignItems:'center',
-    backgroundColor: "black",
+    backgroundColor: "#08545c",
   },
   inner: {
     flex : 1,
     flexDirection: 'column',
     alignItems:'center',
-    backgroundColor: "black",
+    backgroundColor: "#08545c",
   },
   titleText: {
     paddingTop: 30,
