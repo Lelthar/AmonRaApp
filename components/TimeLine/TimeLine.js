@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet,AppRegistry, AsyncStorage} from 'react-native';
+import { View, StyleSheet,AppRegistry} from 'react-native';
 import Timeline from './TimeLineContent'
+import AsyncStorage from '@react-native-community/async-storage';
 
 //----------Backend--------------
 import { 

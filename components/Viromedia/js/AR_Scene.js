@@ -1,99 +1,23 @@
-'use strict';
-
+'use strict'
 import React, { Component } from 'react';
 
 import {
-  StyleSheet,
-  Text,
-  View,
   PermissionsAndroid,
-  Dimensions
 } from 'react-native';
 
 import {
   ViroARScene,
-  ViroText,
-  ViroBox,
   Viro3DObject, 
-  ViroAmbientLight,
-  ViroSpotLight,
+  ViroAmbientLight, 
   ViroNode,
-  ViroConstants,
   ViroImage,
-  ViroScene,
 } from 'react-viro';
 
 import Geolocation from 'react-native-geolocation-service';
 import RNSimpleCompass from 'react-native-simple-compass';
+import { connect } from "react-redux";
+import { setPlaceArAction } from "../../../src/redux/actions/viromediaArAction";
 
-/*
-const coordTEC = [{place: "Centro de las Artes", lat: 9.857535, lon: -83.911538},
-                  {place: "Financiero", lat: 9.856955, lon: -83.912267}, 
-                  {place: "Editorial TEC", lat: 9.856614, lon: -83.912142},
-                  {place: "Soda El Ferrocarril", lat: 9.857331, lon: -83.910869}, 
-                  {place: "Gimnasio Institucional", lat: 9.857003, lon: -83.910855}, 
-                  {place: "Gimnasio ASETEC", lat: 9.856535, lon: -83.910827}, 
-                  {place: "Escuela Cultura y Deporte", lat: 9.856302, lon: -83.911833}, 
-                  {place: "Escuela de Computacion", lat: 9.856713, lon: -83.912661}, 
-                  {place: "Escuela de Matematica", lat: 9.856136, lon: -83.913089}, 
-                  {place: "Pretil", lat: 9.855712, lon: -83.912805}, 
-                  {place: "Soda ASETEC", lat: 9.855463, lon: -83.912314}, 
-                  {place: "Lab H", lat: 9.856300, lon: -83.912591}, 
-                  {place: "Biblioteca", lat: 9.855000, lon: -83.912591},  
-                 ];
-
-const coordAmon = [ {place: "Vista Edificio Esquinero Av 7 y Calle 3", lat: 9.93711, lon: -84.07715},
-                    {place: "Vista Casa Alejo Aguilar Bolandi, desde esquina suroeste entre Avenida 9 y Calle 3", lat: 9.938, lon: -84.07718},
-                    {place: "Vista Saborío Iglesias (Casa Verde), desde esquina suroeste entre Avenida 9 y Calle 7", lat: 9.93762, lon: -84.07492 },                                       
-                    {place: "Vista Avenida 9 hacia el este (costado Casa Mariano Álvarez Melgar)", lat: 9.93791, lon: -84.07652},
-                    {place: "Vista Calle 3A hacia Avenida 11", lat: 9.93814, lon: -84.07627},
-                    {place: "Vista del muro de la Casa González Feo, desde Calle 9", lat: 9.93701, lon: -84.07409},  
-                    {place: "Vista Antiguo Hotel Tenerife, desde Calle 9", lat: 9.93814, lon: -84.07627},
-                    {place: "Vista Antiguo Hotel Rey Amón, desde esquina suroeste entre Avenida 7 y Calle 9", lat: 9.93648, lon: -84.07407}, 
-                    {place: "Vista Casa 936 (Casa Familia Castro Odio), desde calle 3A", lat: 9.93839, lon: -84.07633},
-                    {place: "Vista Restaurante Silvestre (Antigua Casa Peralta Zeller), desde esquina noreste entre Avenida 11 y Calle 3A", lat: 9.93862, lon: -84.07623}, 
-                    {place: "Vista Hotel Dunn Inn, desde Avenida 11", lat: 9.9385, lon: -84.0755},
-                    {place: "Vista Calle 5 sobre Avenida 11 hacia Avenida 9", lat: 9.9385, lon: -84.0755},
-                    {place: "Vista Castillo del Moro desde Calle 3", lat: 9.9392, lon: -84.07702},
-                    {place: "Vista Castillo del Moro desde esquina noreste entre Avenida 13 y Calle 3", lat: 9.93941, lon: -84.07696}, 
-                    {place: "Vista Antigua Casa Serrano Bonilla", lat: 9.93856, lon: -84.07595}, 
-                    {place: "Vista Antigua Escuela Técnica Nacional (Centro Académico de San José - TEC)", lat: 9.93816, lon: -84.07545}, 
-                    {place: "Vista Alianza Cultural Franco Costarricense desde la esquina suroeste de la Avenida 7 y Calle 5", lat: 9.93683, lon: -84.07583},
-                    {place: "Vista Casa entre Avenida 5 y Calles 5 y 7", lat: 9.93674, lon: -84.07539}, 
-                    {place: "Vista Antigua Fosforera (Instituto Mixto de Ayuda Social)", lat: 9.93667, lon: -84.07501},  
-                    {place: "Vista Anexo Hotel Don Carlos desde Calle 9", lat: 9.93729, lon: -84.07411},  
-                    {place: "Hotel Don Carlos desde Calle 9", lat: 9.93742, lon: -84.07412}, 
-                    {place: "Vista Antigua Casa Mariano Álvarez Melgar desde Avenida 9", lat: 9.93792, lon: -84.07619},  
-                    {place: "Vista Antigua Casa Mariano Álvarez Melgar desde Calle 3A", lat: 9.93779, lon: -84.07624}, 
-                    {place: "Vista Antiguo Anticuario San Ángel", lat: 9.93771, lon: -84.07622},  
-                    {place: "Vista Antigüedades Gobelino y Café Gournet, desde esquina sureste Avenida 9 y Calle 3A", lat: 9.93787, lon: -84.07626},
-                    {place: "Vista Antigua Casa Alejo Aguilar Bolandi, desde esquina noroeste entre Avenida 9 y Calle 3", lat: 9.93809, lon: -84.07717}, 
-                    {place: "Vista Antigua Casa Alejo Aguilar Bolandi, desde Calle 3", lat: 9.9378, lon: -84.07718}, 
-                    {place: "Vista Antigua Casa Cipriano Herrero, desde esquina suroeste entre Avenida 11 y Calle 3", lat: 9.93871, lon: -84.07712}, 
-                    {place: "Vista Hotel Don Carlos, desde esquina noroeste entre esquina Avenida 9 y Calle 9", lat: 9.93758, lon: -84.07418}, 
-                    {place: "Vista Antiguo Hotel Amstel Amón, desde esquina suroeste entre Avenida 11 y Calle 3A", lat: 9.93855, lon: -84.07635},
-                    {place: "Vista Antiguo Hotel Hemingway Inn, desde esquina suroeste entre Avenida 9 y Calle 9", lat: 9.9375, lon: -84.07419}, 
-                    {place: "Vista interna de la recepción Hotel Inn Casa Verde", lat: 9.93784, lon: -84.07474}, 
-
-                  ]
-
-const mercatorTEC = [{place: "Centro de las Artes", X: -9340989.681840425, Y: 1102789.7035470225},
-                     {place: "Financiero", X: -9341070.833749214, Y: 1102724.1708053024},
-                     {place: "Editorial TEC", X: -9341056.918812865, Y: 1102685.642126478},
-                     {place: "Soda El Ferrocarril", X: -9340915.209101086, Y: 1102766.6540867938}, 
-                     {place: "Gimnasio Institucional", X: -9340913.650628215, Y: 1102729.594200243}, 
-                     {place: "Gimnasio ASETEC", X: -9340910.533682471, Y: 1102676.7161332557}, 
-                     {place: "Escuela Cultura y Deporte", X: -9341022.52109021, Y: 1102650.3901150657}, 
-                     {place: "Escuela de Computacion", X: -9341114.693628585, Y: 1102696.827867839}, 
-                     {place: "Escuela de Matematica", X: -9341162.338370645, Y: 1102631.634250793}, 
-                     {place: "Pretil", X: -9341130.723635262, Y: 1102583.7277487542}, 
-                     {place: "Soda ASETEC", X: -9341076.06576528, Y: 1102555.5940062169}, 
-                     {place: "Lab H", X: -9341106.90126423, Y: 1102650.164140742}, 
-                     {place: "Biblioteca", X: -9341106.90126423, Y: 1102503.2811197315},  
-                   //  {place: "Super Cartago", X: -9342335.86844259, Y: 1102024.005848375},  
-                     {place: "Esquina sur", X: -9342342.324973054, Y: 1101922.3079511977},  
-                    ];
-*/
 const mercatorAmon = [{place: "Vista Edificio Esquinero Av 7 y Calle 3", X: -9359425.52534968 , Y: 1111781.7786023072, img: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FIMG_1118.jpg?alt=media&token=40885398-5a20-4b3a-9bc5-2e5bf6dbbf73"},
                       {place: "Vista Casa Alejo Aguilar Bolandi, desde esquina suroeste entre Avenida 9 y Calle 3", X: -9359428.864934405, Y: 1111882.362060863, img: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F2.VistaCasaAlejoAguilarBolandiDesdeEsquinaSuroesteEntreAvenida9yCalle3%2FNP-002109.jpg?alt=media&token=e893373f-feba-498b-9256-ec64e985277f"},
                       {place: "Vista Saborío Iglesias (Casa Verde), desde esquina suroeste entre Avenida 9 y Calle 7", X: -9359177.282885212, Y: 1111839.4162810256, img: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F3.VistaCasaSaborioIglesiasDesdeEsquinaSuroesteEntreAvenida9yCalle7%2F6933.JPG?alt=media&token=5e1ba8ec-9240-4577-bfeb-686dea44b382"},                                       
@@ -129,12 +53,11 @@ const mercatorAmon = [{place: "Vista Edificio Esquinero Av 7 y Calle 3", X: -935
 
                   ];
 
-export default class AR_Scene extends Component {
 
-  constructor() {
-    super();
+export class AR_Scene extends Component {
 
-    this._onTrackingUpdated = this._onTrackingUpdated.bind(this);
+  constructor(props) {
+    super(props);
     this._coordLatLongToMercator = this._coordLatLongToMercator.bind(this);
     this._transformPointToAR = this._transformPointToAR.bind(this);
     this._calibrateCompass = this._calibrateCompass.bind(this);
@@ -149,10 +72,17 @@ export default class AR_Scene extends Component {
       error: null
     };
   }
-  
+
+  componentDidMount(){
+    if (checkLocalizationPermission()) {
+      this._setObjectPositions();
+      this.setState({hasARInitialized: true});
+    } 
+  }
+
   render() { 
     return (
-        <ViroARScene onTrackingUpdated={this._onTrackingUpdated}> 
+        <ViroARScene> 
           <ViroAmbientLight color={"#aaaaaa"} />
           {this.state.hasARInitialized
             ? this.getARModel()
@@ -167,7 +97,7 @@ export default class AR_Scene extends Component {
       <ViroNode>
         {this.loadARObject(this.state.firstNearestARObject.x, this.state.firstNearestARObject.z, this.state.firstNearestARObject.place, this.state.firstNearestARObject.img)}
         {this.loadARObject(this.state.secondNearestARObject.x, this.state.secondNearestARObject.z, this.state.secondNearestARObject.place, this.state.secondNearestARObject.img)}
-        {this.loadARObject(0.5, -1, "Frente", "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F2.VistaCasaAlejoAguilarBolandiDesdeEsquinaSuroesteEntreAvenida9yCalle3%2FNP-002109.jpg?alt=media&token=e893373f-feba-498b-9256-ec64e985277f")
+        {this.loadARObject(0, -2, "Frente", "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F2.VistaCasaAlejoAguilarBolandiDesdeEsquinaSuroesteEntreAvenida9yCalle3%2FNP-002109.jpg?alt=media&token=e893373f-feba-498b-9256-ec64e985277f")
         }
       </ViroNode>
     );
@@ -206,13 +136,6 @@ export default class AR_Scene extends Component {
     );
   }
 
-  componentDidMount(){
-    if (checkLocalizationPermission()) {
-      this._setObjectPositions();
-      this.setState({hasARInitialized: true});
-    } 
-  }
-  
   _setObjectPositions(){
     Geolocation.watchPosition(
       (position) => {
@@ -233,7 +156,6 @@ export default class AR_Scene extends Component {
             secondObjectDistance = distance;
           }
         });
-
         this.setState({
           firstNearestARObject: firstObject,
           secondNearestARObject: secondObject,
@@ -285,16 +207,9 @@ export default class AR_Scene extends Component {
     let ymeters = earth_radius * Math.log((Math.sin(lat_radians) + 1) / Math.cos(lat_radians));
     return ({x:xmeters, y:ymeters});
  }
-  
-  _onTrackingUpdated(state, reason) {
-    if (!this.state.hasARInitialized && state == ViroConstants.TRACKING_NORMAL) {
-      this.setState({
-        hasARInitialized : true,
-      });
-    }
-  }
 
 }
+
 
 async function checkLocalizationPermission(){
   try {
@@ -308,4 +223,50 @@ async function checkLocalizationPermission(){
   return false;
 }
 
-module.exports = AR_Scene;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setPlaceArAction: (data) => {
+      dispatch(setPlaceArAction(data));
+    },
+  };
+};
+
+module.exports = connect(null, mapDispatchToProps)(AR_Scene);
+
+
+/*
+const coordAmon = [ {place: "Vista Edificio Esquinero Av 7 y Calle 3", lat: 9.93711, lon: -84.07715},
+                    {place: "Vista Casa Alejo Aguilar Bolandi, desde esquina suroeste entre Avenida 9 y Calle 3", lat: 9.938, lon: -84.07718},
+                    {place: "Vista Saborío Iglesias (Casa Verde), desde esquina suroeste entre Avenida 9 y Calle 7", lat: 9.93762, lon: -84.07492 },                                       
+                    {place: "Vista Avenida 9 hacia el este (costado Casa Mariano Álvarez Melgar)", lat: 9.93791, lon: -84.07652},
+                    {place: "Vista Calle 3A hacia Avenida 11", lat: 9.93814, lon: -84.07627},
+                    {place: "Vista del muro de la Casa González Feo, desde Calle 9", lat: 9.93701, lon: -84.07409},  
+                    {place: "Vista Antiguo Hotel Tenerife, desde Calle 9", lat: 9.93814, lon: -84.07627},
+                    {place: "Vista Antiguo Hotel Rey Amón, desde esquina suroeste entre Avenida 7 y Calle 9", lat: 9.93648, lon: -84.07407}, 
+                    {place: "Vista Casa 936 (Casa Familia Castro Odio), desde calle 3A", lat: 9.93839, lon: -84.07633},
+                    {place: "Vista Restaurante Silvestre (Antigua Casa Peralta Zeller), desde esquina noreste entre Avenida 11 y Calle 3A", lat: 9.93862, lon: -84.07623}, 
+                    {place: "Vista Hotel Dunn Inn, desde Avenida 11", lat: 9.9385, lon: -84.0755},
+                    {place: "Vista Calle 5 sobre Avenida 11 hacia Avenida 9", lat: 9.9385, lon: -84.0755},
+                    {place: "Vista Castillo del Moro desde Calle 3", lat: 9.9392, lon: -84.07702},
+                    {place: "Vista Castillo del Moro desde esquina noreste entre Avenida 13 y Calle 3", lat: 9.93941, lon: -84.07696}, 
+                    {place: "Vista Antigua Casa Serrano Bonilla", lat: 9.93856, lon: -84.07595}, 
+                    {place: "Vista Antigua Escuela Técnica Nacional (Centro Académico de San José - TEC)", lat: 9.93816, lon: -84.07545}, 
+                    {place: "Vista Alianza Cultural Franco Costarricense desde la esquina suroeste de la Avenida 7 y Calle 5", lat: 9.93683, lon: -84.07583},
+                    {place: "Vista Casa entre Avenida 5 y Calles 5 y 7", lat: 9.93674, lon: -84.07539}, 
+                    {place: "Vista Antigua Fosforera (Instituto Mixto de Ayuda Social)", lat: 9.93667, lon: -84.07501},  
+                    {place: "Vista Anexo Hotel Don Carlos desde Calle 9", lat: 9.93729, lon: -84.07411},  
+                    {place: "Hotel Don Carlos desde Calle 9", lat: 9.93742, lon: -84.07412}, 
+                    {place: "Vista Antigua Casa Mariano Álvarez Melgar desde Avenida 9", lat: 9.93792, lon: -84.07619},  
+                    {place: "Vista Antigua Casa Mariano Álvarez Melgar desde Calle 3A", lat: 9.93779, lon: -84.07624}, 
+                    {place: "Vista Antiguo Anticuario San Ángel", lat: 9.93771, lon: -84.07622},  
+                    {place: "Vista Antigüedades Gobelino y Café Gournet, desde esquina sureste Avenida 9 y Calle 3A", lat: 9.93787, lon: -84.07626},
+                    {place: "Vista Antigua Casa Alejo Aguilar Bolandi, desde esquina noroeste entre Avenida 9 y Calle 3", lat: 9.93809, lon: -84.07717}, 
+                    {place: "Vista Antigua Casa Alejo Aguilar Bolandi, desde Calle 3", lat: 9.9378, lon: -84.07718}, 
+                    {place: "Vista Antigua Casa Cipriano Herrero, desde esquina suroeste entre Avenida 11 y Calle 3", lat: 9.93871, lon: -84.07712}, 
+                    {place: "Vista Hotel Don Carlos, desde esquina noroeste entre esquina Avenida 9 y Calle 9", lat: 9.93758, lon: -84.07418}, 
+                    {place: "Vista Antiguo Hotel Amstel Amón, desde esquina suroeste entre Avenida 11 y Calle 3A", lat: 9.93855, lon: -84.07635},
+                    {place: "Vista Antiguo Hotel Hemingway Inn, desde esquina suroeste entre Avenida 9 y Calle 9", lat: 9.9375, lon: -84.07419}, 
+                    {place: "Vista interna de la recepción Hotel Inn Casa Verde", lat: 9.93784, lon: -84.07474}, 
+
+                  ]
+                  */
