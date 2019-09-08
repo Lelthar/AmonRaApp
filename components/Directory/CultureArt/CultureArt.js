@@ -22,14 +22,59 @@ import {
 import {
   makeBackendRequest,
 } from '../../../helpers/helpers'
+//-------------------------------------
 
+//Imports for redux
 
+import { connect } from "react-redux";
 
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../../src/redux/actions/menuDataActions";
+
+import HamburguerComponent from '../../../src/components/partials/HamburguerMenu'
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+// End of redux imports
 
 var {windowHeight, windowWidth} = Dimensions.get('window');
 
 
-export default class CultureArt extends Component{
+class CultureArt extends Component{
 
   constructor(props){
       super(props);
@@ -138,12 +183,12 @@ export default class CultureArt extends Component{
 
               {this.state.markers.map(place => (
 
-                <View style={{flexDirection: "row",padding:10}}>
+                <View style={{flexDirection: "row",padding: 10}}>
                 <TouchableOpacity style={{width: 15}} />
                 <Image  source= {{uri: place.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
                 <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', flex: 1 }}>
                 <Text style={styles.name_place} >  { this.fixPlaceNameWithParenthesis(place.name) }</Text>
-                <Text style={{fontFamily: "Roboto",color:'grey',fontSize: 16}}>Dirección: {place.direction}</Text>
+                <Text style={styles.text}>Dirección: {place.direction}</Text>
                 <Text style={styles.text}>Tel: {place.phone_number}</Text>
                 <Text style={styles.text}>Facebook: {place.facebook}</Text> 
                 <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}}  onPress={() => this.props.navigation.navigate('SeeMore',{goToScreen: this.navigation, placeInfo: place})}>
@@ -166,6 +211,10 @@ export default class CultureArt extends Component{
               </View>
 
               {//<View style={{flex:0.4}} />
+              }
+
+              {this.props.menuSideState &&
+                < HamburguerComponent />
               }
 
           </View>
@@ -197,12 +246,18 @@ const styles = StyleSheet.create({
      name_place: {
        color: "#0C5B60",
        fontWeight: 'bold',
-       fontSize: 16
+       fontSize: 16,
+       paddingLeft:5,
+       paddingTop:10
      },
      text: {
        color:'grey',
-       fontSize: 16
+       fontSize: 16,
+       paddingLeft: 10
      }
 });
+
+const cultureArtComponent = connect(mapStateToProps,mapDispatchToProps)(CultureArt);
+export default cultureArtComponent;
 
 AppRegistry.registerComponent('CultureArt', () => CultureArt);

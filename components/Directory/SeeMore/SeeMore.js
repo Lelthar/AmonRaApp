@@ -1,23 +1,70 @@
 import React, {Component} from 'react';
 import {
 
-	StyleSheet,
-	Text,
-	View,
-	AppRegistry,
-	Button,
-	Image,
-	Dimensions,
-	TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+  AppRegistry,
+  Button,
+  Image,
+  Dimensions,
+  TouchableOpacity,
   ScrollView
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
 var {windowHeight, windowWidth} = Dimensions.get('window');
 
-export default class SeeMore extends Component{
+//Imports for redux
 
-	constructor(props){
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../../src/redux/actions/menuDataActions";
+
+import HamburguerComponent from '../../../src/components/partials/HamburguerMenu'
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+// End of redux imports
+
+class SeeMore extends Component{
+
+  constructor(props){
     super(props);
     // Se le pasa el controlador de la navegación a App.js
     // para controlar la navegación desde Navigator.js
@@ -57,65 +104,37 @@ componentDidMount(){
     return (
 
        <View style={styles.container}>
-            {/* Navigator uses flex 10. 1 up, 1 down, 8 body */}
-               <View style={{flex:2}} />
 
-                {/* Full body container. Flex 8. Hay 23 flexes en el full body */}
-                <View style={styles.body}>
+       <View style={{flex:0.35}}>
+              <Swiper style={styles.wrapper}  loop>
 
-                  {/* Swiper Flex 9*/}
-                  <View style={styles.swiper}>
-
-                    <Swiper style={styles.wrapper}  loop>
-
-                      <View style={styles.slide}>
-                        <Image resizeMode='center' style={styles.image} source={pic } />
-                      </View>
-
-                      <View style={styles.slide}>
-                        <Image resizeMode='center' style={styles.image} source={pic2 } />
-                      </View>
-
-                      <View style={styles.slide}>
-                        <Image resizeMode='center' style={styles.image} source={ pic3 } />
-                      </View>
-                      
-                    </Swiper>
-
-                    {/* Ends Swiper Flex 9*/}
-                  </View>
-
-                    <View style={styles.contentUnderSwiper}>
-
-                      <View style={ styles.information }>
-
-                        <Text style={styles.titleOr} >{this.state.title}</Text>
-
-                        <ScrollView>
-                          <Text style = {styles.descriptionOr}> {this.state.description} </Text>
-                          <Text style = {styles.directionOr}>  Dirección: {this.state.direction } </Text> 
-                          <Text style = {styles.phoneOr}> Tel: {this.state.phone_number} </Text> 
-                          <Text style = {styles.facebookOr}> Facebook: {this.state.facebook} </Text>
-                        </ScrollView>
-                    
-                    </View>
-
-                      <View style={{flex:1}}/>
-
-                      </View>
-
-                     
-                    {/* Ends flex 14*/}
-                    </View>
-
-                    
-
-
-                {/* Ends full body flex 8*/}
+                <View style={styles.slide}>
+                  <Image resizeMode='center' style={styles.imageOr} source={pic } />
                 </View>
+                <View style={styles.slide}>
+                  <Image resizeMode='center' style={styles.imageOr} source={pic2 } />
+                </View>
+                <View style={styles.slide}>
+                  <Image resizeMode='center' style={styles.imageOr} source={ pic3 } />
+                </View>
+              </Swiper>
+      </View> 
+      <View style={{flex:0.65}}>
+              
+                  <Text style={styles.titleOr} >{this.state.title}</Text>
+                  <ScrollView>
+                    <Text style = {styles.descriptionOr}>{this.state.description} </Text>
+                    <Text style = {styles.directionOr}>Dirección: {this.state.direction } </Text> 
+                    <Text style = {styles.phoneOr}>Tel{this.state.phone_number} </Text> 
+                    <Text style = {styles.facebookOr}>Facebook: {this.state.facebook} </Text>
+                  </ScrollView>
+      </View>
 
+        {this.props.menuSideState &&
+        < HamburguerComponent /> }
+    
+    </View>
 
-          
     );
   }
 }
@@ -128,36 +147,34 @@ const styles = StyleSheet.create({
    information:{
     height: windowHeight
    },
-	slideOr: {
+  slideOr: {
     height:250,
     backgroundColor: 'transparent'
-	},
+  },
   swiperOr:{
     marginTop:70,
     height:250
   },
-	imageOr: {
-		width: windowWidth,
-		height: 250
-	},
-	
-	titleOr: {
-		textAlign: "center", fontSize:20,
-		fontFamily: "vincHand",
+  imageOr: {
+    width: windowWidth,
+    height: 250
+  },
+  
+  titleOr: {
+    textAlign: "center", fontSize:20,
+    fontFamily: "vincHand",
     color: "#0C5B60",
-    marginTop: 20,
-    marginBottom: 20,
+    padding:20,
     fontWeight: 'bold',
     textAlign: 'center'
-	},
+  },
 
-	descriptionOr: {
-		textAlign: "center", fontSize:18,
-		color: "#0C5B60",
-    textAlign: 'left',
-    marginLeft: 20,
-    marginRight: 20
-	},
+  descriptionOr: {
+    textAlign: "justify", fontSize:18,
+    color: "#0C5B60",
+    paddingLeft:20,
+    paddingRight:20,
+  },
 
   directionOr:{
     textAlign: "center", fontSize:15,
@@ -200,7 +217,7 @@ const styles = StyleSheet.create({
     flex: 9
   },
   contentUnderSwiper:{
-    flex:14
+    flex:10
   },
   buttonsRow:{
     flex:5,
@@ -219,7 +236,7 @@ const styles = StyleSheet.create({
   slide: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'transparent'
+    backgroundColor: '#111111'
   },
 
   image: {
@@ -232,5 +249,7 @@ const styles = StyleSheet.create({
 });
 
 
+const seeMoreComponent = connect(mapStateToProps,mapDispatchToProps)(SeeMore);
+export default seeMoreComponent;
 
-    AppRegistry.registerComponent('SeeMore', () => SeeMore);
+AppRegistry.registerComponent('SeeMore', () => SeeMore);

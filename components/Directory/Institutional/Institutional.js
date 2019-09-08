@@ -22,9 +22,54 @@ import {
   makeBackendRequest,
 } from '../../../helpers/helpers'
 
+//Imports for redux
 
+import { connect } from "react-redux";
 
-export default class Institutional extends Component{
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../../src/redux/actions/menuDataActions";
+
+import HamburguerComponent from '../../../src/components/partials/HamburguerMenu'
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+// End of redux imports
+
+class Institutional extends Component{
 
   constructor(props){
       super(props);
@@ -161,6 +206,9 @@ export default class Institutional extends Component{
             {// <View style={{flex:0.4}} />
             }
 
+            {this.props.menuSideState &&
+                < HamburguerComponent /> }
+
           </View>
 
       );
@@ -184,12 +232,18 @@ const styles = StyleSheet.create({
     name_place: {
       color: "#0C5B60",
       fontWeight: 'bold',
-      fontSize: 16
+      fontSize: 16,
+      paddingLeft:5,
+      paddingTop: 10
     },
     text: {
       color:'grey',
-      fontSize: 16
+      fontSize: 16,
+      paddingLeft: 10
     }
 });
+
+const institutionalComponent = connect(mapStateToProps,mapDispatchToProps)(Institutional);
+export default institutionalComponent;
 
 AppRegistry.registerComponent('Institutional', () => Institutional);

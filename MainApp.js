@@ -6,7 +6,7 @@ import {
 
 import Orientation from 'react-native-orientation-locker';
 
-import ApplicationNavigator from "./src/components/pages/navigation";
+import ApplicationNavigator from "./src/components/pages/Navigation";
 
 import { Provider } from "react-redux";
 import setupStore from "./src/redux/setupStore";
