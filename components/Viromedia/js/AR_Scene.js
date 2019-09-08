@@ -11,6 +11,7 @@ import {
   ViroAmbientLight, 
   ViroNode,
   ViroImage,
+  ViroText,
 } from 'react-viro';
 
 import Geolocation from 'react-native-geolocation-service';
@@ -62,14 +63,13 @@ export class AR_Scene extends Component {
     this._transformPointToAR = this._transformPointToAR.bind(this);
     this._calibrateCompass = this._calibrateCompass.bind(this);
     this._setObjectPositions = this._setObjectPositions.bind(this);
-    this.getARModel = this.getARModel.bind(this);
+    this.getARModel = this.getARModel.bind(this); 
 
     this.state = {
       firstNearestARObject: {x: 0, z: 0.5, place:"Cargando", img: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F2.VistaCasaAlejoAguilarBolandiDesdeEsquinaSuroesteEntreAvenida9yCalle3%2FNP-002109.jpg?alt=media&token=e893373f-feba-498b-9256-ec64e985277f"},
       secondNearestARObject: {x: 0, z: 0.5, place:"Cargando", img: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F2.VistaCasaAlejoAguilarBolandiDesdeEsquinaSuroesteEntreAvenida9yCalle3%2FNP-002109.jpg?alt=media&token=e893373f-feba-498b-9256-ec64e985277f"},
       compassHeading: 0,
       hasARInitialized: false,
-      error: null
     };
   }
 
@@ -106,6 +106,14 @@ export class AR_Scene extends Component {
   loadARObject(posX, posZ, place, img){
     return(
       <ViroNode>
+        <ViroText
+            text={this.state.textprueba}
+            width={3} height={3}
+            style={{fontFamily:"Arial", fontSize:30, color: '#ffffff',}}
+            scale={[1, 1, 1]}
+            position={[0,-1,-1]}
+        />
+
         <Viro3DObject
           source={require('./res/emoji_smile/emoji_smile.vrx')}
           position={[posX, 1, posZ + 0.5]}
@@ -119,19 +127,20 @@ export class AR_Scene extends Component {
                     require('./res/emoji_smile/emoji_smile_normal.png')]}/>
 
         <ViroImage
-          onClick={this.props.arSceneNavigator.viroAppProps.setInformation}
-          scale={[1,1,1]}
-          position={[posX, 1, posZ + 1]}
-          source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67'}}
-       />
-
-        <ViroImage
           position={[posX, 0.5, posZ]}
           resizeMode='ScaleToFit'
           scale={[1.5, 1.5, 1.5]}
           dragType="FixedDistance" onDrag={()=>{}}
           source={{uri: img}}
         />
+
+        <ViroImage
+          onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(place)}
+          scale={[1,1,1]}
+          position={[posX, 1, posZ + 1]}
+          source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67'}}
+        />
+
       </ViroNode>
     );
   }
@@ -158,14 +167,8 @@ export class AR_Scene extends Component {
         });
         this.setState({
           firstNearestARObject: firstObject,
-          secondNearestARObject: secondObject,
-          error: null   
+          secondNearestARObject: secondObject,  
         });
-      },
-      (error) => {
-          this.setState({
-            error: error.message
-          });
       },
       {enableHighAccuracy: true, maximumAge: 0, distanceFilter: 10}
     );

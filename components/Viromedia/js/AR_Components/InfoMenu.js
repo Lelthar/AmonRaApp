@@ -20,9 +20,7 @@ export default class InfoMenu extends Component {
         this.toggleDataSheet = this.toggleDataSheet.bind(this);
         
         this.state = {
-            descriptionVisible: true,
             informationText : "Sin datos",
-            informationVisible : false,
         }
     }
 
@@ -63,7 +61,6 @@ export default class InfoMenu extends Component {
     toggleBriefDescripcion(){ 
         this.setState({
             informationText: this.state.informationText == infoText ? exampleText : infoText,
-            informationVisible : true,
         });
     }
 

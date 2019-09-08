@@ -50,6 +50,7 @@ export class ViromediaController extends Component {
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
+      houseArPressed: null,
     }
   }   
 
@@ -80,12 +81,12 @@ export class ViromediaController extends Component {
             viroAppProps={this.state.viroAppProps}/>
                                 
         {this.state.infoMenuVisible // Menu
-          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} descriptionVisible={this.state.descriptionVisible} houseInfo={""}/>
+          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} descriptionVisible={this.state.descriptionVisible} houseInfo={this.state.houseArPressed}/>
           : null
         }
 
         {this.state.dataSheetVisible // Ficha técnica
-          ? <DataSheet handlePress={this.toggleDataSheet} houseInfo={""}/>
+          ? <DataSheet handlePress={this.toggleDataSheet} houseInfo={this.state.houseArPressed}/>
           : null
         }
       </View>
@@ -100,7 +101,7 @@ export class ViromediaController extends Component {
   }
 
   // Show extra information of a building.
-  showInfoMenu(){ 
+  showInfoMenu(place){ 
     this.setState({
       infoMenuVisible : true,
     });
@@ -122,7 +123,7 @@ export class ViromediaController extends Component {
     return (
       <ViroVRSceneNavigator {...this.state.sharedProps}
         initialScene={{scene: Initial3DScene}} 
-        onExitViro={this._exitViro} v
+        onExitViro={this._exitViro}
         rModeEnabled={false}/>
     );
   }
