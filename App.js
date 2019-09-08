@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {
 } from 'react-native';
 
+import SplashScreen from 'react-native-splash-screen';
+
 import RegisterMain from './components/Register/RegisterMain';
 import MainApp from './MainApp'
 import { 
@@ -28,6 +30,13 @@ export default class App extends Component<Props> {
         //requestPermissions();
 
     }
+
+    componentDidMount() {
+    	// do stuff while splash screen is shown
+        // After having done stuff (such as async tasks) hide the splash screen
+        SplashScreen.hide();
+    }
+
     render() {
       const register = <RegisterMain />;
       const mainApp = <MainApp />;
