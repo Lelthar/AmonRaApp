@@ -106,14 +106,7 @@ export class AR_Scene extends Component {
   loadARObject(posX, posZ, place, img){
     return(
       <ViroNode>
-        <ViroText
-            text={this.state.textprueba}
-            width={3} height={3}
-            style={{fontFamily:"Arial", fontSize:30, color: '#ffffff',}}
-            scale={[1, 1, 1]}
-            position={[0,-1,-1]}
-        />
-
+        
         <Viro3DObject
           source={require('./res/emoji_smile/emoji_smile.vrx')}
           position={[posX, 1, posZ + 0.5]}
