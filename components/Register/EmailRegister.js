@@ -20,7 +20,7 @@ import {
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-import styles from "../../src/assets/styles/pages/email_register";
+import styles from "../../src/assets/styles/pages/emailRegister";
 
 import * as countries from '../../data/countries';
 import ConfidencialityAlertModal from '../ConfidencialityAlertModal/ConfidencialityAlertModal';
