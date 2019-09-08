@@ -16,7 +16,7 @@ import {
 
 import { connect } from "react-redux"
 import DataSheet from "./js/AR_Components/DataSheet"
-
+import InfoMenu from "./js/AR_Components/InfoMenu"
 
 var sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
@@ -30,29 +30,24 @@ var NAVIGATOR_TYPE_VR = "VR";
 var NAVIGATOR_TYPE_AR = "AR";
 var NAVIGATOR_TYPE_3D = "3D";
 
-var exampleText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel lacus molestie, blandit ante sit amet, sagittis risus.  ";
-var infoText = "Perteneciente a la familia Quesada López-Calleja posee influencia colonial donde prevalece su fachada sencilla compuesta por una puerta y dos ventanas laterales; construida en ladrillo sobre la acera (Quesada, 2001).";
-
 export class ViromediaController extends Component {
 
   constructor(props) {
 
     super(props);
+   
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
-    this.showInformationMenu = this.showInformationMenu.bind(this);
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
-    this.toggleBriefDescripcion = this.toggleBriefDescripcion.bind(this);
+    this.showInfoMenu = this.showInfoMenu.bind(this);
     
     this.state = {
       sharedProps : sharedProps, 
       navigatorType : this.props.navigation.state.params.do,
-      viroAppProps: {setInformation: this.toggleBriefDescripcion},
+      viroAppProps: {setInformation: this.showInfoMenu},
       vrMode : null,
       content: this.props.navigation.state.params.filename,
-
-      informationText : "Sin datos",
-      informationVisible : false,
+      infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
     }
@@ -84,44 +79,19 @@ export class ViromediaController extends Component {
             onExitViro={this._exitViro} 
             viroAppProps={this.state.viroAppProps}/>
                                 
-        {this.state.informationVisible
-          ? this.showInformationMenu()
+        {this.state.infoMenuVisible // Menu
+          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} descriptionVisible={this.state.descriptionVisible} houseInfo={""}/>
           : null
         }
 
         {this.state.dataSheetVisible // Ficha técnica
-          ? <DataSheet handlePress={this.toggleDataSheet}/>
+          ? <DataSheet handlePress={this.toggleDataSheet} houseInfo={""}/>
           : null
         }
       </View>
     );
   }
-
-  showInformationMenu(){ 
-    return (
-      <View style={localStyles.infoContainer}>
-        {this.state.descriptionVisible
-          ? <Text style={{color:'white',fontSize: 16, marginBottom: 15}}> {this.state.informationText} </Text>
-          : null
-        }
-        <TouchableOpacity style={localStyles.infoButton} onPress={() => this.toggleDataSheet()} >
-          <Image source={require('../../images/icons/RA/ficha-tecnica.png')} />
-          <Text style={{color:"#1a606b",fontSize: 14}}> Ficha técnica</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={localStyles.infoButton}>
-          <Image source={require('../../images/icons/RA/vivenciass.png')} />
-          <Text style={{color:"#1a606b",fontSize: 14}}> Vivencias</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={localStyles.infoButton} onPress={() => this.toggleBriefDescripcion()}>
-          <Image  source={require('../../images/icons/RA/mas-info.png')} />
-          <Text style={{color:"#1a606b",fontSize: 14}}> Info</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-
+  
   toggleDataSheet(){
     this.setState({
       dataSheetVisible : !this.state.dataSheetVisible,
@@ -130,10 +100,9 @@ export class ViromediaController extends Component {
   }
 
   // Show extra information of a building.
-  toggleBriefDescripcion(){ 
+  showInfoMenu(){ 
     this.setState({
-      informationText: this.state.informationText == infoText ? exampleText : infoText,
-      informationVisible : true,
+      infoMenuVisible : true,
     });
   }
 
@@ -141,7 +110,10 @@ export class ViromediaController extends Component {
   _getVRNavigator() {
     return (
       <ViroVRSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro} vrModeEnabled={this.state.vrMode} viroAppProps={{data:this.state.content}}/>
+        initialScene={{scene: InitialVRScene}} 
+        onExitViro={this._exitViro} 
+        vrModeEnabled={this.state.vrMode} 
+        viroAppProps={{data:this.state.content}}/>
     );
   }
 
@@ -149,7 +121,9 @@ export class ViromediaController extends Component {
   _get3DNavigator() {
     return (
       <ViroVRSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: Initial3DScene}} onExitViro={this._exitViro} vrModeEnabled={false}/>
+        initialScene={{scene: Initial3DScene}} 
+        onExitViro={this._exitViro} v
+        rModeEnabled={false}/>
     );
   }
 
@@ -249,20 +223,6 @@ var localStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#fff',
   },
-  infoContainer : {
-    flex:14, 
-    flexDirection: 'row', 
-    padding:15, 
-    bottom: 0,
-    position:"absolute",
-    backgroundColor:'rgba(54, 145, 160, 0.8)',
-    width: Dimensions.get('window').width,
-    flexWrap: 'wrap',
-    justifyContent:'space-around',
-  },
-  infoButton: {
-    flexDirection: 'row', 
-  },
 });
 
 const mapStateToProps = state => {
@@ -271,5 +231,4 @@ const mapStateToProps = state => {
   };
 };
 
-//module.exports = connect(mapStateToProps, null)(ViromediaController);
 export default connect(mapStateToProps, null)(ViromediaController)
