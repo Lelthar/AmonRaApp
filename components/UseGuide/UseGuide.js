@@ -42,7 +42,8 @@ export default class UseGuide extends Component {
         this.setState({ paused: true })
         this.video.seek(0)
 
-        this.props.hideVideo();
+        //this.props.hideVideo();
+        this.props.navigation.navigate('MainApp');
     };
 
     getCurrentTimePercentage() {
@@ -64,7 +65,7 @@ export default class UseGuide extends Component {
                 >
                     <Video
                         ref={(ref: Video) => { this.video = ref }}
-                        source={require('../../media/test.mp4')}
+                        source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/video%20amon%20RA_2.mp4?alt=media&token=cef02ff2-aa4a-44e0-8b04-491e36c94960'}}
                         style={styles.fullScreen}
                         rate={this.state.rate}
                         paused={this.state.paused}

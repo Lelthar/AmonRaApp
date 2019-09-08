@@ -25,6 +25,7 @@ import styles from "../../src/assets/styles/pages/email_register";
 import * as countries from '../../data/countries';
 import ConfidencialityAlertModal from '../ConfidencialityAlertModal/ConfidencialityAlertModal';
 import CheckBox from 'react-native-check-box';
+import UseGuide from '../UseGuide/UseGuide';
 
 const logo = '../../images/marca-02.png';
 const background = '../../resources/img/casa-verde-I.png';
@@ -67,7 +68,7 @@ _showConfidencialityAlert(){
 _goToMainApp(){
   const resetAction = StackActions.reset({
     index: 0,
-    actions: [NavigationActions.navigate({ routeName: 'MainApp' })],
+    actions: [NavigationActions.navigate({ routeName: 'UseGuide' })],
   });
   this.props.navigation.dispatch(resetAction);
 }
@@ -209,6 +210,7 @@ pre_register( ){
 renderModal(){
   return(
     <ConfidencialityAlertModal isVisible={this.state.isConfidencialityAlertVisible} okAction={this._goToMainApp.bind(this)}/>
+    //<UseGuide hideVideo= {this._goToMainApp.bind(this)}/>
   );
 }
 

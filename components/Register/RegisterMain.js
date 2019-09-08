@@ -25,6 +25,7 @@ import {saveDataFirebase} from '../../firebase/functions';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 import ConfidencialityAlertModal from '../ConfidencialityAlertModal/ConfidencialityAlertModal';
+import UseGuide from '../UseGuide/UseGuide';
 
 const logo = '../../images/marca-02-smaller.png';
 const background = '../../resources/img/casa-verde-I.png';
@@ -160,7 +161,7 @@ class RegisterMain extends React.Component {
   _goToMainApp(){
     const resetAction = StackActions.reset({
       index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'MainApp' })],
+      actions: [NavigationActions.navigate({ routeName: 'UseGuide' })],
     });
     this.props.navigation.dispatch(resetAction);
   }
@@ -169,6 +170,7 @@ class RegisterMain extends React.Component {
   renderModal(){
     return(
       <ConfidencialityAlertModal isVisible={this.state.isConfidencialityAlertVisible} okAction={this._goToMainApp.bind(this)}/>
+      //<UseGuide />
     );
   }
 
@@ -276,6 +278,7 @@ const RegisterNavigator = createStackNavigator (
         RegisterMain: RegisterMain,
         EmailRegister: EmailRegister,
         MainApp: MainApp,
+        UseGuide: UseGuide
     },
     navigationOptions
 );
