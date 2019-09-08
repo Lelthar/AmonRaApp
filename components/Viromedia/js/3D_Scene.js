@@ -22,7 +22,7 @@ var MainScene = createReactClass({
   getInitialState() {
     return {
       rotation : [0, 0, 0],
-      scale:[.01, .01, .01],
+      scale:[.1, .1, .1],
     };
   },
 
@@ -44,9 +44,9 @@ var MainScene = createReactClass({
               scale={this.state.scale}
               rotation={this.state.rotation} >
             <Viro3DObject
-              source={require('./res/CasaGonzales.obj')}
+              source={require('./res/house/house_test.vrx')}
               onPinch={this._onPinch}
-              type="OBJ"
+              type="VRX"
             />
             {/*<Viro3DObject source={require('./res/heart.obj')}
                        materials={["heart"]} onPinch={this._onPinch} type="OBJ" />*/}

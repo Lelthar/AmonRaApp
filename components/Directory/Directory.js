@@ -134,7 +134,7 @@ class Directory extends Component{
                     <View style={styles.buttonsRow}>
                       <View style={{flex:2}}/>
                       
-                      <TouchableOpacity style={styles.squareButton} onPress={() => this.props.navigation.navigate('Cultural',{goToScreen: this.navigation})} >
+                      <TouchableOpacity style={styles.squareButton} onPress={() => this.props.navigation.navigate('CultureArt',{goToScreen: this.navigation})} >
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/culturagris.png')} />
                       </TouchableOpacity>
                     
