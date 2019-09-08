@@ -29,6 +29,7 @@
     "react-native-orientation-locker": "^1.1.6",
     "react-native-scalable-image": "^0.4.0",
     "react-native-simple-compass": "^1.0.0",
+    "react-native-splash-screen": "^3.2.0",
     "react-native-swiper": "^1.5.13",
     "react-native-timeline-listview": "^0.2.3",
     "react-native-vector-icons": "^6.6.0",
