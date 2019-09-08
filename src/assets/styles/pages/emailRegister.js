@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   checkbox:{
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginLeft: 10
   },
   checkImage:{
     width: 20,
@@ -25,7 +26,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   generoInput: {
-    flex:2,
     alignSelf: 'center',
     fontSize: 16,
     color: '#6D6E71',
@@ -42,6 +42,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     fontSize: 14,
     color: '#000000',
+  },
+  genderBox: {
+    backgroundColor: 'white',
+    margin: 7,
+    fontSize: 14,
+    color: '#6D6E71',
   },
   paisesBox: {
     flex:7,
