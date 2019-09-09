@@ -65,7 +65,7 @@ export default class UseGuide extends Component {
                 >
                     <Video
                         ref={(ref: Video) => { this.video = ref }}
-                        source={{uri:'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/video%20amon%20RA_2.mp4?alt=media&token=cef02ff2-aa4a-44e0-8b04-491e36c94960'}}
+                        source={{uri:'https://video-mia3-1.xx.fbcdn.net/v/t42.9040-2/70597518_1177349475800103_848348417116602368_n.mp4?_nc_cat=110&efg=eyJ2ZW5jb2RlX3RhZyI6InN2ZV9zZCJ9&_nc_oc=AQkDpbzEyEODyoKqLXj20Z_jSIgwW3KP-DInN8_MZzC3hrM6JRPOvMnZ_JOaQliZrt8&_nc_ht=video-mia3-1.xx&oh=c1c0af77c7c3a130cf0f8f706de27278&oe=5D75F9F1'}}
                         style={styles.fullScreen}
                         rate={this.state.rate}
                         paused={this.state.paused}
