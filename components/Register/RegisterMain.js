@@ -1,5 +1,4 @@
 import React from 'react';
-import firebase from 'react-native-firebase';
 import * as constants from '../../data/constants'
 import * as colors from '../../data/colors'
 
@@ -21,7 +20,6 @@ import {
 import {createStackNavigator,createAppContainer, StackActions, NavigationActions} from 'react-navigation';
 import EmailRegister from './EmailRegister';
 import MainApp from '../../MainApp';
-import {saveDataFirebase} from '../../firebase/functions';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 import ConfidencialityAlertModal from '../ConfidencialityAlertModal/ConfidencialityAlertModal';
@@ -73,77 +71,6 @@ class RegisterMain extends React.Component {
     } catch (err) {
       alert("Play services error" + JSON.stringify(err));
     }
-  }
-
-  async _gAuth() {
-
-    GoogleSignin.signIn()
-      .then((user) => {
-        //alert(JSON.stringify(user));
-        user = this._normalizeGoogleData(user);
-        saveDataFirebase(user);
-        this._showConfidencialityAlert();
-      })
-        .catch((err) => {
-          alert('Mensaje de desarrollo:\n Error de GoogleSignin:\n' + JSON.stringify(err));
-      })
-      .done();
-
-  }
-
-  async _fbAuth() {
-      LoginManager.logOut();
-      LoginManager.logInWithReadPermissions(["public_profile", "email", "user_birthday", ""]).then(
-      async (result)  => {
-        if (result.isCancelled) {
-          //alert('Login cancelled');
-        } else {
-          AccessToken.getCurrentAccessToken().then(
-            async (data) => {
-              let accessToken = data.accessToken
-
-              const responseInfoCallback = async (error, result) => {
-                if (error) {
-                  console.log(error)
-
-                } else {
-
-                  //FB Firease Authentication starts
-                  const credential = firebase.auth.FacebookAuthProvider.credential(accessToken);
-                  const currentUser = await firebase.auth().signInAndRetrieveDataWithCredential(credential);
-                  //alert(JSON.stringify(currentUser.user.toJSON()));
-                  //DB Firease Authentication ends
-
-                  result = this._normalizeFacebookData(result);
-                  saveDataFirebase(result);
-                  this._showConfidencialityAlert();
-                }
-              }
-
-              //Solicitud de datos
-              const infoRequest = new GraphRequest(
-                '/me', //me se refiere al usuario quien inició sesión
-                {
-                  accessToken: accessToken,
-                  parameters: {
-                    fields: {
-                      string: 'name, last_name, middle_name, email, location, birthday'
-                    }
-                  }
-                },
-                responseInfoCallback
-              );
-
-              new GraphRequestManager().addRequest(infoRequest).start();
-
-            }
-          )
-        }
-      },
-      function(error) {
-        alert('Ha ocurrido un error con el incio de sesión: \n' + error);
-      }
-    );
   }
 
   constructor (props) {

@@ -10,7 +10,6 @@ import {
     TouchableOpacity
 } from 'react-native';
 import Swiper from 'react-native-swiper';
-import firebase from 'react-native-firebase';
 import { SearchBar} from 'react-native-elements';
 
 //Imports for redux
@@ -75,18 +74,6 @@ class Directory extends Component{
         // para controlar la navegación desde Navigator.js
         
         this.navigation = this.props.navigation;
-    }
-
-    pruebaFirebase(){
-      var storageRef = firebase.storage().ref('ImageTest/prueba.png');
-                        storageRef.getDownloadURL().then(function(url) {
-                          console.log("Correcto")
-                          console.log(url);
-
-                        }, function(error){
-                          console.log("Error");
-                          console.log(error);
-                        });
     }
 
     render() {

@@ -13,10 +13,6 @@ import com.reactlibrary.RNSimpleCompassPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.database.RNFirebaseDatabasePackage;
-import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -52,10 +48,7 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new AsyncStoragePackage(),
             new RNGestureHandlerPackage(),
-            new RNFirebasePackage(),
             new RNGoogleSigninPackage(),
-            new RNFirebaseDatabasePackage(),
-            new RNFirebaseAuthPackage(),
             new MapsPackage(),
             new OrientationPackage(),
             new RNFusedLocationPackage(),
