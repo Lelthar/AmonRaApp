@@ -28,7 +28,10 @@ import {
   menuResetAction,
 } from "../../../src/redux/actions/menuDataActions";
 
-import HamburguerComponent from '../../../src/components/partials/HamburguerMenu'
+//import HamburguerComponent from '../../../src/components/partials/HamburguerMenu'
+import HM from '../../../src/components/partials/HM'
+
+
 
 const mapStateToProps = state => {
   return {
@@ -131,7 +134,7 @@ componentDidMount(){
       </View>
 
         {this.props.menuSideState &&
-        < HamburguerComponent /> }
+        < HM /> }
     
     </View>
 

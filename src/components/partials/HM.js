@@ -1,27 +1,90 @@
-
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
 
   StyleSheet,
-    Text,
-    Dimensions,
-    View,
-    TouchableOpacity,
+  Text,
+  View,
+  AppRegistry,
+  TouchableOpacity,
 
 } from 'react-native';
 
 import { SearchBar } from 'react-native-elements';
+//Imports for redux
+
 import { connect } from "react-redux";
 
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../../src/redux/actions/menuDataActions";
 
-const hamburguerComponent = () => {
 
-  var isTextDiscoverPressed = false;
-  var discoverText = 'Descubri Barrio Amon'
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+// End of redux imports
+
+class HM extends Component{
+
+
+  constructor(props){
+
+    super(props);
+
+    this.onPressTextDiscover = this.onPressTextDiscover.bind(this);
+    this.onPressTextMoreAmonRa = this.onPressTextMoreAmonRa.bind(this);
+    this.onPressTextOrigin = this.onPressTextOrigin.bind(this);
+    this.onPressTextVivencias = this.onPressTextVivencias.bind(this);
+
+    this.state = {
+
+      isTextDiscoverPressed: false,
+      discoverText : 'Descubri Barrio Amon'
+
+    }
+    // Se le pasa el controlador de la navegación a App.js
+    // para controlar la navegación desde Navigator.js
+    
+  }
 
   onPressTextDiscover = () => {
-    isTextDiscoverPressed = !isTextDiscoverPressed;
+
+    var hola = this.state.isTextDiscoverPressed
+    this.setState({
+      isTextDiscoverPressed: !hola,
+    })
   }
 
   onPressTextMoreAmonRa = () => {
@@ -40,11 +103,15 @@ const hamburguerComponent = () => {
     
   }
 
-  return (
+
+  render() {
+
+
+    return (
+
 
     <View style={styles.hamburgerMenu}>
-
-          <SearchBar
+      <SearchBar
             round={true}
             containerStyle={styles.containerInput}
             inputContainerStyle={styles.searchBarInput}
@@ -55,11 +122,12 @@ const hamburguerComponent = () => {
             placeholderTextColor='white'
             lightTheme={true} 
           />
-          <TouchableOpacity onPress={ onPressTextDiscover } >
-            <Text style={styles.textDiscover}>{discoverText}</Text>
+          <TouchableOpacity onPress={ this.onPressTextDiscover } >
+            <Text style={styles.textDiscover}>{this.state.discoverText}</Text>
           </TouchableOpacity>
 
-          
+          {this.state.isTextDiscoverPressed &&
+
             <View style={{backgroundColor:'#00A2B5'}}>
               <TouchableOpacity onPress= {onPressTextDiscover}>
                 <Text style={styles.textList} >     •Origen del Barrio</Text>
@@ -71,6 +139,9 @@ const hamburguerComponent = () => {
                 <Text style={styles.textList} >     •Arquitectura</Text>
               </TouchableOpacity>
             </View>
+            
+          }
+            
 
           <TouchableOpacity onPress= {onPressTextMoreAmonRa}>
             <Text style={styles.textMoreAmon}>Mas de Amon_RA</Text>
@@ -78,11 +149,11 @@ const hamburguerComponent = () => {
           
         </View>
 
-  );
-};
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  
 
   // Styles for hamburguer menu:
 
@@ -130,5 +201,8 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect(null, null)(hamburguerComponent);
 
+var HMComponent = connect(null,null)(HM);
+export default HMComponent;
+
+AppRegistry.registerComponent('HM', () => HM);
