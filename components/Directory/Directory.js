@@ -174,7 +174,7 @@ class Directory extends Component{
 
                 {/*Start of hamburguer menu */}
                 {this.props.menuSideState &&
-                  < HM />
+                  < HM navigation={this.props.navigation}/>
                 }
             {/*End of hamburguer menu */}
 

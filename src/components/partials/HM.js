@@ -68,6 +68,8 @@ class HM extends Component{
     this.onPressTextOrigin = this.onPressTextOrigin.bind(this);
     this.onPressTextVivencias = this.onPressTextVivencias.bind(this);
 
+    this.navigation = this.props.navigation;
+
     this.state = {
 
       isTextDiscoverPressed: false,
@@ -129,13 +131,13 @@ class HM extends Component{
           {this.state.isTextDiscoverPressed &&
 
             <View style={{backgroundColor:'#00A2B5'}}>
-              <TouchableOpacity onPress= {onPressTextDiscover}>
+              <TouchableOpacity onPress= {() => this.navigation.navigate('TimeLine',{goToScreen: this.navigation}) }>
                 <Text style={styles.textList} >     •Origen del Barrio</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress= {onPressTextDiscover}>
+              <TouchableOpacity onPress= {() => this.props.navigation.navigate('TimeLine',{goToScreen: this.navigation}) }>
                 <Text style={styles.textList} >     •Vivencias</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress= {onPressTextDiscover}>
+              <TouchableOpacity onPress= {() => this.props.navigation.navigate('TimeLine',{goToScreen: this.navigation}) }>
                 <Text style={styles.textList} >     •Arquitectura</Text>
               </TouchableOpacity>
             </View>
@@ -143,7 +145,7 @@ class HM extends Component{
           }
             
 
-          <TouchableOpacity onPress= {onPressTextMoreAmonRa}>
+          <TouchableOpacity onPress= { () => this.props.navigation.navigate('TimeLine',{goToScreen: this.navigation}) }>
             <Text style={styles.textMoreAmon}>Mas de Amon_RA</Text>
           </TouchableOpacity>
           

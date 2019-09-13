@@ -25,6 +25,7 @@ import SeeMore from '../../../components/Directory/SeeMore/SeeMore';
 import TimeLine from '../../../components/TimeLine/TimeLine';
 
 import HamburgerButton from '../partials/HamburgerButton'
+import HM from '../partials/HM'
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -180,10 +181,14 @@ const urbanOfferStack = createStackNavigator(
           color: "#FFFFFF",
           textAlign: 'center',
           flexGrow:1,
-        }
-        
+        } 
       },
-    },
+    }, // End of SeeMore
+
+    //Start of Hamburguer
+    HM: {
+      screen: HM,     
+    }, // End of Hamburguer
   },
   {
     initialRouteName: 'UrbanOffer',
