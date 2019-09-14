@@ -25,7 +25,7 @@ import SeeMore from '../../../components/Directory/SeeMore/SeeMore';
 import TimeLine from '../../../components/TimeLine/TimeLine';
 
 import HamburgerButton from '../partials/HamburgerButton'
-import HM from '../partials/HM'
+import HamburguerMenu from '../partials/HamburguerMenu'
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -186,8 +186,8 @@ const urbanOfferStack = createStackNavigator(
     }, // End of SeeMore
 
     //Start of Hamburguer
-    HM: {
-      screen: HM,     
+    HamburguerMenu: {
+      screen: HamburguerMenu,     
     }, // End of Hamburguer
   },
   {

@@ -28,8 +28,8 @@ import {
   menuResetAction,
 } from "../../src/redux/actions/menuDataActions";
 
-import HamburguerComponent from '../../src/components/partials/HamburguerMenu'
-import HM from '../../src/components/partials/HM'
+//import HamburguerComponent from '../../src/components/partials/HamburguerMenu'
+import HamburguerMenu from '../../src/components/partials/HamburguerMenu'
 
 
 const mapStateToProps = state => {
@@ -86,7 +86,7 @@ class TimeLine extends Component  {
          }
         </View>
         {this.props.menuSideState &&
-                < HM /> }
+                < HamburguerMenu /> }
       </View>
     );
   }

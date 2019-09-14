@@ -25,8 +25,7 @@ import {
   menuResetAction,
 } from "../../src/redux/actions/menuDataActions";
 
-import HamburguerComponent from '../../src/components/partials/HamburguerMenu'
-import HM from '../../src/components/partials/HM'
+import HamburguerMenu from '../../src/components/partials/HamburguerMenu'
 
 const mapStateToProps = state => {
   return {
@@ -174,7 +173,7 @@ class Directory extends Component{
 
                 {/*Start of hamburguer menu */}
                 {this.props.menuSideState &&
-                  < HM navigation={this.props.navigation}/>
+                  < HamburguerMenu navigation={this.props.navigation}/>
                 }
             {/*End of hamburguer menu */}
 
