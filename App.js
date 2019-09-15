@@ -6,6 +6,7 @@ import SplashScreen from 'react-native-splash-screen';
 
 import RegisterMain from './components/Register/RegisterMain';
 import MainApp from './MainApp'
+import Experiences from './src/components/pages/Experiences';
 import { 
   USER_DATA,
 } from './constants/constants';

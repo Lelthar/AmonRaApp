@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
-import {StyleSheet, Text, View, Dimensions, VirtualizedList} from 'react-native'
+import {Text, View, Dimensions, VirtualizedList} from 'react-native'
 import Image from 'react-native-scalable-image';
+import styles from "../../assets/styles/pages/timeline";
 
-
+const initialNumToRender = 3;
+const windowSize = 5;
 const totalItems = 77;
 
 export default class Timeline extends Component {
@@ -10,7 +12,7 @@ export default class Timeline extends Component {
     super(props);
   }
 
-  keyExtractor = (item, index) => {
+  keyExtractor = (item) => {
     return `${item.time}-${item.title}`
   }
 
@@ -19,9 +21,8 @@ export default class Timeline extends Component {
     return (
       <View style={styles.container}>
         <VirtualizedList
-          initialNumToRender={3}
-          windowSize={5}
-          style={[styles.listview]}
+          initialNumToRender={initialNumToRender}
+          windowSize={windowSize}
           data={data}
           getItemCount={(data) => totalItems}
           getItem={(data, index) => {return data[index];}}
@@ -35,17 +36,15 @@ export default class Timeline extends Component {
   
   renderItem = ({ item, index }) => {
     return (
-      <View>
-        <View style={styles.rowContainer}>
-          <View >
-            {this.renderTime(item, index)}
-          </View>
-          <View>
-            {this.renderCircleAndLineVertical(item, index)}
-          </View>
-          <View style={{ flex: 1 }}>
-            {this.renderEvent(item, index)}
-          </View>
+      <View style={styles.rowContainer}>
+        <View>
+          {this.renderTime(item, index)}
+        </View>
+        <View>
+          {this.renderCircleAndLineVertical(item, index)}
+        </View>
+        <View style={styles.container}>
+          {this.renderEvent(item, index)}
         </View>
       </View>
     );
@@ -54,7 +53,7 @@ export default class Timeline extends Component {
   renderTime = (item, index) => {
     return (
       <View style={styles.timeContainer}>
-        <Text style={[styles.timeText, styles.leftText]}>
+        <Text style={[styles.timeText]}>
           {item.time}
         </Text>
       </View>
@@ -64,10 +63,7 @@ export default class Timeline extends Component {
   renderEvent = (item, index) => {
     return (
       <View>
-        <View style={{  marginBottom: 2}}>
-          {this.renderDetail(item, index)}
-        
-        </View>
+        {this.renderDetail(item, index)}
         {this.renderSeparator()}
       </View>
     )
@@ -91,7 +87,7 @@ export default class Timeline extends Component {
 
   renderCircleAndLineVertical = (item, index) => {
     return (
-      <View style={{ alignItems: 'center', flex: 1, width: 30 }}>
+      <View style={styles.circleLineContainer}>
         {this.renderCircle()}
         <View style={styles.verticalLineSeparator} />
       </View>
@@ -107,72 +103,15 @@ export default class Timeline extends Component {
   }
 
   renderInnerCircle(){
-    return (<View style={styles.dotStyle}/>)
+    return (
+      <View style={styles.dotStyle}/>
+    );
   }
 
   renderSeparator(){
     return (
-      <View><View style={[styles.separator]}></View><View style={{padding:20}}></View></View>
-     )
+      <View style={[styles.separator]}/>
+     );
   }
 }
-
-let styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  listview: {
-    flex: 1,
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    flex: 1,
-  },
-  timeContainer: {
-    maxWidth: 55,
-    minWidth: 55,
-    flex: 1,
-  },
-  timeText: {
-    color:'#006064',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  leftText: {
-    textAlign: 'right'
-  },
-  circle: {
-    width: 15,
-    height: 15,
-    borderRadius: 100,
-    backgroundColor: '#A6A8AA',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  description: {
-    flexDirection: 'column',
-    flex: 1,
-    marginTop: 6,
-  },
-  separator: {
-    height: 0.75,
-    backgroundColor: '#aaa',
-    marginTop: 6,
-    marginBottom: 6
-  },
-  dotStyle:{
-    height: 7,
-    width: 7,
-    borderRadius: 7 / 2,
-    backgroundColor: 'white'
-  },
-  verticalLineSeparator:{
-    width: 4, flex: 1, backgroundColor: '#E7E6E5'
-  }
-
-});
 

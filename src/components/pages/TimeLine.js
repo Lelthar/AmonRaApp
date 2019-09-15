@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet,AppRegistry} from 'react-native';
+import { View, AppRegistry} from 'react-native';
 import Timeline from './TimeLineContent'
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -7,16 +7,18 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { 
   TIME_LINE_URL,
   USER_DATA,
-} from '../../constants/constants';
+} from '../../../constants/constants';
 
 import {
   makeBackendRequest,
-} from '../../helpers/helpers'
+} from '../../../helpers/helpers'
 
 //-------------------------------
 
-//Imports for redux
+import HamburguerComponent from '../partials/HamburguerMenu'
+import HM from '../partials/HM'
 
+//Redux
 import { connect } from "react-redux";
 
 import {
@@ -26,11 +28,7 @@ import {
   rateScreenAction,
   guideScreenAction,
   menuResetAction,
-} from "../../src/redux/actions/menuDataActions";
-
-import HamburguerComponent from '../../src/components/partials/HamburguerMenu'
-import HM from '../../src/components/partials/HM'
-
+} from "../../redux/actions/menuDataActions";
 
 const mapStateToProps = state => {
   return {

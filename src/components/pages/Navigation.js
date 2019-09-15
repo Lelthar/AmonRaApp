@@ -22,7 +22,7 @@ import Hotels from '../../../components/Directory/Hotels/Hotels';
 import Gastronomy from '../../../components/Directory/Gastronomy/Gastronomy';
 import SeeMore from '../../../components/Directory/SeeMore/SeeMore';
 
-import TimeLine from '../../../components/TimeLine/TimeLine';
+import TimeLine from './TimeLine';
 
 import HamburgerButton from '../partials/HamburgerButton'
 
