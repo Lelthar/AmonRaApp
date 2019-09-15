@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch) => {
 
 // End of redux imports
 
-class HamburguerMenu extends Component{
+export default class HamburguerMenu extends Component{
 
 
   constructor(props){
@@ -203,8 +203,3 @@ const styles = StyleSheet.create({
 
 });
 
-
-var HMComponent = connect(null,null)(HamburguerMenu);
-export default HMComponent;
-
-AppRegistry.registerComponent('HamburguerMenu', () => HamburguerMenu);

@@ -28,7 +28,6 @@ import {
   menuResetAction,
 } from "../../../src/redux/actions/menuDataActions";
 
-//import HamburguerComponent from '../../../src/components/partials/HamburguerMenu'
 import HamburguerMenu from '../../../src/components/partials/HamburguerMenu'
 
 

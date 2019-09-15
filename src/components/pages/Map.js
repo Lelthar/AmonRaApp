@@ -27,7 +27,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import FilterMenu from '../../../components/FilterMenu/FilterMenu';
 import FilterButton from '../partials/FilterButton';
 import HamburgerPartial from '../partials/HamburguerPartial';
-//import HM from '../partials/HM';
 import BriefInformation from '../partials/BriefInformation';
 import MapLayersMenu from '../partials/MapLayersMenu';
 
