@@ -1,6 +1,6 @@
 
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
 
   StyleSheet,
@@ -15,13 +15,14 @@ import { SearchBar } from 'react-native-elements';
 import { connect } from "react-redux";
 
 
-const hamburguerComponent = () => {
+const HamburguerComponent = (props) => {
 
-  var isTextDiscoverPressed = false;
-  var discoverText = 'Descubri Barrio Amon'
+  // Declare a new state variable, called isTextDiscoverPressed
+  const [isTextDiscoverPressed,setTextDiscoverPressed] = useState(false);
+
 
   onPressTextDiscover = () => {
-    isTextDiscoverPressed = !isTextDiscoverPressed;
+    setTextDiscoverPressed(!isTextDiscoverPressed);
   }
 
   onPressTextMoreAmonRa = () => {
@@ -51,29 +52,32 @@ const hamburguerComponent = () => {
             inputStyle={styles.searchBarInput}
             leftIconContainerStyle={styles.searchBarInput}
             rightIconContainerStyle={styles.searchBarInput}
-            placeholder= 'Busqueda'
+            placeholder= 'Búsqueda'
             placeholderTextColor='white'
             lightTheme={true} 
           />
           <TouchableOpacity onPress={ onPressTextDiscover } >
-            <Text style={styles.textDiscover}>{discoverText}</Text>
+            <Text style={styles.textDiscover}>Descubrí Barrio Amón</Text>
           </TouchableOpacity>
 
-          
+          {isTextDiscoverPressed &&
+
             <View style={{backgroundColor:'#00A2B5'}}>
-              <TouchableOpacity onPress= {onPressTextDiscover}>
+              <TouchableOpacity onPress= {() => props.navigation.navigate('TimeLine',{goToScreen: props.navigation}) }>
                 <Text style={styles.textList} >     •Origen del Barrio</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress= {onPressTextDiscover}>
+              <TouchableOpacity onPress= {() => props.navigation.navigate('TimeLine',{goToScreen: props.navigation }) }>
                 <Text style={styles.textList} >     •Vivencias</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress= {onPressTextDiscover}>
+              <TouchableOpacity onPress= {() => props.navigation.navigate('TimeLine',{goToScreen: props.navigation}) }>
                 <Text style={styles.textList} >     •Arquitectura</Text>
               </TouchableOpacity>
             </View>
+          }
+            
 
           <TouchableOpacity onPress= {onPressTextMoreAmonRa}>
-            <Text style={styles.textMoreAmon}>Mas de Amon_RA</Text>
+            <Text style={styles.textMoreAmon}>Más de Amon_RA</Text>
           </TouchableOpacity>
           
         </View>
@@ -130,5 +134,5 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect(null, null)(hamburguerComponent);
+export default connect(null, null)(HamburguerComponent);
 

@@ -31,13 +31,58 @@ import {
   makeBackendRequest,
 } from '../../helpers/helpers'
 
+//Imports for redux
+
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../src/redux/actions/menuDataActions";
+
+import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  }
+};
+
+// End of redux imports
 
 const tabs = ["3D","360"];
 //const elementHeight = PixelRatio.getPixelSizeForLayoutSize(3);
 //const elementWidth = PixelRatio.getPixelSizeForLayoutSize(2);
 
 //requires to repair state
-export default class VirtualVisit extends Component{
+class VirtualVisit extends Component{
 
     constructor(props){
         super(props);
@@ -147,6 +192,12 @@ export default class VirtualVisit extends Component{
         				  }
         				/>
                 </View>
+                {/*Start of hamburguer menu */}
+                {this.props.menuSideState &&
+                  < HamburgerMenu navigation={this.props.navigation}/>
+                }
+            {/*End of hamburguer menu */}
+
             </View>
         );
     }
@@ -214,4 +265,5 @@ const styles = StyleSheet.create({
 
   }
 });
-AppRegistry.registerComponent('VirtualVisit', () => VirtualVisit);
+
+export default connect(mapStateToProps,mapDispatchToProps)(VirtualVisit);
