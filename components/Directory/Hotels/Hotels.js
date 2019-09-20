@@ -35,7 +35,7 @@ import {
   menuResetAction,
 } from "../../../src/redux/actions/menuDataActions";
 
-import HamburguerMenu from '../../../src/components/partials/HamburguerMenu'
+import HamburgerMenu from '../../../src/components/partials/HamburgerMenu'
 
 
 const mapStateToProps = state => {
@@ -200,7 +200,7 @@ class Hotels extends Component{
              }
 
              {this.props.menuSideState &&
-                < HamburguerMenu />
+                < HamburgerMenu />
               }
             </View>
 

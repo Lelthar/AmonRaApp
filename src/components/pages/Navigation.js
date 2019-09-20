@@ -25,7 +25,7 @@ import SeeMore from '../../../components/Directory/SeeMore/SeeMore';
 import TimeLine from '../../../components/TimeLine/TimeLine';
 
 import HamburgerButton from '../partials/HamburgerButton'
-import HamburguerMenu from '../partials/HamburguerMenu'
+import HamburgerMenu from '../partials/HamburgerMenu'
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -63,7 +63,7 @@ const virtualVisitStack = createStackNavigator(
       screen: VirtualVisit,
       navigationOptions: {
         headerRight: <HamburgerButton />,
-        title: "Oferta Urbana",
+        title: "Visita Virtual",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -185,10 +185,10 @@ const urbanOfferStack = createStackNavigator(
       },
     }, // End of SeeMore
 
-    //Start of Hamburguer
-    HamburguerMenu: {
-      screen: HamburguerMenu,     
-    }, // End of Hamburguer
+    //Start of HamburgerMenu
+    HamburgerMenu: {
+      screen: HamburgerMenu,     
+    }, // End of HamburgerMenu
   },
   {
     initialRouteName: 'UrbanOffer',
