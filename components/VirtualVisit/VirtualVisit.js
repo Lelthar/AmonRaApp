@@ -265,6 +265,6 @@ const styles = StyleSheet.create({
 
   }
 });
-const virtualVisitComponent = connect(mapStateToProps,mapDispatchToProps)(VirtualVisit)
-export default virtualVisitComponent;
+
+export default connect(mapStateToProps,mapDispatchToProps)(VirtualVisit);
 AppRegistry.registerComponent('VirtualVisit', () => VirtualVisit);
