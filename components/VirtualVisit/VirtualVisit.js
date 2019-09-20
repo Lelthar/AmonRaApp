@@ -46,7 +46,6 @@ import {
 
 import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
 
-
 const mapStateToProps = state => {
   return {
     menuSideState: state.menuDataReducer.MENUSIDE
@@ -63,7 +62,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     setMenuSide: (data) => {
       dispatch(menuSideAction(data));
-
     },
     setRateScreen: (data) => {
       dispatch(rateScreenAction(data));
@@ -78,7 +76,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 // End of redux imports
-
 
 const tabs = ["3D","360"];
 //const elementHeight = PixelRatio.getPixelSizeForLayoutSize(3);
