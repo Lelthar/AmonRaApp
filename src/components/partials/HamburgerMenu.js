@@ -15,7 +15,7 @@ import { SearchBar } from 'react-native-elements';
 import { connect } from "react-redux";
 
 
-const hamburguerComponent = (props) => {
+const HamburguerComponent = (props) => {
 
   // Declare a new state variable, called isTextDiscoverPressed
   const [isTextDiscoverPressed,setTextDiscoverPressed] = useState(false);
@@ -134,5 +134,5 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect(null, null)(hamburguerComponent);
+export default connect(null, null)(HamburguerComponent);
 

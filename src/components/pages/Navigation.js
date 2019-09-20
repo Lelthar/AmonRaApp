@@ -24,8 +24,8 @@ import SeeMore from '../../../components/Directory/SeeMore/SeeMore';
 
 import TimeLine from '../../../components/TimeLine/TimeLine';
 
-import HamburgerButton from '../partials/HamburgerButton'
-import HamburgerMenu from '../partials/HamburgerMenu'
+import HamburgerButton from '../partials/HamburgerButton';
+import HamburgerMenu from '../partials/HamburgerMenu';
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
