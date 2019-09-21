@@ -85,7 +85,7 @@ class TimeLine extends Component  {
          }
         </View>
         {this.props.menuSideState &&
-                < HamburgerMenu /> }
+          <HamburgerMenu navigation={this.props.navigation} /> }
       </View>
     );
   }

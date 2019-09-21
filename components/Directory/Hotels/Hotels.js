@@ -200,7 +200,7 @@ class Hotels extends Component{
              }
 
              {this.props.menuSideState &&
-                < HamburgerMenu />
+                <HamburgerMenu navigation={this.props.navigation} />
               }
             </View>
 
