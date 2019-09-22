@@ -215,7 +215,7 @@ class CultureArt extends Component{
               }
 
               {this.props.menuSideState &&
-                < HamburgerMenu />
+                <HamburgerMenu navigation={this.props.navigation} />
               }
 
           </View>
