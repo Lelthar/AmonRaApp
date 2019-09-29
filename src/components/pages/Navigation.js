@@ -27,6 +27,7 @@ import TimeLine from '../../../components/TimeLine/TimeLine';
 import HamburgerButton from '../partials/HamburgerButton';
 import HamburgerMenu from '../partials/HamburgerMenu';
 import Architecture from './Architecture.js';
+import ArchitectureDetail from './ArchitectureDetail';
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -289,7 +290,23 @@ const timeLineStack = createStackNavigator(
           flexGrow:1,
         } 
       },
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura Detalle",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
     }
+
   },
     {
       initialRouteName: 'TimeLine',

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   View, 
-  StyleSheet,
   ScrollView,
   Image,
   TouchableOpacity
@@ -28,10 +27,10 @@ import {
 
 import {
   makeBackendRequest,
-} from '../../../helpers/helpers'
+} from '../../../helpers/helpers';
 
 import HamburgerMenu from '../partials/HamburgerMenu';
-
+import styles from "../../assets/styles/pages/architecture";
 
 const mapStateToProps = state => {
   return {
@@ -60,13 +59,15 @@ const mapDispatchToProps = (dispatch) => {
     resetAll: () => {
       dispatch(menuResetAction());
     },
-  }
+  };
 };
 
-class Architecture extends Component  {
+class Architecture extends Component {
 
   constructor(props){
     super(props);
+    this.navigation = this.props.navigation;
+
     this.state = {
 
       markers: [],
@@ -78,11 +79,11 @@ class Architecture extends Component  {
 
   async splitMarkers(){
 
-      var arrayLength = this.state.markers.length;
-      var half = arrayLength / 2;
-      var  i = 0;
-      var markers1 = [];
-      var markers2 = [];
+      const arrayLength = this.state.markers.length;
+      const half = arrayLength / 2;
+      let  i = 0;
+      let markers1 = [];
+      let markers2 = [];
 
       for(i; i < arrayLength; i++){
 
@@ -138,7 +139,7 @@ class Architecture extends Component  {
           this.state.markersColumn1.map(place => (
 
             <View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress= {() => this.navigation.navigate('ArchitectureDetail',{goToScreen: this.navigation, placeInfo: place }) }>
                 <Image resizeMode='stretch' source= {{uri: place.image1_url}} style={styles.image}/>
               </TouchableOpacity>          
             </View> ))
@@ -153,7 +154,7 @@ class Architecture extends Component  {
           this.state.markersColumn2.map(place => (
 
             <View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress= {() => this.navigation.navigate('ArchitectureDetail',{goToScreen: this.navigation, placeInfo: place}) }>
                 <Image  resizeMode='stretch' source= {{uri: place.image1_url}} style={styles.image}/> 
               </TouchableOpacity>           
             </View> ))
@@ -167,22 +168,5 @@ class Architecture extends Component  {
   }
 
 }
-
-const styles = StyleSheet.create({
-
-  container:{
-    flex:1,
-    flexDirection: 'row',
-  },
-
-  image:{
-    height:150,
-    width:150,
-    backgroundColor: 'black',
-    margin:20
-
-  },
-
-});
 
 export default connect(mapStateToProps,mapDispatchToProps)(Architecture);
