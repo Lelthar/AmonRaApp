@@ -46,6 +46,9 @@ import {
 
 import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
 
+const HOUSES = [261,250,251,256,252,254,262];
+
+
 const mapStateToProps = state => {
   return {
     menuSideState: state.menuDataReducer.MENUSIDE
@@ -103,16 +106,34 @@ class VirtualVisit extends Component{
 
     async get_features(){
       
-      let url3D = "?category=Cultura%20y%20arte" ; 
+      let url3D = "?category=Patrimonio%20Arquitectónico" ; 
       let response3D = await makeBackendRequest(FEATURES_URL+url3D,"GET",this.state.userData);
       let responseJson3D = await response3D.json();
+
+      var resultJson3D = [];
+
+      for (const i in responseJson3D) {
+        if (responseJson3D.hasOwnProperty(i)) {
+          const element = responseJson3D[i];
+          for (const j in HOUSES) {
+            if (HOUSES.hasOwnProperty(j)) {
+              const house = HOUSES[j];
+              if(element.id==house){
+                resultJson3D.push(element)
+              }
+            }
+          }
+        }
+      }
+      
+      console.log(resultJson3D)
 
       let url360 = "?category=Fotos%20360°" ; 
       let response360 = await makeBackendRequest(FEATURES_URL+url360,"GET",this.state.userData);
       let responseJson360 = await response360.json();
 
       this.setState({
-        markers: [responseJson3D,responseJson360],
+        markers: [resultJson3D,responseJson360],
       });
 
 
