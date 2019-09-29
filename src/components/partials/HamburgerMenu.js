@@ -69,7 +69,7 @@ const HamburguerComponent = (props) => {
               <TouchableOpacity onPress= {() => props.navigation.navigate('TimeLine',{goToScreen: props.navigation }) }>
                 <Text style={styles.textList} >     •Vivencias</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress= {() => props.navigation.navigate('TimeLine',{goToScreen: props.navigation}) }>
+              <TouchableOpacity onPress= {() => props.navigation.navigate('Architecture',{goToScreen: props.navigation}) }>
                 <Text style={styles.textList} >     •Arquitectura</Text>
               </TouchableOpacity>
             </View>
