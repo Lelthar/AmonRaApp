@@ -21,8 +21,6 @@ import mercatorAmon from './placesAR.json';
 import Items3D from './res/indexObj';
 import Materials3D from './res/indexMaterials';
 
-//import FakeTimers from '@jest/fake-timers/build/jestFakeTimers';
-
 const defaultImage = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2Fdefault.png?alt=media&token=240374eb-adf4-42cc-8fdc-c70662582a92";
 const defaultLabel3D = "castilloDelMoro";
 
