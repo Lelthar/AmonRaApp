@@ -7,7 +7,7 @@ const materials = {
     hotelReyAmon: require('./Ar3dObjects/hotelreyamon.mtl'), 
     restauranteSilvestre: require('./Ar3dObjects/peraltazeller.mtl'), 
     castilloDelMoro: require('./Ar3dObjects/castillodelmoro.mtl'), 
-    //hotelAmstelAmon: require('./Ar3dObjects/'),
 };
+
 
 export default materials;

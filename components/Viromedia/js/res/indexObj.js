@@ -7,8 +7,8 @@ const images = {
       hotelReyAmon: require('./Ar3dObjects/hotelreyamon.obj'), 
       restauranteSilvestre: require('./Ar3dObjects/peraltazeller.obj'), 
       castilloDelMoro: require('./Ar3dObjects/castillodelmoro.obj'), 
-      //hotelAmstelAmon: require('./Ar3dObjects/'),
   };
+  
   
   export default images;
 

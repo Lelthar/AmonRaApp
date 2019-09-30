@@ -11,30 +11,25 @@ import {
   ViroAmbientLight, 
   ViroNode,
   ViroImage,
-  ViroText,
-  ViroBox,
   ViroARImageMarker,
   ViroARTrackingTargets,
-  ViroARCamera,
-  ViroCamera
-
 } from 'react-viro';
 
 import Geolocation from 'react-native-geolocation-service';
 import RNSimpleCompass from 'react-native-simple-compass';
 import mercatorAmon from './placesAR.json';
-import Items3D from './res/indexObj'
-import Materials3D from './res/indexMaterials'
+import Items3D from './res/indexObj';
+import Materials3D from './res/indexMaterials';
 
 //import FakeTimers from '@jest/fake-timers/build/jestFakeTimers';
 
 const defaultImage = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2Fdefault.png?alt=media&token=240374eb-adf4-42cc-8fdc-c70662582a92"
 const defaultLabel3D = "castilloDelMoro";
 
-var targetNearestObj_1 = "default";
-var targetNearestObj_2 = "default";
+let targetNearestObj_1 = "default";
+let targetNearestObj_2 = "default";
 
-export class AR_Scene extends Component {
+export class ARScene extends Component {
 
   constructor(props) {
     super(props);
@@ -77,9 +72,11 @@ export class AR_Scene extends Component {
   render() { 
     return (
       <ViroARScene>
-        {this.loadARObject(this.state.firstNearestARObject, targetNearestObj_1)   
+        {
+          this.loadARObject(this.state.firstNearestARObject, targetNearestObj_1)   
         }        
-        {this.loadARObject(this.state.secondNearestARObject, targetNearestObj_2)
+        {
+          this.loadARObject(this.state.secondNearestARObject, targetNearestObj_2)
         }
       </ViroARScene>
     );
@@ -170,7 +167,7 @@ export class AR_Scene extends Component {
     let compassHeading = 0;
     const degree_update_rate = 3; // Number of degrees changed before the callback is triggered
     RNSimpleCompass.start(degree_update_rate, (degree) => {
-      compassHeading = degree
+      compassHeading = degree;
       RNSimpleCompass.stop();
     });
     return compassHeading;
@@ -186,13 +183,14 @@ export class AR_Scene extends Component {
   }
 
   _generateARObject(newX, newZ, object){
-    return ({ x: newX, 
+    return ({ 
+              x: newX, 
               z: newZ, 
               place: object.place, 
               img: object.img, 
               targetLink: object.targetLink,
-              label3DObject: object.label3DObject,
-              label3DMaterial: object.label3DMaterial });
+              label3DObject: object.label3DObject
+           });
   }
 
   // Converts Lat and Long to Mercator projection
@@ -215,7 +213,7 @@ export class AR_Scene extends Component {
       "hotelReyAmon": Items3D.hotelReyAmon, 
       "restauranteSilvestre": Items3D.restauranteSilvestre, 
       "castilloDelMoro": Items3D.castilloDelMoro, 
-    }
+    };
     return objects[objectName];
   }
 
@@ -229,7 +227,7 @@ export class AR_Scene extends Component {
       "hotelReyAmon": Materials3D.hotelReyAmon, 
       "restauranteSilvestre": Materials3D.restauranteSilvestre, 
       "castilloDelMoro": Materials3D.castilloDelMoro, 
-    }
+    };
     return materials[materialName];
   }
 
@@ -249,10 +247,11 @@ ViroARTrackingTargets.createTargets({
   default : {
     source: {uri: defaultImage},
     orientation : "Up",
-    physicalWidth : 5 
-  },
+    physicalWidth : 5,
+  }
 });
 
-module.exports = AR_Scene;
+
+module.exports = ARScene;
 
 
