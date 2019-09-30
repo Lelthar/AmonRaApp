@@ -23,10 +23,14 @@ import {
 import Geolocation from 'react-native-geolocation-service';
 import RNSimpleCompass from 'react-native-simple-compass';
 import mercatorAmon from './placesAR.json';
+import Items3D from './res/indexObj'
+import Materials3D from './res/indexMaterials'
+
 //import FakeTimers from '@jest/fake-timers/build/jestFakeTimers';
 
-const defaultARLabel = 'https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/icon_info.png?alt=media&token=80f734be-cb39-4eb9-a301-c08825cc0c67';
 const defaultImage = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2Fdefault.png?alt=media&token=240374eb-adf4-42cc-8fdc-c70662582a92"
+const defaultLabel3D = "castilloDelMoro";
+
 var targetNearestObj_1 = "default";
 var targetNearestObj_2 = "default";
 
@@ -40,20 +44,27 @@ export class AR_Scene extends Component {
     this._setObjectPositions = this._setObjectPositions.bind(this);
     this._createImageTarget = this._createImageTarget.bind(this);    
     this._getTwoNearestObjects = this._getTwoNearestObjects.bind(this); 
+    this._generateARObject = this._generateARObject.bind(this); 
+    this._object3dSelect = this._object3dSelect.bind(this); 
+    this._material3dSelect = this._material3dSelect.bind(this); 
 
     this.state = {
-      firstNearestARObject: {x: 0, 
-                             z: 0, 
-                             place: targetNearestObj_1, 
-                             img: defaultImage, 
-                             targetName: targetNearestObj_1
-                            },
-      secondNearestARObject: {x: 0, 
-                              z: 0, 
-                              place: targetNearestObj_2, 
-                              img: defaultImage, 
-                              targetName: targetNearestObj_2
-                            },
+      firstNearestARObject: {
+          x: 0, 
+          z: 0, 
+          place: targetNearestObj_1, 
+          img: defaultImage, 
+          targetLink: defaultImage,
+          label3DObject: defaultLabel3D, 
+      },
+      secondNearestARObject: {
+          x: 0, 
+          z: 0, 
+          place: targetNearestObj_2, 
+          img: defaultImage, 
+          targetLink: defaultImage,
+          label3DObject: defaultLabel3D,
+      },
     };
   }
 
@@ -66,33 +77,38 @@ export class AR_Scene extends Component {
   render() { 
     return (
       <ViroARScene>
-        {this.loadARObject(this.state.firstNearestARObject.x, this.state.firstNearestARObject.z, this.state.firstNearestARObject.place, this.state.firstNearestARObject.img, targetNearestObj_1)
+        {this.loadARObject(this.state.firstNearestARObject, targetNearestObj_1)   
         }        
-        {this.loadARObject(this.state.secondNearestARObject.x, this.state.secondNearestARObject.z, this.state.secondNearestARObject.place, this.state.secondNearestARObject.img, targetNearestObj_2)
+        {this.loadARObject(this.state.secondNearestARObject, targetNearestObj_2)
         }
       </ViroARScene>
     );
   }
   
-  loadARObject(posX, posZ, place, nearestImageAR, nearestTargetAR){
+  loadARObject(objectAR, targetName){
     return(
       <ViroNode>
-        <ViroARImageMarker target={nearestTargetAR} onAnchorFound={() => (console.log("got it"))}>
-            <ViroImageearth_radius
+        <ViroARImageMarker target={targetName} onAnchorFound={() => (console.log("got it"))}>
+            <ViroImage
               position={[0, -4, -2]}
               rotation={[0,90,90]}
               resizeMode='ScaleToFit'
               scale={[10,10,10]}
-              source={{uri: nearestImageAR}}
+              source={{uri: objectAR.img}}
             />
         </ViroARImageMarker>
 
-        <ViroImage
-          onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(place)}
-          scale={[1,1,1]}
-          position={[posX, 1, posZ -1]}
-          source={{uri: defaultARLabel}}
+        <ViroAmbientLight color="#FFFFFF" />
+
+        <Viro3DObject 
+          onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(objectAR.place)}
+          source={this._object3dSelect(objectAR.label3DObject)} 
+          position={[objectAR.x, 1, objectAR.z -1]}
+          scale={[0.02, 0.02, 0.02]}
+          resources={[this._material3dSelect(objectAR.label3DObject)]}
+          type="OBJ" 
         />
+
       </ViroNode>
     );
   }
@@ -116,8 +132,8 @@ export class AR_Scene extends Component {
         let secondObject = objetsAR.obj2;
         targetNearestObj_1 = "target1";
         targetNearestObj_2 = "target2";
-        this._createImageTarget(targetNearestObj_1, firstObject.targetName);
-        this._createImageTarget(targetNearestObj_2, secondObject.targetName);
+        this._createImageTarget(targetNearestObj_1, firstObject.targetLink);
+        this._createImageTarget(targetNearestObj_2, secondObject.targetLink);
         this.setState({
           firstNearestARObject: firstObject,
           secondNearestARObject: secondObject, 
@@ -166,7 +182,17 @@ export class AR_Scene extends Component {
     let angle = compassHeading * Math.PI/180;
     let newRotatedX = objFinalPosX * Math.cos(angle) - objFinalPosZ * Math.sin(angle);
     let newRotatedZ = objFinalPosZ * Math.cos(angle) + objFinalPosX * Math.sin(angle);  
-    return ({x:newRotatedX, z:-newRotatedZ, place: objectMercPoint.place, img: objectMercPoint.img, targetName: objectMercPoint.targetName});
+    return this._generateARObject(newRotatedX, -newRotatedZ, objectMercPoint);
+  }
+
+  _generateARObject(newX, newZ, object){
+    return ({ x: newX, 
+              z: newZ, 
+              place: object.place, 
+              img: object.img, 
+              targetLink: object.targetLink,
+              label3DObject: object.label3DObject,
+              label3DMaterial: object.label3DMaterial });
   }
 
   // Converts Lat and Long to Mercator projection
@@ -177,7 +203,35 @@ export class AR_Scene extends Component {
     let xmeters  = earth_radius * lon_radians;
     let ymeters = earth_radius * Math.log((Math.sin(lat_radians) + 1) / Math.cos(lat_radians));
     return ({X:xmeters, Y:ymeters});
- }
+  }
+
+  _object3dSelect(objectName){
+    const objects = {
+      "edificioEsquineroAv7C3": Items3D.edificioEsquineroAv7C3,
+      "casaAlejoAguilarBolandi": Items3D.casaAlejoAguilarBolandi,
+      "casaMarianoAlvarezMelgar" : Items3D.casaMarianoAlvarezMelgar, 
+      "calle3AAvenida11": Items3D.calle3AAvenida11, 
+      "hotelTenerife": Items3D.hotelTenerife, 
+      "hotelReyAmon": Items3D.hotelReyAmon, 
+      "restauranteSilvestre": Items3D.restauranteSilvestre, 
+      "castilloDelMoro": Items3D.castilloDelMoro, 
+    }
+    return objects[objectName];
+  }
+
+  _material3dSelect(materialName){
+    const materials = {
+      "edificioEsquineroAv7C3": Materials3D.edificioEsquineroAv7C3,
+      "casaAlejoAguilarBolandi": Materials3D.casaAlejoAguilarBolandi,
+      "casaMarianoAlvarezMelgar" : Materials3D.casaMarianoAlvarezMelgar, 
+      "calle3AAvenida11": Materials3D.calle3AAvenida11, 
+      "hotelTenerife": Materials3D.hotelTenerife, 
+      "hotelReyAmon": Materials3D.hotelReyAmon, 
+      "restauranteSilvestre": Materials3D.restauranteSilvestre, 
+      "castilloDelMoro": Materials3D.castilloDelMoro, 
+    }
+    return materials[materialName];
+  }
 
 }
 
