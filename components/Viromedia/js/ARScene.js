@@ -23,7 +23,7 @@ import Materials3D from './res/indexMaterials';
 
 //import FakeTimers from '@jest/fake-timers/build/jestFakeTimers';
 
-const defaultImage = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2Fdefault.png?alt=media&token=240374eb-adf4-42cc-8fdc-c70662582a92"
+const defaultImage = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2Fdefault.png?alt=media&token=240374eb-adf4-42cc-8fdc-c70662582a92";
 const defaultLabel3D = "castilloDelMoro";
 
 let targetNearestObj_1 = "default";
@@ -136,7 +136,7 @@ export class ARScene extends Component {
           secondNearestARObject: secondObject, 
         });
       },
-      {enableHighAccuracy: true, maximumAge: 0, distanceFilter: 10}
+      {enableHighAccuracy: true, maximumAge: 0, distanceFilter: 10},
     );
   }
 
@@ -250,7 +250,6 @@ ViroARTrackingTargets.createTargets({
     physicalWidth : 5,
   }
 });
-
 
 module.exports = ARScene;
 
