@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    Text,
-    View,
-    AppRegistry,
-    Button,
-    Image,
-    Dimensions,
-    ScrollView,
-    TouchableOpacity,
-    PixelRatio,
-  	FlatList,
-  	TouchableHighlight,
-    AsyncStorage
+  StyleSheet,
+  Text,
+  View,
+  AppRegistry,
+  Button,
+  Image,
+  Dimensions,
+  ScrollView,
+  TouchableOpacity,
+  PixelRatio,
+  FlatList,
+  TouchableHighlight,
+  AsyncStorage
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
@@ -46,6 +46,10 @@ import {
 
 import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
 
+const HOUSES = [261,250,251,256,252,254,262];
+const URL_360 = "?category=Fotos%20360°" ;
+const URL_3D = "?category=Patrimonio%20Arquitectónico";
+
 const mapStateToProps = state => {
   return {
     menuSideState: state.menuDataReducer.MENUSIDE
@@ -70,7 +74,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(guideScreenAction(data));
     },
     resetAll: () => {
-      dispatch(menuResetAction());
+     dispatch(menuResetAction());
     },
   }
 };
@@ -84,123 +88,122 @@ const tabs = ["3D","360"];
 //requires to repair state
 class VirtualVisit extends Component{
 
-    constructor(props){
-        super(props);
-        // Se le pasa el controlador de la navegación a App.js
-        // para controlar la navegación desde Navigator.js
-        this.state = {
-            "currentTab":"3D",
-            current:true,
-            markers: []
-        };
+  constructor(props){
+    super(props);
+    // Se le pasa el controlador de la navegación a App.js
+    // para controlar la navegación desde Navigator.js
+    this.state = {
+        "currentTab":"3D",
+        current:true,
+        markers: []
+    };
     this.handleClick = this.handleClick.bind(this);
     this.onNavBarClick = this.onNavBarClick.bind(this);
     this.open3dModel = this.open3dModel.bind(this);
-		this.open360Image = this.open360Image.bind(this);
+    this.open360Image = this.open360Image.bind(this);
     this.navigation = this.props.navigation;
-		//let keys = Object.keys(amonData);
+    //let keys = Object.keys(amonData);
+  }
+
+  async get_features(){
+    
+    let response3D = await makeBackendRequest(FEATURES_URL+URL_3D,"GET",this.state.userData);
+    let responseJson3D = await response3D.json();
+
+    const resultJson3D = responseJson3D.filter(element => {
+      return HOUSES.indexOf(element.id) != -1;
+    });
+
+    let response360 = await makeBackendRequest(FEATURES_URL+URL_360,"GET",this.state.userData);
+    let responseJson360 = await response360.json();
+
+    this.setState({
+      markers: [resultJson3D,responseJson360],
+    });
+  }
+
+  async get_user_data() {
+    const user_data_storage = await AsyncStorage.getItem(USER_DATA);
+    this.setState({ userData: JSON.parse(user_data_storage)});
+  }
+
+  async get_backend_data() {
+    await this.get_user_data()
+    await this.get_features();
+  }
+
+  componentDidMount(){
+    this.get_backend_data();
+  }
+
+  handleClick(item) {
+    let name = item.image1_url;
+    if(this.state.currentTab == "3D"){
+      this.open3dModel(name);
+    }else{
+      this.open360Image(name);
     }
 
-    async get_features(){
-      
-      let url3D = "?category=Cultura%20y%20arte" ; 
-      let response3D = await makeBackendRequest(FEATURES_URL+url3D,"GET",this.state.userData);
-      let responseJson3D = await response3D.json();
+  }
 
-      let url360 = "?category=Fotos%20360°" ; 
-      let response360 = await makeBackendRequest(FEATURES_URL+url360,"GET",this.state.userData);
-      let responseJson360 = await response360.json();
+  open3dModel(modelName){
+    this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "3D", fileName : modelName,});
+  }
 
-      this.setState({
-        markers: [responseJson3D,responseJson360],
-      });
+  open360Image(imageName){
+    this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "VR", filename : imageName,});
+  }
 
-
-      //console.log(this.state.markers);
-    }
-
-    async get_user_data() {
-      const user_data_storage = await AsyncStorage.getItem(USER_DATA);
-      this.setState({ userData: JSON.parse(user_data_storage)});
-    }
-
-    async get_backend_data() {
-      await this.get_user_data()
-      await this.get_features();
-    }
-
-    componentDidMount(){
-      this.get_backend_data();
-    }
-
-    handleClick(item) {
-     let name = item.image1_url;
-     if(this.state.currentTab == "3D"){
-        this.open3dModel(name);
-     }else{
-        this.open360Image(name);
-     }
-
-    }
-
-    open3dModel(modelName){
-      this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "3D", fileName : modelName,});
-    }
-
-    open360Image(imageName){
-      this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "VR", filename : imageName,});
-    }
-
-    onNavBarClick(keyname){
-      this.setState({"currentTab" : keyname});
-    }
+  onNavBarClick(keyname){
+    this.setState({"currentTab" : keyname});
+  }
 
 
-    render() {
-        let nabvarClickFunction =this.onNavBarClick;
-        let currentTab = this.state.currentTab;
-        let FlatListContent = currentTab == "3D" ? this.state.markers[0] : this.state.markers[1];
-        return (
-          <View style={styles.container}>
-              <View style={styles.body}>
-				        <View style={styles.navigation_bar}>
-                  {
-                    tabs.map(function(text, index){
-                     return( <TouchableOpacity  key = {index}
-                              style={text == currentTab ? styles.nav_button_selected : styles.nav_button}
-                              onPress={function(){nabvarClickFunction(text)}}
-                              >
-                              <Text style={styles.white_text}>{text}</Text>
-                              </TouchableOpacity>)
-                    })
-                  }
-                </View>
-        				<FlatList style={{flex: 15}}
-        				  data={FlatListContent}
-        				  numColumns={3}
-                  keyExtractor={(item, index) => index}
-                  contentContainerStyle={styles.list_style}
-        				  renderItem={({item}) => (
-        				    <TouchableHighlight style= {styles.list_item}
-          					onPress={() => this.handleClick(item)}
-          					>
-          				  <View style={{flex:1}}>
-                          <Image source={{uri: item.miniature_image_url}} style={styles.imageResizeAndFillParent} />
-          					</View>
-        					</TouchableHighlight>
-        					)
-        				  }
-        				/>
-                </View>
-                {/*Start of hamburguer menu */}
-                {this.props.menuSideState &&
-                  < HamburgerMenu navigation={this.props.navigation}/>
-                }
-            {/*End of hamburguer menu */}
-
+  render() {
+    let nabvarClickFunction =this.onNavBarClick;
+    let currentTab = this.state.currentTab;
+    let FlatListContent = currentTab == "3D" ? this.state.markers[0] : this.state.markers[1];
+    return (
+      <View style={styles.container}>
+          <View style={styles.body}>
+            <View style={styles.navigation_bar}>
+              {
+                tabs.map(function(text, index){
+                  return( <TouchableOpacity  key = {index}
+                          style={text == currentTab ? styles.nav_button_selected : styles.nav_button}
+                          onPress={function(){nabvarClickFunction(text)}}
+                          >
+                          <Text style={styles.white_text}>{text}</Text>
+                          </TouchableOpacity>)
+                })
+              }
             </View>
-        );
-    }
+            <FlatList style={{flex: 15}}
+              data={FlatListContent}
+              numColumns={3}
+              keyExtractor={(item, index) => index}
+              contentContainerStyle={styles.list_style}
+              renderItem={({item}) => (
+                <TouchableHighlight style= {styles.list_item}
+                onPress={() => this.handleClick(item)}
+                >
+                <View style={{flex:1}}>
+                      <Image source={{uri: item.miniature_image_url}} style={styles.imageResizeAndFillParent} />
+                </View>
+              </TouchableHighlight>
+              )
+              }
+            />
+            </View>
+            {/*Start of hamburguer menu */}
+            {this.props.menuSideState &&
+              < HamburgerMenu navigation={this.props.navigation}/>
+            }
+        {/*End of hamburguer menu */}
+
+        </View>
+    );
+  }
 }
 
 //change item withd when getting the image url
