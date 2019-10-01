@@ -250,5 +250,3 @@ ViroARTrackingTargets.createTargets({
 });
 
 module.exports = ARScene;
-
-
