@@ -33,6 +33,8 @@ import BriefInformation from '../partials/BriefInformation';
 import MapLayersMenu from '../partials/MapLayersMenu';
 import OutBarrioAmon from '../partials/OutBarrioAmon';
 
+import Inside from 'point-in-polygon';
+
 import { 
   FEATURES_URL,
   PERIMETER_URL,
@@ -86,6 +88,7 @@ const mapDispatchToProps = (dispatch) => {
 const Map = (props) => {
 
   const [barrioAmonCoordinates, setBarrioAmonCoordinates] = useState([]);
+  const [barrioAmonPerimeter, setBarrioAmonPerimeter] = useState([]);
   const [currentMarker, setCurrentMarker] = useState(DEFAULT_MARKER);
   const [markers, setMarkers] = useState([]);
   const [perimeterDataLoaded, setPerimeterDataLoaded] = useState(false);
@@ -140,6 +143,14 @@ const Map = (props) => {
 
     return activeMarkers;
   };
+
+  elementsReverse = (coordinates) => {
+    const currentCoordinates = coordinates.map((element) => {
+      return element.reverse();
+    });
+
+    return currentCoordinates;
+  }
 
   openInformation = (marker) => {
     closeMenu();

@@ -34,7 +34,7 @@ const HamburgerButton = (props) => {
           name='reorder'
           size={30}
           color="#127C8A"
-          style={{ marginRight: 15 }}
+          style={{marginRight: 15}}
         />
       </TouchableOpacity>
     </View>
