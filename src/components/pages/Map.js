@@ -4,8 +4,6 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-import Inside from 'point-in-polygon';
-
 import { connect } from "react-redux";
 
 import {
