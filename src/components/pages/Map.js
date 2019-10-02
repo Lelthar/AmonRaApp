@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Text,
     View,
     TouchableOpacity,
 } from 'react-native';
@@ -18,6 +17,7 @@ import {
 import {
   changeLayerMenuVisibilityAction,
   setRegionAction,
+  setOutBarrioAmonVisibilityAction,
 } from "../../redux/actions/mapActions";
 
 import MapView from 'react-native-maps';
@@ -29,6 +29,9 @@ import FilterButton from '../partials/FilterButton';
 import HamburgerMenu from '../partials/HamburgerMenu';
 import BriefInformation from '../partials/BriefInformation';
 import MapLayersMenu from '../partials/MapLayersMenu';
+import OutBarrioAmon from '../partials/OutBarrioAmon';
+
+import Inside from 'point-in-polygon';
 
 import { 
   FEATURES_URL,
@@ -56,6 +59,7 @@ const mapStateToProps = state => {
     mapStyle: state.mapReducer.MAP_STYLE,
     layersMenuVisible: state.mapReducer.LAYERS_MENU_VISIBLE,
     region: state.mapReducer.REGION,
+    outBarrioAmonVisible: state.mapReducer.OUT_BARRIO_AMON,
   }
 };
 
@@ -73,17 +77,23 @@ const mapDispatchToProps = (dispatch) => {
     setRegion: (data) => {
       dispatch(setRegionAction(data));
     },
+    setOutBarrioAmonVisibility: (data) => {
+      dispatch(setOutBarrioAmonVisibilityAction(data));
+    },
   };
 };
 
 const Map = (props) => {
 
   const [barrioAmonCoordinates, setBarrioAmonCoordinates] = useState([]);
+  const [barrioAmonPerimeter, setBarrioAmonPerimeter] = useState([]);
   const [currentMarker, setCurrentMarker] = useState(DEFAULT_MARKER);
   const [markers, setMarkers] = useState([]);
   const [perimeterDataLoaded, setPerimeterDataLoaded] = useState(false);
+  const [arrayCoordinates, setArrayCoordinates] = useState([]);
   const [userData, setUserData] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
+  const [warningVisible, setWarningVisible] = useState(false);
 
   closeMenu = () => {
     props.resetAll();
@@ -104,10 +114,10 @@ const Map = (props) => {
       activeFiltersKeys.push(activeFilters[filter].key);
     }
     return activeFiltersKeys;
-  }
+  };
 
   filterMarkersByActiveFilter = (selectedMarkers, filters) => {
-    let activeMarkers = []
+    let activeMarkers = [];
 
     for (let i = 0; i < selectedMarkers.length; i++) {
       if (filters.includes(selectedMarkers[i].category)) {
@@ -132,6 +142,14 @@ const Map = (props) => {
     return activeMarkers;
   };
 
+  elementsReverse = (coordinates) => {
+    const currentCoordinates = coordinates.map((element) => {
+      return element.reverse();
+    });
+
+    return currentCoordinates;
+  }
+
   openInformation = (marker) => {
     closeMenu();
 
@@ -150,18 +168,33 @@ const Map = (props) => {
       latitudeDelta: 0.004,
       longitudeDelta: 0.004,
     });
+
+    if (!warningVisible) {
+      const showWarningMessage = isOutBarrioAmon([coordinate.latitude, coordinate.longitude]);
+
+      props.setOutBarrioAmonVisibility(showWarningMessage);
+
+      setWarningVisible(true);
+    }
   };
 
   arrayOfCoordinatesToLatLng = (lonLatArray) => {
-    let coordinates = []
-    for (lonLat in lonLatArray){
-      coordinates.push({
-        latitude: lonLatArray[lonLat][1],
-        longitude: lonLatArray[lonLat][0]
-      });
-    }
+    let coordinates = lonLatArray.map((point) => {
+      return {
+        latitude: point[0],
+        longitude: point[1],
+      };
+    });
 
     return coordinates;
+  };
+
+  getArrayCoordinates = (array) => {
+    const arrayCoordinatesReversed = array.map((point) => {
+      return point.reverse();
+    });
+
+    return arrayCoordinatesReversed;
   };
 
   getPerimeters =  async () => {
@@ -169,10 +202,17 @@ const Map = (props) => {
       
     const responseJson = await response.json();
 
+    const arrayCoordinatesReversed = getArrayCoordinates(responseJson);
+
     const coordinatesPerimeter = arrayOfCoordinatesToLatLng(responseJson);
 
+    setArrayCoordinates(arrayCoordinatesReversed);
     setBarrioAmonCoordinates(coordinatesPerimeter);
     setPerimeterDataLoaded(true);
+  };
+
+  isOutBarrioAmon = (coordinates) => {
+    return arrayCoordinates != [] ? !Inside(coordinates, arrayCoordinates) : false; 
   };
 
   getFeatures = async () => {
@@ -193,7 +233,7 @@ const Map = (props) => {
     await getUserData();
     await getPerimeters();
     await getFeatures();
-  }
+  };
 
   useEffect(() => {
     getBackendData();
@@ -314,6 +354,12 @@ const Map = (props) => {
         <View style={{ flex: 5.5 }} />                  
       </View>
 
+      {props.outBarrioAmonVisible && (
+        <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>
+          <OutBarrioAmon />
+        </View>
+      )}
+        
       {props.menuSide && (
         <HamburgerMenu navigation={props.navigation} /> 
       )}
