@@ -87,10 +87,6 @@ const hamburgerMenu = (props) => {
               </TouchableOpacity>
             </View>
 
-            
-            
-            
-
           :null}
           <Text style={styles.textMoreAmon}>Mas de Amon_RA</Text>
         </View>

@@ -26,6 +26,8 @@ import TimeLine from '../../../components/TimeLine/TimeLine';
 
 import HamburgerButton from '../partials/HamburgerButton';
 import HamburgerMenu from '../partials/HamburgerMenu';
+import Architecture from './Architecture.js';
+import ArchitectureDetail from './ArchitectureDetail';
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -54,6 +56,21 @@ const mapStack = createStackNavigator(
         headerRight: <HamburgerButton />,
       },
     },
+    Architecture:{
+      screen: Architecture,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    }
   }
 );
 
@@ -81,7 +98,23 @@ const virtualVisitStack = createStackNavigator(
         header: null,
         tabBarVisible: false,
       },
+    },
+    Architecture:{
+      screen: Architecture,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
     }
+
     
   },
   {
@@ -183,12 +216,25 @@ const urbanOfferStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    }, // End of SeeMore
-
-    //Start of HamburgerMenu
+    },
     HamburgerMenu: {
       screen: HamburgerMenu,     
-    }, // End of HamburgerMenu
+    }, 
+    Architecture:{
+      screen: Architecture,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    }
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -230,6 +276,37 @@ const timeLineStack = createStackNavigator(
         headerLeft: (<View />)
       },
     },
+    Architecture:{
+      screen: Architecture,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura Detalle",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    }
+
   },
     {
       initialRouteName: 'TimeLine',

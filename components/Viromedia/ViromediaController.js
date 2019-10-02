@@ -5,33 +5,31 @@ import {
 
 import {
   ViroVRSceneNavigator,
-  ViroARSceneNavigator
+  ViroARSceneNavigator,
 } from 'react-viro';
 
-import DataSheet from "./js/AR_Components/DataSheet"
-import InfoMenu from "./js/AR_Components/InfoMenu"
-import MenuImages from "./js/D3_Components/MenuImages"
-import VRSelectionMode from "./js/VR_Components/VRSelectionMode"
+import DataSheet from "./js/AR_Components/DataSheet";
+import InfoMenu from "./js/AR_Components/InfoMenu";
+import MenuImages from "./js/D3_Components/MenuImages";
+import VRSelectionMode from "./js/VR_Components/VRSelectionMode";
 
 
-var sharedProps = {
+const sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
 }
 
-var InitialARScene = require('./js/AR_Scene');
-var InitialVRScene = require('./js/VR_Scene');
-var Initial3DScene = require('./js/3D_Scene');
+const InitialARScene = require('./js/ARScene');
+const InitialVRScene = require('./js/VR_Scene');
+const Initial3DScene = require('./js/3D_Scene');
 
-var NAVIGATOR_TYPE_VR = "VR";
-var NAVIGATOR_TYPE_AR = "AR";
-var NAVIGATOR_TYPE_3D = "3D";
+const NAVIGATOR_TYPE_VR = "VR";
+const NAVIGATOR_TYPE_AR = "AR";
+const NAVIGATOR_TYPE_3D = "3D";
 
 export class ViromediaController extends Component {
 
   constructor(props) {
-
     super(props);
-   
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
@@ -74,19 +72,22 @@ export class ViromediaController extends Component {
   _getARNavigator() { 
     return (
       <View style={{flex:1}}>
-        <ViroARSceneNavigator {...this.state.sharedProps}
-            initialScene={{scene: InitialARScene}} 
-            onExitViro={this._exitViro} 
-            viroAppProps={this.state.viroAppProps} />
+        <ViroARSceneNavigator 
+          {...this.state.sharedProps}
+          initialScene={{scene: InitialARScene}} 
+          onExitViro={this._exitViro} 
+          viroAppProps={this.state.viroAppProps} />
                                 
-        {this.state.infoMenuVisible // Menu
+        {
+          this.state.infoMenuVisible // Menu
           ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} 
                       descriptionVisible={this.state.descriptionVisible} 
                       houseArPressed={this.state.houseArPressed} />
           : null
         }
 
-        {this.state.dataSheetVisible // Ficha técnica
+        {
+          this.state.dataSheetVisible // Ficha técnica
           ? <DataSheet handlePressDataSheet={this.toggleDataSheet} 
                        houseArPressed={this.state.houseArPressed} />
           : null
@@ -98,7 +99,8 @@ export class ViromediaController extends Component {
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
     return (
-      <ViroVRSceneNavigator {...this.state.sharedProps}
+      <ViroVRSceneNavigator 
+        {...this.state.sharedProps}
         initialScene={{scene: InitialVRScene}} 
         onExitViro={this._exitViro} 
         vrModeEnabled={this.state.vrMode} 
@@ -110,8 +112,11 @@ export class ViromediaController extends Component {
   _get3DNavigator() {
     return (
       <View style={{flex:1}}>
-        <ViroVRSceneNavigator {...this.state.sharedProps}
-          initialScene={{scene: Initial3DScene}} onExitViro={this._exitViro} vrModeEnabled={false}/>
+        <ViroVRSceneNavigator 
+          {...this.state.sharedProps}
+          initialScene={{scene: Initial3DScene}} 
+          onExitViro={this._exitViro} 
+          vrModeEnabled={false}/>
 
         {this.state.informationImage3D
           ? <MenuImages houseArPressed={this.state.houseArPressed} />
@@ -131,7 +136,7 @@ export class ViromediaController extends Component {
   toggleDataSheet(){
     this.setState({
       dataSheetVisible : !this.state.dataSheetVisible,
-      descriptionVisible : !this.state.descriptionVisible
+      descriptionVisible : !this.state.descriptionVisible,
     });
   }
 
@@ -152,9 +157,10 @@ export class ViromediaController extends Component {
 
   setVRMode(vrMode) {
     this.setState({
-        vrMode : vrMode
+        vrMode : vrMode,
     });
   }
 }
 
 export default ViromediaController;
+
