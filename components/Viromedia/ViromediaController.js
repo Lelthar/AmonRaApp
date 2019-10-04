@@ -12,6 +12,7 @@ import DataSheet from "./js/AR_Components/DataSheet";
 import InfoMenu from "./js/AR_Components/InfoMenu";
 import MenuImages from "./js/D3_Components/MenuImages";
 import VRSelectionMode from "./js/VR_Components/VRSelectionMode";
+import PointSheet from "./js/D3_Components/PointSheet";
 
 
 const sharedProps = {
@@ -35,7 +36,8 @@ export class ViromediaController extends Component {
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
     this.showInfoMenu = this.showInfoMenu.bind(this);
     this.setVRMode = this.setVRMode.bind(this);
-    
+    this.showDataPoint = this.showDataPoint.bind(this);
+
     this.state = {
       sharedProps : sharedProps, 
       navigatorType : this.props.navigation.state.params.do,
@@ -51,6 +53,8 @@ export class ViromediaController extends Component {
 
       // VR Components Props
       informationImage3D: true,
+      viro3dProps: {setInformation: this.showDataPoint},
+      dataPointVisible: true,
     }
   }   
 
@@ -122,6 +126,12 @@ export class ViromediaController extends Component {
           ? <MenuImages houseArPressed={this.state.houseArPressed} />
           : null
         }
+
+        {this.state.dataPointVisible //PointSheet
+          ? <PointSheet  handlePressDataSheet={this.showDataPoint}/>
+          : null
+        }
+
       </View>
     );
   }
@@ -160,6 +170,14 @@ export class ViromediaController extends Component {
         vrMode : vrMode,
     });
   }
+
+  // Enable or Disable DataSheet
+  showDataPoint(){
+    this.setState({
+      dataPointVisible : !this.state.dataPointVisible,
+    });
+  }
+
 }
 
 export default ViromediaController;
