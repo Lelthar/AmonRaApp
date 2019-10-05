@@ -34,15 +34,15 @@ export default class App extends Component<Props> {
     componentDidMount() {
     	// do stuff while splash screen is shown
         // After having done stuff (such as async tasks) hide the splash screen
-        SplashScreen.hide();
+        setTimeout(() => {SplashScreen.hide()}, 5000);
     }
 
     render() {
-      const register = <RegisterMain />;
-      const mainApp = <MainApp />;
-
-      return (this.state.userData ? mainApp : register);
-      //return (mainApp);
-      //return (register);
+        const register = <RegisterMain />;
+        const mainApp = <MainApp />;
+        
+        return (this.state.userData ? mainApp : register);
+        //return (mainApp);
+        //return (register);
     }
 }
