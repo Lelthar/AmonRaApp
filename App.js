@@ -27,14 +27,13 @@ export default class App extends Component<Props> {
         AsyncStorage.getItem(USER_DATA).then((value) => {
             this.setState({userData: value});
         });
-        //requestPermissions();
 
     }
 
     componentDidMount() {
     	// do stuff while splash screen is shown
         // After having done stuff (such as async tasks) hide the splash screen
-        setTimeout(() => {SplashScreen.hide()}, 5000);
+        setTimeout(() => {SplashScreen.hide()}, 3000);
     }
 
     render() {
