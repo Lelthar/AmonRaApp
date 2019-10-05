@@ -4,7 +4,8 @@ import {
 	StyleSheet,
 	Image,
 	TouchableOpacity,
-	Dimensions
+  Text,
+  ScrollView
 } from 'react-native';
 
 import { connect } from "react-redux";
@@ -26,13 +27,12 @@ import {
 
 import {
   makeBackendRequest,
-} from '../../../helpers/helpers'
+} from '../../../helpers/helpers';
 
 import HamburgerMenu from '../partials/HamburgerMenu';
+import Option from '../partials/Option';
 import styles from "../../assets/styles/pages/architectureDetail";
-
-
-var {windowHeight, windowWidth} = Dimensions.get('window');
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const mapStateToProps = state => {
   return {
@@ -79,6 +79,7 @@ class ArquitectureDetail extends Component {
 		};
 
 	}
+
 	componentDidMount(){ 
     this.setState({
       title: this.props.navigation.state.params.placeInfo.name , 
@@ -94,23 +95,39 @@ class ArquitectureDetail extends Component {
 
 	render(){
  
-		var pic2 = {uri: this.state.images_url[1] } ; 
-		return (
+		const pic2 = { uri: this.state.images_url[1] };
 
-			<View style={styles.container}>
-				<View style={styles.imageContainer}>
+    //Examples of props for the Option Partial, TODO: Replace with database query
+    const lorem = "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.";
+    const breveObject = {name: "Breve descripción", description: lorem };
+    const fichaObject = {name: "Ficha técnica", description: lorem};
+    const vivenciasObject = {name: "Vivencias", description: lorem};
+    const resenhaObject = {name: "Reseña histórica", description: lorem};
+    const caracteristicasObject = {name: "Características estilísticas", description: lorem};
+		
+    return (
+
+			<View style={styles.container} >
+				<View style={styles.imageContainer} >
 					<Image resizeMode='stretch' style={styles.image} source={pic2} />
 				</View>
 				<View style={styles.informationContainer}>
+          <Text style={styles.textTitle} >{this.state.title}</Text>
+          <ScrollView style={styles.scroll} >
+            <Option information={breveObject} />
+            <Option information={fichaObject} />
+            <Option information={vivenciasObject} />
+            <Option information={resenhaObject} />
+            <Option information={caracteristicasObject} />
+          </ScrollView>
 				</View>
 
-				{this.props.menuSideState &&
+				{ this.props.menuSideState &&
 				  <HamburgerMenu navigation={this.props.navigation} /> }
+
 			</View>
 		);
 	}
 }
-
-
 
 export default connect(mapStateToProps,mapDispatchToProps)(ArquitectureDetail);

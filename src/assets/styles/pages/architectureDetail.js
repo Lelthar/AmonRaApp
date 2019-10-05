@@ -18,7 +18,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
 
   },
-
+  textTitle:{
+  	color: '#00A2B5',
+  	textAlign: "center", 
+  	fontSize:25,
+  	marginTop:'5%',
+    marginLeft: '5%',
+    marginRight: '5%'
+  },
+  scroll:{
+    marginTop:'5%',
+    marginBottom:'5%'
+  }
+  
 });
 
 export default styles;
