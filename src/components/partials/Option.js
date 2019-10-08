@@ -28,25 +28,22 @@ const Option = (props) => {
   	}
 
 	return (
-
 		<View>
 			<View style={styles.row}>
 				<Text style={styles.textOptions} >{props.information.name}</Text>
-				<TouchableOpacity onPress={toggleDescription} >
+					<TouchableOpacity onPress={toggleDescription} >
 					<Icon
 						name={iconName}
-		                size={20}
-		                color="#00A2B5"
-		                style={styles.arrow}
-		            />
-		        </TouchableOpacity>	        
-	         </View>
-	         <View style={{flexDirection:'column'}}>
-	         	<Image style={styles.line} />
-	         	{isArrowPressed &&
-	         		<Text style={styles.description}>{props.information.description}</Text>
-	         	}
-	         </View>
+						size={20}
+						color="#00A2B5"
+						style={styles.arrow} />
+		        </TouchableOpacity>
+			</View>
+			<View style={{flexDirection:'column'}}>
+				<Image style={styles.line} />
+					{isArrowPressed &&
+						<Text style={styles.description}>{props.information.description}</Text> }
+			</View>
 		</View>
 	);
 };

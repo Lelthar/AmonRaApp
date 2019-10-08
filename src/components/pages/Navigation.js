@@ -85,7 +85,7 @@ const mapStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    }
+    },
   }
 );
 
@@ -143,7 +143,7 @@ const virtualVisitStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    }
+    },
   },
   {
     initialRouteName: 'VirtualVisit',
@@ -277,7 +277,7 @@ const urbanOfferStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    }
+    },
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -348,8 +348,7 @@ const timeLineStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    }
-
+    },
   },
     {
       initialRouteName: 'TimeLine',

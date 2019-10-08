@@ -5,7 +5,7 @@ import {
 	Image,
 	TouchableOpacity,
   Text,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
 import { connect } from "react-redux";
@@ -106,12 +106,11 @@ class ArquitectureDetail extends Component {
     const caracteristicasObject = {name: "Características estilísticas", description: lorem};
 		
     return (
-
-			<View style={styles.container} >
-				<View style={styles.imageContainer} >
-					<Image resizeMode='stretch' style={styles.image} source={pic2} />
-				</View>
-				<View style={styles.informationContainer}>
+      <View style={styles.container} >
+        <View style={styles.imageContainer} >
+          <Image resizeMode='stretch' style={styles.image} source={pic2} />
+        </View>
+        <View style={styles.informationContainer}>
           <Text style={styles.textTitle} >{this.state.title}</Text>
           <ScrollView style={styles.scroll} >
             <Option information={breveObject} />
@@ -119,13 +118,11 @@ class ArquitectureDetail extends Component {
             <Option information={vivenciasObject} />
             <Option information={resenhaObject} />
             <Option information={caracteristicasObject} />
-          </ScrollView>
-				</View>
-
+            </ScrollView>
+        </View>
 				{ this.props.menuSideState &&
 				  <HamburgerMenu navigation={this.props.navigation} /> }
-
-			</View>
+      </View>
 		);
 	}
 }
