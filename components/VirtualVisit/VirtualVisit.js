@@ -137,17 +137,16 @@ class VirtualVisit extends Component{
   }
 
   handleClick(item) {
-    let name = item.image1_url;
     if(this.state.currentTab == "3D"){
-      this.open3dModel(name);
+      this.open3dModel(item.id);
     }else{
-      this.open360Image(name);
+      this.open360Image(item.image1_url);
     }
 
   }
 
-  open3dModel(modelName){
-    this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "3D", fileName : modelName,});
+  open3dModel(modelId){
+    this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "3D", filename : modelId,});
   }
 
   open360Image(imageName){

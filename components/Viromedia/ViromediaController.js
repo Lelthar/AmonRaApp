@@ -13,7 +13,7 @@ import InfoMenu from "./js/AR_Components/InfoMenu";
 import MenuImages from "./js/D3_Components/MenuImages";
 import VRSelectionMode from "./js/VR_Components/VRSelectionMode";
 import PointSheet from "./js/D3_Components/PointSheet";
-
+import SwitchButtom from "./js/D3_Components/SwitchButton";
 
 const sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
@@ -27,6 +27,10 @@ const NAVIGATOR_TYPE_VR = "VR";
 const NAVIGATOR_TYPE_AR = "AR";
 const NAVIGATOR_TYPE_3D = "3D";
 
+const arr = [require('./js/res/PEATON.png'),require('./js/res/ISOMETRICO.png'),require('./js/res/GENERAL.png')];
+
+const arr1 = [require('./js/res/gf1.png'),require('./js/res/gf2.png'),require('./js/res/gf3.png')];
+
 export class ViromediaController extends Component {
 
   constructor(props) {
@@ -36,7 +40,9 @@ export class ViromediaController extends Component {
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
     this.showInfoMenu = this.showInfoMenu.bind(this);
     this.setVRMode = this.setVRMode.bind(this);
+    this.closeDataPoint = this.closeDataPoint.bind(this);
     this.showDataPoint = this.showDataPoint.bind(this);
+    this.changeMenuImage = this.changeMenuImage.bind(this);
 
     this.state = {
       sharedProps : sharedProps, 
@@ -52,9 +58,12 @@ export class ViromediaController extends Component {
       houseArPressed: null,
 
       // VR Components Props
-      informationImage3D: true,
-      viro3dProps: {setInformation: this.showDataPoint},
-      dataPointVisible: true,
+      menuViews: true,
+      viro3dProps: {setInformation: this.closeDataPoint,
+        id: this.props.navigation.state.params.filename, 
+      },
+      dataPointVisible: false,
+      imagesMenu : arr,
     }
   }   
 
@@ -120,17 +129,26 @@ export class ViromediaController extends Component {
           {...this.state.sharedProps}
           initialScene={{scene: Initial3DScene}} 
           onExitViro={this._exitViro} 
-          vrModeEnabled={false}/>
+          vrModeEnabled={false}
+          viroAppProps={this.state.viro3dProps}/>
 
-        {this.state.informationImage3D
-          ? <MenuImages houseArPressed={this.state.houseArPressed} />
+        {this.state.menuViews //Show normal images
+          ? <MenuImages dataImages={{images:arr}} handleClickMenuImage={this.showDataPoint} />
+          : null
+        }
+
+        {!this.state.menuViews //Show point images
+          ? <MenuImages dataImages={{images:arr1}} handleClickMenuImage={this.showDataPoint} />
           : null
         }
 
         {this.state.dataPointVisible //PointSheet
-          ? <PointSheet  handlePressDataSheet={this.showDataPoint}/>
+          ? <PointSheet  handlePressDataSheet={this.closeDataPoint}/>
           : null
         }
+        
+        {<SwitchButtom 
+          handleSwitchClick={this.changeMenuImage} />}
 
       </View>
     );
@@ -171,13 +189,29 @@ export class ViromediaController extends Component {
     });
   }
 
+  changeMenuImage(type){
+    this.setState({
+      menuViews : type,
+      dataPointVisible: false,
+    });
+  }
+
   // Enable or Disable DataSheet
-  showDataPoint(){
+  closeDataPoint(){
     this.setState({
       dataPointVisible : !this.state.dataPointVisible,
     });
   }
 
+  // Enable or Disable DataSheet
+  showDataPoint(position){
+    if(!this.state.menuViews){
+      console.log(position)
+      this.setState({
+        dataPointVisible : !this.state.dataPointVisible,
+      });
+    }
+  }
 }
 
 export default ViromediaController;
