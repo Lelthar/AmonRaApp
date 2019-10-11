@@ -71,7 +71,6 @@ export default class PointSheet extends Component {
           </View>
         );
     }
-
 }
 
 
@@ -119,8 +118,7 @@ var localStyles = StyleSheet.create({
         width: 10,
         height: 10,
         left: (Dimensions.get('window').width)*0.8,
-
     }
 });
 
-  module.exports = PointSheet;
+module.exports = PointSheet;
