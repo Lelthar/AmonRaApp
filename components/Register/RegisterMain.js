@@ -118,10 +118,9 @@ class RegisterMain extends React.Component {
 
           <TouchableOpacity style={styles.FacebookStyle} activeOpacity={0.5}>
             <Image 
-              source={require('../../images/icons/social/fb.png')} 
+              source={require('../../images/regfacebook.jpg')} 
               style={styles.ImageIconStyle} 
               />
-            <Text style={styles.TextStyle}>Registrarse con Facebook</Text>
           </TouchableOpacity>
 
         </View>
@@ -149,21 +148,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   FacebookStyle: {
-    flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: '#485a96',
     marginTop:25,
     marginLeft:50,
     marginRight: 50,
   },
   ImageIconStyle: {
-    marginTop: 5,
-    marginLeft: 5,
-    marginBottom: 10,
-    marginRight: 5,
-    height: 32,
-    width: 32,
-    resizeMode : 'stretch',
+    width: '100%',
+    height: 53,
+    resizeMode : 'contain',
   },
   LogoContainer:{
     flex:1,
