@@ -19,8 +19,7 @@ const HamburguerComponent = (props) => {
 
   // Declare a new state variable, called isTextDiscoverPressed
   const [isTextDiscoverPressed,setTextDiscoverPressed] = useState(false);
-
-
+  
   onPressTextDiscover = () => {
     setTextDiscoverPressed(!isTextDiscoverPressed);
   }
