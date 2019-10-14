@@ -62,7 +62,7 @@ const HamburguerComponent = (props) => {
           {isTextDiscoverPressed &&
 
             <View style={{backgroundColor:'#00A2B5'}}>
-              <TouchableOpacity onPress= {() => props.navigation.navigate('TimeLine',{goToScreen: props.navigation}) }>
+              <TouchableOpacity onPress= {() => props.navigation.navigate('Origin',{goToScreen: props.navigation}) }>
                 <Text style={styles.textList} >     •Origen del Barrio</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress= {() => props.navigation.navigate('TimeLine',{goToScreen: props.navigation }) }>
