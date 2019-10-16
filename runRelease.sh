@@ -1,1 +1,1 @@
-react-native run-android --variant=gvrDebug
+react-native run-android --variant=gvrRelease

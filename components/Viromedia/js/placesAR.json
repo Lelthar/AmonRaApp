@@ -1,74 +1,186 @@
 [  
     {
-        "place": "Vista Edificio Esquinero Av 7 y Calle 3", 
-        "X": -9359425.52534968,
-        "Y": 1111781.7786023072, 
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FIMG_1118.jpg?alt=media&token=9b504c15-e408-4d83-ab88-dbad795c04f0", 
-        "targetLink": "https://firebasestorage.googleapis.com/v0/b/pruebafirebase-55901.appspot.com/o/AR_TrackingImg%2FEdificioEsquineroAv7yC3.png?alt=media&token=707c9219-43ba-40fd-b271-b27ec2beaa60",
-        "label3DObject" : "edificioEsquineroAv7C3"
+        "placeID": 285, 
+        "X": -9359425.19139121,
+        "Y": 1112033.3507777266,
+        "tittle": "Castillo del Moro",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F13.Vista%20CastillodelMorodesdeCalle3%2FcastilloMoroAntiguo.JPG?alt=media&token=c9b280ef-6208-4ff2-b3d5-704ccea5d65a", 
+        "label3DObject" : "castillodelmoro"
     }, 
     {
-        "place": "Vista Casa Alejo Aguilar Bolandi, desde esquina suroeste entre Avenida 9 y Calle 3", 
-        "X": -9359428.864934405, 
-        "Y": 1111882.362060863, 
-        "img":"https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F2.VistaCasaAlejoAguilarBolandiDesdeEsquinaSuroesteEntreAvenida9yCalle3%2FNP-002109.jpg?alt=media&token=97936b0b-0cf9-4ee7-91b6-05ad680e3244", 
-        "targetLink": "https://firebasestorage.googleapis.com/v0/b/pruebafirebase-55901.appspot.com/o/AR_TrackingImg%2FCasaAlejoAguilarBolandiAv9yC3.png?alt=media&token=3a0e8525-b1a1-46a8-b767-0c6c408bafa1",
-        "label3DObject" :"casaAlejoAguilarBolandi"
-    },                               
-    {
-        "place": "Vista Avenida 9 hacia el este (costado Casa Mariano Álvarez Melgar)", 
-        "X": -9359355.394070482, 
-        "Y": 1111872.1906874448, 
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F4.VistaAvenida9HaciaElEste%2FIMG_0448.JPG?alt=media&token=c9912d14-6494-4309-a0a7-34a895891c99", 
-        "targetLink": "https://firebasestorage.googleapis.com/v0/b/pruebafirebase-55901.appspot.com/o/AR_TrackingImg%2FCostadoCasaMariano%C3%81lvarezMelgar.jpg?alt=media&token=e2d80ad7-9ed4-476a-9447-2052e3751fb2",
-        "label3DObject" : "casaMarianoAlvarezMelgar"
+        "placeID": 300, 
+        "X": -9359396.2483236,
+        "Y": 1111942.599251936,
+        "tittle": "Casa Cipriano Herrero",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F28.VistaAntiguaCasaCiprianoHerreroDesdeEsquinaSuroesteEntreAvenida11yCalle3%2FcasaCiprianoAntigua.jpg?alt=media&token=e4f0f281-0099-4ac1-af3a-52329c71ef4e", 
+        "label3DObject" : "ciprianoherrero"
     }, 
     {
-        "place": "Vista Calle 3A hacia Avenida 11", 
-        "X": -9359327.564197782, 
-        "Y": 1111898.1842028568, 
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F5.VistaCalle3AHaciaAvenida11%2F57599.JPG?alt=media&token=8f6fe126-e209-4f88-966c-28076c8d01f1", 
-        "targetLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F5.VistaCalle3AHaciaAvenida11%2Fcalle3AhaciaAv11.png?alt=media&token=3136a895-ad31-4e29-864a-78b3594e7ad9",
-        "label3DObject" : "calle3AAvenida11"
+        "placeID": 274, 
+        "X": -9359408.159509117,
+        "Y": 1111869.0262607294,
+        "tittle": "Casa Alejo Aguilar Bolandi",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F2.VistaCasaAlejoAguilarBolandiDesdeEsquinaSuroesteEntreAvenida9yCalle3%2FcasaBolandiAntigua.jpg?alt=media&token=dc7210c5-06d0-470a-ba84-d173c3d4322b", 
+        "label3DObject" : "aguilarbolandi"
     }, 
     {
-        "place": "Vista Antiguo Hotel Tenerife, desde Calle 9", 
-        "X": -9359327.564197782, 
-        "Y": 1111898.1842028568, 
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F7.VistaAntiguoHotelTenerifeDesdeCalle9%2F2720.JPG?alt=media&token=b056381a-2ab0-4698-8508-87bd4ad31547", 
-        "targetLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F7.VistaAntiguoHotelTenerifeDesdeCalle9%2FimgRecortada.png?alt=media&token=ae175168-51f2-4575-abcf-672036290884",
-        "label3DObject" : "hotelTenerife"
+        "placeID": 273, 
+        "X": -9359440.330841955,
+        "Y": 1111800.8781368677,
+        "tittle": "Edificio Esquinero",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FedificioEsquineroAntiguo.jpg?alt=media&token=adc7e1c0-e67b-4037-983d-b53e3a2577cb", 
+        "label3DObject" : "avenida7calle3"
     }, 
     {
-        "place": "Vista Antiguo Hotel Rey Amón, desde esquina suroeste entre Avenida 7 y Calle 9", 
-        "X": -9359082.661318038, 
-        "Y": 1111710.5792409254, 
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F8.VistaAntiguoHotelReyAmonDesdeEsquinaSuroesteEntreAvenida7yCalle9%2F6939.JPG?alt=media&token=82b97520-949b-448c-8234-7805cfa3245f", 
-        "targetLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F8.VistaAntiguoHotelReyAmonDesdeEsquinaSuroesteEntreAvenida7yCalle9%2FantiguoReyAmon.png?alt=media&token=ec1f4937-0a4e-4d07-bde3-a7f4b5243e74",
-        "label3DObject" : "hotelReyAmon"
+        "placeID": 289, 
+        "X": -9359262.998893121,
+        "Y": 1111767.651733984,
+        "tittle": "Alianza Cultural Franco Costarricense",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F17.VistaAlianzaCulturalFrancoCostarricenseDesDeLaEsquinaSuroesteDeLaAvenida7yCalle5%2FalianzaFrancesaAntigua.jpg?alt=media&token=8f6fd074-fa0c-46c1-ac94-feb6767465cd", 
+        "label3DObject" : "alianzaFrancesa"
+    }, 
+    { 
+        "placeID": 290, 
+        "X": -9359221.031445092,
+        "Y": 1111751.7166329955,
+        "tittle": "Avenida 5 y calles 5 y 7",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F18.VistaCasaEntreAvenida5yCalles5y7%2FcasaAv5Calle7Antigua.jpg?alt=media&token=40d0f8d4-56ad-41da-b9c5-1dc4c33b6f1e", 
+        "label3DObject" : "av5ycalles5y7"
     }, 
     {
-        "place": "Vista Restaurante Silvestre (Antigua Casa Peralta Zeller), desde esquina noreste entre Avenida 11 y Calle 3A", 
-        "X": -9359323.11141815, 
-        "Y": 1111952.431598262, 
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F10.VistaRestauranteSilvestre(AntiguaCasaPeraltaZeller)%2CdesdeEsquinaNoresteEntreAvenida11yCalle%203A%2F6942.JPG?alt=media&token=3d4e45ba-d56b-4d0e-b629-76b6b56b4190", 
-        "targetLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F10.VistaRestauranteSilvestre(AntiguaCasaPeraltaZeller)%2CdesdeEsquinaNoresteEntreAvenida11yCalle%203A%2FrestSilvestre.png?alt=media&token=555d7de6-4ba9-4ccd-b3ad-63ba7f6efeb8",
-        "label3DObject" : "restauranteSilvestre"
+        "placeID": 291, 
+        "X": -9359197.876991007,
+        "Y": 1111752.7337668957,
+        "tittle": "Antigua Fosforera",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F19.VistaAntiguaFosforera(InstitutoMixtoDeAyudaSocial)%2FfosforeraAntigua.jpg?alt=media&token=81c1c523-8695-4053-9c5c-d543ea812119", 
+        "label3DObject" : "antiguafosforera"
     }, 
     {
-        "place": "Vista Castillo del Moro desde Calle 3",
-        "X": -9359411.053815877, 
-        "Y": 1112017.9806406198, 
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F13.Vista%20CastillodelMorodesdeCalle3%2FCastilloDelMoroC3.jpg?alt=media&token=29c224ef-eb9b-4da5-bda7-4a88db072d2e", 
-        "targetLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F13.Vista%20CastillodelMorodesdeCalle3%2Fcastillo.png?alt=media&token=65d0baec-541f-462d-bfb7-fd25ed0064c0",
-        "label3DObject" : "castilloDelMoro"
-    },                 
+        "placeID": 280, 
+        "X": -9359103.144104343,
+        "Y": 1111729.791753501,
+        "tittle": "Hotel Rey Amón",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F8.VistaAntiguoHotelReyAmonDesdeEsquinaSuroesteEntreAvenida7yCalle9%2FhotelReyAmonAntiguo.JPG?alt=media&token=08e5016c-82b7-4e1e-ac1f-54a3663d3e5e", 
+        "label3DObject" : "hotelreyamon"
+    }, 
     {
-        "place": "Vista Antiguo Hotel Amstel Amón, desde esquina suroeste entre Avenida 11 y Calle 3A", 
-        "X": -9359336.469757047, 
-        "Y": 1111944.5205148042, 
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F30.VistaAntiguoHotelAmstelAmondesdeesquinasuroesteentreAvenida11yCalle3A%2FAntiguoHotelAmstelAmonAv11C3A.jpg?alt=media&token=93ca320a-9ab7-4292-b488-c68097403d94", 
-        "targetLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F30.VistaAntiguoHotelAmstelAmondesdeesquinasuroesteentreAvenida11yCalle3A%2FAntiguoHotelAmstelAmonAv11C3A.png?alt=media&token=6193408c-c165-4c2c-a866-107b0768019b",
-        "label3DObject" : "castilloDelMoro"
-    }
+        "placeID": 279, 
+        "X": -9359101.585631471,
+        "Y": 1111770.5901221503,
+        "tittle": "Hotel Tenerife",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F7.VistaAntiguoHotelTenerifeDesdeCalle9%2FhotelTenerife.JPG?alt=media&token=53497c69-fd0e-4d2d-bcbf-1dd1f72d7a34", 
+        "label3DObject" : "hoteltenerife"
+    }, 
+    {
+        "placeID": 278, 
+        "X": -9359101.585631471,
+        "Y": 1111783.1347819516,
+        "tittle": "Casa González Feo",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F6.VistaTapiaCasaGonzalezFeo%2CdesdeCalle9%2F2719.JPG?alt=media&token=46c8b38c-9a85-4d87-b0b8-af1f2596e093", 
+        "label3DObject" : "gonzalesfeo"
+    }, 
+    {
+        "placeID": 293, 
+        "X": -9359100.027158601,
+        "Y": 1111815.457078173,
+        "tittle": "Hotel Don Carlos",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F20.VistaAnexoHotelDonCarlosDesdeCalle9%2FhotelDonCarlosAntiguo.jpg?alt=media&token=7ac6cdc9-d4e8-41d9-8ace-546f2081e35f", 
+        "label3DObject" : "hoteldoncarlos"
+    }, 
+    {
+        "placeID": 303, 
+        "X": -9359079.099094331,
+        "Y": 1111838.0600993186,
+        "tittle": "Hotel Hemingway",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F31.VistaAntiguoHotelHemingwayDesdeEsquinaSuroesteEntreAvenida9yCalle9%2FhotelHemingwayInnAntiguo.JPG?alt=media&token=c060605c-25e8-4645-a8d9-dca88a7d0358", 
+        "label3DObject" : "hotelhemingway"
+    }, 
+    {
+        "placeID": 275, 
+        "X":-9359152.903916728,
+        "Y": 1111855.238404633,
+        "tittle": "Casa Saborío Iglesias (Casa Verde)",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F3.VistaCasaSaborioIglesiasDesdeEsquinaSuroesteEntreAvenida9yCalle7%2FcasaVerde.JPG?alt=media&token=3db9b4d9-b474-4d5d-ac62-e9b6ba2e492a", 
+        "label3DObject" : "casaverde"
+    },
+    {
+        "placeID": 288, 
+        "X": -9359236.282215333,
+        "Y": 1111900.4445094084,
+        "tittle": "Escuela Técnica Nacional",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F16.VistaAntiguaEscuelaTecnicaNacional%2FescuelaTecnicaNacionalAntigua.jpg?alt=media&token=35381f18-d487-4a45-ad7e-a161d5a2b29e", 
+        "label3DObject" : "escuelatecnicanacional"
+    },
+    {
+        "placeID": 284, 
+        "X": -9359245.74437205,
+        "Y": 1111918.6399821877,
+        "tittle": "Calle 5 hacia Avenida 9",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F12.VistaCalle5SobreAvenida11haciaAvenida9%2Fcalle5sobreAvenida11haciaAvenida9.jpg?alt=media&token=2621de75-b566-43be-a462-80a6e8d2f856", 
+        "label3DObject" : "calle5haciaav9"
+    },
+    {
+        "placeID": 287, 
+        "X": -9359304.96634115,
+        "Y": 1111939.8868809957,
+        "tittle": "Casa Serrano Bonilla",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F15.VistaAntiguaCasaSerrano%2FcasaSerranoBonillaAntigua.jpg?alt=media&token=be009fd3-2691-4ccc-bb10-f8e49847a8aa", 
+        "label3DObject" : "serranobonilla"
+    },
+    {
+        "placeID": 282, 
+        "X": -9359340.031980751,
+        "Y": 1111943.7294065524,
+        "tittle": "Casa Peralta Zeller",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F10.VistaRestauranteSilvestre(AntiguaCasaPeraltaZeller)%2CdesdeEsquinaNoresteEntreAvenida11yCalle%203A%2FrestauranteSilvestre.JPG?alt=media&token=fa6b5fae-1990-4e62-9b12-6f0a65c459bc", 
+        "label3DObject" : "peraltazeller"
+    },
+    {
+        "placeID": 302, 
+        "X": -9359316.654887686,
+        "Y": 1111962.150931683,
+        "tittle": "Hotel Amstel Amón",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F30.VistaAntiguoHotelAmstelAmondesdeesquinasuroesteentreAvenida11yCalle3A%2FhotelAmstelAmonAntiguo.JPG?alt=media&token=2c509aad-8c5d-4fe2-b380-f9a6eceace58", 
+        "label3DObject" : "eliaspages"
+    },
+    {
+        "placeID": 281, 
+        "X": -9359321.998223243,
+        "Y": 1111906.4343224412,
+        "tittle": "Casa 936",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F9.VistaCasa936(Casa%20Familia%20Castro%20Odio)%2CdesdeCalle3A%2Fcasa936Antigua.JPG?alt=media&token=a05d921a-2202-471b-996e-40f412495f00", 
+        "label3DObject" : "casa936"
+    },
+    {
+        "placeID": 277, 
+        "X": -9359343.371565476,
+        "Y": 1111899.8794327576,
+        "tittle": "Calle 3A hacia Avenida 11",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F5.VistaCalle3AHaciaAvenida11%2Fcalle3haciaAv11.JPG?alt=media&token=ee4873e1-d9cd-4d93-9f90-f31a1627f0f0", 
+        "label3DObject" : "calle3Ahaciaav11"
+    },
+    {
+        "placeID": 295, 
+        "X": -9359341.36781464,
+        "Y": 1111862.584392897,
+        "tittle": "Casa Mariano Álvarez Melgar",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F23.VistaAntiguaCasaMarianoAlvarezMelgarDesdeCalle3A%2FcasaMarianoAlvarezMelgarAntigua.jpg?alt=media&token=c6f7d46a-518d-48b6-956f-869cbf6cbe97", 
+        "label3DObject" : "alvarezmelgar"
+    },
+    {
+        "placeID": 296, 
+        "X": -9359335.690520609,
+        "Y": 1111849.3616150743,
+        "tittle": "Anticuario San Ángel",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F24.VistaAntiguoAnticuarioSanAngel%2FanticuarioSanAngelAntiguo.jpg?alt=media&token=3d719b9e-ae93-44a8-b231-e78a5e285845", 
+        "label3DObject" : "anticuariosanangel"
+    },
+    {
+        "placeID": 297, 
+        "X": -9359341.033856168,
+        "Y": 1111882.249045587,
+        "tittle": "Antiguedades Gobelino",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F25.VistaAntiguedadesGobelinoyCafeGournetDesdeEsquinaSuresteAvenida9yCalle3A%2FantiguedadesGobelino.jpg?alt=media&token=94859835-fb13-419d-9bf2-83cdcc7a6dfd", 
+        "label3DObject" : "antiguedadesgobelino"
+    }  
 ]

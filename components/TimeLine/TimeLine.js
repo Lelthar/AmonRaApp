@@ -73,6 +73,10 @@ class TimeLine extends Component  {
       data: null,
     };
   }
+
+  componentDidUnmount(){
+    console.log(" se cerro la picha")
+  }
   
   render() {
     return (
@@ -89,7 +93,7 @@ class TimeLine extends Component  {
       </View>
     );
   }
-
+  
   componentDidMount(){
     this.get_backend_data();
   }
