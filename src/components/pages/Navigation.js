@@ -70,7 +70,22 @@ const mapStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    }
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   }
 );
 
@@ -113,9 +128,22 @@ const virtualVisitStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    }
-
-    
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   },
   {
     initialRouteName: 'VirtualVisit',
@@ -234,7 +262,22 @@ const urbanOfferStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    }
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -295,7 +338,7 @@ const timeLineStack = createStackNavigator(
       screen: ArchitectureDetail,
       navigationOptions: {
         headerRight: <HamburgerButton />,
-        title: "Arquitectura Detalle",
+        title: "Arquitectura",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -305,8 +348,7 @@ const timeLineStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    }
-
+    },
   },
     {
       initialRouteName: 'TimeLine',

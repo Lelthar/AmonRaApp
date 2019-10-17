@@ -8,160 +8,64 @@ import {
     Text,
     TouchableOpacity,
     View,
+    Button
 } from 'react-native';
-import Video from 'react-native-video';
+
+import VideoPlayer from 'react-native-video-player';
+
+const VIMEO_ID = '366017529';
 
 export default class UseGuide extends Component {
+  constructor() {
+    super();
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            rate: 1,
-            volume: 1,
-            muted: false,
-            resizeMode: 'contain',
-            duration: 0.0,
-            currentTime: 0.0,
-            paused: false
-        };
-
-    }
-
-    video: Video;
-
-    onLoad = (data) => {
-        this.setState({ duration: data.duration });
+    this.state = {
+      video: { width: undefined, height: undefined, duration: undefined },
+      thumbnailUrl: undefined,
+      videoUrl: undefined,
     };
+  }
 
-    onProgress = (data) => {
-        this.setState({ currentTime: data.currentTime });
-    };
+  componentDidMount() {
+    global.fetch(`https://player.vimeo.com/video/${VIMEO_ID}/config`)
+      .then(res => res.json())
+      .then(res => this.setState({
+        thumbnailUrl: res.video.thumbs['640'],
+        videoUrl: res.request.files.hls.cdns[res.request.files.hls.default_cdn].url,
+        video: res.video,
+      }));
+  }
 
-    onEnd = () => {
-        this.setState({ paused: true })
-        this.video.seek(0)
+  stop(){
+        this.player.setState({
+          isPlaying: false,
+          progress: 0,
+        });
+        this.player.showControls();
 
-        //this.props.hideVideo();
         this.props.navigation.navigate('MainApp');
-    };
+  }
 
-    getCurrentTimePercentage() {
-        if (this.state.currentTime > 0) {
-            return parseFloat(this.state.currentTime) / parseFloat(this.state.duration);
-        }
-        return 0;
-    };
-
-    render() {
-        const flexCompleted = this.getCurrentTimePercentage() * 100;
-        const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
-
-        return (
-            <View style={styles.container}>
-                <TouchableOpacity
-                    style={styles.fullScreen}
-                    onPress={() => this.setState({ paused: !this.state.paused })}
-                >
-                    <Video
-                        ref={(ref: Video) => { this.video = ref }}
-                        source={{uri:'https://amonra.blob.core.windows.net/contenedorvideo/video%20amon%20RA_2.mp4'}}
-                        style={styles.fullScreen}
-                        rate={this.state.rate}
-                        paused={this.state.paused}
-                        volume={this.state.volume}
-                        muted={this.state.muted}
-                        resizeMode={this.state.resizeMode}
-                        onLoad={this.onLoad}
-                        onProgress={this.onProgress}
-                        onEnd={this.onEnd}
-                        repeat={false}
-                    />
-                </TouchableOpacity>
-
-                <View style={styles.controls}>
-                    <View style={styles.trackingControls}>
-                        <View style={styles.progress}>
-                            <View style={[styles.innerProgressCompleted, { flex: flexCompleted }]} />
-                            <View style={[styles.innerProgressRemaining, { flex: flexRemaining }]} />
-                        </View>
-                    </View>
-                </View>
-            </View>
-        );
-    }
+  render() {
+    return (
+      <View>
+        <VideoPlayer
+          endWithThumbnail
+          thumbnail={{ uri: this.state.thumbnailUrl }}
+          video={{ uri: this.state.videoUrl }}
+          videoWidth={this.state.video.width}
+          videoHeight={this.state.video.height}
+          duration={this.state.video.duration/* I'm using a hls stream here, react-native-video
+            can't figure out the length, so I pass it here from the vimeo config */}
+          ref={r => this.player = r}
+        />
+        <Button
+          onPress={() => this.stop()}
+          title="Continuar"
+        />
+      </View>
+    );
+  }
 }
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'black',
-        ...StyleSheet.absoluteFillObject
-    },
-    fullScreen: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-    },
-    controls: {
-        backgroundColor: 'transparent',
-        borderRadius: 5,
-        position: 'absolute',
-        bottom: 20,
-        left: 20,
-        right: 20,
-    },
-    progress: {
-        flex: 1,
-        flexDirection: 'row',
-        borderRadius: 3,
-        overflow: 'hidden',
-    },
-    innerProgressCompleted: {
-        height: 20,
-        backgroundColor: '#cccccc',
-    },
-    innerProgressRemaining: {
-        height: 20,
-        backgroundColor: '#2C2C2C',
-    },
-    generalControls: {
-        flex: 1,
-        flexDirection: 'row',
-        borderRadius: 4,
-        overflow: 'hidden',
-        paddingBottom: 10,
-    },
-    rateControl: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    skipControl: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-end'
-    },
-    resizeModeControl: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    controlOption: {
-        alignSelf: 'center',
-        fontSize: 11,
-        color: 'white',
-        paddingLeft: 2,
-        paddingRight: 2,
-        lineHeight: 12,
-    },
-});
 
 AppRegistry.registerComponent('UseGuide', () => UseGuide);

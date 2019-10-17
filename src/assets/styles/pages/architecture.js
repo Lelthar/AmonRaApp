@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     flex:1,
     flexDirection: 'row',
   },
-
   image:{
     height:150,
     width:150,
@@ -14,7 +13,6 @@ const styles = StyleSheet.create({
     margin:20
 
   },
-
 });
 
 export default styles;
