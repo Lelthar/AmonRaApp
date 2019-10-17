@@ -12,7 +12,6 @@ import DataSheet from "./js/AR_Components/DataSheet";
 import InfoMenu from "./js/AR_Components/InfoMenu";
 import MenuImages from "./js/D3_Components/MenuImages";
 import VRSelectionMode from "./js/VR_Components/VRSelectionMode";
-import Toast from "./js/AR_Components/Toast";
 import PointSheet from "./js/D3_Components/PointSheet";
 import SwitchButtom from "./js/D3_Components/SwitchButton";
 
@@ -28,9 +27,7 @@ const NAVIGATOR_TYPE_VR = "VR";
 const NAVIGATOR_TYPE_AR = "AR";
 const NAVIGATOR_TYPE_3D = "3D";
 
-const arr = [require('./js/res/PEATON.png'),require('./js/res/ISOMETRICO.png'),require('./js/res/GENERAL.png')];
-
-const arr1 = [require('./js/res/gf1.png'),require('./js/res/gf2.png'),require('./js/res/gf3.png')];
+var dataJson = require('./js/D3_Components/data3D.json'); 
 
 export class ViromediaController extends Component {
 
@@ -41,7 +38,6 @@ export class ViromediaController extends Component {
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
     this.showInfoMenu = this.showInfoMenu.bind(this);
     this.setVRMode = this.setVRMode.bind(this);
-    this.showToast = this.showToast.bind(this);
     this.closeDataPoint = this.closeDataPoint.bind(this);
     this.showDataPoint = this.showDataPoint.bind(this);
     this.changeMenuImage = this.changeMenuImage.bind(this);
@@ -57,10 +53,7 @@ export class ViromediaController extends Component {
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
-      houseArPressedID: null,
-      houseArPressedName: null,
-      toastVisible: false,
-      toastMessage: "",
+      houseArPressed: null,
 
       // VR Components Props
       menuViews: true,
@@ -69,8 +62,6 @@ export class ViromediaController extends Component {
       },
       dataPointVisible: false,
       imagesMenu : arr,
-
-      
     }
   }   
 
@@ -145,12 +136,12 @@ export class ViromediaController extends Component {
           viroAppProps={this.state.viro3dProps}/>
 
         {this.state.menuViews //Show normal images
-          ? <MenuImages dataImages={{images:arr}} handleClickMenuImage={this.showDataPoint} />
+          ? <MenuImages dataImages={{images:this._views3dSelect(this.state.viro3dProps.id)}} handleClickMenuImage={this.showDataPoint} />
           : null
         }
 
         {!this.state.menuViews //Show point images
-          ? <MenuImages dataImages={{images:arr1}} handleClickMenuImage={this.showDataPoint} />
+          ? <MenuImages dataImages={{images:this._points3dSelect(256)}} handleClickMenuImage={this.showDataPoint} />
           : null
         }
 
@@ -172,14 +163,6 @@ export class ViromediaController extends Component {
     );
   }
   
-  showToast(message){
-    this.setState({
-      toastVisible: true,
-      toastMessage: message,
-    });
-  }
-
-
   // Enable or Disable DataSheet
   toggleDataSheet(){
     this.setState({
@@ -189,11 +172,10 @@ export class ViromediaController extends Component {
   }
 
   // Show extra information of a building.
-  showInfoMenu(idHousePressed, buildingName){ 
+  showInfoMenu(place){ 
     this.setState({
       infoMenuVisible : true,
-      houseArPressedID: idHousePressed,
-      houseArPressedName: buildingName,
+      houseArPressed: place,
     });
   }
 
@@ -233,6 +215,33 @@ export class ViromediaController extends Component {
       });
     }
   }
+
+  _views3dSelect(objectName){
+    const objects = {
+      250 : dataJson.houses.GonzalesFeo.views,
+      251 : dataJson.houses.CentroCine.views,
+      252 : dataJson.houses.CasaVerde.views,
+      254 : dataJson.houses.AlianzaFrancesa.views,
+      256 : dataJson.houses.CastilloMoro.views,
+      261 : dataJson.houses.QuesadaAvendano.views,
+      262 : dataJson.houses.SerranoBonilla.views,
+    };
+    return objects[objectName];
+  }
+
+  _points3dSelect(objectName){
+    const objects = {
+      250 : dataJson.houses.GonzalesFeo.views,
+      251 : dataJson.houses.CentroCine.views,
+      252 : dataJson.houses.CasaVerde.views,
+      254 : dataJson.houses.AlianzaFrancesa.views,
+      256 : dataJson.houses.CastilloMoro.points,
+      261 : dataJson.houses.QuesadaAvendano.views,
+      262 : dataJson.houses.SerranoBonilla.views,
+    };
+    return objects[objectName];
+  }
+
 }
 
 export default ViromediaController;
