@@ -69,6 +69,8 @@ export class ViromediaController extends Component {
       },
       dataPointVisible: false,
       imagesMenu : arr,
+
+      
     }
   }   
 
@@ -100,7 +102,8 @@ export class ViromediaController extends Component {
           <InfoMenu 
             handlePressDataSheet={this.toggleDataSheet} 
             descriptionVisible={this.state.descriptionVisible} 
-            houseArPressed={this.state.houseArPressedID} /> 
+            houseArPressed={this.state.houseArPressedID} 
+            navigation={this.props.navigation}/> 
         )}
 
         {this.state.dataSheetVisible && (

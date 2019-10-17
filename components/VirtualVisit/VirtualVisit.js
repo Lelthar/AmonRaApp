@@ -12,9 +12,9 @@ import {
   PixelRatio,
   FlatList,
   TouchableHighlight,
-  AsyncStorage
 } from 'react-native';
 
+import AsyncStorage from '@react-native-community/async-storage';
 import Swiper from 'react-native-swiper';
 const { width } = Dimensions.get('window');
 const imageRatio = PixelRatio.getPixelSizeForLayoutSize(60);
