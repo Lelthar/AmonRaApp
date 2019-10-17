@@ -89,7 +89,7 @@ class TimeLine extends Component  {
       </View>
     );
   }
-
+  
   componentDidMount(){
     this.get_backend_data();
   }

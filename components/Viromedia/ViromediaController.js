@@ -12,6 +12,7 @@ import DataSheet from "./js/AR_Components/DataSheet";
 import InfoMenu from "./js/AR_Components/InfoMenu";
 import MenuImages from "./js/D3_Components/MenuImages";
 import VRSelectionMode from "./js/VR_Components/VRSelectionMode";
+import Toast from "./js/AR_Components/Toast";
 import PointSheet from "./js/D3_Components/PointSheet";
 import SwitchButtom from "./js/D3_Components/SwitchButton";
 
@@ -40,6 +41,7 @@ export class ViromediaController extends Component {
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
     this.showInfoMenu = this.showInfoMenu.bind(this);
     this.setVRMode = this.setVRMode.bind(this);
+    this.showToast = this.showToast.bind(this);
     this.closeDataPoint = this.closeDataPoint.bind(this);
     this.showDataPoint = this.showDataPoint.bind(this);
     this.changeMenuImage = this.changeMenuImage.bind(this);
@@ -55,7 +57,10 @@ export class ViromediaController extends Component {
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
-      houseArPressed: null,
+      houseArPressedID: null,
+      houseArPressedName: null,
+      toastVisible: false,
+      toastMessage: "",
 
       // VR Components Props
       menuViews: true,
@@ -91,20 +96,24 @@ export class ViromediaController extends Component {
           onExitViro={this._exitViro} 
           viroAppProps={this.state.viroAppProps} />
                                 
-        {
-          this.state.infoMenuVisible // Menu
-          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} 
-                      descriptionVisible={this.state.descriptionVisible} 
-                      houseArPressed={this.state.houseArPressed} />
-          : null
-        }
+        {this.state.infoMenuVisible && (
+          <InfoMenu 
+            handlePressDataSheet={this.toggleDataSheet} 
+            descriptionVisible={this.state.descriptionVisible} 
+            houseArPressed={this.state.houseArPressedID} /> 
+        )}
 
-        {
-          this.state.dataSheetVisible // Ficha técnica
-          ? <DataSheet handlePressDataSheet={this.toggleDataSheet} 
-                       houseArPressed={this.state.houseArPressed} />
-          : null
-        }
+        {this.state.dataSheetVisible && (
+          <DataSheet 
+            handlePressDataSheet={this.toggleDataSheet} 
+            houseArPressedID={this.state.houseArPressedID} 
+            houseArPressedName={this.state.houseArPressedName} 
+            showErrorToast={this.showToast}/>
+        )}
+
+        {this.state.toastVisible && (
+          <Toast visible={this.state.toastVisible} message={this.state.toastMessage}/>
+        )}
       </View>
     );
   }
@@ -160,6 +169,14 @@ export class ViromediaController extends Component {
     );
   }
   
+  showToast(message){
+    this.setState({
+      toastVisible: true,
+      toastMessage: message,
+    });
+  }
+
+
   // Enable or Disable DataSheet
   toggleDataSheet(){
     this.setState({
@@ -169,10 +186,11 @@ export class ViromediaController extends Component {
   }
 
   // Show extra information of a building.
-  showInfoMenu(place){ 
+  showInfoMenu(idHousePressed, buildingName){ 
     this.setState({
       infoMenuVisible : true,
-      houseArPressed: place,
+      houseArPressedID: idHousePressed,
+      houseArPressedName: buildingName,
     });
   }
 
