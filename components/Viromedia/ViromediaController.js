@@ -61,6 +61,7 @@ export class ViromediaController extends Component {
         id: this.props.navigation.state.params.filename, 
       },
       dataPointVisible: false,
+      imagesMenu : arr,
     }
   }   
 
@@ -88,20 +89,25 @@ export class ViromediaController extends Component {
           onExitViro={this._exitViro} 
           viroAppProps={this.state.viroAppProps} />
                                 
-        {
-          this.state.infoMenuVisible // Menu
-          ? <InfoMenu handlePressDataSheet={this.toggleDataSheet} 
-                      descriptionVisible={this.state.descriptionVisible} 
-                      houseArPressed={this.state.houseArPressed} />
-          : null
-        }
+        {this.state.infoMenuVisible && (
+          <InfoMenu 
+            handlePressDataSheet={this.toggleDataSheet} 
+            descriptionVisible={this.state.descriptionVisible} 
+            houseArPressed={this.state.houseArPressedID} 
+            navigation={this.props.navigation}/> 
+        )}
 
-        {
-          this.state.dataSheetVisible // Ficha técnica
-          ? <DataSheet handlePressDataSheet={this.toggleDataSheet} 
-                       houseArPressed={this.state.houseArPressed} />
-          : null
-        }
+        {this.state.dataSheetVisible && (
+          <DataSheet 
+            handlePressDataSheet={this.toggleDataSheet} 
+            houseArPressedID={this.state.houseArPressedID} 
+            houseArPressedName={this.state.houseArPressedName} 
+            showErrorToast={this.showToast}/>
+        )}
+
+        {this.state.toastVisible && (
+          <Toast visible={this.state.toastVisible} message={this.state.toastMessage}/>
+        )}
       </View>
     );
   }

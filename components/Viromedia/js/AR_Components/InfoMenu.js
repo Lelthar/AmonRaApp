@@ -26,6 +26,16 @@ const FEATURE_ID = "?feature_id=";
 const dataSheetIcon = require('../../../../images/icons/RA/ficha-tecnica.png');
 const vivenciasIcon = require('../../../../images/icons/RA/vivenciass.png');
 const extraInfoIcon = require('../../../../images/icons/RA/mas-info.png');
+const dicArq = {
+    name: "name" , 
+    description: "description", 
+    direction: "direction",
+    phone_number: "phone_number",
+    facebook: "facebook",
+    images_url: ["image1_url", 
+                "image2_url", 
+                "image3_url"]
+};
 
 export default class InfoMenu extends Component {
     constructor(props) {
@@ -60,8 +70,8 @@ export default class InfoMenu extends Component {
                         <Image source={vivenciasIcon} />
                         <Text style={localStyles.textButton}> Vivencias</Text>
                     </TouchableOpacity>
-            
-                    <TouchableOpacity style={localStyles.rowButton} onPress={() => (console.log("mas info"))}>
+                    
+                    <TouchableOpacity style={localStyles.rowButton} onPress= {() => this.props.navigation.navigate('ArchitectureDetail',{goToScreen: this.props.navigation, placeInfo: dicArq}) }>
                         <Image  source={extraInfoIcon} />
                         <Text style={localStyles.textButton}> Info</Text>
                     </TouchableOpacity>
@@ -69,7 +79,8 @@ export default class InfoMenu extends Component {
             </View>
         );
     }
-
+    
+    
     toggleDataSheet(){
         this.props.handlePressDataSheet();
     }
