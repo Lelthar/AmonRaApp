@@ -46,13 +46,13 @@ export default class MenuImages extends Component {
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={localStyles.middleContainer} onPress={() => this.props.handleClickMenuImage(this.state.counter.one)}>
-          <Image source={this.state.images[this.state.counter.one]} style={localStyles.photoAux} />
+          <Image source={{uri :this.state.images[this.state.counter.one]}} style={localStyles.photoAux} />
         </TouchableOpacity>
         <TouchableOpacity style={localStyles.centerContainer} onPress={() => this.props.handleClickMenuImage(this.state.counter.two)}>
-          <Image source={this.state.images[this.state.counter.two]} style={localStyles.photoMain} />
+          <Image source={{uri :this.state.images[this.state.counter.two]}} style={localStyles.photoMain} />
         </TouchableOpacity>
         <TouchableOpacity style={localStyles.middleContainer} onPress={() => this.props.handleClickMenuImage(this.state.counter.three)}>
-          <Image source={this.state.images[this.state.counter.three]} style={localStyles.photoAux} />
+          <Image source={{uri :this.state.images[this.state.counter.three]}} style={localStyles.photoAux} />
         </TouchableOpacity>
         <View style={localStyles.extremesContainer}>
         <TouchableOpacity style={localStyles.displaybotomLeft} onPress={() => this.changeImage3D(2)}>
