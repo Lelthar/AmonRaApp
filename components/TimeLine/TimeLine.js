@@ -73,10 +73,6 @@ class TimeLine extends Component  {
       data: null,
     };
   }
-
-  componentDidUnmount(){
-    console.log(" se cerro la picha")
-  }
   
   render() {
     return (
