@@ -11,6 +11,9 @@ import {
     Button
 } from 'react-native';
 
+import * as constants from '../../data/constants'
+import * as colors from '../../data/colors'
+
 import VideoPlayer from 'react-native-video-player';
 
 const VIMEO_ID = '366017529';
@@ -58,14 +61,31 @@ export default class UseGuide extends Component {
           duration={this.state.video.duration/* I'm using a hls stream here, react-native-video
             can't figure out the length, so I pass it here from the vimeo config */}
           ref={r => this.player = r}
+          style={{height: '93%'}}
         />
-        <Button
-          onPress={() => this.stop()}
-          title="Continuar"
-        />
+        <TouchableOpacity
+          style={styles.okButton}
+          onPress={() => this.stop()}>
+          <Text style={styles.okBtn}> Continuar </Text>
+        </TouchableOpacity>
+        
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  okButton:{
+    //flex:1,
+    height : '7%',
+    backgroundColor:colors.TURQUOISE,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  okBtn:{
+    color:"white",
+    fontSize: 16
+  },
+});
 
 AppRegistry.registerComponent('UseGuide', () => UseGuide);
