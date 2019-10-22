@@ -41,13 +41,13 @@ export default class PointSheet extends Component {
           <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>                
               <View style={localStyles.dataSheet}>
                 <View style={localStyles.containerImages}>
-                    <TouchableOpacity onPress={() => this.changeImage3D(1)}>
+                    <TouchableOpacity>
                         <Image  source={require('../../../../images/despliegaizq.png')} />
                     </TouchableOpacity>
 
-                    <Image style={{width:200,height:150}} source={require('../res/gf1.png')} />
+                    <Image style={{width:200,height:150}} source={require('../res/gf2.png')} />
 
-                    <TouchableOpacity onPress={() => this.changeImage3D(2)}>
+                    <TouchableOpacity>
                         <Image source={require('../../../../images/despliegader.png')} />
                     </TouchableOpacity>
                 </View>

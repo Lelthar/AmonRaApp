@@ -36,7 +36,8 @@ const images = {
   familiamadriz: require('./Ar3dObjects/familiamadrizOBJ.obj'),
   castillodelmoro: require('./Ar3dObjects/castillodelmoroOBJ.obj'),
   escuelatecnicanacional: require('./Ar3dObjects/escuelatecnicanacionalOBJ.obj'),
-
+  hotelAmstelAmon: require('./Ar3dObjects/HotelamstelamonOBJ.obj'),
+  
 };
   
   

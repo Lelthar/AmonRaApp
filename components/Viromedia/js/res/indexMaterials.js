@@ -38,6 +38,7 @@ const materials = {
     antiguedadesgobelino: require('./Ar3dObjects/antiguedadesgobelino.mtl'),
     cotocubero: require('./Ar3dObjects/cotocubero.mtl'),
     gonzalesfeo: require('./Ar3dObjects/gonzalesfeo.mtl'),
+    hotelAmstelAmon: require('./Ar3dObjects/Hotelamstelamon.mtl'),  
 };
 
 

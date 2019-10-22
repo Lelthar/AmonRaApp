@@ -11,7 +11,6 @@ import {
   ViroAmbientLight, 
   ViroNode,
   ViroImage,
-  ViroConstants,
 } from 'react-viro';
 
 import Geolocation from 'react-native-geolocation-service';
@@ -22,6 +21,9 @@ import Materials3D from './res/indexMaterials';
 
 const defaultImage = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2Fdefault.png?alt=media&token=240374eb-adf4-42cc-8fdc-c70662582a92";
 const defaultLabel3D = "casa936";
+const degree_update_rate = 20;
+
+let heading = 0;
 
 export class ARScene extends Component {
 
@@ -29,9 +31,8 @@ export class ARScene extends Component {
     super(props);
     this._coordLatLongToMercator = this._coordLatLongToMercator.bind(this);
     this._transformPointToAR = this._transformPointToAR.bind(this);
-    this._calibrateCompass = this._calibrateCompass.bind(this);
     this._setObjectPositions = this._setObjectPositions.bind(this);  
-    this._getTwoNearestObjects = this._getTwoNearestObjects.bind(this); 
+    this._getThreeNearestObjects = this._getThreeNearestObjects.bind(this); 
     this._generateARObject = this._generateARObject.bind(this); 
     this._object3dSelect = this._object3dSelect.bind(this); 
     this._material3dSelect = this._material3dSelect.bind(this); 
@@ -42,6 +43,7 @@ export class ARScene extends Component {
           x: 0, 
           z: 0, 
           placeID: 0, 
+          tittle: "",
           img: defaultImage, 
           label3DObject: defaultLabel3D, 
       },
@@ -49,6 +51,7 @@ export class ARScene extends Component {
           x: 0, 
           z: 0, 
           placeID: 0, 
+          tittle: "",
           img: defaultImage, 
           label3DObject: defaultLabel3D,
       },
@@ -56,10 +59,15 @@ export class ARScene extends Component {
         x: 0, 
         z: 0, 
         placeID: 0, 
+        tittle: "",
         img: defaultImage, 
         label3DObject: defaultLabel3D,
-    },
+      },
     };
+
+    RNSimpleCompass.start(degree_update_rate, (degree) => {
+      heading = degree 
+    });
   }
 
   componentDidMount(){
@@ -75,38 +83,33 @@ export class ARScene extends Component {
           this.loadARObject(this.state.firstNearestARObject)
         )}    
         {this.state.sceneVisible && (
-          null//this.loadARObject(this.state.secondNearestARObject)
+          this.loadARObject(this.state.secondNearestARObject)
         )} 
         {this.state.sceneVisible && (
-          null//this.loadARObject(this.state.thirdNearestARObject)
+          this.loadARObject(this.state.thirdNearestARObject)
         )} 
       </ViroARScene>
     );
   }
 
   loadARObject(objectAR){
-    console.log(objectAR.placeID);
     return(
       <ViroNode>
-
         <ViroImage
           position={[objectAR.x, 0.1, objectAR.z - 1.5]}
           resizeMode='ScaleToFit'
-          scale={[10,10,10]}
+          scale={[50,50,50]}
           source={{uri: objectAR.img}}
         />
-
-        <ViroAmbientLight color="#FFFFFF" />
-
+        <ViroAmbientLight color="#FFFFFF"/>
         <Viro3DObject 
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(objectAR.placeID, objectAR.tittle)}
           source={this._object3dSelect(objectAR.label3DObject)} 
           position={[objectAR.x, 1, objectAR.z - 1]}
-          scale={[0.1, 0.1, 0.1]}
+          scale={[1,1,1]}
           resources={[this._material3dSelect(objectAR.label3DObject)]}
           type="OBJ" 
         />
-
       </ViroNode>
     );
   }
@@ -114,29 +117,19 @@ export class ARScene extends Component {
   _setObjectPositions(){
     Geolocation.watchPosition(
       (position) => {
-        let objetsAR = this._getTwoNearestObjects(position.coords.latitude, position.coords.longitude);
-        let firstObject = objetsAR.obj1;
-        let secondObject = objetsAR.obj2;
-        let thirdObject = objetsAR.obj3;
-        this.setState({
-          firstNearestARObject: firstObject,
-          secondNearestARObject: secondObject, 
-          thirdNearestARObject: thirdObject,  
-          sceneVisible: true,
-        });
+        this._getThreeNearestObjects(position.coords.latitude, position.coords.longitude)
       },
-      {enableHighAccuracy: true, distanceFilter: 0, maximumAge: 0},
+      {enableHighAccuracy: true, distanceFilter: 0, maximumAge: 0, timeout: 20000},
     );
   }
 
   // Sacar los dos objetos mas cercanos al dispositivo, es decir, con la menor distancia por recorrer
-  _getTwoNearestObjects(lat, long){
+  _getThreeNearestObjects(lat, long){
     let firstObject, secondObject, thirdObject; 
     let firstObjectDistance = Number.MAX_VALUE, secondObjectDistance = Number.MAX_VALUE, thirdObjectDistance = Number.MAX_VALUE;
-    let compassHeading = this._calibrateCompass();
     let userMercatorPoint = this._coordLatLongToMercator(lat, long);
     mercatorAmon.forEach((element) => {
-      let objectAR = this._transformPointToAR(compassHeading, userMercatorPoint, element);
+      let objectAR = this._transformPointToAR(userMercatorPoint, element);
       let distance = Math.abs(objectAR.x) +  Math.abs(objectAR.z);
       if(distance < firstObjectDistance){
         thirdObject = secondObject;
@@ -155,21 +148,17 @@ export class ARScene extends Component {
         thirdObjectDistance = distance;
       }
     });
-
-    return ({obj1: firstObject, obj2: secondObject, obj3: thirdObject});
-  }
-
-  _calibrateCompass(){
-    let compassHeading = 0;
-    const degree_update_rate = 3; // Number of degrees changed before the callback is triggered
-    RNSimpleCompass.start(degree_update_rate, (degree) => {
-      compassHeading = degree;
-      RNSimpleCompass.stop();
+    
+    this.setState({
+      firstNearestARObject: firstObject,
+      secondNearestARObject: secondObject, 
+      thirdNearestARObject: thirdObject,  
+      sceneVisible: true,
     });
-    return compassHeading;
   }
-  
-  _transformPointToAR(compassHeading, userMercPoint, objectMercPoint) {
+
+  _transformPointToAR(userMercPoint, objectMercPoint) {
+    let compassHeading = heading;
     let objFinalPosZ = objectMercPoint.Y - userMercPoint.Y;
     let objFinalPosX = objectMercPoint.X - userMercPoint.X;
     let angle = (compassHeading * Math.PI)/180;

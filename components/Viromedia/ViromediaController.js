@@ -61,7 +61,6 @@ export class ViromediaController extends Component {
         id: this.props.navigation.state.params.filename, 
       },
       dataPointVisible: false,
-      imagesMenu : arr,
     }
   }   
 
