@@ -105,7 +105,7 @@ export class ARScene extends Component {
         <Viro3DObject 
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(objectAR.placeID, objectAR.tittle)}
           source={this._object3dSelect(objectAR.label3DObject)} 
-          position={[objectAR.x, 1, objectAR.z - 1]}
+          position={[0,0,-1]}
           scale={[1,1,1]}
           resources={[this._material3dSelect(objectAR.label3DObject)]}
           type="OBJ" 

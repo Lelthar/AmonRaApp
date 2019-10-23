@@ -42,6 +42,7 @@ export default class InfoMenu extends Component {
         super(props);
     
         this.toggleDataSheet = this.toggleDataSheet.bind(this);
+        this.openExperiences = this.openExperiences.bind(this);
         
         this.state = {
             buildingARPressed: this.props.houseArPressed,
@@ -66,7 +67,7 @@ export default class InfoMenu extends Component {
                         <Text style={localStyles.textButton}> Ficha técnica</Text>
                     </TouchableOpacity>
             
-                    <TouchableOpacity style={localStyles.rowButton}>
+                    <TouchableOpacity style={localStyles.rowButton} onPress={() => this.openExperiences()}>
                         <Image source={vivenciasIcon} />
                         <Text style={localStyles.textButton}> Vivencias</Text>
                     </TouchableOpacity>
@@ -80,7 +81,10 @@ export default class InfoMenu extends Component {
         );
     }
     
-    
+    openExperiences(){
+        this.props.navigation.navigate('ExperiencesARHouse',{goToScreen: this.props.navigation, housePressed: this.state.buildingARPressed});
+    }
+
     toggleDataSheet(){
         this.props.handlePressDataSheet();
     }

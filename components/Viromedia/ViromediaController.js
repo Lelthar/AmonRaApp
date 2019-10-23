@@ -16,7 +16,6 @@ import PointSheet from "./js/D3_Components/PointSheet";
 import SwitchButtom from "./js/D3_Components/SwitchButton";
 import dataJson from './js/D3_Components/data3D.json';
 
-
 const sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
 }
@@ -33,6 +32,7 @@ export class ViromediaController extends Component {
 
   constructor(props) {
     super(props);
+
     this._getARNavigator = this._getARNavigator.bind(this);
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this.toggleDataSheet = this.toggleDataSheet.bind(this);
@@ -63,6 +63,12 @@ export class ViromediaController extends Component {
       dataPointVisible: false,
     }
   }   
+
+  componentWillUnmount(){
+    this.setState({
+      navigatorType : "UNSET",
+    })
+  }
 
   render() { 
     if (this.state.navigatorType == NAVIGATOR_TYPE_AR){
@@ -180,6 +186,7 @@ export class ViromediaController extends Component {
 
    // This function "exits" Viro by setting the navigatorType to UNSET.
   _exitViro() {
+    console.log("on exit viro ")
     this.setState({
       navigatorType : "UNSET",
     })

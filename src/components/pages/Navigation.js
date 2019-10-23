@@ -29,7 +29,13 @@ import HamburgerMenu from '../partials/HamburgerMenu';
 import Architecture from './Architecture.js';
 import ArchitectureDetail from './ArchitectureDetail';
 import ExperiencesMenu from './ExperiencesMenu';
+import ExperiencesARBuilding from '../partials/ExperiencesARBuilding';
 import Origin from './Origin';
+import Narratives from '../partials/Narratives';
+import Secrets from '../partials/Secrets';
+import Characters from '../partials/Characters';
+import CharacterDetail from '../partials/CharacterDetail';
+import Literature from '../partials/Literature';
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -118,6 +124,81 @@ const mapStack = createStackNavigator(
         } 
       },
     },
+    Narratives:{
+      screen: Narratives,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Narraciones",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Secrets:{
+      screen: Secrets,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Secretos",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Characters:{
+      screen: Characters,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Personajes",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    CharacterDetail:{
+      screen: CharacterDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Personajes",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Literature:{
+      screen: Literature,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Literatura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   }
 );
 
@@ -196,6 +277,81 @@ const virtualVisitStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Origen",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Narratives:{
+      screen: Narratives,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Narraciones",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Secrets:{
+      screen: Secrets,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Secretos",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Characters:{
+      screen: Characters,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Personajes",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    CharacterDetail:{
+      screen: CharacterDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Personajes",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Literature:{
+      screen: Literature,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Literatura",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -370,6 +526,81 @@ const urbanOfferStack = createStackNavigator(
         } 
       },
     },
+    Narratives:{
+      screen: Narratives,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Narraciones",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Secrets:{
+      screen: Secrets,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Secretos",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Characters:{
+      screen: Characters,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Personajes",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    CharacterDetail:{
+      screen: CharacterDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Personajes",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Literature:{
+      screen: Literature,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Literatura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -384,7 +615,22 @@ const augmentedRealityStack = createStackNavigator(
         do: "AR",
       },
       navigationOptions: {
+        header: null,
+      },
+    },
+    ExperiencesARHouse:{
+      screen: ExperiencesARBuilding,
+      navigationOptions: {
         headerRight: <HamburgerButton />,
+        title: "Vivencias",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
       },
     },
   },
@@ -461,6 +707,81 @@ const timeLineStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Origen",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Narratives:{
+      screen: Narratives,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Narraciones",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Secrets:{
+      screen: Secrets,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Secretos",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Characters:{
+      screen: Characters,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Personajes",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    CharacterDetail:{
+      screen: CharacterDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Personajes",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Literature:{
+      screen: Literature,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Literatura",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
