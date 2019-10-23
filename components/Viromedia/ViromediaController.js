@@ -27,7 +27,6 @@ const NAVIGATOR_TYPE_VR = "VR";
 const NAVIGATOR_TYPE_AR = "AR";
 const NAVIGATOR_TYPE_3D = "3D";
 
-var dataJson = require('./js/D3_Components/data3D.json'); 
 
 export class ViromediaController extends Component {
 
@@ -61,8 +60,20 @@ export class ViromediaController extends Component {
         id: this.props.navigation.state.params.filename, 
       },
       dataPointVisible: false,
+      dataPoint: {},
+      switchButtomVisible: true,
     }
   }   
+
+  componentDidMount(){
+    if (this.state.navigatorType == NAVIGATOR_TYPE_3D){
+      if(this.state.viro3dProps.id==261 | this.state.viro3dProps.id==262){
+        this.setState({
+          switchButtomVisible:false
+        });
+      }
+    }
+  }
 
   render() { 
     if (this.state.navigatorType == NAVIGATOR_TYPE_AR){
@@ -134,23 +145,30 @@ export class ViromediaController extends Component {
           vrModeEnabled={false}
           viroAppProps={this.state.viro3dProps}/>
 
-        {this.state.menuViews //Show normal images
-          ? <MenuImages dataImages={{images:this._views3dSelect(this.state.viro3dProps.id)}} handleClickMenuImage={this.showDataPoint} />
-          : null
+        {this.state.menuViews && (
+          <MenuImages 
+            dataImages={{id:this.state.viro3dProps.id,type:1}} 
+            handleClickMenuImage={this.showDataPoint} />
+            )
         }
 
-        {!this.state.menuViews //Show point images
-          ? <MenuImages dataImages={{images:this._points3dSelect(256)}} handleClickMenuImage={this.showDataPoint} />
-          : null
+        {!this.state.menuViews && (
+          <MenuImages 
+            dataImages={{id:this.state.viro3dProps.id,type:0}} 
+            handleClickMenuImage={this.showDataPoint} />
+            )
         }
 
         {this.state.dataPointVisible //PointSheet
-          ? <PointSheet  handlePressDataSheet={this.closeDataPoint}/>
+          ? <PointSheet dataPoint={{data:this.state.dataPoint}} 
+              handlePressDataSheet={this.closeDataPoint}/>
           : null
         }
         
-        {<SwitchButtom 
-          handleSwitchClick={this.changeMenuImage} />}
+        {this.state.switchButtomVisible 
+          ? <SwitchButtom handleSwitchClick={this.changeMenuImage} />
+          : null
+        }
 
       </View>
     );
@@ -206,11 +224,11 @@ export class ViromediaController extends Component {
   }
 
   // Enable or Disable DataSheet
-  showDataPoint(position){
+  showDataPoint(data){
     if(!this.state.menuViews){
-      console.log(position)
       this.setState({
         dataPointVisible : !this.state.dataPointVisible,
+        dataPoint : data,
       });
     }
   }

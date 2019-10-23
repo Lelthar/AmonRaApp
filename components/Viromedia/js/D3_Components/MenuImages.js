@@ -6,38 +6,54 @@ import {
     TouchableOpacity,
   } from 'react-native';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
+import Orientation from 'react-native-orientation-locker';
+
+//----------Backend--------------
+import { 
+  VIRTUAL_VISIT_IMAGES,
+  INFORMATION_HOUSES,
+  USER_DATA,
+} from '../../../../constants/constants';
+
+import {
+  makeBackendRequest,
+} from '../../../../helpers/helpers';
+
+//-------------------------------
+
+const FEATURE_ID = "?feature_id=";
+
 export default class MenuImages extends Component {
   constructor(props) {
     super(props);
 
+    this.showMenuImages = this.showMenuImages.bind(this);
+
     this.state = {
-      informationText : "Sin datos",
       counter: {one: 0, two: 1, three: 2},
-      images : this.props.dataImages.images,
+      typeContent : this.props.dataImages.type, //1=information views images 0=images of points information
+      images : [],
+      houseId : this.props.dataImages.id,
+      menuImagesVisible: false,
     }
   }
 
-  changeImage3D(button){
-      let one,two, three =0;
-      let length = this.state.images.length;
-      //right
-      if(button == 2){
-        one = (this.state.counter.one-1) >= 0 ? (this.state.counter.one-1) : length-1;
-        two = (this.state.counter.two-1) >= 0 ? (this.state.counter.two-1) : length-1;
-        three = (this.state.counter.three-1) >= 0 ? (this.state.counter.three-1) : length-1;
-      }else{//left
-        one = ((this.state.counter.one+1)%length);
-        two = ((this.state.counter.two+1)%length);
-        three = ((this.state.counter.three+1)%length);
-      }
+  componentDidMount(){
+    this.get_backend_data();  
+    Orientation.lockToPortrait(); //this will lock the view to Portrait
+  }
 
-      this.setState({
-        counter: {one: one,two: two, three: three}
-      })
-      
-    }
-    
   render() {
+    return (
+        this.state.menuImagesVisible && (
+          this.showMenuImages()
+          )
+    );
+  }
+
+  showMenuImages(){
     return (
       <View style={localStyles.menuContainer}>
         <View style={localStyles.extremesContainer}>
@@ -45,14 +61,17 @@ export default class MenuImages extends Component {
             <Image  source={require('../../../../images/despliegaizq.png')} />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={localStyles.middleContainer} onPress={() => this.props.handleClickMenuImage(this.state.counter.one)}>
-          <Image source={{uri :this.state.images[this.state.counter.one]}} style={localStyles.photoAux} />
+        <TouchableOpacity style={localStyles.middleContainer} onPress={() => 
+            this.props.handleClickMenuImage(this.state.images[this.state.counter.one])}>
+          <Image source={{uri :this.state.images[this.state.counter.one].image_url}} style={localStyles.photoAux} />
         </TouchableOpacity>
-        <TouchableOpacity style={localStyles.centerContainer} onPress={() => this.props.handleClickMenuImage(this.state.counter.two)}>
-          <Image source={{uri :this.state.images[this.state.counter.two]}} style={localStyles.photoMain} />
+        <TouchableOpacity style={localStyles.centerContainer} onPress={() => 
+            this.props.handleClickMenuImage(this.state.images[this.state.counter.two])}>
+          <Image source={{uri :this.state.images[this.state.counter.two].image_url}} style={localStyles.photoMain} />
         </TouchableOpacity>
-        <TouchableOpacity style={localStyles.middleContainer} onPress={() => this.props.handleClickMenuImage(this.state.counter.three)}>
-          <Image source={{uri :this.state.images[this.state.counter.three]}} style={localStyles.photoAux} />
+        <TouchableOpacity style={localStyles.middleContainer} onPress={() => 
+            this.props.handleClickMenuImage(this.state.images[this.state.counter.three])}>
+          <Image source={{uri :this.state.images[this.state.counter.three].image_url}} style={localStyles.photoAux} />
         </TouchableOpacity>
         <View style={localStyles.extremesContainer}>
         <TouchableOpacity style={localStyles.displaybotomLeft} onPress={() => this.changeImage3D(2)}>
@@ -60,8 +79,55 @@ export default class MenuImages extends Component {
         </TouchableOpacity>
         </View>
       </View>
-        
     );
+  }
+
+  changeImage3D(button){
+    let one,two, three =0;
+    let length = this.state.images.length;
+    //right
+    if(button == 2){
+      one = (this.state.counter.one-1) >= 0 ? (this.state.counter.one-1) : length-1;
+      two = (this.state.counter.two-1) >= 0 ? (this.state.counter.two-1) : length-1;
+      three = (this.state.counter.three-1) >= 0 ? (this.state.counter.three-1) : length-1;
+    }else{//left
+      one = ((this.state.counter.one+1)%length);
+      two = ((this.state.counter.two+1)%length);
+      three = ((this.state.counter.three+1)%length);
+    }
+    this.setState({
+      counter: {one: one,two: two, three: three}
+    })
+  }
+
+  async get_backend_data() {
+    await this.get_user_data();
+    await this.get_brief_description();
+  }
+
+  async get_user_data() {
+    const user_data_storage = await AsyncStorage.getItem(USER_DATA);
+    this.setState({userData: JSON.parse(user_data_storage)});
+  }
+
+  async get_brief_description(){
+    let URL_GET_INFO = "";
+    if(this.state.typeContent==1){
+      URL_GET_INFO = VIRTUAL_VISIT_IMAGES;
+    }else{
+      URL_GET_INFO = INFORMATION_HOUSES;
+    }
+    URL_GET_INFO += FEATURE_ID+this.state.houseId;
+    let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
+    let responseJson = await response.json();
+    if(responseJson != undefined){
+      this.setState({
+        images : responseJson,
+        menuImagesVisible : true,
+      });
+    }else{
+        console.log("ERROR")
+    }
   }
 }
 
@@ -69,10 +135,13 @@ var localStyles = StyleSheet.create({
     menuContainer: {
     flex:1, 
     flexDirection: 'row', 
-    padding:3, 
+    padding:3,
+    paddingTop:7,
+    paddingBottom:7, 
     bottom: 0,
     position:"absolute",
-    backgroundColor:'rgba(255, 255, 255, 0.8)',
+    backgroundColor: "#10535D",
+    opacity: 0.8,
     },
     extremesContainer: {
     flex:1,
@@ -98,19 +167,21 @@ var localStyles = StyleSheet.create({
     height: 44,
     },
     photoMain: {
-    height: 100,
-    width: "90%",
+    height: "110%",
+    width: "95%",
     borderRadius: 2,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: "#FFFFFF",
     },
     photoAux: {
     height: 65,
-    width: 68.8,
+    width: "95%",
     borderRadius: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 10,
+    backgroundColor: "#FFFFFF",
     },
     displaybotomRight: {
     justifyContent: 'center',
