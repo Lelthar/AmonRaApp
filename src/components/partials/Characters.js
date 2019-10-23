@@ -35,8 +35,9 @@ class Secrets extends Component {
 
     handleClick = (item) => {
         console.log(item.personaje);
-        this.props.navigation.navigate('CharacterDetail',{tittle: "Jose Figueres Ferrer", description: item.personaje, imgHeader: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F4.%20JOSE%20MAR%C3%8DA%20FIGUERES%20FERRER.png?alt=media&token=c82206c2-0c2f-4989-8b7f-6a12645ee984"});
+        this.props.navigation.navigate('CharacterDetail',{tittle: item.nombre, description: item.personaje, imgHeader: item.imagen});
     }
 }
+
 
 export default (Secrets);

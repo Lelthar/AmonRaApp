@@ -33,8 +33,9 @@ class Secrets extends Component {
         );
     }
 
-    handleClick(item) {
-        console.log("hola",item);
+    handleClick = (item) => {
+        console.log(item.secreto);
+        this.props.navigation.navigate('CharacterDetail',{tittle: item.nombre, description: item.secreto, imgHeader: item.imagen});
     }
 }
 
