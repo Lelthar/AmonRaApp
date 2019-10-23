@@ -74,8 +74,7 @@ const HamburguerComponent = (props) => {
             </View>
           }
             
-
-          <TouchableOpacity onPress= {onPressTextMoreAmonRa}>
+          <TouchableOpacity onPress= {() => props.navigation.navigate('MoreAmonRa', {}) }>
             <Text style={styles.textMoreAmon}>Más de Amon_RA</Text>
           </TouchableOpacity>
           

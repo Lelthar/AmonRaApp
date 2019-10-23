@@ -30,6 +30,7 @@ import Architecture from './Architecture.js';
 import ArchitectureDetail from './ArchitectureDetail';
 import ExperiencesMenu from './ExperiencesMenu';
 import Origin from './Origin';
+import MoreAmonRa from './MoreAmonRa';
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -118,6 +119,21 @@ const mapStack = createStackNavigator(
         } 
       },
     },
+    MoreAmonRa: {
+      screen: MoreAmonRa,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Más de Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   }
 );
 
@@ -196,6 +212,21 @@ const virtualVisitStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Origen",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    MoreAmonRa: {
+      screen: MoreAmonRa,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Más de Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -370,6 +401,21 @@ const urbanOfferStack = createStackNavigator(
         } 
       },
     },
+    MoreAmonRa: {
+      screen: MoreAmonRa,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Más de Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -461,6 +507,21 @@ const timeLineStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Origen",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    MoreAmonRa: {
+      screen: MoreAmonRa,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Más de Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
