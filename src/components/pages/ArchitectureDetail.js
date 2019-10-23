@@ -32,6 +32,8 @@ import {
 import HamburgerMenu from '../partials/HamburgerMenu';
 import Option from '../partials/Option';
 import styles from "../../assets/styles/pages/architectureDetail";
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 const mapStateToProps = state => {
   return {

@@ -14,6 +14,8 @@ import MenuImages from "./js/D3_Components/MenuImages";
 import VRSelectionMode from "./js/VR_Components/VRSelectionMode";
 import PointSheet from "./js/D3_Components/PointSheet";
 import SwitchButtom from "./js/D3_Components/SwitchButton";
+import dataJson from './js/D3_Components/data3D.json';
+
 
 const sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
@@ -26,8 +28,6 @@ const Initial3DScene = require('./js/3D_Scene');
 const NAVIGATOR_TYPE_VR = "VR";
 const NAVIGATOR_TYPE_AR = "AR";
 const NAVIGATOR_TYPE_3D = "3D";
-
-var dataJson = require('./js/D3_Components/data3D.json'); 
 
 export class ViromediaController extends Component {
 
