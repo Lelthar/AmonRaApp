@@ -14,7 +14,7 @@ export default class SwitchButton extends Component {
 
         this.state = {
             switchValue: false,
-            text: "Cambiar Modo Glosario"
+            text: "Cambiar Modo Glosario",
         }
     }
     

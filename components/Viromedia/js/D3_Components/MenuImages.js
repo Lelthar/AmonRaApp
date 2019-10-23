@@ -97,7 +97,7 @@ export default class MenuImages extends Component {
     }
     this.setState({
       counter: {one: one,two: two, three: three}
-    })
+    });
   }
 
   async get_backend_data() {
