@@ -102,11 +102,12 @@ export default class InfoMenu extends Component {
     async get_brief_description(){
         let URL_GET_INFO = BRIEF_DESCRIPTIONS_URL+FEATURE_ID+this.props.houseArPressed;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
-        let responseJson = await response.json();
-        if(responseJson != undefined){
+        console.log(response)
+        if (response.status != 404 && response.status != 203){
+            let responseJson = await response.json();
             this.setState({
                 informationText: responseJson.description,
-            });  
+            });          
         }
     } 
 }

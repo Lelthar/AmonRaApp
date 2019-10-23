@@ -15,6 +15,7 @@ import VRSelectionMode from "./js/VR_Components/VRSelectionMode";
 import PointSheet from "./js/D3_Components/PointSheet";
 import SwitchButtom from "./js/D3_Components/SwitchButton";
 import dataJson from './js/D3_Components/data3D.json';
+import Toast from './js/AR_Components/Toast';
 
 const sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
@@ -41,6 +42,7 @@ export class ViromediaController extends Component {
     this.closeDataPoint = this.closeDataPoint.bind(this);
     this.showDataPoint = this.showDataPoint.bind(this);
     this.changeMenuImage = this.changeMenuImage.bind(this);
+    this.showToast = this.showToast.bind(this);
 
     this.state = {
       sharedProps : sharedProps, 
@@ -54,6 +56,7 @@ export class ViromediaController extends Component {
       dataSheetVisible : false,
       descriptionVisible : true,
       houseArPressed: null,
+      toastVisible: false,
 
       // VR Components Props
       menuViews: true,
@@ -115,6 +118,13 @@ export class ViromediaController extends Component {
         )}
       </View>
     );
+  }
+
+  showToast(message){
+    this.setState({
+      toastVisible : !this.state.toastVisible,
+      toastMessage : message,
+    });
   }
 
   // Returns the ViroSceneNavigator which will start the VR experience

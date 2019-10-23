@@ -111,8 +111,8 @@ export default class DataSheet extends Component {
     async get_brief_description(){
         let URL_GET_INFO = DATA_SHEET_URL+FEATURE_ID+this.props.houseArPressedID;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
-        let responseJson = await response.json();
-        if(responseJson != undefined){
+        if (response.status != 404 && response.status != 203){
+            let responseJson = await response.json();
             this.setState({
                 informationText: responseJson.description,
                 build_year: responseJson.build_year,
@@ -123,7 +123,8 @@ export default class DataSheet extends Component {
                 influence: responseJson.influence,
                 dataSheetVisible: true,
             });
-        }else{
+        }
+        else{
             this.showNoDataSheet();
         }
     } 
