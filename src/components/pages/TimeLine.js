@@ -15,9 +15,6 @@ import {
 
 //-------------------------------
 
-import HamburguerComponent from '../partials/HamburguerMenu'
-import HM from '../partials/HM'
-
 //Redux
 import { connect } from "react-redux";
 
@@ -29,6 +26,8 @@ import {
   guideScreenAction,
   menuResetAction,
 } from "../../redux/actions/menuDataActions";
+
+import HamburgerMenu from '../partials/HamburgerMenu';
 
 const mapStateToProps = state => {
   return {
@@ -84,11 +83,11 @@ class TimeLine extends Component  {
          }
         </View>
         {this.props.menuSideState &&
-                < HM /> }
+          <HamburgerMenu navigation={this.props.navigation} /> }
       </View>
     );
   }
-
+  
   componentDidMount(){
     this.get_backend_data();
   }

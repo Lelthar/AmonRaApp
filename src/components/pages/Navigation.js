@@ -24,7 +24,11 @@ import SeeMore from '../../../components/Directory/SeeMore/SeeMore';
 
 import TimeLine from './TimeLine';
 
-import HamburgerButton from '../partials/HamburgerButton'
+import HamburgerButton from '../partials/HamburgerButton';
+import HamburgerMenu from '../partials/HamburgerMenu';
+import Architecture from './Architecture.js';
+import ArchitectureDetail from './ArchitectureDetail';
+import ExperiencesMenu from './ExperiencesMenu';
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -53,6 +57,51 @@ const mapStack = createStackNavigator(
         headerRight: <HamburgerButton />,
       },
     },
+    Architecture:{
+      screen: Architecture,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ExperiencesMenu:{
+      screen: ExperiencesMenu,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Vivencias",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   }
 );
 
@@ -62,7 +111,7 @@ const virtualVisitStack = createStackNavigator(
       screen: VirtualVisit,
       navigationOptions: {
         headerRight: <HamburgerButton />,
-        title: "Oferta Urbana",
+        title: "Visita Virtual",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -80,8 +129,52 @@ const virtualVisitStack = createStackNavigator(
         header: null,
         tabBarVisible: false,
       },
-    }
-    
+    },
+    Architecture:{
+      screen: Architecture,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ExperiencesMenu:{
+      screen: ExperiencesMenu,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Vivencias",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   },
   {
     initialRouteName: 'VirtualVisit',
@@ -180,8 +273,55 @@ const urbanOfferStack = createStackNavigator(
           color: "#FFFFFF",
           textAlign: 'center',
           flexGrow:1,
-        }
-        
+        } 
+      },
+    },
+    HamburgerMenu: {
+      screen: HamburgerMenu,     
+    }, 
+    Architecture:{
+      screen: Architecture,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ExperiencesMenu:{
+      screen: ExperiencesMenu,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Vivencias",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
       },
     },
   },
@@ -223,6 +363,51 @@ const timeLineStack = createStackNavigator(
           flexGrow:1,
         },
         headerLeft: (<View />)
+      },
+    },
+    Architecture:{
+      screen: Architecture,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ExperiencesMenu:{
+      screen: ExperiencesMenu,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Vivencias",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
       },
     },
   },

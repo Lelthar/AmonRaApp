@@ -16,13 +16,17 @@ import {
   ViroMaterials,
 } from 'react-viro';
 
+//import objects and materials houses
+import HousesObject from "./res/houseObj";
+import HousesMaterials from "./res/houseMaterials";
+
 var createReactClass = require('create-react-class');
 
 var MainScene = createReactClass({
   getInitialState() {
     return {
       rotation : [0, 0, 0],
-      scale:[.1, .1, .1],
+      scale:[.00075, .00075, .00075],
     };
   },
 
@@ -36,7 +40,7 @@ var MainScene = createReactClass({
                              nz:require('./res/grid_bg.jpg'),
                              pz:require('./res/grid_bg.jpg')}} />
         <ViroOrbitCamera position={[0, 0, -0]} active={true} focalPoint={[0, 0, -1]} />
-        <ViroDirectionalLight direction={[0, 0, -1]} color="#ffffff" />
+        <ViroDirectionalLight direction={[0, 0, -1]} color="#524C4C" />
 
         <ViroAmbientLight color="#aaaaaa" />
 
@@ -44,15 +48,43 @@ var MainScene = createReactClass({
               scale={this.state.scale}
               rotation={this.state.rotation} >
             <Viro3DObject
-              source={require('./res/house/house_test.vrx')}
+              source={this._object3dSelect(this.props.sceneNavigator.viroAppProps.id)}
+              resources={[this._material3dSelect(this.props.sceneNavigator.viroAppProps.id)]}
+              dragType="FixedDistance" onDrag={()=>{}}
               onPinch={this._onPinch}
-              type="VRX"
+              type="OBJ"
             />
             {/*<Viro3DObject source={require('./res/heart.obj')}
                        materials={["heart"]} onPinch={this._onPinch} type="OBJ" />*/}
        </ViroNode>
      </ViroScene>
     );
+  },
+
+  _object3dSelect(objectName){
+    const objects = {
+      250 : HousesObject.gonzalesFeo,
+      251 : HousesObject.centroCine,
+      252 : HousesObject.casaVerde,
+      254 : HousesObject.alianzaFrancesa,
+      256 : HousesObject.castilloDelMoro,
+      261 : HousesObject.quesadaAvendano,
+      262 : HousesObject.serranoBonilla,
+    };
+    return objects[objectName];
+  },
+
+  _material3dSelect(materialName){
+    const objects = {
+      250 : HousesMaterials.gonzalesFeo,
+      251 : HousesMaterials.centroCine,
+      252 : HousesMaterials.casaVerde,
+      254 : HousesMaterials.alianzaFrancesa,
+      256 : HousesMaterials.castilloDelMoro,
+      261 : HousesMaterials.quesadaAvendano,
+      262 : HousesMaterials.serranoBonilla,
+    };
+    return objects[materialName];
   },
 
   _setARNodeRef(component) {
@@ -74,7 +106,7 @@ var MainScene = createReactClass({
     var newScale = this.state.scale.map((x)=>{return x * scaleFactor})
 
     if (pinchState == 3) {
-      console.log("SCALE: ");
+
       this.setState({
         scale : newScale
       });
@@ -84,7 +116,6 @@ var MainScene = createReactClass({
     this.arNodeRef.setNativeProps({scale:newScale});
     //this.spotLight.setNativeProps({shadowFarZ: 6 * newScale[0]});
   },
-
 });
 
 var materials = ViroMaterials.createMaterials({
