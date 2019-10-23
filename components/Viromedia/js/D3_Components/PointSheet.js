@@ -23,8 +23,6 @@ import {
 
 //-------------------------------
 
-import Orientation from 'react-native-orientation-locker';
-
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';  
   
 export default class PointSheet extends Component {
@@ -34,25 +32,6 @@ export default class PointSheet extends Component {
         this.state ={
           data :  this.props.dataPoint.data,
         }
-    }
-
-    _onOrientationDidChange = (orientation) => {
-        //console.log("Puto el que lo lea: "+orientation)
-        if (orientation == 'LANDSCAPE-LEFT') {
-          //do something with landscape left layout
-        } else {
-          //do something with portrait layout
-        }
-      };
-    
-    componentDidMount() {
-      
-      Orientation.getAutoRotateState((rotationLock) => this.setState({rotationLock}));
-      //this allows to check if the system autolock is enabled or not.
-  
-      Orientation.lockToPortrait(); //this will lock the view to Portrait
-
-      Orientation.addOrientationListener(this._onOrientationDidChange);
     }
 
     render() { 
@@ -69,6 +48,8 @@ export default class PointSheet extends Component {
                 <Text style={localStyles.title}> {this.state.data.title} {'\n'}</Text>
 
                 <Text style={localStyles.text}> {this.state.data.description} {'\n'}</Text>
+
+                <Text style={localStyles.textInf}> Busca el elemento del glosario en el modelo 3D {'\n'}</Text>
 
               </View>
               
@@ -115,6 +96,14 @@ var localStyles = StyleSheet.create({
       color: '#6D6F70',
       fontSize: 13,
       fontFamily: "Barlow-Regular",
+    },
+    textInf:{
+      textAlign: "justify",
+      alignSelf: 'center',
+      color: '#6D6F70',
+      fontSize: 12,
+      fontFamily: "Barlow-Regular",
+      fontWeight: 'bold',
     },
     closeButton: {
       justifyContent: 'flex-end',
