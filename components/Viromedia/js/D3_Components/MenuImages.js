@@ -40,9 +40,13 @@ export default class MenuImages extends Component {
     }
   }
 
-  componentDidMount(){
-    this.get_backend_data();  
+  componentDidUpdate(){
+    Orientation.lockToPortrait();
+  }
+
+  componentDidMount() {
     Orientation.lockToPortrait(); //this will lock the view to Portrait
+    this.get_backend_data(); 
   }
 
   render() {
@@ -140,7 +144,7 @@ var localStyles = StyleSheet.create({
     paddingBottom:7, 
     bottom: 0,
     position:"absolute",
-    backgroundColor: "#10535D",
+    backgroundColor: "#00A2B5",
     opacity: 0.8,
     },
     extremesContainer: {
