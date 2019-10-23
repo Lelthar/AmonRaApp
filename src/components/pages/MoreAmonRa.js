@@ -6,6 +6,7 @@ import {
 import styles from "../../assets/styles/pages/moreAmonRa";
 
 import OptionButton from "../partials/OptionButton";
+import HamburgerMenu from '../partials/HamburgerMenu';
 
 import {
   PARTICIPATORY_PROCESS,
@@ -13,10 +14,18 @@ import {
   HEADER,
 } from "../../assets/constants/moreAmonRa";
 
+import { connect } from "react-redux";
+
+const mapStateToProps = state => {
+  return {
+    menuSide: state.menuDataReducer.MENUSIDE,
+  }
+};
+
 const MoreAmonRa = (props) => {
 
   goToProjects = () => {
-    console.log("Write navigation to Projejcts here");
+    props.navigation.navigate('AmonRaProject', {navigation: props.navigation});
   };
 
   goToParticipatoryProcess = () => {
@@ -32,8 +41,12 @@ const MoreAmonRa = (props) => {
         <OptionButton image={PROJECTS} goTo={goToProjects} />
         <OptionButton image={PARTICIPATORY_PROCESS} goTo={goToParticipatoryProcess} />
       </View>
+
+      {props.menuSide && (
+        <HamburgerMenu navigation={props.navigation} /> 
+      )}
     </View>
   );
 };
 
-export default MoreAmonRa;
+export default connect(mapStateToProps,null)(MoreAmonRa);

@@ -31,6 +31,7 @@ import ArchitectureDetail from './ArchitectureDetail';
 import ExperiencesMenu from './ExperiencesMenu';
 import Origin from './Origin';
 import MoreAmonRa from './MoreAmonRa';
+import AmonRaProject from './AmonRaProject';
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -134,6 +135,21 @@ const mapStack = createStackNavigator(
         } 
       },
     },
+    AmonRaProject: {
+      screen: AmonRaProject,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proyecto Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   }
 );
 
@@ -227,6 +243,21 @@ const virtualVisitStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Más de Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    AmonRaProject: {
+      screen: AmonRaProject,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proyecto Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -416,6 +447,21 @@ const urbanOfferStack = createStackNavigator(
         } 
       },
     },
+    AmonRaProject: {
+      screen: AmonRaProject,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proyecto Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -522,6 +568,21 @@ const timeLineStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Más de Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    AmonRaProject: {
+      screen: AmonRaProject,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proyecto Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
