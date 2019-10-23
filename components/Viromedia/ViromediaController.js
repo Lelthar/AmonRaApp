@@ -188,7 +188,6 @@ export class ViromediaController extends Component {
   setVRMode(vrMode) {
     this.setState({
         vrMode : vrMode,
-<<<<<<< HEAD
     });
   }
 
@@ -199,18 +198,6 @@ export class ViromediaController extends Component {
     });
   }
 
-=======
-    });
-  }
-
-  changeMenuImage(type){
-    this.setState({
-      menuViews : type,
-      dataPointVisible: false,
-    });
-  }
-
->>>>>>> a1f4e7277056317aef6b95303628b3b8d016a137
   // Enable or Disable DataSheet
   closeDataPoint(){
     this.setState({
