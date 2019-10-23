@@ -33,8 +33,9 @@ class Narratives extends Component {
         );
     }
 
-    handleClick(item) {
-        console.log("hola",item);
+    handleClick = (item) => {
+        console.log(item.info);
+        this.props.navigation.navigate('CharacterDetail',{tittle: item.nombre, description: item.info, imgHeader: item.imagen});
     }
 }
 
