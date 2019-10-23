@@ -3,7 +3,9 @@ import {
   View, 
   ScrollView,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList,
+  TouchableHighlight
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -69,42 +71,10 @@ class Architecture extends Component {
     this.navigation = this.props.navigation;
 
     this.state = {
-
-      markers: [],
-      markersColumn1: [],
-      markersColumn2: []
-
+      markers: []
     };
   }
-
-  async splitMarkers(){
-
-      const arrayLength = this.state.markers.length;
-      const half = arrayLength / 2;
-      let  i = 0;
-      let markers1 = [];
-      let markers2 = [];
-
-      for(i; i < arrayLength; i++){
-
-        if(i < half){
-          markers1.push(this.state.markers[i]);
-        }
-        else{
-          markers2.push(this.state.markers[i]);
-        }
-      }
-
-      this.setState({
-        markers: this.state.markers,
-        markersColumn1: markers1,
-        markersColumn2: markers2
-      });
-
-
-    }
-
-  // AmonRa's backoffice query
+  
   async get_features(){
     const institutionalUrl = "?category=Patrimonio%20Arquitectónico"; 
     const response = await makeBackendRequest(FEATURES_URL+institutionalUrl,"GET",this.state.userData);
@@ -122,7 +92,6 @@ class Architecture extends Component {
   async get_backend_data() {
     await this.get_user_data()
     await this.get_features();
-    await this.splitMarkers();
   }
 
   componentDidMount(){
@@ -132,41 +101,27 @@ class Architecture extends Component {
   render() {
     return (
 
-      <View style={{flex: 1, flexDirection: 'row', alignItems:'center'}}>
-
-        <ScrollView contentContainerStyle={{flexDirection:'column', alignItems:'center'}}>
-        {
-          this.state.markersColumn1.map(place => (
-
-            <View>
-              <TouchableOpacity onPress= {() => this.navigation.navigate('ArchitectureDetail',{goToScreen: this.navigation, placeInfo: place }) }>
-                <Image resizeMode='stretch' source= {{uri: place.image1_url}} style={styles.image}/>
-              </TouchableOpacity>          
-            </View> ))
-        }
-        </ScrollView>
-
-        <View style={{flex: 1}}>
-        </View>
-
-        <ScrollView contentContainerStyle={{flexDirection:'column',alignItems:'center'}}>
-        {
-          this.state.markersColumn2.map(place => (
-
-            <View>
-              <TouchableOpacity onPress= {() => this.navigation.navigate('ArchitectureDetail',{goToScreen: this.navigation, placeInfo: place}) }>
-                <Image  resizeMode='stretch' source= {{uri: place.image1_url}} style={styles.image}/> 
-              </TouchableOpacity>           
-            </View> ))
-        }
-        </ScrollView>
-        
+      <View style={styles.container}>
+        <FlatList 
+          data={this.state.markers}
+          numColumns={2}
+          keyExtractor={(item, index) => index}
+          contentContainerStyle={styles.list_style}
+          renderItem={({item}) => (
+            <TouchableHighlight style= {styles.list_item}
+              onPress={ () => this.navigation.navigate('ArchitectureDetail',{goToScreen: this.navigation, placeInfo: item }) }
+            >
+              <View style={{flex:1}}>
+                <Image source={{uri: item.image1_url}} style={styles.image} />
+              </View>
+            </TouchableHighlight>
+          )}
+        />
         {this.props.menuSideState &&
           <HamburgerMenu navigation={this.props.navigation} /> }
       </View>
     );
   }
-
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Architecture);
