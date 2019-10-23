@@ -29,6 +29,7 @@ import HamburgerMenu from '../partials/HamburgerMenu';
 import Architecture from './Architecture.js';
 import ArchitectureDetail from './ArchitectureDetail';
 import ExperiencesMenu from './ExperiencesMenu';
+import Origin from './Origin';
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -102,6 +103,21 @@ const mapStack = createStackNavigator(
         } 
       },
     },
+    Origin:{
+      screen: Origin,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Origen",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   }
 );
 
@@ -159,12 +175,27 @@ const virtualVisitStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    },
+    },    
     ExperiencesMenu:{
       screen: ExperiencesMenu,
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Vivencias",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Origin:{
+      screen: Origin,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Origen",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -324,6 +355,21 @@ const urbanOfferStack = createStackNavigator(
         } 
       },
     },
+    Origin:{
+      screen: Origin,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Origen",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -400,6 +446,21 @@ const timeLineStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Vivencias",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Origin:{
+      screen: Origin,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Origen",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },

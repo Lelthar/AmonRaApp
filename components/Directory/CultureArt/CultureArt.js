@@ -37,8 +37,7 @@ import {
   menuResetAction,
 } from "../../../src/redux/actions/menuDataActions";
 
-import HamburguerComponent from '../../../src/components/partials/HamburguerMenu'
-import HM from '../../../src/components/partials/HM'
+import HamburgerMenu from '../../../src/components/partials/HamburgerMenu';
 
 
 const mapStateToProps = state => {
@@ -216,7 +215,7 @@ class CultureArt extends Component{
               }
 
               {this.props.menuSideState &&
-                < HM />
+                <HamburgerMenu navigation={this.props.navigation} />
               }
 
           </View>

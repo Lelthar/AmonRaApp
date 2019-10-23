@@ -10,7 +10,7 @@ export async function makeBackendRequest(url_path,method,user_data) {
       'email': user_data.email
     },
   }).catch((error) => {
-      console.error(error);
+      console.log(error);
   });
   return response;
 }

@@ -16,6 +16,7 @@ import PointSheet from "./js/D3_Components/PointSheet";
 import SwitchButtom from "./js/D3_Components/SwitchButton";
 import dataJson from './js/D3_Components/data3D.json';
 
+
 const sharedProps = {
   apiKey:"30EA748C-7956-4E0E-87A3-0EB2B0CBE931",
 }
@@ -187,6 +188,7 @@ export class ViromediaController extends Component {
   setVRMode(vrMode) {
     this.setState({
         vrMode : vrMode,
+<<<<<<< HEAD
     });
   }
 
@@ -197,6 +199,18 @@ export class ViromediaController extends Component {
     });
   }
 
+=======
+    });
+  }
+
+  changeMenuImage(type){
+    this.setState({
+      menuViews : type,
+      dataPointVisible: false,
+    });
+  }
+
+>>>>>>> a1f4e7277056317aef6b95303628b3b8d016a137
   // Enable or Disable DataSheet
   closeDataPoint(){
     this.setState({
