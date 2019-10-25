@@ -13,7 +13,7 @@ import Map from './Map';
 import Place from '../../../components/Map/Place/Place'
 
 import VirtualVisit from '../../../components/VirtualVisit/VirtualVisit';
-import ViromediaController from '../../../components/Viromedia/ViromediaController';
+import ViromediaController from './ViromediaController';
 
 import UrbanOffer from '../../../components/Directory/Directory';
 import CultureArt from '../../../components/Directory/CultureArt/CultureArt';
@@ -714,6 +714,21 @@ const augmentedRealityStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Vivencias",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ArchitectureDetail:{
+      screen: ArchitectureDetail,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Arquitectura",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
