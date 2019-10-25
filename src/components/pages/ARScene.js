@@ -105,16 +105,16 @@ export class ARScene extends Component {
     return(
       <ViroNode>
         <ViroImage
-          position={[0,0,-1]}
+          position={[objectAR.x, 0.1, objectAR.z - 1]}
           resizeMode='ScaleToFit'
-          scale={[1,1,1]}
+          scale={[25,25,25]}
           source={{uri: objectAR.img}}
         />
         <ViroAmbientLight color="#FFFFFF"/>
         <Viro3DObject 
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(objectAR.placeID, objectAR.tittle)}
           source={this._object3dSelect(objectAR.label3DObject)} 
-          position={[0,0,-2]}
+          position={[objectAR.x, 1, objectAR.z - 2]}
           scale={[0.5,0.5,0.5]}
           resources={[this._material3dSelect(objectAR.label3DObject)]}
           type="OBJ" 
