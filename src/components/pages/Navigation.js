@@ -36,6 +36,8 @@ import Secrets from '../partials/Secrets';
 import Characters from '../partials/Characters';
 import CharacterDetail from '../partials/CharacterDetail';
 import Literature from '../partials/Literature';
+import MoreAmonRa from './MoreAmonRa';
+import AmonRaProject from './AmonRaProject';
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -139,6 +141,21 @@ const mapStack = createStackNavigator(
         } 
       },
     },
+    MoreAmonRa: {
+      screen: MoreAmonRa,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Más de Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
     Secrets:{
       screen: Secrets,
       navigationOptions: {
@@ -189,6 +206,21 @@ const mapStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Literatura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    AmonRaProject: {
+      screen: AmonRaProject,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proyecto Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -302,6 +334,21 @@ const virtualVisitStack = createStackNavigator(
         } 
       },
     },
+    MoreAmonRa: {
+      screen: MoreAmonRa,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Más de Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
     Secrets:{
       screen: Secrets,
       navigationOptions: {
@@ -352,6 +399,21 @@ const virtualVisitStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Literatura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    AmonRaProject: {
+      screen: AmonRaProject,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proyecto Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -525,12 +587,26 @@ const urbanOfferStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    },
-    Narratives:{
+    },    Narratives:{
       screen: Narratives,
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Narraciones",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    MoreAmonRa: {
+      screen: MoreAmonRa,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Más de Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -591,6 +667,21 @@ const urbanOfferStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Literatura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    AmonRaProject: {
+      screen: AmonRaProject,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proyecto Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -716,12 +807,27 @@ const timeLineStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    },
+    },    
     Narratives:{
       screen: Narratives,
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Narraciones",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    MoreAmonRa: {
+      screen: MoreAmonRa,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Más de Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -782,6 +888,21 @@ const timeLineStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Literatura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    AmonRaProject: {
+      screen: AmonRaProject,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proyecto Amón_RA",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },

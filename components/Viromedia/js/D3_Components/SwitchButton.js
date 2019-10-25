@@ -5,7 +5,11 @@ import {
     Image,
     TouchableOpacity,
     Switch,
+    Text,
   } from 'react-native';
+
+const msg_switch = "Cambia el switch para ver detalles de elementos del glosario";
+const msg_switch_web = "Dirígete a la web de Amón_RA para ver más detalles del glosario";                                                                                                                                                        
 
 export default class SwitchButton extends Component {
     constructor(props) {
@@ -13,6 +17,7 @@ export default class SwitchButton extends Component {
 
         this.state = {
             switchValue: false,
+            text: msg_switch,
         }
     }
     
@@ -21,16 +26,26 @@ export default class SwitchButton extends Component {
       this.setState({ switchValue: value });
       this.props.handleSwitchClick(this.state.switchValue);
       //state changes according to switch
+      if(this.state.switchValue == true){
+        this.setState({
+          text: msg_switch,
+        });
+      }else{
+        this.setState({
+          text: msg_switch_web,
+        });
+      }
     };
     
     render() {
       return (
-        <View style={localStyles.container}>
+        <View style={{position: 'absolute', bottom: "11%", justifyContent: 'center', alignItems: 'flex-start'}}>
           <Switch
             style={{ marginTop: 30 }}
             onValueChange={this.toggleSwitch}
             value={this.state.switchValue}
           />
+          <Text style={localStyles.text  }> {this.state.text} {'\n'}</Text> 
         </View>           
       );
     }
@@ -51,6 +66,12 @@ var localStyles = StyleSheet.create({
     flex:1,
     width: 40,
     height: 40,
+  },
+  text: {
+    textAlign: "justify",
+    color: '#6D6F70',
+    fontSize: 13,
+    fontFamily: "Barlow-Regular",
   },
 });
 

@@ -29,6 +29,7 @@ export class ARScene extends Component {
 
   constructor(props) {
     super(props);
+    
     this._coordLatLongToMercator = this._coordLatLongToMercator.bind(this);
     this._transformPointToAR = this._transformPointToAR.bind(this);
     this._setObjectPositions = this._setObjectPositions.bind(this);  
@@ -36,6 +37,10 @@ export class ARScene extends Component {
     this._generateARObject = this._generateARObject.bind(this); 
     this._object3dSelect = this._object3dSelect.bind(this); 
     this._material3dSelect = this._material3dSelect.bind(this); 
+
+    RNSimpleCompass.start(degree_update_rate, (degree) => {
+      heading = degree 
+    });
 
     this.state = {
       sceneVisible: false,
@@ -64,10 +69,6 @@ export class ARScene extends Component {
         label3DObject: defaultLabel3D,
       },
     };
-
-    RNSimpleCompass.start(degree_update_rate, (degree) => {
-      heading = degree 
-    });
   }
 
   componentDidMount(){
@@ -96,7 +97,7 @@ export class ARScene extends Component {
     return(
       <ViroNode>
         <ViroImage
-          position={[objectAR.x, 0.1, objectAR.z - 2]}
+          position={[objectAR.x, 0.1, objectAR.z - 1]}
           resizeMode='ScaleToFit'
           scale={[25,25,25]}
           source={{uri: objectAR.img}}
@@ -105,8 +106,8 @@ export class ARScene extends Component {
         <Viro3DObject 
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(objectAR.placeID, objectAR.tittle)}
           source={this._object3dSelect(objectAR.label3DObject)} 
-          position={[objectAR.x, 1, objectAR.z -1]}
-          scale={[1,1,1]}
+          position={[objectAR.x, 1, objectAR.z -2]}
+          scale={[0.5,0.5,0.5]}
           resources={[this._material3dSelect(objectAR.label3DObject)]}
           type="OBJ" 
         />
@@ -115,6 +116,7 @@ export class ARScene extends Component {
   }
 
   _setObjectPositions(){
+    console.log("watch position")
     Geolocation.watchPosition(
       (position) => {
         this._getThreeNearestObjects(position.coords.latitude, position.coords.longitude)

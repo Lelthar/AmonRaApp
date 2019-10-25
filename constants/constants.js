@@ -8,6 +8,8 @@ export const INFO_3D_360_URL = "https://amonra.herokuapp.com/api/v1/show_3d_360_
 export const FEATURES_URL = "https://amonra.herokuapp.com/api/v1/features";
 export const BRIEF_DESCRIPTIONS_URL = "https://amonra.herokuapp.com/api/v1/brief_descriptions";
 export const DATA_SHEET_URL = "https://amonra.herokuapp.com/api/v1/architecture_informations";
-
+export const VIRTUAL_VISIT_IMAGES = "https://amonra.herokuapp.com/api/v1/virtual_visit_houses";
+export const INFORMATION_HOUSES = "https://amonra.herokuapp.com/api/v1/information_houses";
+//virtual_visit_houses
 // Otros
 export const USER_DATA = "userData";

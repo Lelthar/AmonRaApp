@@ -22,12 +22,19 @@ import HousesMaterials from "./res/houseMaterials";
 
 var createReactClass = require('create-react-class');
 
+import Orientation from 'react-native-orientation-locker';
+
 var MainScene = createReactClass({
   getInitialState() {
     return {
       rotation : [0, 0, 0],
       scale:[.00075, .00075, .00075],
     };
+  },
+
+  componentDidMount(){
+    console.log("Realizo el componentDidMount el 3D_SCENE")
+    Orientation.lockToPortrait(); //this will lock the view to Portrait
   },
 
   render: function() {
