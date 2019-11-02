@@ -34,6 +34,7 @@ import Origin from './Origin';
 import Narratives from '../partials/Narratives';
 import Secrets from '../partials/Secrets';
 import Characters from '../partials/Characters';
+import Activities from '../partials/Activities';
 import CharacterDetail from '../partials/CharacterDetail';
 import Literature from '../partials/Literature';
 import MoreAmonRa from './MoreAmonRa';
@@ -131,6 +132,21 @@ const mapStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Narraciones",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Activities:{
+      screen: Activities,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Actividades",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -324,6 +340,21 @@ const virtualVisitStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Narraciones",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Activities:{
+      screen: Activities,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Actividades",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -587,7 +618,23 @@ const urbanOfferStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    },    Narratives:{
+    },
+    Activities:{
+      screen: Activities,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Actividades",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },    
+    Narratives:{
       screen: Narratives,
       navigationOptions: {
         headerRight: <HamburgerButton />,
@@ -822,7 +869,22 @@ const timeLineStack = createStackNavigator(
           flexGrow:1,
         } 
       },
-    },    
+    },
+    Activities:{
+      screen: Activities,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Actividades",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },  
     Narratives:{
       screen: Narratives,
       navigationOptions: {

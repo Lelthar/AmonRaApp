@@ -8,7 +8,7 @@ import {
 import styles from "../../assets/styles/partials/tripleColFlatList";
 import literatureInfo from "../../assets/files/literatura.json";
 
-class Narratives extends Component {
+class Literature extends Component {
     constructor(props) {
         super(props);
         this.navigation = this.props.navigation;
@@ -39,4 +39,4 @@ class Narratives extends Component {
     }
 }
 
-export default (Narratives);
+export default (Literature);
