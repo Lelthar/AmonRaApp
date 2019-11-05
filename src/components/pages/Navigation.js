@@ -13,7 +13,7 @@ import Map from './Map';
 import Place from '../../../components/Map/Place/Place'
 
 import VirtualVisit from '../../../components/VirtualVisit/VirtualVisit';
-import ViromediaController from './ViromediaController';
+import ViromediaController from '../../../components/Viromedia/ViromediaController';
 
 import UrbanOffer from '../../../components/Directory/Directory';
 import CultureArt from '../../../components/Directory/CultureArt/CultureArt';

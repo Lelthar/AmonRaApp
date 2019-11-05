@@ -27,13 +27,15 @@ export class ViromediaController extends Component {
   }   
 
   componentDidMount() {
-    const { navigation } = this.props;
-    navigation.addListener('willFocus', () =>
-      this.setState({ focusedScreen: true })
-    );
-    navigation.addListener('willBlur', () =>
-      this.setState({ focusedScreen: false })
-    );
+    if (this.state.navigatorType == NAVIGATOR_TYPE_AR){
+      const { navigation } = this.props;
+      navigation.addListener('willFocus', () =>
+        this.setState({ focusedScreen: true })
+      );
+      navigation.addListener('willBlur', () =>
+        this.setState({ focusedScreen: false })
+      );
+    }
   }
 
   render() { 

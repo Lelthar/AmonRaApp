@@ -10,7 +10,6 @@ import {
 import MenuImages from "../partials/MenuImages";
 import PointSheet from "../partials/PointSheet";
 import SwitchButtom from "../partials/SwitchButton";
-import dataJson from "../../assets/files/data3D.json";
 
 const Initial3DScene = require('./3DScene');
 
@@ -44,11 +43,6 @@ export class D3Controller extends Component {
   }
 
   render() { 
-      return this._get3DNavigator();
-  }
-
-  // Returns the ViroSceneNavigator which will start the 3D experience
-  _get3DNavigator() {
     return (
       <View style={{flex:1}}>
         <ViroVRSceneNavigator 
@@ -72,20 +66,22 @@ export class D3Controller extends Component {
             )
         }
 
-        {this.state.dataPointVisible //PointSheet
-          ? <PointSheet dataPoint={{data:this.state.dataPoint}} 
-              handlePressDataSheet={this.closeDataPoint}/>
-          : null
+        {this.state.dataPointVisible && (
+          <PointSheet dataPoint={{data:this.state.dataPoint}} 
+            handlePressDataSheet={this.closeDataPoint}/>
+          )
         }
         
-        {this.state.switchButtomVisible 
-          ? <SwitchButtom handleSwitchClick={this.changeMenuImage} />
-          : null
+        {this.state.switchButtomVisible && (
+          <SwitchButtom handleSwitchClick={this.changeMenuImage} />
+          )
         }
 
       </View>
     );
   }
+
+  // <D3Controller sharedProps={this.state.sharedProps} content={this.state.content} navigation={this.props.navigation}/>
 
   changeMenuImage(type){
     this.setState({
@@ -110,33 +106,6 @@ export class D3Controller extends Component {
       });
     }
   }
-
-  _views3dSelect(objectName){
-    const objects = {
-      250 : dataJson.houses.GonzalesFeo.views,
-      251 : dataJson.houses.CentroCine.views,
-      252 : dataJson.houses.CasaVerde.views,
-      254 : dataJson.houses.AlianzaFrancesa.views,
-      256 : dataJson.houses.CastilloMoro.views,
-      261 : dataJson.houses.QuesadaAvendano.views,
-      262 : dataJson.houses.SerranoBonilla.views,
-    };
-    return objects[objectName];
-  }
-
-  _points3dSelect(objectName){
-    const objects = {
-      250 : dataJson.houses.GonzalesFeo.views,
-      251 : dataJson.houses.CentroCine.views,
-      252 : dataJson.houses.CasaVerde.views,
-      254 : dataJson.houses.AlianzaFrancesa.views,
-      256 : dataJson.houses.CastilloMoro.points,
-      261 : dataJson.houses.QuesadaAvendano.views,
-      262 : dataJson.houses.SerranoBonilla.views,
-    };
-    return objects[objectName];
-  }
-
 }
 
 export default D3Controller;

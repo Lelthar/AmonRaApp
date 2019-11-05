@@ -146,11 +146,11 @@ class VirtualVisit extends Component{
   }
 
   open3dModel(modelId){
-    this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "3D", filename : modelId,});
+    this.props.navigation.navigate("ViromediaController",{do : "3D", filename : modelId,});
   }
 
   open360Image(imageName){
-    this.props.navigation.navigate("ViromediaController",{goToScreen : this.goToScreen, do : "VR", filename : imageName,});
+    this.props.navigation.navigate("ViromediaController",{do : "VR", filename : imageName,});
   }
 
   onNavBarClick(keyname){
