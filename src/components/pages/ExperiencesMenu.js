@@ -76,7 +76,7 @@ class ExperiencesMenu extends Component {
                         <Image source={btn_characters}/>
                     </TouchableOpacity>
                     
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>this.openActivities()}>
                         <Image source={btn_activities}/>
                     </TouchableOpacity>
                 </View>
@@ -107,6 +107,10 @@ class ExperiencesMenu extends Component {
 
     openLiterature = () => {
         this.props.navigation.navigate('Literature',{goToScreen: this.props.navigation});
+    }
+
+    openActivities = () => {
+        this.props.navigation.navigate('Activities',{goToScreen: this.props.navigation});
     }
 }
 

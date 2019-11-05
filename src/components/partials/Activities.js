@@ -6,9 +6,9 @@ import {
     TouchableHighlight,
   } from 'react-native';
 import styles from "../../assets/styles/partials/tripleColFlatList";
-import charactersInfo from "../../assets/files/personajes.json";
+import secretsInfo from "../../assets/files/actividades.json";
 
-class Characters extends Component {
+class Activities extends Component {
     constructor(props) {
         super(props);
         this.navigation = this.props.navigation;
@@ -18,7 +18,7 @@ class Characters extends Component {
         return( 
             <View style={styles.container}>
                 <FlatList
-                    data={charactersInfo}
+                    data={secretsInfo}
                     numColumns={3}
                     keyExtractor={(item, index) => index}
                     contentContainerStyle={styles.list_style}
@@ -34,10 +34,9 @@ class Characters extends Component {
     }
 
     handleClick = (item) => {
-        console.log(item.personaje);
-        this.props.navigation.navigate('CharacterDetail',{tittle: item.nombre, description: item.personaje, imgHeader: item.imagen});
+        console.log(item.secreto);
+        this.props.navigation.navigate('CharacterDetail',{tittle: item.nombre, description: item.actividad, imgHeader: item.imagen});
     }
 }
 
-
-export default (Characters);
+export default (Activities);
