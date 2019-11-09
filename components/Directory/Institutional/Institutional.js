@@ -190,11 +190,6 @@ class Institutional extends Component{
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                   </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={console.log("ir")} >
-                  <View style={{flexDirection: 'row'}}>
-                    <Image  source={require('../../../images/icons/Directory/ir_gris.png')}/>
-                  </View>
-                </TouchableOpacity>
                 </View>
                 </View>
 
