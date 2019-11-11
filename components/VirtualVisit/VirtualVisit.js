@@ -11,7 +11,6 @@ import {
   TouchableOpacity,
   PixelRatio,
   FlatList,
-  TouchableHighlight,
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -183,13 +182,13 @@ class VirtualVisit extends Component{
               keyExtractor={(item, index) => index}
               contentContainerStyle={styles.list_style}
               renderItem={({item}) => (
-                <TouchableHighlight style= {styles.list_item}
+                <TouchableOpacity style= {styles.list_item}
                 onPress={() => this.handleClick(item)}
                 >
                 <View style={{flex:1}}>
                       <Image source={{uri: item.miniature_image_url}} style={styles.imageResizeAndFillParent} />
                 </View>
-              </TouchableHighlight>
+              </TouchableOpacity>
               )
               }
             />
