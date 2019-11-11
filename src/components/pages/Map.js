@@ -94,6 +94,7 @@ const Map = (props) => {
   const [userData, setUserData] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [warningVisible, setWarningVisible] = useState(false);
+  const [featuresShowed, setFeaturesShowed] = useState([]);
 
   closeMenu = () => {
     props.resetAll();
@@ -118,6 +119,8 @@ const Map = (props) => {
 
   filterMarkersByActiveFilter = (selectedMarkers, filters) => {
     let activeMarkers = [];
+    let markersId = [];
+    //setFeaturesShowed([]);
 
     for (let i = 0; i < selectedMarkers.length; i++) {
       if (filters.includes(selectedMarkers[i].category)) {
@@ -135,10 +138,12 @@ const Map = (props) => {
           marker_id: 1,
           images_url: [selectedMarkers[i].image1_url, selectedMarkers[i].image2_url, selectedMarkers[i].image3_url],
         };
+        markersId.push(selectedMarkers[i].id);
         activeMarkers.push(newMarker);
       }
     }
 
+    //setFeaturesShowed()
     return activeMarkers;
   };
 
