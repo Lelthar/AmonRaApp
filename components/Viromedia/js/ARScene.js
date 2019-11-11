@@ -18,10 +18,15 @@ import RNSimpleCompass from 'react-native-simple-compass';
 import mercatorAmon from './placesAR.json';
 import Items3D from './res/indexObj';
 import Materials3D from './res/indexMaterials';
+import { duration } from 'moment';
 
 const defaultImage = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2Fdefault.png?alt=media&token=240374eb-adf4-42cc-8fdc-c70662582a92";
 const defaultLabel3D = "casa936";
 const degree_update_rate = 20;
+const DISTANCE_MIN = 1;
+const DISTANCE_MAX = 30;
+const SIZE_MIN = 1;
+const SIZE_MAX = 15;
 
 let heading = 0;
 
@@ -29,6 +34,7 @@ export class ARScene extends Component {
 
   constructor(props) {
     super(props);
+
     this._coordLatLongToMercator = this._coordLatLongToMercator.bind(this);
     this._transformPointToAR = this._transformPointToAR.bind(this);
     this._setObjectPositions = this._setObjectPositions.bind(this);  
@@ -36,37 +42,53 @@ export class ARScene extends Component {
     this._generateARObject = this._generateARObject.bind(this); 
     this._object3dSelect = this._object3dSelect.bind(this); 
     this._material3dSelect = this._material3dSelect.bind(this); 
+    this._checkARHeading = this._checkARHeading.bind(this);
+    this._iterateObjectsHeading = this._iterateObjectsHeading.bind(this);
+    this._enableByARHeading = this._enableByARHeading.bind(this);
+    this._iterateARLocations = this._iterateARLocations.bind(this);
+    this.loadARObject = this.loadARObject.bind(this);
 
     this.state = {
       sceneVisible: false,
-      firstNearestARObject: {
-          x: 0, 
-          z: 0, 
-          placeID: 0, 
-          tittle: "",
-          img: defaultImage, 
-          label3DObject: defaultLabel3D, 
-      },
-      secondNearestARObject: {
+      objectsHeading: [false, false, false],
+      objectsAR: [
+        {
+            x: 0, 
+            z: 0, 
+            placeID: 0, 
+            tittle: "",
+            img: defaultImage, 
+            label3DObject: defaultLabel3D, 
+            "min_degree": 0,
+            "max_degree": 0
+        },
+        {
+            x: 0, 
+            z: 0, 
+            placeID: 0, 
+            tittle: "",
+            img: defaultImage, 
+            label3DObject: defaultLabel3D,
+            "min_degree": 0,
+            "max_degree": 0,
+        },
+        {
           x: 0, 
           z: 0, 
           placeID: 0, 
           tittle: "",
           img: defaultImage, 
           label3DObject: defaultLabel3D,
-      },
-      thirdsecondNearestARObject: {
-        x: 0, 
-        z: 0, 
-        placeID: 0, 
-        tittle: "",
-        img: defaultImage, 
-        label3DObject: defaultLabel3D,
-      },
+          "min_degree": 0,
+          "max_degree": 0,
+        }
+      ],
     };
 
     RNSimpleCompass.start(degree_update_rate, (degree) => {
       heading = degree 
+      console.log(degree);
+      this._iterateObjectsHeading();
     });
   }
 
@@ -80,33 +102,88 @@ export class ARScene extends Component {
     return (
       <ViroARScene>
         {this.state.sceneVisible && (
-          this.loadARObject(this.state.firstNearestARObject)
-        )}    
-        {this.state.sceneVisible && (
-          this.loadARObject(this.state.secondNearestARObject)
-        )} 
-        {this.state.sceneVisible && (
-          this.loadARObject(this.state.thirdNearestARObject)
-        )} 
+          this.state.objectsAR.map((item , index)=> (
+            this._checkARHeading(item, index)
+          ))
+        )}
       </ViroARScene>
     );
   }
 
+  _iterateObjectsHeading(){
+    let newObjectsHeading = this.state.objectsHeading;
+    this.state.objectsAR.map((item, index) => (
+      newObjectsHeading = this._enableByARHeading(item, index, newObjectsHeading)
+    ));
+    this.setState({
+      objectsHeading: newObjectsHeading,
+    });
+  }
+
+  _getScale(objectAR) {
+    let scale = [];
+    let ratio = SIZE_MIN / SIZE_MAX;
+    let distance = Math.abs(objectAR.x) +  Math.abs(objectAR.z);
+    distance > DISTANCE_MAX
+    ? scale = SIZE_MIN
+    : scale = distance * ratio * SIZE_MAX / 2;
+    return [scale,scale,scale];
+  }
+
+  _onPinch(pinchState, scaleFactor, source) {
+    console.log("Scale",source);
+    console.log("Scale Factor",scaleFactor);
+    console.log("PinchState",pinchState);
+    let newScale = source.map((x)=>{return x * scaleFactor});
+    if (pinchState == 3) {
+      this.setState({
+        scale : newScale
+      });
+    }
+  }
+
+  _enableByARHeading(object, index, newObjectsHeading){
+    if (object.min_degree > object.max_degree){ // Cuando es de i.e 240 a 40 
+      if ((object.min_degree > heading && heading < object.max_degree) || (object.min_degree < heading && heading > object.max_degree)){
+        newObjectsHeading[index] = true;
+      }
+    }
+    else if(object.min_degree < heading && heading < object.max_degree){
+      newObjectsHeading[index] = true;
+    }else{
+      newObjectsHeading[index] = false;
+    }
+    return newObjectsHeading;
+  }
+
+  _checkARHeading(object, index){
+    let isObjectHeading = this.state.objectsHeading;
+    return (
+      isObjectHeading[index]
+      ? this.loadARObject(object)
+      : null 
+    );
+  }
+  
   loadARObject(objectAR){
+    console.log("Activando",objectAR.tittle);
+    let scale = this._getScale(objectAR);
+    console.log(scale);
     return(
-      <ViroNode>
+      <ViroNode key={objectAR.placeID}>
         <ViroImage
-          position={[objectAR.x, 0.1, objectAR.z - 1.5]}
+          position={[objectAR.x, 0.1, objectAR.z - 1]}
           resizeMode='ScaleToFit'
-          scale={[50,50,50]}
+          scale={scale}
           source={{uri: objectAR.img}}
+          //onPinch={(pinchState, scaleFactor) => this._onPinch(pinchState, scaleFactor, scale)}
         />
         <ViroAmbientLight color="#FFFFFF"/>
         <Viro3DObject 
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(objectAR.placeID, objectAR.tittle)}
           source={this._object3dSelect(objectAR.label3DObject)} 
-          position={[objectAR.x, 1, objectAR.z - 1]}
-          scale={[1,1,1]}
+          position={[objectAR.x, 0.1, objectAR.z - 3]}
+          scale={[0.5,0.5,0.5]}
           resources={[this._material3dSelect(objectAR.label3DObject)]}
           type="OBJ" 
         />
@@ -117,6 +194,8 @@ export class ARScene extends Component {
   _setObjectPositions(){
     Geolocation.watchPosition(
       (position) => {
+        console.log("Location", position.coords.latitude,position.coords.longitude);
+        console.log("Acurracy",position.coords.accuracy);
         this._getThreeNearestObjects(position.coords.latitude, position.coords.longitude)
       },
       {enableHighAccuracy: true, distanceFilter: 0, maximumAge: 0, timeout: 20000},
@@ -125,9 +204,20 @@ export class ARScene extends Component {
 
   // Sacar los dos objetos mas cercanos al dispositivo, es decir, con la menor distancia por recorrer
   _getThreeNearestObjects(lat, long){
-    let firstObject, secondObject, thirdObject; 
-    let firstObjectDistance = Number.MAX_VALUE, secondObjectDistance = Number.MAX_VALUE, thirdObjectDistance = Number.MAX_VALUE;
     let userMercatorPoint = this._coordLatLongToMercator(lat, long);
+    let nearestARObjects = this._iterateARLocations(userMercatorPoint);
+    this.setState({
+      objectsAR: nearestARObjects,
+      sceneVisible: true,
+    });
+  }
+
+  _iterateARLocations(userMercatorPoint){
+    let firstObject, secondObject, thirdObject;
+    let firstObjectDistance = Number.MAX_VALUE,
+        secondObjectDistance = Number.MAX_VALUE, 
+        thirdObjectDistance = Number.MAX_VALUE;
+
     mercatorAmon.forEach((element) => {
       let objectAR = this._transformPointToAR(userMercatorPoint, element);
       let distance = Math.abs(objectAR.x) +  Math.abs(objectAR.z);
@@ -148,13 +238,8 @@ export class ARScene extends Component {
         thirdObjectDistance = distance;
       }
     });
-    
-    this.setState({
-      firstNearestARObject: firstObject,
-      secondNearestARObject: secondObject, 
-      thirdNearestARObject: thirdObject,  
-      sceneVisible: true,
-    });
+
+    return [firstObject, secondObject, thirdObject];
   }
 
   _transformPointToAR(userMercPoint, objectMercPoint) {
@@ -174,7 +259,9 @@ export class ARScene extends Component {
               placeID: object.placeID, 
               tittle: object.tittle,
               img: object.img, 
-              label3DObject: object.label3DObject
+              label3DObject: object.label3DObject,
+              "min_degree": object.min_degree,
+              "max_degree": object.max_degree
            });
   }
 

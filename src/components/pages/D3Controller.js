@@ -11,47 +11,50 @@ import MenuImages from "../partials/MenuImages";
 import PointSheet from "../partials/PointSheet";
 import SwitchButtom from "../partials/SwitchButton";
 
-const Initial3DScene = require('./3DScene');
+const Initial3DScene = require('./D3Scene');
 
 export class D3Controller extends Component {
 
   constructor(props) {
     super(props);
 
+    console.log("Constructor Controller");
     this.closeDataPoint = this.closeDataPoint.bind(this);
     this.showDataPoint = this.showDataPoint.bind(this);
     this.changeMenuImage = this.changeMenuImage.bind(this);
 
     this.state = {
       sharedProps : this.props.sharedProps, 
-      menuViews: true,
       viro3dProps: {setInformation: this.closeDataPoint,
         id: this.props.content, 
       },
-      dataPointVisible: false,
       dataPoint: {},
       switchButtomVisible: true,
+      menuViews: true,
+      dataPointVisible: false,
     }
   }   
 
   componentDidMount(){
-      if(this.state.viro3dProps.id==261 | this.state.viro3dProps.id==262){
+    console.log("Did mount");
+      /*if(this.state.viro3dProps.id==261 | this.state.viro3dProps.id==262){
         this.setState({
           switchButtomVisible: false,
         });
-      }
+      }*/
   }
 
   render() { 
+    console.log("Render Controller");
     return (
       <View style={{flex:1}}>
         <ViroVRSceneNavigator 
           {...this.state.sharedProps}
           initialScene={{scene: Initial3DScene}} 
-          onExitViro={this._exitViro} 
           vrModeEnabled={false}
           viroAppProps={this.state.viro3dProps}/>
 
+        {/*
         {this.state.menuViews && (
           <MenuImages 
             dataImages={{id:this.state.viro3dProps.id,type:1}} 
@@ -70,12 +73,12 @@ export class D3Controller extends Component {
           <PointSheet dataPoint={{data:this.state.dataPoint}} 
             handlePressDataSheet={this.closeDataPoint}/>
           )
-        }
+        }*/}
         
-        {this.state.switchButtomVisible && (
+        {/*this.state.switchButtomVisible && (
           <SwitchButtom handleSwitchClick={this.changeMenuImage} />
           )
-        }
+        */}
 
       </View>
     );

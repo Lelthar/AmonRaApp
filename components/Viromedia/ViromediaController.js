@@ -22,7 +22,7 @@ const sharedProps = {
 }
 
 const InitialARScene = require('./js/ARScene');
-const InitialVRScene = require('./js/VR_Scene');
+const InitialVRScene = require('./js/VRScene');
 const Initial3DScene = require('./js/3D_Scene');
 
 const NAVIGATOR_TYPE_VR = "VR";

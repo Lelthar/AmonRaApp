@@ -28,6 +28,7 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 export default class PointSheet extends Component {
     constructor(props) {
         super(props);
+        console.log("Const POintSheet");
 
         this.state ={
           data :  this.props.dataPoint.data,

@@ -28,7 +28,7 @@ const FEATURE_ID = "?feature_id=";
 export default class MenuImages extends Component {
   constructor(props) {
     super(props);
-
+    console.log("Const MEnuimgs");
     this.showMenuImages = this.showMenuImages.bind(this);
 
     this.state = {
