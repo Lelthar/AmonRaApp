@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import {
 
@@ -13,35 +11,30 @@ import {
 
 import { SearchBar } from 'react-native-elements';
 import { connect } from "react-redux";
-
+import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from "../../assets/styles/partials/hamburgerMenu";
 
 const HamburguerComponent = (props) => {
 
-  // Declare a new state variable, called isTextDiscoverPressed
   const [isTextDiscoverPressed,setTextDiscoverPressed] = useState(false);
-  
+  const [searchText, setSearchText] = useState('');
+  const search = searchText;
+
   onPressTextDiscover = () => {
     setTextDiscoverPressed(!isTextDiscoverPressed);
   }
 
-  onPressTextMoreAmonRa = () => {
-
+  updateSearch = search =>{
+    setSearchText(search);
   }
 
-  onPressTextOrigin= () => {
-    
-  }
-
-  onPressTextVivencias = () => {
-    
-  }
-
-  onPressTextArquitectura= () => {
-    
+  onClickSearchIcon = () =>{
+    message = "Clic en el icono de buscar ";
+    message = message.concat(searchText);
+    console.error(message);
   }
 
   return (
-
     <View style={styles.hamburgerMenu}>
 
           <SearchBar
@@ -53,7 +46,17 @@ const HamburguerComponent = (props) => {
             rightIconContainerStyle={styles.searchBarInput}
             placeholder= 'Búsqueda'
             placeholderTextColor='white'
-            lightTheme={true} 
+            lightTheme={true}
+            onChangeText={updateSearch}
+            value={search}
+            searchIcon={
+              <TouchableOpacity onPress={onClickSearchIcon} >
+                <Icon
+                name='search'
+                size={20}
+                color="#127C8A"
+                />
+              </TouchableOpacity> }
           />
           <TouchableOpacity onPress={ onPressTextDiscover } >
             <Text style={styles.textDiscover}>Descubrí Barrio Amón</Text>
@@ -73,64 +76,12 @@ const HamburguerComponent = (props) => {
               </TouchableOpacity>
             </View>
           }
-            
+
           <TouchableOpacity onPress= {() => props.navigation.navigate('MoreAmonRa', {}) }>
             <Text style={styles.textMoreAmon}>Más de Amon_RA</Text>
-          </TouchableOpacity>
-          
+          </TouchableOpacity>     
         </View>
-
   );
 };
 
-const styles = StyleSheet.create({
-  
-
-  // Styles for hamburguer menu:
-
-  searchBarInput:{
-    backgroundColor: '#10535D',
-
-  },
-  containerInput:{
-    backgroundColor: '#00A2B5'
-
-  },
-  textList:{
-    color: 'white',
-    textAlign: 'left',
-    fontSize: 14, 
-    backgroundColor: '#00A2B5',
-    padding:5,
-    marginLeft: 15
-  },
-  textMoreAmon:{
-    color: 'white',
-    textAlign: 'center',
-    fontSize:14,
-    backgroundColor: '#00A2B5',
-    padding:5
-
-  },
-
-  textDiscover:{
-    color: 'white',
-    textAlign: 'center',
-    fontSize:14,
-    backgroundColor: '#10535D',
-    padding:5
-  },
-
-  hamburgerMenu:{
-    backgroundColor:'#00A2B5',
-    width: 200,
-    position: 'absolute',
-    top: 0,
-    right: 0,
-
-  }
-
-});
-
 export default connect(null, null)(HamburguerComponent);
-

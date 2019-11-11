@@ -78,33 +78,28 @@ class ArquitectureDetail extends Component {
 		  facebook: "",
 		  images_url: [],
 		};
-
 	}
-
-	componentDidMount(){ 
+  
+	componentDidMount(){
     this.setState({
       title: this.props.navigation.state.params.placeInfo.name , 
-      description: this.props.navigation.state.params.placeInfo.description, 
-      direction: this.props.navigation.state.params.placeInfo.direction ,
-      phone_number: this.props.navigation.state.params.placeInfo.phone_number,
-      facebook: this.props.navigation.state.params.placeInfo.facebook,
-      images_url: [this.props.navigation.state.params.placeInfo.image1_url, 
-                  this.props.navigation.state.params.placeInfo.image2_url, 
-                  this.props.navigation.state.params.placeInfo.image3_url]
+      description: this.props.navigation.state.params.placeInfo.brief_description,
+      fichaTecnica: this.props.navigation.state.params.placeInfo.architecture_information,
+      experiences: this.props.navigation.state.params.placeInfo.experiences ,
+      historicalReview: this.props.navigation.state.params.placeInfo.historical_review,
+      stylisticFeatures: this.props.navigation.state.params.placeInfo.stylistic_features,
+      imageUrl: this.props.navigation.state.params.placeInfo.image2
     });
   }
 
 	render(){
  
-		const pic2 = { uri: this.state.images_url[1] };
-
-    //Examples of props for the Option Partial, TODO: Replace with database query
-    const lorem = "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.";
-    const breveObject = {name: "Breve descripción", description: lorem };
-    const fichaObject = {name: "Ficha técnica", description: lorem};
-    const vivenciasObject = {name: "Vivencias", description: lorem};
-    const resenhaObject = {name: "Reseña histórica", description: lorem};
-    const caracteristicasObject = {name: "Características estilísticas", description: lorem};
+		const pic2 = { uri: this.state.imageUrl };  
+    const descriptionObject = {name: "Breve descripción", description: this.state.description };
+    const fichaObject = {name: "Ficha técnica", description: this.state.fichaTecnica};
+    const experiencesObject = {name: "Vivencias", description: this.state.experiences};
+    const resenhaObject = {name: "Reseña histórica", description: this.state.historicalReview};
+    const stylisticFeaturesObject = {name: "Características estilísticas", description: this.state.stylisticFeatures};
 		
     return (
       <View style={styles.container} >
@@ -114,11 +109,11 @@ class ArquitectureDetail extends Component {
         <View style={styles.informationContainer}>
           <Text style={styles.textTitle} >{this.state.title}</Text>
           <ScrollView style={styles.scroll} >
-            <Option information={breveObject} />
+            <Option information={descriptionObject} />
             <Option information={fichaObject} />
-            <Option information={vivenciasObject} />
+            <Option information={experiencesObject} />
             <Option information={resenhaObject} />
-            <Option information={caracteristicasObject} />
+            <Option information={stylisticFeaturesObject} />
             </ScrollView>
         </View>
 				{ this.props.menuSideState &&

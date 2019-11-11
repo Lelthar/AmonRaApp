@@ -76,8 +76,9 @@ class Architecture extends Component {
   }
   
   async get_features(){
+    const url = "https://amonra.herokuapp.com/api/v1/architecture_data";
     const institutionalUrl = "?category=Patrimonio%20Arquitectónico"; 
-    const response = await makeBackendRequest(FEATURES_URL+institutionalUrl,"GET",this.state.userData);
+    const response = await makeBackendRequest(url,"GET",this.state.userData);
     const responseJson = await response.json();
     this.setState({
       markers: responseJson,
@@ -112,7 +113,7 @@ class Architecture extends Component {
               onPress={ () => this.navigation.navigate('ArchitectureDetail',{goToScreen: this.navigation, placeInfo: item }) }
             >
               <View style={{flex:1}}>
-                <Image source={{uri: item.image1_url}} style={styles.image} />
+                <Image source={{uri: item.image1}} style={styles.image} />
               </View>
             </TouchableHighlight>
           )}

@@ -491,7 +491,7 @@ const timeLineStack = createStackNavigator(
       screen: TimeLine,
       navigationOptions: {
         headerRight: <HamburgerButton />,
-        title: "Linea del Tiempo",
+        title: "Línea del Tiempo",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
