@@ -58,7 +58,7 @@ var MainScene = createReactClass({
               source={this._object3dSelect(this.props.sceneNavigator.viroAppProps.id)}
               resources={[this._material3dSelect(this.props.sceneNavigator.viroAppProps.id)]}
               dragType="FixedDistance" onDrag={()=>{}}
-              onPinch={this._onPinch}
+              onPinch={(pinchState, scaleFactor) => this._onPinch(pinchState, scaleFactor, this.state.scale)}
               type="OBJ"
             />
             {/*<Viro3DObject source={require('./res/heart.obj')}
@@ -109,7 +109,9 @@ var MainScene = createReactClass({
     //this.arNodeRef.setNativeProps({rotation:[this.state.rotation[0], this.state.rotation[1] + rotationFactor, this.state.rotation[2]]});
   },
   _onPinch(pinchState, scaleFactor, source) {
-    
+    console.log("Scale",source);
+    console.log("Scale Factor",scaleFactor);
+    console.log("PinchState",pinchState);
     var newScale = this.state.scale.map((x)=>{return x * scaleFactor})
 
     if (pinchState == 3) {

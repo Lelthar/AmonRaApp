@@ -1,0 +1,156 @@
+[
+    {
+	"charId": 1,
+	"nombre": "Mario González Feo",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2FMarioGonzalezFeo.png?alt=media&token=1ec28416-d6fe-41b9-8893-fa160e0b9a77",
+	"personaje": ["Escritor y pintor costarricense (1889-1969). Perteneciente a una familia de artistas, donde destacan pintores y escritores como Eloy González Frías, Luisa González de Sáenz, Guido Sáenz González y Carmen Odio González (Tomado de heredia-costarica.zonalibre.org)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F1.%20Mario%20Gonz%C3%A1lez%20Feo.png?alt=media&token=d252f895-3acb-4064-a4a4-a125587ef891"
+    },
+    {
+	"charId": 2,
+	"nombre": "Guido Sáenz",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F2.%20Guido%20S%C3%A1enz.png?alt=media&token=48d8d643-766c-4d5e-8685-cdbe2a3c210d",
+	"personaje": ["Guido Sáenz González (1929-) es un prominente artista costarricense; es actor, músico, ceramista y pintor; además ha sido Ministro de Cultura. Fue el encargado de elaborar las cerámicas de los muros de ladrillo de la casa González Feo (Tomado de editorialcostarica.com)."],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F2.%20Guido%20S%C3%A1enz.png?alt=media&token=905c6963-d753-4cba-a74f-a1708426c5a4"
+    },
+    {
+	"charId": 3,
+	"nombre": "Walter J. Ford y Victoria Iglesias Castro",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F3.%20Walter%20J.%20Ford.png?alt=media&token=892d2053-0daa-4ed5-8df4-16dbe0d665db",
+	"personaje": ["Walter Ford fue un inversionista estadounidense que trabajó con Minor Keith en el desarrollo del ferrocarril al Atlántico. Junto a su esposa Victoria Iglesias Castro construyó su vivienda, el actual Centro de Cine, alrededor de 1910 (Tomado de issuu.com/danielalejandromadrigal)."],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F3.%20WALTER%20J.%20FORD%20Y%20VOCTORIA%20IGLESIAS%20CASTRO.png?alt=media&token=c1b0aa6b-8080-46d2-8990-7568baddbec5"
+    },
+    {
+	"charId": 4,
+	"nombre": "Jose María Figueres Ferrer",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F4.%20Jose%20Mar%C3%ADa%20Figueres%20Ferrer.png?alt=media&token=ed5005a1-8788-4303-bbc3-42ff5d3bfa53",
+	"personaje": ["Figueres Ferrer fue un político costarricense que encabezó el movimiento revolucionario de Liberación Nacional. Después de ganada la Guerra del 1948, estableció la Junta Fundadora de la Segunda República y ejerció como Presidente durante 18 meses (tomando de www.asamblea.go.cr).", "Figueres residió algún tiempo en el edificio que hoy es el Centro de Cine, donde también funcionó la sede de la Segunda República.  Don Pepe, como se le conoce, fue Presidente de la Republica durante tres períodos: 1948 – 1949, 1953 – 1958 y 1970 – 1974 (Tomado de plncr.org)."],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F4.%20JOSE%20MAR%C3%8DA%20FIGUERES%20FERRER.png?alt=media&token=c82206c2-0c2f-4989-8b7f-6a12645ee984"
+    },
+    {
+	"charId": 5,
+	"nombre": "Dr. Antonio Peña Chavarría",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F5.%20Dr.%20Antonio%20Pe%C3%B1a%20Chavarr%C3%ADa.png?alt=media&token=90f329e6-aff7-47f2-b056-19274f10de1e",
+	"personaje": ["Nació en San José en 1899, estudió medicina en Colombia y en Estados Unidos. Fue Ministro de Salud, Jefe de Medicina y Director del Hospital San Juan de Dios, Diputado y Decano de la Facultad de Medicina de la Universidad de Costa Rica (Jaramillo et al, 2011).", "La casa Calvo Peña fue construida por el Dr. Peña Chavarría para sus hijas."],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F5.%20DR.%20ANTONIO%20PE%C3%91A%20CHAVARR%C3%8DA.png?alt=media&token=0a992bd2-3bc3-48d2-b852-89ffa8142965"
+    },
+    {
+	"charId": 6,
+	"nombre": "Mons. Carlos Humberto Rodriguez Quiros",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F6.%20Mons.%20Carlos%20Humberto%20Rodr%C3%ADguez.png?alt=media&token=bf041c54-f5ee-4b18-8e1e-0e8a20eaccdb",
+	"personaje": ["Monseñor Rodríguez fue ordenado sacerdote en 1936 y arzobispo de San José en 1960, se retiró en 1978. Era miembro de una acaudalada familia costarricense; fue propietario de varios inmuebles, el más relevante quizás sea el Castillo del Moro (Tomado de wiki.scolopi.net)."],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F6.%20MONS.%20CARLOS%20HUMBERTO%20RODRIGUEZ%20QUIR%C3%93S.png?alt=media&token=6f39bdb1-b9b2-415a-860c-72f1b2708bd8"
+    },
+    {
+	"charId": 7,
+	"nombre": "Joaquín Tinoco Granados",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F7.%20%20Joaqu%C3%ADn%20Tinoco.png?alt=media&token=6d60980d-d3c4-4217-b309-e03409afcf80",
+	"personaje": ["José Joaquín Tinoco Granados, Ministro de Guerra durante la dictadura de su hermano Federico (1917-1919). A José Joaquín se le considera históricamente el verdadero hombre fuerte de ese régimen, el cual cayó luego de su asesinato (Hernández y Delgado, 2010).", "Don José Joaquín vivía en barrio Amón, en una casa esquinera pintada de rosado y blanco, ubicada 200 Oeste de lo que hoy es el TEC. De ahí salió un 10 de agosto del 1919 hacia la pulpería La Marinita, donde lo mataron (Hernández y Delgado, 2010)."],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F7.%20JOAQU%C3%8DN%20TINOCO%20GRANADOS.png?alt=media&token=183fac6a-1a26-4ea8-9338-bede9ad58c55"
+    },
+    {
+	"charId": 8,
+	"nombre": "Federico Sobrado",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F8.%20Federico%20Sobrado.png?alt=media&token=14ff11fa-f548-4d62-80cf-71bdf6ed1f6a",
+	"personaje": ["Dueño de la Hacienda Tempisque en Guanacaste, se dedicó al cultivo de caña de azúcar y en las primeras décadas del siglo XX al cultivo de arroz. En 1924 adquirió la casa donde vivió Joaquín Tinoco Granados en avenida 9 calle 3 en barrio Amón."],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F8.%20FEDERICO%20SOBRADO.png?alt=media&token=cf486e5f-8ddf-423c-a47b-327905bfecdc"
+    },
+    {
+	"charId": 9,
+	"nombre": "Cipriano Herrero del Peral",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F9.%20Cipriano%20Herrero%20del%20Peral.png?alt=media&token=6e3c2df3-8329-4930-bb25-b1011434d37f",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F9.%20CIPRIANO%20HERRERO%20DEL%20PERAL.png?alt=media&token=23698c58-5a32-49d6-88f6-cba1ca1eeb1d"
+    },
+    {
+	"charId": 10,
+	"nombre": "Ricardo Quesada López-Calleja",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F10.%20Ricardo%20Quesada%20L%C3%B3pez-Calleja.png?alt=media&token=cebf57de-c759-47e5-bbfb-51a0fa376df2",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F10.%20RICARDO%20QUESADA%20L%C3%93PEZ-CALLEJA.png?alt=media&token=79abee2b-f76b-4f0f-9c22-c92808382bcf"
+    },
+    {
+	"charId": 11,
+	"nombre": "Utilio Ulate Blanco",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F11.%20Otilio%20Ulate%20Blanco.png?alt=media&token=b9ac2888-fdb3-4078-8f34-aeb59ed24ee2",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F11.%20UTILIO%20ULATE%20BLANCO.png?alt=media&token=5da3fa9f-92bf-445a-8d47-3204eb7f6e24"
+    },
+    {
+	"charId": 12,
+	"nombre": " Mireya Gurdián Agüero",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F12.%20Mireya%20Gurdi%C3%A1n%20Aguero.png?alt=media&token=557dc741-31bd-4a07-89c9-a1ca8fe3c14c",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F12.%20MIREYA%20GURDI%C3%81N%20AG%C3%9CERO.png?alt=media&token=ed1fec48-1413-4da1-8c40-5dcbe626cf3a"
+    },
+    {
+	"charId": 13,
+	"nombre": "Abraham Madriz Hernández",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F13.%20Abraham%20Madriz%20Hern%C3%A1ndez.png?alt=media&token=80eb72dd-a294-4484-9525-90c602a4504c",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F13.%20ABRAHAM%20MADRIZ%20HERN%C3%81NDEZ.png?alt=media&token=2cab1211-bab7-4e5c-9a63-15330982cf0e"
+    },
+    {
+	"charId": 14,
+	"nombre": "Rafael Obregón Loría",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F14.%20Rafael%20Obreg%C3%B3n%20Lor%C3%ADa.png?alt=media&token=ac2fbe1f-20d4-4ee7-b56c-69967da8d220",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F14.%20RAFAEL%20OBREG%C3%93N%20LOR%C3%8DA.png?alt=media&token=e7f7a9db-121b-48cd-97be-33878cbebebf"
+    },
+    {
+	"charId": 15,
+	"nombre": "Julio Acosta García",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F15.%20Julio%20Acosta%20Garc%C3%ADa.png?alt=media&token=588dace9-3147-4d04-b841-d630e29203e1",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F15.%20JULIO%20ACOSTA%20GARC%C3%8DA.png?alt=media&token=f1d98fd4-a81f-4a65-ad36-b5bce8589679"
+    },
+    {
+	"charId": 16,
+	"nombre": "Fasileau-Duplantier",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F16.%20Fasileau-Duplantier.png?alt=media&token=ed10e70f-b06b-42bc-a450-68f452950d5e",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F16.%20AM%C3%93N%20FASILEAU-DUPLANTIER.png?alt=media&token=1f6f5807-b1bc-4b77-94c6-8e58c384b0ee"
+    },
+    {
+	"charId": 17,
+	"nombre": "María Isabel Carvajal Castro (Carmen Lyra)",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F17.%20Mar%C3%ADa%20Isabel%20Carvajal%20Castro%20(Carmen%20Lyra).png?alt=media&token=abafa595-31f3-4d69-b940-7cc6c5b0d0ee",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F17.%20MAR%C3%8DA%20ISABEL%20CARVAJAL%20CASTRO%20(CARMEN%20LYRA).png?alt=media&token=c1187051-5f6c-44fb-ba56-fca05299d80b"
+    },
+    {
+	"charId": 18,
+	"nombre": "León Cortés Castro",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F18.%20Le%C3%B3n%20Cort%C3%A9s%20Castro.png?alt=media&token=3e4119cc-8f97-4097-9ae7-25553632abf8",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F18.%20LE%C3%93N%20CORT%C3%89S%20CASTRO.png?alt=media&token=77cbeadd-9952-4d97-bfd5-b07e5415f1ad"
+    },
+    {
+	"charId": 19,
+	"nombre": "Luis Anderson Morúa",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F19.%20Luis%20Anderson%20Moura.png?alt=media&token=5d3865a9-dbee-4228-8588-37225eb69132",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F19.%20LUIS%20ANDERSON%20MOURA.png?alt=media&token=ea6e5341-52ef-4042-ad39-6d958b2f9904"
+    },
+    {
+	"charId": 20,
+	"nombre": "Dr. Carlos Manuel Echandi Lahmann",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F20.%20Dr.%20Carlos%20Manuel%20Echandi%20Lahmann.png?alt=media&token=dfc744b8-19c4-48e7-9da0-b0a52ff7de02",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F20.%20DR.%20CARLOS%20MANUEL%20ECHANDI%20LAHMANN.png?alt=media&token=f6fbc168-b87b-4b2a-80db-31b04771718e"
+    },
+    {
+	"charId": 21,
+	"nombre": "Doris Stone",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F21.%20Doris%20Stone.png?alt=media&token=1eef94fe-d266-4b96-b3d0-ea5756e761e9",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F21.%20DORIS%20STONE.png?alt=media&token=e2f7303f-09d9-451a-bc62-fea705bb50da"
+    },
+    {
+	"charId": 22,
+	"nombre": "Dr. Carlos Collado Martínez",
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FMiniaturas%2F22.%20Dr.%20Carlos%20Collado%20Mart%C3%ADnez.png?alt=media&token=34c0ac61-a902-4670-9aba-52c865cb8f32",
+	"personaje": ["Cipriano Herrero del Peral se casó con María Díaz Granados y Ross de Andreu y tuvieron a María, Adriana, Carlos y Julieta María. La casa de habitación de esta familia fue construida alrededor del año 1910 por el arquitecto Jaime Carranza (Marín, 2014)"],
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Personajes%2FCabeceras%2F22.%20DR.%20CARLOS%20COLLADO%20MART%C3%8DNEZ.png?alt=media&token=57e9ec6f-15fb-4014-b809-94785ed26601"
+    }
+]

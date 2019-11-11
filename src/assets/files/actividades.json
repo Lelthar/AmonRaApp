@@ -1,0 +1,23 @@
+[
+    {
+	"activityID": 1,
+	"nombre": "",
+	"actividad": ["La Casa de Jaime Bennett fue un punto de sociabilidad. Era una propiedad muy grande, con amplios jardines donde los niños del barrio acostumbraban jugar. Además, acostumbraba realizar fiestas y bailes en su casa, a las que acudían muchos de los vecinos (Quesada, 2004).","Eran comunes los bailes en las casas de barrio Amón, se les llamaba “Melcochas Danzantes”, aunque curiosamente no habían melcochas en estas fiestas.  (Quesada, 2004).","Amón fue una ruta de paso, de salida y entrada de mercancías a la ciudad. La carretas con productos que abastecían el Mercado Central utilizaban ciertas calles en su trayecto, lo mismo que las carretas cargadas de café que salían del Beneficio Tournon (Quesada, 2004)."],
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Actividades%2FMiniaturas%2F1.%20Socializaci%C3%B3n.png?alt=media&token=98e3d503-6abe-40cf-99eb-b6b782422e41",
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Actividades%2FCabeceras%2F1.%20Casa%20de%20Jaime%20Bennett.png?alt=media&token=cdc0cfa7-f360-475f-aaba-76a6e5074c37"
+    },
+    {
+	"activityID": 2,
+	"nombre": "",
+	"actividad": ["La Huelga de Amón, era un grupo de jóvenes del barrio  que se reunía para disfrutar y hacer travesuras juntos. “Así se formó un grupo homogéneo  con la consigna que recordaba otras épocas galantes:uno para todos y todos para uno”. (Oconitrillo, 2005, 201)", "En barrio Amón existieron muchas huelgas, según las diferentes generaciones de niños y jóvenes que ahí crecieron. Aunque era una forma de sociabilidad  principalmente masculina, las mujeres participaban en algunas de sus actividades (Quesada, 2004)."],
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Actividades%2FMiniaturas%2F2.%20Juventud.png?alt=media&token=a2253c8b-93a9-4eb0-bd7d-5a53c10b055c",
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Actividades%2FCabeceras%2F2.%20Escuela%20T%C3%A9cnica%20Nacional_.jpg?alt=media&token=add96796-1084-41fe-8168-de7d48050088"
+    },
+    {
+	"activityID": 3,
+	"nombre": "",
+	"actividad": ["Para los habitantes de Amón, la iglesia donde realizaban la mayoría de las actividades fue El Carmen; algunas familias incluso pagaban por tener sus propias bancas. Asistir a misa, con excepción de los domingos fue una actividad mayoritariamente femenina (Quesada, 2004).", "Para los habitantes de Amón la celebración del Dulce Nombre era el acontecimiento religioso más popular del año, el cual implicaba a toda la familia. Se hacía una procesión hasta la iglesia de El Carmen y en algunas casas se cantaban salves  (Quesada, 2004).", "Durante la celebración del Dulce Nombre algunas familias contrataban músicos para las salves y la última estación se realizaba en la casa de Jaime Bennett donde se realizaban juegos de pólvora en los jardínes (Quesada, 2004)."],
+	"buttonLink": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Actividades%2FMiniaturas%2F3.%20Procesiones.png?alt=media&token=0deaf809-f806-458f-84a0-4082c25c1fb9",
+	"imagen": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Actividades%2FCabeceras%2F3.%20Sala%20Hotel%20don%20Carlos_.jpg?alt=media&token=933e9a76-cb85-4914-9ded-390b3048d595"
+    }
+]

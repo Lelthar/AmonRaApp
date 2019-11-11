@@ -22,7 +22,7 @@ const sharedProps = {
 }
 
 const InitialARScene = require('./js/ARScene');
-const InitialVRScene = require('./js/VR_Scene');
+const InitialVRScene = require('./js/VRScene');
 const Initial3DScene = require('./js/3D_Scene');
 
 const NAVIGATOR_TYPE_VR = "VR";
@@ -63,6 +63,7 @@ export class ViromediaController extends Component {
       dataPointVisible: false,
       dataPoint: {},
       switchButtomVisible: true,
+      focusedScreen: true,
     }
   }   
 
@@ -74,10 +75,19 @@ export class ViromediaController extends Component {
         });
       }
     }
+    else if (this.state.navigatorType == NAVIGATOR_TYPE_AR){
+      const { navigation } = this.props;
+      navigation.addListener('willFocus', () =>
+        this.setState({ focusedScreen: true })
+      );
+      navigation.addListener('willBlur', () =>
+        this.setState({ focusedScreen: false })
+      );
+    }
   }
 
   render() { 
-    if (this.state.navigatorType == NAVIGATOR_TYPE_AR){
+    if (this.state.navigatorType == NAVIGATOR_TYPE_AR && this.state.focusedScreen){
       return this._getARNavigator();
     } else if (this.state.navigatorType == NAVIGATOR_TYPE_VR) {
       if (this.state.vrMode == null) {
@@ -87,6 +97,8 @@ export class ViromediaController extends Component {
       }
     } else if (this.state.navigatorType == NAVIGATOR_TYPE_3D) {
       return this._get3DNavigator();
+    } else{
+      return null;
     }
   }
 
