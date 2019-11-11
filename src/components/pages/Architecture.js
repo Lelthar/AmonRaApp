@@ -5,7 +5,6 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  TouchableHighlight
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -109,13 +108,13 @@ class Architecture extends Component {
           keyExtractor={(item, index) => index}
           contentContainerStyle={styles.list_style}
           renderItem={({item}) => (
-            <TouchableHighlight style= {styles.list_item}
+            <TouchableOpacity style= {styles.list_item}
               onPress={ () => this.navigation.navigate('ArchitectureDetail',{goToScreen: this.navigation, placeInfo: item }) }
             >
               <View style={{flex:1}}>
                 <Image source={{uri: item.image1}} style={styles.image} />
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           )}
         />
         {this.props.menuSideState &&

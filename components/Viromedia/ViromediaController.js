@@ -13,7 +13,9 @@ import InfoMenu from "./js/AR_Components/InfoMenu";
 import MenuImages from "./js/D3_Components/MenuImages";
 import VRSelectionMode from "./js/VR_Components/VRSelectionMode";
 import PointSheet from "./js/D3_Components/PointSheet";
+import PointSheetView from "./js/D3_Components/PointSheetView";
 import SwitchButtom from "./js/D3_Components/SwitchButton";
+import Loaded from "./js/VR_Components/Loaded";
 import dataJson from './js/D3_Components/data3D.json';
 
 
@@ -41,6 +43,7 @@ export class ViromediaController extends Component {
     this.closeDataPoint = this.closeDataPoint.bind(this);
     this.showDataPoint = this.showDataPoint.bind(this);
     this.changeMenuImage = this.changeMenuImage.bind(this);
+    this.showLoadedContent = this.showLoadedContent.bind(this);
 
     this.state = {
       sharedProps : sharedProps, 
@@ -61,9 +64,11 @@ export class ViromediaController extends Component {
         id: this.props.navigation.state.params.filename, 
       },
       dataPointVisible: false,
+      ataPointViewVisible: false,
       dataPoint: {},
       switchButtomVisible: true,
       focusedScreen: true,
+      loadedVisible: true,
     }
   }   
 
@@ -138,12 +143,17 @@ export class ViromediaController extends Component {
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
     return (
-      <ViroVRSceneNavigator 
-        {...this.state.sharedProps}
-        initialScene={{scene: InitialVRScene}} 
-        onExitViro={this._exitViro} 
-        vrModeEnabled={this.state.vrMode} 
-        viroAppProps={{data:this.state.content}}/>
+      <View style={{flex:1}}>
+        <ViroVRSceneNavigator 
+          {...this.state.sharedProps}
+          initialScene={{scene: InitialVRScene}} 
+          onExitViro={this._exitViro} 
+          vrModeEnabled={this.state.vrMode} 
+          viroAppProps={{data:this.state.content,handleClick:this.showLoadedContent}}/>
+
+        {this.state.loadedVisible && (<Loaded />)}
+          
+      </View>
     );
   }
 
@@ -174,6 +184,12 @@ export class ViromediaController extends Component {
 
         {this.state.dataPointVisible //PointSheet
           ? <PointSheet dataPoint={{data:this.state.dataPoint}} 
+              handlePressDataSheet={this.closeDataPoint}/>
+          : null
+        }
+
+        {this.state.dataPointViewVisible //PointSheet
+          ? <PointSheetView dataPoint={{data:this.state.dataPoint}} 
               handlePressDataSheet={this.closeDataPoint}/>
           : null
         }
@@ -229,18 +245,29 @@ export class ViromediaController extends Component {
     });
   }
 
-  // Enable or Disable DataSheet
+  // Close DataSheet
   closeDataPoint(){
-    this.setState({
-      dataPointVisible : !this.state.dataPointVisible,
-    });
+    if(!this.state.menuViews){
+      this.setState({
+        dataPointVisible : false,
+      });
+    }else{
+      this.setState({
+        dataPointViewVisible : false,
+      });
+    }
   }
 
-  // Enable or Disable DataSheet
+  // Show DataSheet
   showDataPoint(data){
     if(!this.state.menuViews){
       this.setState({
-        dataPointVisible : !this.state.dataPointVisible,
+        dataPointVisible : true,
+        dataPoint : data,
+      });
+    }else{
+      this.setState({
+        dataPointViewVisible : true,
         dataPoint : data,
       });
     }
@@ -270,6 +297,13 @@ export class ViromediaController extends Component {
       262 : dataJson.houses.SerranoBonilla.views,
     };
     return objects[objectName];
+  }
+
+  // Show loaded
+  showLoadedContent(){
+    this.setState({
+      loadedVisible : false,
+    });
   }
 
 }

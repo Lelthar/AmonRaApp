@@ -15,11 +15,15 @@ export default class VRScene extends Component {
     this.state = {} 
   }
 
+  imageLoaded = () => {
+    this.props.sceneNavigator.viroAppProps.handleClick();
+  }
+
   render() {
     return (
       <ViroScene>
         <ViroCamera active={true}>
-          <Viro360Image source={{uri:this.props.sceneNavigator.viroAppProps.data}} />
+          <Viro360Image source={{uri:this.props.sceneNavigator.viroAppProps.data}} onLoadEnd={this.imageLoaded} />
           <VRHeadset />
         </ViroCamera>
       </ViroScene>

@@ -3,7 +3,7 @@ import {
     StyleSheet,
     View,
     Image,
-    TouchableHighlight,
+    TouchableOpacity,
   } from 'react-native';
 
 const view_normal = require('../../../../images/icons/virtualVisit/normal.png');
@@ -19,17 +19,17 @@ export default class VRSelectionMode extends Component {
             <View style={localStyles.outer} >
             <View style={localStyles.inner} >
     
-            <TouchableHighlight style={{marginBottom:"20%"}}
+            <TouchableOpacity style={{marginBottom:"20%"}}
                 onPress={() => this.props.handleOptionClick(true)}>
     
                 <Image source={ view_vr }/>
-              </TouchableHighlight>
+              </TouchableOpacity>
     
-              <TouchableHighlight style={{marginTop:"20%"}}
+              <TouchableOpacity style={{marginTop:"20%"}}
                 onPress={() => this.props.handleOptionClick(false)}>
     
                 <Image source={ view_normal }/>
-              </TouchableHighlight>
+              </TouchableOpacity>
             </View>
           </View>
         );
