@@ -14,3 +14,16 @@ export async function makeBackendRequest(url_path,method,user_data) {
   });
   return response;
 }
+
+export const getPropsFromPlace = (place) => {
+  return {
+    title: place.name,
+    description: place.description,
+    direction: place.direction,
+    phone_number: place.phone_number,
+    facebook: place.facebook,
+    images_url_1: place.image1_url, 
+    images_url_2: place.image2_url, 
+    images_url_2: place.image3_url,
+  };
+}

@@ -4,7 +4,6 @@ import {
     Text,
     View,
     AppRegistry,
-    Button,
     ScrollView,
     TouchableOpacity,
     Image,
@@ -21,6 +20,7 @@ import {
 
 import {
   makeBackendRequest,
+  getPropsFromPlace,
 } from '../../../helpers/helpers'
 //-------------------------------------
 
@@ -38,7 +38,6 @@ import {
 } from "../../../src/redux/actions/menuDataActions";
 
 import HamburgerMenu from '../../../src/components/partials/HamburgerMenu';
-
 
 const mapStateToProps = state => {
   return {
@@ -74,7 +73,6 @@ const mapDispatchToProps = (dispatch) => {
 
 var {windowHeight, windowWidth} = Dimensions.get('window');
 
-
 class CultureArt extends Component{
 
   constructor(props){
@@ -104,17 +102,10 @@ class CultureArt extends Component{
 
       }
   }
-  
-  /*goTo(screen,params){
-        var goToScreen = this.props.navigation.state.params.goToScreen
-        goToScreen(screen, params)
-    }*/
-
-
 
    // AmonRa's backoffice query
 
-   async get_features(){
+    async get_features(){
       const cultureArtUrl = "?category=Cultura%20y%20arte" ; 
       const response = await makeBackendRequest(FEATURES_URL+cultureArtUrl,"GET",this.state.userData);
       const responseJson = await response.json();
@@ -138,7 +129,6 @@ class CultureArt extends Component{
     componentDidMount(){
       this.get_backend_data();
     }
-  
 
     // End backoffice query
     fixPlaceNameWithParenthesis(name){
@@ -192,14 +182,13 @@ class CultureArt extends Component{
                 <Text style={styles.text}>Dirección: {place.direction}</Text>
                 <Text style={styles.text}>Tel: {place.phone_number}</Text>
                 <Text style={styles.text}>Facebook: {place.facebook}</Text> 
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}}  onPress={() => this.props.navigation.navigate('SeeMore',{goToScreen: this.navigation, placeInfo: place})}>
+                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={() => this.props.navigation.navigate('SeeMore', getPropsFromPlace(place))}>
                   <View style={{flexDirection: 'row'}}>
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                   </View>
                 </TouchableOpacity>
                 </View>
                 </View>
-
 
               ))}
 

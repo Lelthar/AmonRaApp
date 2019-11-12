@@ -10,7 +10,6 @@ import {
 } from '../../assets/images/navigation';
 
 import Map from './Map';
-import Place from '../../../components/Map/Place/Place'
 
 import VirtualVisit from '../../../components/VirtualVisit/VirtualVisit';
 import ViromediaController from '../../../components/Viromedia/ViromediaController';
@@ -20,7 +19,7 @@ import CultureArt from '../../../components/Directory/CultureArt/CultureArt';
 import Institutional from '../../../components/Directory/Institutional/Institutional';
 import Hotels from '../../../components/Directory/Hotels/Hotels';
 import Gastronomy from '../../../components/Directory/Gastronomy/Gastronomy';
-import SeeMore from '../../../components/Directory/SeeMore/SeeMore';
+import SeeMore from './SeeMore';
 
 import TimeLine from './TimeLine';
 
@@ -61,10 +60,18 @@ const mapStack = createStackNavigator(
         headerLeft: (<View />)
       },
     },
-    Place: {
-      screen: Place,
+    SeeMore: {
+      screen: SeeMore,
       navigationOptions: {
         headerRight: <HamburgerButton />,
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
       },
     },
     Architecture:{
