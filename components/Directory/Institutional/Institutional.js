@@ -20,6 +20,7 @@ import {
 
 import {
   makeBackendRequest,
+  getPropsFromPlace,
 } from '../../../helpers/helpers'
 
 //Imports for redux
@@ -185,7 +186,7 @@ class Institutional extends Component{
                 <Text style={styles.text}>  Dirección: {place.direction} </Text>
                 <Text style={styles.text}>  Tel: {place.phone_number}</Text>
                 <Text style={styles.text}>  Facebook: {place.facebook}</Text> 
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={() => this.props.navigation.navigate('SeeMore',{goToScreen: this.navigation, placeInfo: place})} >
+                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={() => this.props.navigation.navigate('SeeMore', getPropsFromPlace(place))} >
                   <View style={{flexDirection: 'row'}}>
                     <Image  source={require('../../../images/icons/Directory/masinfogris.png')}/>
                   </View>

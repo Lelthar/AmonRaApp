@@ -2,7 +2,6 @@ import React from 'react';
 import {
   TouchableOpacity,
   View,
-  Image,
   Text
 } from 'react-native';
 
@@ -32,6 +31,19 @@ const BriefInformation = (props) => {
   toggleInformation = () => {
     props.setInformationVisible(false);
   };
+
+  getPropsFromMarker = (marker) => {
+    return {
+      title: marker.title,
+      description: marker.description,
+      direction: marker.direction,
+      phone_number: marker.tel,
+      facebook: marker.facebook,
+      images_url_1: marker.images_url[0], 
+      images_url_2: marker.images_url[1], 
+      images_url_3: marker.images_url[2],
+    };
+  }
 
   return (
     <View style={styles.briefInformationContainer} >
@@ -82,7 +94,7 @@ const BriefInformation = (props) => {
           </TouchableOpacity>
         </View>
         <View style={{flex:1, marginTop: 20}} >
-          <TouchableOpacity style={{flex: 1, alignItems: 'flex-end'}} onPress={()=> props.navigation.navigate('Place', {marker: props.marker})} >
+          <TouchableOpacity style={{flex: 1, alignItems: 'flex-end'}} onPress={()=> props.navigation.navigate('SeeMore', getPropsFromMarker(props.marker))} >
             <Icon
               name='plus-circle'
               size={30}

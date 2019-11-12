@@ -20,6 +20,7 @@ import {
 
 import {
   makeBackendRequest,
+  getPropsFromPlace,
 } from '../../../helpers/helpers'
 
 //Imports for redux
@@ -177,7 +178,7 @@ class Hotels extends Component{
                   <Text style={styles.text} >  Dirección: {hotel.direction} </Text>
                   <Text style={styles.text}>  Tel: {hotel.phone_number}</Text>
                   <Text style={styles.text}>  Facebook: {hotel.facebook}</Text>
-                  <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}}  onPress={() => this.props.navigation.navigate('SeeMore',{goToScreen: this.navigation, placeInfo: hotel})} >
+                  <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}}  onPress={() => this.props.navigation.navigate('SeeMore', getPropsFromPlace(hotel))} >
                     <View style={{flexDirection: 'row'}}>
                       <Image  source={ require('../../../images/icons/Directory/masinfogris.png') }/>
                     </View>
