@@ -75,7 +75,7 @@ const BriefInformation = (props) => {
           </View>
         )}
 
-        { props.marker.category == "Realidad Aumentada" && (
+        { props.marker.category == "Modelos 3D" && (
           <View style={{flex:1}} >
             <Text style={{color:'white',fontSize: 13}}>{"Dirígete a la sección Visita Virtual para ver Modelo 3D"}</Text>
           </View>
