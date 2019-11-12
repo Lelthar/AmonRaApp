@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {
 	View,
-	StyleSheet,
-	Image,TouchableOpacity,
-	Text,
+	Image,
 	ScrollView,
 } from 'react-native';
 
@@ -18,19 +16,19 @@ import {
   menuResetAction,
 } from '../../redux/actions/menuDataActions';
 
-import { 
-  FEATURES_URL,
-  PERIMETER_URL,
-  USER_DATA,
-} from '../../../constants/constants';
-
 import {
-  makeBackendRequest,
-} from '../../../helpers/helpers';
+  HEADER,
+  creatorCotent,
+  naturalContextContent,
+  socialContextContent,
+  solicitudContent
+} from "../../assets/constants/origin";
 
 import HamburgerMenu from '../partials/HamburgerMenu';
 import Option from '../partials/Option';
 import styles from '../../assets/styles/pages/architectureDetail';
+
+
 
 const mapStateToProps = state => {
   return {
@@ -72,23 +70,23 @@ class Origin extends Component {
 
 	render(){
     //Examples of props for the Option Partial, TODO: Replace with database query
-    const pic2 = { uri: "TODO:replace with url"};
-    const lorem = "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.";
-    const conformationObject = {name: "Conformación inicial", description: lorem };
-    const creatorObject = {name: "Creador de la iniciativa", description: lorem};
-    const naturalContextObject = {name: "Contexto natural", description: lorem};
-    const socialContextObject = {name: "Contexto socioeconómico", description: lorem};
-    const solicitudObject = {name: "Solicitud a la municipalidad", description: lorem};
+    const lorem = "Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.";
+
+    //const conformationObject = {name: "Conformación inicial", description: lorem };
+    const creatorObject = {name: "Creador de la iniciativa", description: creatorCotent};
+    const naturalContextObject = {name: "Contexto natural", description: naturalContextContent};
+    const socialContextObject = {name: "Contexto socioeconómico", description: socialContextContent};
+    const solicitudObject = {name: "Solicitud a la municipalidad", description: solicitudContent};
 		
 		return(
 
 			<View style={styles.container} >
         <View style={styles.imageContainer} >
-          <Image resizeMode='stretch' style={styles.image} source={pic2} />
+          <Image resizeMode='stretch' style={styles.image} source={HEADER} />
         </View>
         <View style={styles.informationContainer}>
           <ScrollView style={styles.scroll} >
-            <Option information={conformationObject} />
+            {/*<Option information={conformationObject} />*/}
             <Option information={creatorObject} />
             <Option information={naturalContextObject} />
             <Option information={socialContextObject} />
