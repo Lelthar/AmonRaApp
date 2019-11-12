@@ -53,23 +53,21 @@ const MapLayersMenu = (props) => {
 
   return (
     <View style={styles.capasMenu} >
-      <View style={{flex:15}} >
-        <TouchableOpacity style={styles.imgContainer} onPress={() => changeMapStyle()} >
+      <TouchableOpacity style={styles.imgContainerStyle} onPress={() => changeMapStyle()} >
           <Image
-            style={styles.squareButton}
+            style={styles.imageStyles}
             source={props.normalStyle ?
               SATELITAL_MAP :
               BASIC_MAP
             }
           />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.imgContainerBarrioAmon} onPress={() => setBarrioAmonDirection()} >
+          <Image
+            style={styles.imageStyles}
+            source={BARRIO_AMON_IMAGE}
+          />
         </TouchableOpacity>
-        <View style={{flex:0.50}} />
-        <TouchableOpacity style={styles.imgContainer} onPress={() => setBarrioAmonDirection()} >
-          <Image  style={styles.squareButton} source={BARRIO_AMON_IMAGE} />
-        </TouchableOpacity>
-        <View style={{flex:0.50}} />
-      </View>
-      <View style={{flex:1.3}} />
     </View>
   );
 }; 

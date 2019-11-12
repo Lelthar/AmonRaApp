@@ -169,9 +169,9 @@ const Map = (props) => {
       longitudeDelta: 0.004,
     });
 
-    if (!warningVisible) {
+    if (!warningVisible && perimeterDataLoaded) {
       const showWarningMessage = isOutBarrioAmon([coordinate.latitude, coordinate.longitude]);
-
+      
       props.setOutBarrioAmonVisibility(showWarningMessage);
 
       setWarningVisible(true);

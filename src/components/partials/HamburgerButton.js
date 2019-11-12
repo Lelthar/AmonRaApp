@@ -30,12 +30,21 @@ const HamburgerButton = (props) => {
   return (
     <View>
       <TouchableOpacity onPress={toggleMenuSide} >
-        <Icon
-          name='reorder'
-          size={30}
-          color="#127C8A"
-          style={{marginRight: 15}}
-        />
+        {props.menuSideState ? 
+          <Icon
+            name='reorder'
+            size={30}
+            color="#FFFFFF"
+            style={{marginRight: 15}}
+          /> :
+          <Icon
+            name='reorder'
+            size={30}
+            color="#10535D"
+            style={{marginRight: 15}}
+          />
+        }
+        
       </TouchableOpacity>
     </View>
   );
