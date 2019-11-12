@@ -8,6 +8,49 @@ import {
 import styles from "../../assets/styles/partials/tripleColFlatList";
 import narrativesInfo from "../../assets/files/narraciones.json";
 
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../redux/actions/menuDataActions";
+
+import HamburgerMenu from '../partials/HamburgerMenu';
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  };
+};
+
 class Narratives extends Component {
     constructor(props) {
         super(props);
@@ -29,6 +72,8 @@ class Narratives extends Component {
                     </TouchableOpacity>
                     )}
                 />
+            {this.props.menuSideState &&
+              <HamburgerMenu navigation={this.props.navigation} /> }
             </View>
         );
     }
@@ -39,4 +84,4 @@ class Narratives extends Component {
     }
 }
 
-export default (Narratives);
+export default connect(mapStateToProps,mapDispatchToProps)(Narratives);

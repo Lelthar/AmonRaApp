@@ -8,6 +8,49 @@ import {
 import styles from "../../assets/styles/partials/tripleColFlatList";
 import charactersInfo from "../../assets/files/personajes.json";
 
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../redux/actions/menuDataActions";
+
+import HamburgerMenu from '../partials/HamburgerMenu';
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  };
+};
+
 class Characters extends Component {
     constructor(props) {
         super(props);
@@ -29,15 +72,15 @@ class Characters extends Component {
                     </TouchableOpacity>
                     )}
                 />
+                {this.props.menuSideState &&
+                  <HamburgerMenu navigation={this.props.navigation} /> }
             </View>
         );
     }
-
+    
     handleClick = (item) => {
         console.log(item.personaje);
         this.props.navigation.navigate('CharacterDetail',{tittle: item.nombre, description: item.personaje, imgHeader: item.imagen});
     }
 }
-
-
-export default (Characters);
+export default connect(mapStateToProps,mapDispatchToProps)(Characters);
