@@ -13,7 +13,7 @@ class Secrets extends Component {
         super(props);
         this.navigation = this.props.navigation;
     }
-
+    
     render() { 
         return( 
             <View style={styles.container}>
