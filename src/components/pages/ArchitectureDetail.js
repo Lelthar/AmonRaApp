@@ -88,10 +88,15 @@ class ArquitectureDetail extends Component {
       experiences: this.props.navigation.state.params.placeInfo.experiences ,
       historicalReview: this.props.navigation.state.params.placeInfo.historical_review,
       stylisticFeatures: this.props.navigation.state.params.placeInfo.stylistic_features,
-      imageUrl: this.props.navigation.state.params.placeInfo.image2
+      imageUrl: this.props.navigation.state.params.placeInfo.image2,
+      descriptionIsEmpty: !(this.props.navigation.state.params.placeInfo.brief_description.trim()==""),
+      fichaIsEmpty: !(this.props.navigation.state.params.placeInfo.architecture_information.trim()==""),
+      experiencesIsEmpty: !(this.props.navigation.state.params.placeInfo.experiences.trim()==""),
+      historicalReviewIsEmpty: !(this.props.navigation.state.params.placeInfo.historical_review.trim()==""),
+      stylisticFeaturesIsEmpty: !(this.props.navigation.state.params.placeInfo.stylistic_features.trim() == "")
     });
   }
-
+  
 	render(){
  
 		const pic2 = { uri: this.state.imageUrl };  
@@ -100,7 +105,7 @@ class ArquitectureDetail extends Component {
     const experiencesObject = {name: "Vivencias", description: this.state.experiences};
     const resenhaObject = {name: "Reseña histórica", description: this.state.historicalReview};
     const stylisticFeaturesObject = {name: "Características estilísticas", description: this.state.stylisticFeatures};
-		
+
     return (
       <View style={styles.container} >
         <View style={styles.imageContainer} >
@@ -109,11 +114,11 @@ class ArquitectureDetail extends Component {
         <View style={styles.informationContainer}>
           <Text style={styles.textTitle} >{this.state.title}</Text>
           <ScrollView style={styles.scroll} >
-            <Option information={descriptionObject} />
-            <Option information={fichaObject} />
-            <Option information={experiencesObject} />
-            <Option information={resenhaObject} />
-            <Option information={stylisticFeaturesObject} />
+            {this.state.descriptionIsEmpty && <Option information={descriptionObject} /> }
+            {this.state.fichaIsEmpty && <Option information={fichaObject} /> }
+            {this.state.experiencesIsEmpty && <Option information={experiencesObject} /> }
+            {this.state.historicalReviewIsEmpty && <Option information={resenhaObject} /> }
+            {this.state.stylisticFeaturesIsEmpty && <Option information={stylisticFeaturesObject} /> }
             </ScrollView>
         </View>
 				{ this.props.menuSideState &&

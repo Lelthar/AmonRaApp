@@ -1,8 +1,6 @@
 import { StyleSheet,PixelRatio } from "react-native";
 
-const imageRatio = PixelRatio.getPixelSizeForLayoutSize(60);
-const fiveRatio = PixelRatio.getPixelSizeForLayoutSize(5);
-const sevenRatio = PixelRatio.getPixelSizeForLayoutSize(7);
+const imageRatio = PixelRatio.getPixelSizeForLayoutSize(80);
 
 const styles = StyleSheet.create({
 
