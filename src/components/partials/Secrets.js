@@ -8,6 +8,49 @@ import {
 import styles from "../../assets/styles/partials/tripleColFlatList";
 import secretsInfo from "../../assets/files/secretos.json";
 
+import { connect } from "react-redux";
+
+import {
+  filterMenuAction,
+  activeFiltersAction,
+  menuSideAction,
+  rateScreenAction,
+  guideScreenAction,
+  menuResetAction,
+} from "../../redux/actions/menuDataActions";
+
+import HamburgerMenu from '../partials/HamburgerMenu';
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilterMenu: (data) => {
+      dispatch(filterMenuAction(data));
+    },
+    setActiveFilters: (data) => {
+      dispatch(activeFiltersAction(data));
+    },
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+
+    },
+    setRateScreen: (data) => {
+      dispatch(rateScreenAction(data));
+    },
+    setGuideScreen: (data) => {
+      dispatch(guideScreenAction(data));
+    },
+    resetAll: () => {
+      dispatch(menuResetAction());
+    },
+  };
+};
+
 class Secrets extends Component {
     constructor(props) {
         super(props);
@@ -29,6 +72,8 @@ class Secrets extends Component {
                     </TouchableOpacity>
                     )}
                 />
+                {this.props.menuSideState &&
+                  <HamburgerMenu navigation={this.props.navigation} /> }
             </View>
         );
     }
@@ -39,4 +84,4 @@ class Secrets extends Component {
     }
 }
 
-export default (Secrets);
+export default connect(mapStateToProps,mapDispatchToProps)(Secrets);
