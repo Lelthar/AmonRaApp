@@ -22,7 +22,7 @@ class ExperiencesARBuilding extends Component {
                     style={styles.houseImage} 
                     source={{uri: houseImage}}/>
 
-                <Text style={styles.houseTittle}>Casa Verde</Text>
+                <Text style={styles.houseTittle}>Default Tittle</Text>
 
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.houseDescription}>
