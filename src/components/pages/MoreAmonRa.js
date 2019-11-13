@@ -62,7 +62,6 @@ const MoreAmonRa = (props) => {
   };
 
   goToParticipatoryProcess = () => {
-    console.log(participatoryProcess.images_url_1 == "");
     props.navigation.navigate('ParticipatoryProcess', participatoryProcess);
   };
 

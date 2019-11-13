@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 import styles from "../../assets/styles/pages/amonRaProject";
 
+import Swiper from 'react-native-swiper';
+
 import Option from '../partials/Option';
 import Credits from '../partials/Credits';
 import HamburgerMenu from '../partials/HamburgerMenu';
