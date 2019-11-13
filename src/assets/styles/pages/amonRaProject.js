@@ -15,6 +15,11 @@ const styles = StyleSheet.create({
     marginTop: '5%',
     marginBottom: '5%',
   },
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#111111',
+  },
 });
 
 export default styles;

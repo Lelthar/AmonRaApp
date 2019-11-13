@@ -16,9 +16,23 @@ const styles = StyleSheet.create({
   },
   description:{
     textAlign: "justify", 
-    fontSize:18,
+    fontSize: 18,
     color: "grey",
     margin:'5%',
+  },
+  descriptionBody:{
+    textAlign: "justify", 
+    fontSize: 18,
+    color: "grey",
+    marginRight:'5%',
+    marginLeft:'5%',
+  },
+  descriptionTitle:{
+    textAlign: "justify", 
+    fontSize: 18,
+    color: "#10535D",
+    marginRight:'5%',
+    marginLeft:'5%',
   },
   arrow:{
     marginRight:'5%',

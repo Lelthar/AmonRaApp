@@ -14,6 +14,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#111111',
+  },
 });
 
 export default styles;

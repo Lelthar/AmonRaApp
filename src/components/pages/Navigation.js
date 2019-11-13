@@ -38,6 +38,7 @@ import CharacterDetail from '../partials/CharacterDetail';
 import Literature from '../partials/Literature';
 import MoreAmonRa from './MoreAmonRa';
 import AmonRaProject from './AmonRaProject';
+import ParticipatoryProcess from "./ParticipatoryProcess";
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -254,6 +255,21 @@ const mapStack = createStackNavigator(
         } 
       },
     },
+    ParticipatoryProcess: {
+      screen: ParticipatoryProcess,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proceso participativo",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   }
 );
 
@@ -452,6 +468,21 @@ const virtualVisitStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Proyecto Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ParticipatoryProcess: {
+      screen: ParticipatoryProcess,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proceso participativo",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -746,6 +777,21 @@ const urbanOfferStack = createStackNavigator(
         } 
       },
     },
+    ParticipatoryProcess: {
+      screen: ParticipatoryProcess,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proceso participativo",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -783,6 +829,21 @@ const augmentedRealityStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Arquitectura",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ParticipatoryProcess: {
+      screen: ParticipatoryProcess,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proceso participativo",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -987,6 +1048,21 @@ const timeLineStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Proyecto Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    ParticipatoryProcess: {
+      screen: ParticipatoryProcess,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Proceso participativo",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },

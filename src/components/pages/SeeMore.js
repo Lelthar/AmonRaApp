@@ -24,50 +24,51 @@ const mapStateToProps = state => {
 // End of redux imports
 
 const SeeMore = (props) => {
+
   return (
-  <View style={styles.container}>
+    <View style={styles.container}>
 
-    <View style={{flex:0.35}}>
-      <Swiper loop>
-        {props.navigation.state.params.images_url_1 != "" && (
-          <View style={styles.slide}>
-            <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
-          </View>
-        )}
-        {props.navigation.state.params.images_url_2 != "" && (
-          <View style={styles.slide}>
-            <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_2}} />
-          </View>
-        )}
-        {props.navigation.state.params.images_url_3 != "" && (
-          <View style={styles.slide}>
-            <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_3}} />
-          </View>
-        )}
-      </Swiper>
-    </View> 
+      <View style={{flex:0.35}}>
+        <Swiper>
+          {props.navigation.state.params.images_url_1 != "" && (
+            <View style={styles.slide}>
+              <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
+            </View>
+          )}
+          {props.navigation.state.params.images_url_2 != "" && (
+            <View style={styles.slide}>
+              <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_2}} />
+            </View>
+          )}
+          {props.navigation.state.params.images_url_3 != "" && (
+            <View style={styles.slide}>
+              <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_3}} />
+            </View>
+          )}
+        </Swiper>
+      </View> 
 
-    <View style={{flex:0.65}}>  
-      <Text style={styles.titleOr} >{props.navigation.state.params.title}</Text>
-      <ScrollView>
-        <Text style = {styles.descriptionOr}>{props.navigation.state.params.description} </Text>
-        {props.navigation.state.params.direction != "" && (
-          <Text style = {styles.directionOr}>Dirección: {props.navigation.state.params.direction } </Text> 
-        )}
-        {props.navigation.state.params.phone_number != "" && (
-          <Text style = {styles.phoneOr}>Tel: {props.navigation.state.params.phone_number} </Text> 
-        )}
-        {props.navigation.state.params.facebook != "" && (
-          <Text style = {styles.facebookOr}>Facebook: {props.navigation.state.params.facebook} </Text>
-        )}
-      </ScrollView>
+      <View style={{flex:0.65}}>  
+        <Text style={styles.titleOr} >{props.navigation.state.params.title}</Text>
+        <ScrollView>
+          <Text style = {styles.descriptionOr}>{props.navigation.state.params.description} </Text>
+          {props.navigation.state.params.direction != "" && (
+            <Text style = {styles.directionOr}>Dirección: {props.navigation.state.params.direction } </Text> 
+          )}
+          {props.navigation.state.params.phone_number != "" && (
+            <Text style = {styles.phoneOr}>Tel: {props.navigation.state.params.phone_number} </Text> 
+          )}
+          {props.navigation.state.params.facebook != "" && (
+            <Text style = {styles.facebookOr}>Facebook: {props.navigation.state.params.facebook} </Text>
+          )}
+        </ScrollView>
+      </View>
+
+      {props.menuSideState &&
+        <HamburgerMenu navigation={props.navigation} />
+      }
+
     </View>
-
-    {props.menuSideState &&
-      <HamburgerMenu navigation={props.navigation} />
-    }
-
-  </View>
   );
 };
 
