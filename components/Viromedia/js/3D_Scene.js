@@ -70,26 +70,26 @@ var MainScene = createReactClass({
 
   _object3dSelect(objectName){
     const objects = {
-      250 : HousesObject.gonzalesFeo,
-      251 : HousesObject.centroCine,
-      252 : HousesObject.casaVerde,
-      254 : HousesObject.alianzaFrancesa,
-      256 : HousesObject.castilloDelMoro,
-      261 : HousesObject.quesadaAvendano,
-      262 : HousesObject.serranoBonilla,
+      337 : HousesObject.centroCine,
+      338 : HousesObject.gonzalesFeo,
+      339 : HousesObject.casaVerde,
+      340 : HousesObject.alianzaFrancesa,
+      341 : HousesObject.quesadaAvendano,
+      342 : HousesObject.serranoBonilla,
+      343 : HousesObject.castilloDelMoro,
     };
     return objects[objectName];
   },
 
   _material3dSelect(materialName){
     const objects = {
-      250 : HousesMaterials.gonzalesFeo,
-      251 : HousesMaterials.centroCine,
-      252 : HousesMaterials.casaVerde,
-      254 : HousesMaterials.alianzaFrancesa,
-      256 : HousesMaterials.castilloDelMoro,
-      261 : HousesMaterials.quesadaAvendano,
-      262 : HousesMaterials.serranoBonilla,
+      337 : HousesMaterials.centroCine,
+      338 : HousesMaterials.gonzalesFeo,
+      339 : HousesMaterials.casaVerde,
+      340 : HousesMaterials.alianzaFrancesa,
+      341 : HousesMaterials.quesadaAvendano,
+      342 : HousesMaterials.serranoBonilla,
+      343 : HousesMaterials.castilloDelMoro,
     };
     return objects[materialName];
   },
