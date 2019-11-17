@@ -74,7 +74,7 @@ export class ViromediaController extends Component {
 
   componentDidMount(){
     if (this.state.navigatorType == NAVIGATOR_TYPE_3D){
-      if(this.state.viro3dProps.id==261 | this.state.viro3dProps.id==262){
+      if(this.state.viro3dProps.id==341 | this.state.viro3dProps.id==342){
         this.setState({
           switchButtomVisible: false,
         });

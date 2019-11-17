@@ -45,9 +45,9 @@ import {
 
 import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
 
-const HOUSES = [261,250,251,256,252,254,262];
+const HOUSES = [337,338,339,340,341,342,343];
 const URL_360 = "?category=Fotos%20360°" ;
-const URL_3D = "?category=Patrimonio%20Arquitectónico";
+const URL_3D = "?category=Modelos%203D";
 
 const mapStateToProps = state => {
   return {
@@ -108,7 +108,7 @@ class VirtualVisit extends Component{
     
     let response3D = await makeBackendRequest(FEATURES_URL+URL_3D,"GET",this.state.userData);
     let responseJson3D = await response3D.json();
-
+    
     const resultJson3D = responseJson3D.filter(element => {
       return HOUSES.indexOf(element.id) != -1;
     });
