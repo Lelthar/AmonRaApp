@@ -1,4 +1,3 @@
-'use strict'
 import React, { Component } from 'react';
 
 import {
@@ -7,12 +6,11 @@ import {
 
 import {
   ViroARScene,
-  Viro3DView, 
+  Viro3DObject, 
   ViroAmbientLight, 
   ViroNode,
   ViroImage,
   ViroConstants,
-  ViroBox,
 } from 'react-viro';
 
 import Geolocation from 'react-native-geolocation-service';
@@ -88,18 +86,11 @@ export class ARScene extends Component {
   }
 
   render() {
-    console.log(models);
     return (
       <ViroARScene onTrackingUpdated={this._onTrackingUpdated}>
-        {this.state.sceneVisible && this.state.trackingUpdated && (
-          /*<ViroImage
-          position={[0,0.1,-2]}
-          resizeMode='ScaleToFit'
-          scale={[1,1,1]}
-          source={{uri: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F28.VistaAntiguaCasaCiprianoHerreroDesdeEsquinaSuroesteEntreAvenida11yCalle3%2FcasaCiprianoAntigua.jpg?alt=media&token=e4f0f281-0099-4ac1-af3a-52329c71ef4e"}}
-          />*/
+        {this.state.sceneVisible && this.state.trackingUpdated && 
           this.renderARViews()
-        )}
+        }
       </ViroARScene>
     );
   }
@@ -109,6 +100,7 @@ export class ARScene extends Component {
     this.state.nearestARPlaces.forEach((item, index)=> {
       renderedViews.push(this._checkIfShouldEnableARView(item, index));
     })
+    console.log("Rendered Views",renderedViews);
     return renderedViews;
   }
 
@@ -158,12 +150,12 @@ export class ARScene extends Component {
   _checkIfShouldEnableARView = (place, index) => {
     return (
       this.state.arePlacesBeingWatched[index] 
-        ? this._createARView(place)
+        ? this._setARView(place)
         : null
     );
   }
   
-  _createARView = (place) => {
+  _setARView = (place) => {
     let newARView = this._transformMercPointToAR(this.state.userMercProjection, place);
     let imageScale = this._getViewScale(newARView, SIZE_MAX, SIZE_MIN);
     let buttonScale = this._getViewScale(newARView, LABEL_SIZE_MAX, LABEL_SIZE_MIN);
@@ -171,24 +163,21 @@ export class ARScene extends Component {
   }
 
   showARView = (viewAR, imageScale, buttonScale) => {
-    let pos = 0;
-    viewAR.z > 0
-    ? pos = 1
-    : pos = -1
     console.log("Activando",viewAR);
+    console.log(imageScale,buttonScale);
     return( 
       <ViroNode key={viewAR.placeID}>
         <ViroAmbientLight color="#FFFFFF"/>
-        <Viro3DView 
+        <Viro3DObject
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle)}
-          source={this._get3DButtonlByViewName(viewAR.label3DView)} 
-          position={[0, 0.1, -1]}
+          source={this._get3DButtonByViewName(viewAR.label3DObject)} 
+          position={[0, 1, -1]}
           scale={buttonScale}
-          resources={[this._get3DMaterialByViewName(viewAR.label3DView)]}
+          resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
           type="OBJ" 
         />
         <ViroImage
-          position={[viewAR.x, 0.1, viewAR.z + pos - 2]}
+          position={[0, 0.1, -2]}
           resizeMode='ScaleToFit'
           scale={imageScale}
           source={{uri: viewAR.img}}
@@ -252,17 +241,17 @@ export class ARScene extends Component {
     let angle = (compassHeading * Math.PI)/180;
     let newRotatedX = objFinalPosX * Math.cos(angle) - objFinalPosZ * Math.sin(angle);
     let newRotatedZ = objFinalPosZ * Math.cos(angle) + objFinalPosX * Math.sin(angle);  
-    return this._generateARView(newRotatedX, -newRotatedZ, ViewMercPoint);
+    return this._createARObject(newRotatedX, -newRotatedZ, ViewMercPoint);
   }
   
-  _generateARView = (newX, newZ, place) => {
+  _createARObject = (newX, newZ, place) => {
     return ({ 
               x: newX, 
               z: newZ, 
               placeID: place.placeID, 
               tittle: place.tittle,
               img: place.img, 
-              label3DView: place.label3DView,
+              label3DObject: place.label3DObject,
               "min_degree": place.min_degree,
               "max_degree": place.max_degree
            });
@@ -293,7 +282,7 @@ export class ARScene extends Component {
     return (value / 180.0) * Math.PI;
   }
 
-  _get3DButtonlByViewName = (viewName) => {
+  _get3DButtonByViewName = (viewName) => {
     const buttons = {
       "calle3Ahaciaav11": Items3D.calle3Ahaciaav11,
       "casa936": Items3D.casa936,
