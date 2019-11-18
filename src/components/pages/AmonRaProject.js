@@ -81,8 +81,8 @@ const AmonRaProject = (props) => {
   const Creditos = {name: "Créditos", credits: creditsList };
   const Contacto = {name: "Contacto", description: contactoDetails };
 
-  const image_1 = "";
-  const image_2 = "";
+  const image_1 = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Proyecto_AmonRA%2FDSC02752_optimized.jpg?alt=media&token=898febcc-6dec-484c-ad95-bd1f3cb2e236";
+  const image_2 = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Proyecto_AmonRA%2FDSC02774.JPG?alt=media&token=f222f984-16e3-4bd5-9996-50f10e4d8b8d";
 
   return (
     <View style={styles.container}>

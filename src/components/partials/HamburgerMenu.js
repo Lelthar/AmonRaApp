@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-
-  StyleSheet,
-    Text,
-    Dimensions,
-    View,
-    TouchableOpacity,
-
+  Text,
+  View,
+  TouchableOpacity,
 } from 'react-native';
+
+import {
+  makeBackendRequest,
+} from '../../../helpers/helpers';
+
+import {
+  SEARCH_INTERMEDIATES, 
+  USER_DATA,
+} from '../../../constants/constants';
 
 import { SearchBar } from 'react-native-elements';
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from "../../assets/styles/partials/hamburgerMenu";
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 const HamburguerComponent = (props) => {
 
   const [isTextDiscoverPressed,setTextDiscoverPressed] = useState(false);
+  const [userData, setUserData] = useState(null);
   const [searchText, setSearchText] = useState('');
   const search = searchText;
 
@@ -28,11 +36,35 @@ const HamburguerComponent = (props) => {
     setSearchText(search);
   }
 
-  onClickSearchIcon = () =>{
-    message = "Clic en el icono de buscar ";
+  onClickSearchIcon = async () =>{
+    /*message = "Clic en el icono de buscar ";
     message = message.concat(searchText);
-    console.error(message);
+    console.error(message);*/
+    if (searchText != "") {
+      const searchTextParam =  "?search=" + encodeURI(searchText);
+
+      const response = await makeBackendRequest(SEARCH_INTERMEDIATES+searchTextParam,"GET",userData);
+
+      console.log(response.status);
+
+      const responseJson = await response.json();
+
+      console.log(responseJson);
+      if (response.status === 200) {
+        props.navigation.navigate('Search', {results: responseJson});
+      }
+    }
   }
+
+  getUserData = async () => {
+    const userDataStorage = await AsyncStorage.getItem(USER_DATA);
+
+    setUserData(JSON.parse(userDataStorage));
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <View style={styles.hamburgerMenu}>

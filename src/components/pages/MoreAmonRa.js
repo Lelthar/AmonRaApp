@@ -26,9 +26,9 @@ const MoreAmonRa = (props) => {
 
   const participatoryProcess = {
     navigation: props.navigation,
-    images_url_1: "",
-    images_url_2: "",
-    images_url_3: "",
+    images_url_1: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Proceso_Participativo%2FFestivalAm%C3%B3nCultural2017.JPG?alt=media&token=a5454606-d8d0-4c39-982f-6e4810af6c55",
+    images_url_2: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Proceso_Participativo%2FTalleresparticipativos1.JPG?alt=media&token=5d234724-2946-4ce5-9253-3c9521210f52",
+    images_url_3: "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Proceso_Participativo%2FTalleresparticipativos2.JPG?alt=media&token=037afc03-22d4-4bc1-a86b-e348fc9d6c5a",
     events: [
       {
         title: "Procesos participativos",
@@ -57,6 +57,8 @@ const MoreAmonRa = (props) => {
     ],
   };
 
+  const headerImage = "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Mas_AmonRA%2FIMG_0478_optimized.jpg?alt=media&token=d6353fba-f58f-4398-9bcf-ac1aeaf14083"
+
   goToProjects = () => {
     props.navigation.navigate('AmonRaProject', {navigation: props.navigation});
   };
@@ -68,7 +70,7 @@ const MoreAmonRa = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.header} >
-        <Image resizeMode='stretch' source={HEADER} />
+        <Image resizeMode='stretch' source={{uri: headerImage}} />
       </View>
       <View style={styles.buttonsSection}>
         <OptionButton image={PROJECTS} goTo={goToProjects} />
