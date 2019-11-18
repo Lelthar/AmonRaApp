@@ -3,15 +3,15 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   briefInformationContainer: {
     flex:14,
-    flexDirection: 'row',
+    flexDirection: "row",
     padding:15,
     width:300,
     position:"absolute",
     bottom:0,
-    backgroundColor:'rgba(54, 145, 160, 0.8)'
+    backgroundColor:"#00A2B5",
   },
   briefInformationText: {
-    color:'white',
+    color: "white",
     fontSize: 15,
   },
 });

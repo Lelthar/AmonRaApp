@@ -23,6 +23,8 @@ import SeeMore from './SeeMore';
 
 import TimeLine from './TimeLine';
 
+import Search from './Search';
+
 import HamburgerButton from '../partials/HamburgerButton';
 import HamburgerMenu from '../partials/HamburgerMenu';
 import Architecture from './Architecture.js';
@@ -270,6 +272,21 @@ const mapStack = createStackNavigator(
         } 
       },
     },
+    Search: {
+      screen: Search,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Resultados busqueda",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   }
 );
 
@@ -483,6 +500,21 @@ const virtualVisitStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Proceso participativo",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Search: {
+      screen: Search,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Resultados busqueda",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -792,6 +824,21 @@ const urbanOfferStack = createStackNavigator(
         } 
       },
     },
+    Search: {
+      screen: Search,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Resultados busqueda",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
   },
   {
     initialRouteName: 'UrbanOffer',
@@ -844,6 +891,21 @@ const augmentedRealityStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Proceso participativo",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Search: {
+      screen: Search,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Resultados busqueda",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -1063,6 +1125,21 @@ const timeLineStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Proceso participativo",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    Search: {
+      screen: Search,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Resultados busqueda",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
