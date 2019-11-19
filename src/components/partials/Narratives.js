@@ -85,7 +85,6 @@ class Narratives extends Component {
       this.setState({
         data: responseJson,
       });
-      console.log(this.state.data);
     }
 
     async get_user_data() {
@@ -121,7 +120,7 @@ class Narratives extends Component {
 
     handleClick = (item) => {
       console.log(item.image1_url)
-      this.props.navigation.navigate('CharacterDetail',{tittle: item.name, description: [item.description], imgHeader: item.image1_url});
+      this.props.navigation.navigate('CharacterDetail',{tittle: item.name, description: item.description, imgHeader: item.image1_url});
     }
 }
 
