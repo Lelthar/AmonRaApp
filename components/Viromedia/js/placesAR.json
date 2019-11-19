@@ -1,4 +1,16 @@
-[  
+[   
+    {
+        "placeID": 1, 
+        "X": -9342346.443794215, 
+        "Y": 1102025.1244025028,
+        "lat": 9.850768, 
+        "lon": -83.923726,
+        "tittle": "Mi casita",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F13.Vista%20CastillodelMorodesdeCalle3%2FcastilloMoroAntiguo.JPG?alt=media&token=c9b280ef-6208-4ff2-b3d5-704ccea5d65a", 
+        "label3DObject" : "castillodelmoro",
+        "min_degree": 230,
+        "max_degree": 320
+    }, 
     {
         "placeID": 285, 
         "X": -9359432.649797091,
@@ -8,7 +20,7 @@
         "tittle": "Castillo del Moro",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F13.Vista%20CastillodelMorodesdeCalle3%2FcastilloMoroAntiguo.JPG?alt=media&token=c9b280ef-6208-4ff2-b3d5-704ccea5d65a", 
         "label3DObject" : "castillodelmoro",
-        "min_degree": 220,
+        "min_degree": 170,
         "max_degree": 320
     }, 
     {
@@ -141,7 +153,7 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F3.VistaCasaSaborioIglesiasDesdeEsquinaSuroesteEntreAvenida9yCalle7%2FcasaVerde.JPG?alt=media&token=3db9b4d9-b474-4d5d-ac62-e9b6ba2e492a", 
         "label3DObject" : "casaverde",
         "min_degree": 340,
-        "max_degree": 100
+        "max_degree": 90
     },
     {
         "placeID": 288, 
@@ -152,8 +164,8 @@
         "tittle": "Escuela Técnica Nacional",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F16.VistaAntiguaEscuelaTecnicaNacional%2FescuelaTecnicaNacionalAntigua.jpg?alt=media&token=35381f18-d487-4a45-ad7e-a161d5a2b29e", 
         "label3DObject" : "escuelatecnicanacional",
-        "min_degree": 90,
-        "max_degree": 250
+        "min_degree": 110,
+        "max_degree": 180
     },
     {
         "placeID": 284, 
@@ -164,8 +176,8 @@
         "tittle": "Calle 5 hacia Avenida 9",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F12.VistaCalle5SobreAvenida11haciaAvenida9%2Fcalle5sobreAvenida11haciaAvenida9.jpg?alt=media&token=2621de75-b566-43be-a462-80a6e8d2f856", 
         "label3DObject" : "calle5haciaav9",
-        "min_degree": 90,
-        "max_degree": 270
+        "min_degree": 130,
+        "max_degree": 230
     },
     {
         "placeID": 287, 
@@ -189,7 +201,7 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F10.VistaRestauranteSilvestre(AntiguaCasaPeraltaZeller)%2CdesdeEsquinaNoresteEntreAvenida11yCalle%203A%2FrestauranteSilvestre.JPG?alt=media&token=fa6b5fae-1990-4e62-9b12-6f0a65c459bc", 
         "label3DObject" : "peraltazeller",
         "min_degree": 150,
-        "max_degree": 300
+        "max_degree": 270
     },
     {
         "placeID": 302, 
@@ -200,8 +212,8 @@
         "tittle": "Hotel Amstel Amón",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F30.VistaAntiguoHotelAmstelAmondesdeesquinasuroesteentreAvenida11yCalle3A%2FhotelAmstelAmonAntiguo.JPG?alt=media&token=2c509aad-8c5d-4fe2-b380-f9a6eceace58", 
         "label3DObject" : "hotelAmstelAmon",
-        "min_degree": 300,
-        "max_degree": 120
+        "min_degree": 340,
+        "max_degree": 90
     },
     {
         "placeID": 281, 

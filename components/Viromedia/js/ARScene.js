@@ -1,3 +1,4 @@
+'use strict'
 import React, { Component } from 'react';
 
 import {
@@ -20,6 +21,7 @@ import Items3D from './res/indexObj';
 import Materials3D from './res/indexMaterials';
 
 const DEGREE_UPDATE_RATE = 10;
+const DISTANCE_MIN = 1;
 const DISTANCE_MAX = 100;
 const SIZE_MIN = 1;
 const SIZE_MAX = 15;
@@ -27,6 +29,7 @@ const LABEL_SIZE_MIN = 0.025;
 const LABEL_SIZE_MAX = 0.5;
 
 let heading = 0;
+let watchID = 0;
 
 export class ARScene extends Component {
 
@@ -34,16 +37,16 @@ export class ARScene extends Component {
     super(props);
 
     this.state = {
-      userMercProjection: null,
       sceneVisible: false,
       trackingUpdated: true,
       arePlacesBeingWatched: [false,false,false],
+      userMercProjection: null,
+      scale: [],
+      labelScale: [],
       nearestARPlaces: [
-          {
+        {
             x: 0, 
             z: 0, 
-            lat: 0,
-            lon: 0,
             placeID: 0, 
             tittle: "",
             img: "", 
@@ -54,8 +57,6 @@ export class ARScene extends Component {
         {
             x: 0, 
             z: 0, 
-            lat: 0,
-            lon: 0,
             placeID: 0, 
             tittle: "",
             img: "", 
@@ -66,8 +67,6 @@ export class ARScene extends Component {
         {
           x: 0, 
           z: 0, 
-          lat: 0,
-          lon: 0,
           placeID: 0, 
           tittle: "",
           img: "", 
@@ -81,27 +80,9 @@ export class ARScene extends Component {
     RNSimpleCompass.start(DEGREE_UPDATE_RATE, (degree) => {
       heading = degree 
       console.log(degree);
-      this.state.sceneVisible && this._iterateARViewsHeading();
+      this.props.arSceneNavigator.viroAppProps.changeCompass(heading);
+      this._iterateARViewsHeading();
     });
-  }
-
-  render() {
-    return (
-      <ViroARScene onTrackingUpdated={this._onTrackingUpdated}>
-        {this.state.sceneVisible && this.state.trackingUpdated && 
-          this.renderARViews()
-        }
-      </ViroARScene>
-    );
-  }
-
-  renderARViews = () => {
-    let renderedViews = [];
-    this.state.nearestARPlaces.forEach((item, index)=> {
-      renderedViews.push(this._checkIfShouldEnableARView(item, index));
-    })
-    console.log("Rendered Views",renderedViews);
-    return renderedViews;
   }
 
   componentDidMount(){
@@ -110,13 +91,33 @@ export class ARScene extends Component {
     } 
   }
 
-  _iterateARViewsHeading = () => {
-    let newArePlacesBeingWatched = [];
-    this.state.arePlacesBeingWatched.forEach((item, index) => {
-      newArePlacesBeingWatched.push(this._isCurrentHeadingBetweenViewsHeadingRange(index));
-    });
+  componentWillUnmount(){
+    RNSimpleCompass.stop();
+    Geolocation.clearWatch(watchID);
+    Geolocation.stopObserving();
+  }
 
+  render() { 
+    return (
+      <ViroARScene onTrackingUpdated={this._onTrackingUpdated}>
+        {this.state.sceneVisible && this.state.trackingUpdated && (
+          this.state.nearestARPlaces.forEach((item , index)=> {
+             this.enableARViewByHeadingCompass(item, index)
+          })
+        )}
+      </ViroARScene>
+    );
+  }
+
+  _iterateARViewsHeading = () => {
+    console.log("Iterating views");
+    let newArePlacesBeingWatched = [];
+    this.state.nearestARPlaces.forEach((item, index) => {
+      newArePlacesBeingWatched.push(this._isCurrentHeadingBetweenViewsHeadingRange(item));
+    });
+    
     if(this.state.arePlacesBeingWatched.toString() !== newArePlacesBeingWatched.toString()){
+      console.log("newArePlacesBeingWatched",newArePlacesBeingWatched);
       this.setState({
         arePlacesBeingWatched: newArePlacesBeingWatched,
       });
@@ -127,14 +128,17 @@ export class ARScene extends Component {
     let scale = 0;
     let ratio = minSize / maxSize;
     let distance = Math.abs(viewAR.x) +  Math.abs(viewAR.z);
+    console.log("Distance",distance);
     distance > DISTANCE_MAX
     ? scale = minSize
     : scale = distance * ratio * maxSize / 2;
+    if (scale > maxSize){
+      scale = maxSize;
+    }
     return [scale,scale,scale];
   }
 
-  _isCurrentHeadingBetweenViewsHeadingRange = (index) => {
-    let placeAR = this.state.nearestARPlaces[index];
+  _isCurrentHeadingBetweenViewsHeadingRange = (placeAR) => {
     if (placeAR.min_degree > placeAR.max_degree){ // Cuando es de i.e 240 a 40 
       if ((placeAR.min_degree > heading && heading < placeAR.max_degree) || (placeAR.min_degree < heading && heading > placeAR.max_degree)){
         return true;
@@ -147,37 +151,36 @@ export class ARScene extends Component {
     return false;
   }
 
-  _checkIfShouldEnableARView = (place, index) => {
+  enableARViewByHeadingCompass=(place, index)=>{
     return (
-      this.state.arePlacesBeingWatched[index] 
-        ? this._setARView(place)
-        : null
+      this.state.arePlacesBeingWatched[index]
+      ? this._setARView(place)
+      : null 
     );
   }
-  
+
   _setARView = (place) => {
     let newARView = this._transformMercPointToAR(this.state.userMercProjection, place);
     let imageScale = this._getViewScale(newARView, SIZE_MAX, SIZE_MIN);
     let buttonScale = this._getViewScale(newARView, LABEL_SIZE_MAX, LABEL_SIZE_MIN);
     return this.showARView(newARView, imageScale, buttonScale);
   }
-
+  
   showARView = (viewAR, imageScale, buttonScale) => {
     console.log("Activando",viewAR);
-    console.log(imageScale,buttonScale);
     return( 
       <ViroNode key={viewAR.placeID}>
         <ViroAmbientLight color="#FFFFFF"/>
         <Viro3DObject
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle)}
           source={this._get3DButtonByViewName(viewAR.label3DObject)} 
-          position={[0, 1, -1]}
+          position={[viewAR.x, 10 ,viewAR.z]}
           scale={buttonScale}
           resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
           type="OBJ" 
         />
         <ViroImage
-          position={[0, 0.1, -2]}
+          position={[viewAR.x, 0.1, viewAR.z]}
           resizeMode='ScaleToFit'
           scale={imageScale}
           source={{uri: viewAR.img}}
@@ -187,22 +190,12 @@ export class ARScene extends Component {
   }
 
   _watchGeopositionLookingForARPlaces = () => {
-    Geolocation.watchPosition(
+    watchID = Geolocation.watchPosition(
       (position) => {
         this._iterateARLocations(position.coords.latitude, position.coords.longitude)
       },
-      {distanceFilter: 1, maximumAge: 0, timeout: 20000},
+      {distanceFilter: 0, maximumAge: 0, timeout: 20000},
     );
-  }
-
-  _iterateARLocations = (lat, lon) => {
-    let nearestARPlaces = this._getThreeNearestPlaces(lat, lon);
-    let userMercProjection = this._coordLatLongToMercatorProjection(lat, lon);
-    this.setState({
-      userMercProjection: userMercProjection,
-      nearestARPlaces: nearestARPlaces,
-      sceneVisible: true,
-    });
   }
 
   _getThreeNearestPlaces = (userLat, userLon) => {
@@ -232,6 +225,30 @@ export class ARScene extends Component {
     });
     console.log("Nearest Places",[firstNearestPlace, secondNearestPlace, thirdNearestPlace])
     return [firstNearestPlace, secondNearestPlace, thirdNearestPlace];
+  }
+
+  _onTrackingUpdated=(state, reason) =>{
+    if (state == ViroConstants.TRACKING_NORMAL){
+      this.setState({
+        trackingUpdated: true,
+      });
+    }
+    else if (state == ViroConstants.TRACKING_NONE){
+      this.setState({
+        trackingUpdated: false,
+      });
+    }
+  }
+
+  _iterateARLocations = (lat, lon) => {
+    let nearestARPlaces = this._getThreeNearestPlaces(lat, lon);
+    //console.log("Mi casa",this._coordLatLongToMercatorProjection(9.850768, -83.923726));
+    let userMercProjection = this._coordLatLongToMercatorProjection(lat, lon);
+    this.setState({
+      userMercProjection: userMercProjection,
+      nearestARPlaces: nearestARPlaces,
+      sceneVisible: true,
+    });
   }
 
   _transformMercPointToAR = (userMercPoint, ViewMercPoint) => {
@@ -266,20 +283,25 @@ export class ARScene extends Component {
     return ({X:xmeters, Y:ymeters});
   }
 
-  _distanceBetweenTwoCoordinates = (lat1, lon1, lat2, lon2) => {
-    const earth_radius_Km = 6371; 
-    let distanceLat = this._toRadians(lat2-lat1);
-    let distanceLon = this._toRadians(lon2-lon1);
-    lat1 = this._toRadians(lat1);
-    lat2 = this._toRadians(lat2);
-    let a = Math.sin(distanceLat/2) * Math.sin(distanceLon/2) + Math.sin(distanceLon/2) * Math.sin(distanceLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    let distance = earth_radius_Km * c;
-    return distance;
-  }
-
   _toRadians = (value) => {
     return (value / 180.0) * Math.PI;
+  }
+
+  _distanceBetweenTwoCoordinates = (lat1, lon1, lat2, lon2) => {
+    var deg2rad = Math.PI / 180;
+    lat1 *= deg2rad;
+    lon1 *= deg2rad;
+    lat2 *= deg2rad;
+    lon2 *= deg2rad;
+    var diam = 12742; // Diameter of the earth in km (2 * 6371)
+    var dLat = lat2 - lat1;
+    var dLon = lon2 - lon1;
+    var a = (
+      (1 - Math.cos(dLat)) +
+      (1 - Math.cos(dLon)) * Math.cos(lat1) * Math.cos(lat2)
+    ) / 2;
+  
+    return diam * Math.asin(Math.sqrt(a));
   }
 
   _get3DButtonByViewName = (viewName) => {
@@ -370,19 +392,6 @@ export class ARScene extends Component {
     };
     
     return materials[viewName];
-  }
-
-  _onTrackingUpdated = (state, reason) => {
-    if (state == ViroConstants.TRACKING_NORMAL){
-      this.setState({
-        trackingUpdated: true,
-      });
-    }
-    else if (state == ViroConstants.TRACKING_NONE){
-      this.setState({
-        trackingUpdated: false,
-      });
-    }
   }
 
 }
