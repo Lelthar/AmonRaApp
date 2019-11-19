@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   View,
+  Text,
 } from 'react-native'; 
 
 import {
@@ -52,7 +53,7 @@ export class ViromediaController extends Component {
       content: this.props.navigation.state.params.filename,
 
       // AR Components Props
-      viroAppProps: {setInformation: this.showInfoMenu},
+      viroAppProps: {setInformation: this.showInfoMenu, changeCompass: this.changeCompass},
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
@@ -69,8 +70,15 @@ export class ViromediaController extends Component {
       switchButtomVisible: true,
       focusedScreen: true,
       loadedVisible: true,
+      compass: 0,
     }
   }   
+
+  changeCompass = (newCompass) => {
+    this.setState({
+      compass: newCompass,
+    })
+  }
 
   componentDidMount(){
     if (this.state.navigatorType == NAVIGATOR_TYPE_3D){
@@ -116,7 +124,9 @@ export class ViromediaController extends Component {
           initialScene={{scene: InitialARScene}} 
           onExitViro={this._exitViro} 
           viroAppProps={this.state.viroAppProps} />
-                                
+
+        <Text> {this.state.compass}</Text>                         
+
         {this.state.infoMenuVisible && (
           <InfoMenu 
             handlePressDataSheet={this.toggleDataSheet} 
