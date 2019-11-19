@@ -19,9 +19,6 @@ class CharacterDetail extends Component {
     }
 
     render() { 
-        const items = this.state.description.map((item) => {
-            return <Text style={styles.houseDescription}>{item}</Text>;
-        });
         return( 
             <View style={styles.container}>
                 <Image style={styles.houseImage} 
@@ -30,7 +27,7 @@ class CharacterDetail extends Component {
                 <Text style={styles.houseTittle}>{this.state.tittle}</Text>
 
                 <ScrollView style={styles.scrollView}>
-                    {items}
+                    <Text style={styles.houseDescription}>{this.state.description}</Text>
                 </ScrollView>
             </View>
         );

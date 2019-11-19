@@ -2,6 +2,7 @@ import React from 'react';
 import * as constants from '../../data/constants'
 import * as colors from '../../data/colors'
 
+import Orientation from 'react-native-orientation-locker';
 //react-native run-android --variant=gvrDebug
 
 import {
@@ -57,6 +58,8 @@ class RegisterMain extends React.Component {
   }
 
   componentDidMount(){
+
+    Orientation.lockToPortrait();
 
     try {
       GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true }).then(()=> {

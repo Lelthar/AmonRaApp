@@ -6,9 +6,20 @@ import {
     TouchableOpacity,
   } from 'react-native';
 import styles from "../../assets/styles/partials/tripleColFlatList";
-import charactersInfo from "../../assets/files/personajes.json";
 
 import { connect } from "react-redux";
+import AsyncStorage from '@react-native-community/async-storage';
+
+import { 
+  FEATURES_URL,
+  USER_DATA,
+} from '../../../constants/constants';
+
+import {
+  makeBackendRequest,
+} from '../../../helpers/helpers';
+
+const URL = "?category=Personaje";
 
 import {
   filterMenuAction,
@@ -55,20 +66,48 @@ class Characters extends Component {
     constructor(props) {
         super(props);
         this.navigation = this.props.navigation;
+
+        this.state = {
+          data: [],
+        }
+    }
+
+    componentDidMount(){
+      this.get_backend_data();
+    }
+
+    async get_features(){
+    
+      let response = await makeBackendRequest(FEATURES_URL+URL,"GET",this.state.userData);
+      let responseJson = await response.json();
+  
+      this.setState({
+        data: responseJson,
+      });
+    }
+
+    async get_user_data() {
+      const user_data_storage = await AsyncStorage.getItem(USER_DATA);
+      this.setState({ userData: JSON.parse(user_data_storage)});
+    }
+  
+    async get_backend_data() {
+      await this.get_user_data()
+      await this.get_features();
     }
 
     render() { 
         return( 
             <View style={styles.container}>
                 <FlatList
-                    data={charactersInfo}
+                    data={this.state.data}
                     numColumns={3}
                     keyExtractor={(item, index) => index}
                     contentContainerStyle={styles.list_style}
                     renderItem={({item}) => (
                         <TouchableOpacity style= {styles.list_item}
                             onPress={() => this.handleClick(item)}>
-                            <Image source={{uri: item.buttonLink}} style={styles.image} />
+                            <Image source={{uri: item.miniature_image_url}} style={styles.image} />
                     </TouchableOpacity>
                     )}
                 />
@@ -80,7 +119,7 @@ class Characters extends Component {
     
     handleClick = (item) => {
         console.log(item.personaje);
-        this.props.navigation.navigate('CharacterDetail',{tittle: item.nombre, description: item.personaje, imgHeader: item.imagen});
+        this.props.navigation.navigate('CharacterDetail',{tittle: item.name, description: item.description, imgHeader: item.image1_url});
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Characters);
