@@ -42,7 +42,6 @@ export default class InfoMenu extends Component {
         super(props);
     
         this.toggleDataSheet = this.toggleDataSheet.bind(this);
-        this.openExperiences = this.openExperiences.bind(this);
         
         this.state = {
             buildingARPressed: this.props.houseArPressed,
@@ -67,7 +66,7 @@ export default class InfoMenu extends Component {
                         <Text style={localStyles.textButton}> Ficha técnica</Text>
                     </TouchableOpacity>
             
-                    <TouchableOpacity style={localStyles.rowButton} onPress={() => this.openExperiences()}>
+                    <TouchableOpacity style={localStyles.rowButton}>
                         <Image source={vivenciasIcon} />
                         <Text style={localStyles.textButton}> Vivencias</Text>
                     </TouchableOpacity>
@@ -81,10 +80,7 @@ export default class InfoMenu extends Component {
         );
     }
     
-    openExperiences(){
-        this.props.navigation.navigate('ExperiencesARHouse',{goToScreen: this.props.navigation, housePressed: this.state.buildingARPressed});
-    }
-
+    
     toggleDataSheet(){
         this.props.handlePressDataSheet();
     }
@@ -102,12 +98,11 @@ export default class InfoMenu extends Component {
     async get_brief_description(){
         let URL_GET_INFO = BRIEF_DESCRIPTIONS_URL+FEATURE_ID+this.props.houseArPressed;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
-        console.log(response)
-        if (response.status != 404 && response.status != 203){
-            let responseJson = await response.json();
+        let responseJson = await response.json();
+        if(responseJson != undefined){
             this.setState({
                 informationText: responseJson.description,
-            });          
+            });  
         }
     } 
 }

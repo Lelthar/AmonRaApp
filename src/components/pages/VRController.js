@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import {
+  View,
+} from 'react-native'; 
+
+import {
   ViroVRSceneNavigator,
 } from 'react-viro';
 
 import VRSelectionMode from "../partials/VRSelectionMode";
+import Loaded from "../partials/Loaded";
 
 const InitialVRScene = require('./VRScene');
 
@@ -15,11 +20,13 @@ export class VRController extends Component {
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this._getSelectionButtons = this._getSelectionButtons.bind(this);
     this.setVRMode = this.setVRMode.bind(this);
+    this.showLoadedContent = this.showLoadedContent.bind(this);
 
     this.state = {
       sharedProps : this.props.sharedProps, 
       content: this.props.content,
       vrMode : null,
+      loadedVisible: true,
     }
   }   
   
@@ -34,11 +41,17 @@ export class VRController extends Component {
   // Returns the ViroSceneNavigator which will start the VR experience
   _getVRNavigator() {
     return (
-      <ViroVRSceneNavigator 
-        {...this.state.sharedProps}
-        initialScene={{scene: InitialVRScene}} 
-        vrModeEnabled={this.state.vrMode} 
-        viroAppProps={{data:this.state.content}}/>
+      <View style={{flex:1}}>
+        <ViroVRSceneNavigator 
+          {...this.state.sharedProps}
+          initialScene={{scene: InitialVRScene}} 
+          onExitViro={this._exitViro} 
+          vrModeEnabled={this.state.vrMode} 
+          viroAppProps={{data:this.state.content,handleClick:this.showLoadedContent}}/>
+
+        {this.state.loadedVisible && (<Loaded />)}
+          
+      </View>
     );
   }
 
@@ -51,6 +64,12 @@ export class VRController extends Component {
   setVRMode(vrMode) {
     this.setState({
         vrMode : vrMode,
+    });
+  }
+
+  showLoadedContent(){
+    this.setState({
+      loadedVisible : false,
     });
   }
 }
