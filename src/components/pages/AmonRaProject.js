@@ -87,7 +87,6 @@ const AmonRaProject = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerSection}>
-        <Image resizeMode='stretch' source={HEADER} />
         <Swiper>
           <View style={styles.slide}>
             <Image resizeMode='center' style={styles.imageOr} source={{uri: image_1}} />
