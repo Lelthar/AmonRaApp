@@ -9,6 +9,7 @@ import {
 
 import MenuImages from "../partials/MenuImages";
 import PointSheet from "../partials/PointSheet";
+import PointSheetView from "../partials/PointSheetView";
 import SwitchButtom from "../partials/SwitchButton";
 
 const Initial3DScene = require('./D3Scene');

@@ -3,9 +3,9 @@ import {Text, View, Dimensions, VirtualizedList} from 'react-native'
 import Image from 'react-native-scalable-image';
 import styles from "../../assets/styles/pages/timeline";
 
-const initialNumToRender = 3;
-const windowSize = 5;
-const totalItems = 77;
+const INITIAL_NUM_TO_RENDER = 3;
+const WINDOW_SIZE = 5;
+const TOTAL_ITEMS = 77;
 
 export default class Timeline extends Component {
   constructor(props) {
@@ -21,10 +21,10 @@ export default class Timeline extends Component {
     return (
       <View style={styles.container}>
         <VirtualizedList
-          initialNumToRender={initialNumToRender}
-          windowSize={windowSize}
+          INITIAL_NUM_TO_RENDER={INITIAL_NUM_TO_RENDER}
+          WINDOW_SIZE={WINDOW_SIZE}
           data={data}
-          getItemCount={(data) => totalItems}
+          getItemCount={(data) => TOTAL_ITEMS}
           getItem={(data, index) => {return data[index];}}
           renderItem={this.renderItem}
           automaticallyAdjustContentInsets={false}

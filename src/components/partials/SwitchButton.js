@@ -8,8 +8,8 @@ import {
     Text,
   } from 'react-native';
 
-const msg_switch = "Cambia el switch para ver detalles de elementos del glosario";
-const msg_switch_web = "Dirígete a la web de Amón_RA para ver más detalles del glosario";                                                                                                                                                        
+const SWITCH_MSG = "Cambia el switch para ver detalles de elementos del glosario";
+const SWITCH_MSG_WEB = "Dirígete a la web de Amón_RA para ver más detalles del glosario";                                                                                                                                                        
 
 export default class SwitchButton extends Component {
     constructor(props) {
@@ -17,7 +17,7 @@ export default class SwitchButton extends Component {
 
         this.state = {
             switchValue: false,
-            text: msg_switch,
+            text: SWITCH_MSG,
         }
     }
     
@@ -28,11 +28,11 @@ export default class SwitchButton extends Component {
       //state changes according to switch
       if(this.state.switchValue == true){
         this.setState({
-          text: msg_switch,
+          text: SWITCH_MSG,
         });
       }else{
         this.setState({
-          text: msg_switch_web,
+          text: SWITCH_MSG_WEB,
         });
       }
     };

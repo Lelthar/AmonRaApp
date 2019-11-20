@@ -19,8 +19,6 @@ import {
   makeBackendRequest,
 } from '../../../helpers/helpers';
 
-const URL = "?category=Narraciones";
-
 import {
   filterMenuAction,
   activeFiltersAction,
@@ -31,6 +29,8 @@ import {
 } from "../../redux/actions/menuDataActions";
 
 import HamburgerMenu from '../partials/HamburgerMenu';
+
+const URL = "?category=Narraciones";
 
 const mapStateToProps = state => {
   return {
@@ -65,6 +65,7 @@ const mapDispatchToProps = (dispatch) => {
 class Narratives extends Component {
     constructor(props) {
         super(props);
+        
         this.navigation = this.props.navigation;
         
         this.state = {
@@ -78,10 +79,8 @@ class Narratives extends Component {
     }
 
     async get_features(){
-    
       let response = await makeBackendRequest(FEATURES_URL+URL,"GET",this.state.userData);
       let responseJson = await response.json();
-  
       this.setState({
         data: responseJson,
       });
@@ -119,7 +118,6 @@ class Narratives extends Component {
     }
 
     handleClick = (item) => {
-      console.log(item.image1_url)
       this.props.navigation.navigate('ExperiencesDetail',{tittle: item.name, description: item.description, imgHeader: item.image1_url});
     }
 }

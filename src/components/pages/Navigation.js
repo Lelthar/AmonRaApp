@@ -10,7 +10,6 @@ import {
 } from '../../assets/images/navigation';
 
 import Map from './Map';
-
 import VirtualVisit from '../../../components/VirtualVisit/VirtualVisit';
 import ViromediaController from './ViromediaController';
 import UrbanOffer from '../../../components/Directory/Directory';

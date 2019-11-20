@@ -6,8 +6,9 @@ import {
     TouchableOpacity,
   } from 'react-native';
 
-const view_normal = require('../../../images/icons/virtualVisit/normal.png');
-const view_vr = require('../../../images/icons/virtualVisit/vr.png');
+  
+const NORMAL_VIEW = require('../../assets/images/virtualReality/normal.png');
+const VR_VIEW = require('../../assets/images/virtualReality/vr.png');
 
 export default class VRSelectionMode extends Component {
     constructor(props) {
@@ -22,13 +23,13 @@ export default class VRSelectionMode extends Component {
             <TouchableOpacity style={{marginBottom:"20%"}}
                 onPress={() => this.props.handleOptionClick(true)}>
     
-                <Image source={ view_vr }/>
+                <Image source={ VR_VIEW }/>
               </TouchableOpacity>
     
               <TouchableOpacity style={{marginTop:"20%"}}
                 onPress={() => this.props.handleOptionClick(false)}>
     
-                <Image source={ view_normal }/>
+                <Image source={ NORMAL_VIEW }/>
               </TouchableOpacity>
             </View>
           </View>

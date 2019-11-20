@@ -19,8 +19,6 @@ import {
   makeBackendRequest,
 } from '../../../helpers/helpers';
 
-const URL = "?category=Personaje";
-
 import {
   filterMenuAction,
   activeFiltersAction,
@@ -31,6 +29,8 @@ import {
 } from "../../redux/actions/menuDataActions";
 
 import HamburgerMenu from '../partials/HamburgerMenu';
+
+const URL = "?category=Personaje";
 
 const mapStateToProps = state => {
   return {
@@ -77,10 +77,8 @@ class Characters extends Component {
     }
 
     async get_features(){
-    
       let response = await makeBackendRequest(FEATURES_URL+URL,"GET",this.state.userData);
       let responseJson = await response.json();
-  
       this.setState({
         data: responseJson,
       });
@@ -118,7 +116,6 @@ class Characters extends Component {
     }
     
     handleClick = (item) => {
-        console.log(item.personaje);
         this.props.navigation.navigate('ExperiencesDetail',{tittle: item.name, description: item.description, imgHeader: item.image1_url});
     }
 }

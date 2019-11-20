@@ -3,10 +3,8 @@ import {
     Text,
     StyleSheet,
     View,
-    Dimensions,
     Image,
     TouchableOpacity,
-    WebView,
   } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -24,11 +22,12 @@ import {
 //-------------------------------
 
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';  
-  
+
+const CLOSE_BTN = require('../../assets/images/augmentedReality/close.png');
+
 export default class PointSheet extends Component {
     constructor(props) {
         super(props);
-        console.log("Const POintSheet");
 
         this.state ={
           data :  this.props.dataPoint.data,
@@ -40,7 +39,7 @@ export default class PointSheet extends Component {
           <View style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center'}}>                
               <View style={localStyles.dataSheet}>
                 <TouchableOpacity onPress={() => this.props.handlePressDataSheet()}>
-                  <Image source={require('../../../images/icons/RA/close.png')}  style={localStyles.closeButton}/>
+                  <Image source={CLOSE_BTN}  style={localStyles.closeButton}/>
                 </TouchableOpacity>
 
                 <View style={localStyles.containerImages}>
@@ -58,7 +57,6 @@ export default class PointSheet extends Component {
         );
     }
 }
-
 
 var localStyles = StyleSheet.create({
     dataSheet : {

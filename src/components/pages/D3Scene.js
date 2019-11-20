@@ -4,25 +4,22 @@ import React, { Component } from 'react';
 import {StyleSheet} from 'react-native';
 
 import {
-  ViroSpotLight,
   ViroDirectionalLight,
   ViroAmbientLight,
   ViroOrbitCamera,
   ViroScene,
   Viro3DObject,
-  ViroText,
   ViroSkyBox,
   ViroNode,
-  ViroMaterials,
 } from 'react-viro';
 
-//import objects and materials houses
+import Orientation from 'react-native-orientation-locker';
 import HousesObject from "../../assets/objects/houseObj";
 import HousesMaterials from "../../assets/objects/houseMaterials";
 
-var createReactClass = require('create-react-class');
+const grid_bg = require('../../assets/objects/grid_bg.jpg');
 
-import Orientation from 'react-native-orientation-locker';
+var createReactClass = require('create-react-class');
 
 var MainScene = createReactClass({
   getInitialState() {
@@ -33,19 +30,18 @@ var MainScene = createReactClass({
   },
 
   componentDidMount(){
-    console.log("Realizo el componentDidMount el 3D_SCENE")
     Orientation.lockToPortrait(); //this will lock the view to Portrait
   },
 
   render: function() {
     return (
-     <ViroScene style={styles.container}>
-        <ViroSkyBox source={{nx:require('../../assets/objects/grid_bg.jpg'),
-                             px:require('../../assets/objects/grid_bg.jpg'),
-                             ny:require('../../assets/objects/grid_bg.jpg'),
-                             py:require('../../assets/objects/grid_bg.jpg'),
-                             nz:require('../../assets/objects/grid_bg.jpg'),
-                             pz:require('../../assets/objects/grid_bg.jpg')}} />
+     <ViroScene>
+        <ViroSkyBox source={{nx:grid_bg,
+                             px:grid_bg,
+                             ny:grid_bg,
+                             py:grid_bg,
+                             nz:grid_bg,
+                             pz:grid_bg}} />
         <ViroOrbitCamera position={[0, 0, -0]} active={true} focalPoint={[0, 0, -1]} />
         <ViroDirectionalLight direction={[0, 0, -1]} color="#524C4C" />
 
@@ -61,8 +57,6 @@ var MainScene = createReactClass({
               onPinch={(pinchState, scaleFactor) => this._onPinch(pinchState, scaleFactor, this.state.scale)}
               type="OBJ"
             />
-            {/*<Viro3DObject source={require('./res/heart.obj')}
-                       materials={["heart"]} onPinch={this._onPinch} type="OBJ" />*/}
        </ViroNode>
      </ViroScene>
     );
@@ -99,39 +93,23 @@ var MainScene = createReactClass({
   },
 
   _onRotate(rotateState, rotationFactor, source) {
-    //console.log("rotation "+ this.state.rotation + "FACTOR: "+rotationFactor);
     if (rotateState == 2) {
       this.setState({
         rotation : [this.state.rotation[0] + 1.5, this.state.rotation[1], this.state.rotation[2]]
       });
       return;
     }
-    //this.arNodeRef.setNativeProps({rotation:[this.state.rotation[0], this.state.rotation[1] + rotationFactor, this.state.rotation[2]]});
   },
+
   _onPinch(pinchState, scaleFactor, source) {
-    console.log("Scale",source);
-    console.log("Scale Factor",scaleFactor);
-    console.log("PinchState",pinchState);
-    var newScale = this.state.scale.map((x)=>{return x * scaleFactor})
-
-    if (pinchState == 3) {
-
+    let newScale = this.state.scale.map((x)=>{return x * scaleFactor})
+    if (pinchState == 3){
       this.setState({
         scale : newScale
       });
       return;
     }
-
     this.arNodeRef.setNativeProps({scale:newScale});
-    //this.spotLight.setNativeProps({shadowFarZ: 6 * newScale[0]});
-  },
-});
-
-var styles = StyleSheet.create({
-  textStyle: {
-    fontFamily: 'HelveticaNeue-Medium',
-    fontSize: 18,
-    color: '#FFFFFF',
   },
 });
 
