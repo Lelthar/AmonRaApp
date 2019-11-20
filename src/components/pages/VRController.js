@@ -10,7 +10,7 @@ import {
 import VRSelectionMode from "../partials/VRSelectionMode";
 import Loaded from "../partials/Loaded";
 
-const InitialVRScene = require('./VRScene');
+const VR_SCENE = require('./VRScene');
 
 export class VRController extends Component {
 
@@ -44,7 +44,7 @@ export class VRController extends Component {
       <View style={{flex:1}}>
         <ViroVRSceneNavigator 
           {...this.state.sharedProps}
-          initialScene={{scene: InitialVRScene}} 
+          initialScene={{scene: VR_SCENE}} 
           onExitViro={this._exitViro} 
           vrModeEnabled={this.state.vrMode} 
           viroAppProps={{data:this.state.content,handleClick:this.showLoadedContent}}/>

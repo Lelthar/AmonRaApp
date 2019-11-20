@@ -12,7 +12,7 @@ import PointSheet from "../partials/PointSheet";
 import PointSheetView from "../partials/PointSheetView";
 import SwitchButtom from "../partials/SwitchButton";
 
-const Initial3DScene = require('./D3Scene');
+const D3_SCENE = require('./D3Scene');
 
 export class D3Controller extends Component {
 
@@ -50,7 +50,7 @@ export class D3Controller extends Component {
       <View style={{flex:1}}>
         <ViroVRSceneNavigator 
           {...this.state.sharedProps}
-          initialScene={{scene: Initial3DScene}} 
+          initialScene={{scene: D3_SCENE}} 
           onExitViro={this._exitViro} 
           vrModeEnabled={false}
           viroAppProps={this.state.viro3dProps}/>

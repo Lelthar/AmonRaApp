@@ -12,7 +12,7 @@ import DataSheet from "../partials/DataSheet";
 import InfoMenu from "../partials/InfoMenu";
 import Toast from '../partials/Toast';
 
-const InitialARScene = require('./ARScene');
+const AR_SCENE = require('./ARScene');
 
 export class ARController extends Component {
 
@@ -47,7 +47,7 @@ export class ARController extends Component {
       <View style={{flex:1}}>
         <ViroARSceneNavigator 
           {...this.state.sharedProps}
-          initialScene={{scene: InitialARScene}} 
+          initialScene={{scene: AR_SCENE}} 
           onExitViro={this._exitViro} 
           viroAppProps={this.state.viroAppProps} />
 
