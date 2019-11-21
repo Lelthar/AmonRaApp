@@ -99,9 +99,9 @@ export class ARScene extends Component {
     return (
       <ViroARScene onTrackingUpdated={this._onTrackingUpdated}>
         {this.state.sceneVisible && this.state.trackingUpdated && (
-          this.state.nearestARPlaces.forEach((item , index)=> {
-             this.enableARViewByHeadingCompass(item, index)
-          })
+          this.state.nearestARPlaces.map((item , index)=> (
+            this.enableARViewByHeadingCompass(item, index)
+          ))
         )}
       </ViroARScene>
     );
@@ -169,10 +169,18 @@ export class ARScene extends Component {
     return( 
       <ViroNode key={viewAR.placeID}>
         <ViroAmbientLight color="#FFFFFF"/>
+        <Viro3DObject
+          onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle)}
+          source={this._get3DButtonByViewName(viewAR.label3DObject)} 
+          position={[viewAR.x, 10 ,viewAR.z]}
+          scale={buttonScale}
+          resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
+          type="OBJ" 
+        />
         <ViroImage
-          position={[0,0.1,-2]}
+          position={[viewAR.x, 0.1, viewAR.z]}
           resizeMode='ScaleToFit'
-          scale={[1,1,1]}
+          scale={imageScale}
           source={{uri: viewAR.img}}
         />
       </ViroNode>
