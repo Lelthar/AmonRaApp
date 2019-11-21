@@ -10,21 +10,16 @@ import {
 } from '../../assets/images/navigation';
 
 import Map from './Map';
-
 import VirtualVisit from '../../../components/VirtualVisit/VirtualVisit';
-import ViromediaController from '../../../components/Viromedia/ViromediaController';
-
+import ViromediaController from './ViromediaController';
 import UrbanOffer from '../../../components/Directory/Directory';
 import CultureArt from '../../../components/Directory/CultureArt/CultureArt';
 import Institutional from '../../../components/Directory/Institutional/Institutional';
 import Hotels from '../../../components/Directory/Hotels/Hotels';
 import Gastronomy from '../../../components/Directory/Gastronomy/Gastronomy';
 import SeeMore from './SeeMore';
-
 import TimeLine from './TimeLine';
-
 import Search from './Search';
-
 import HamburgerButton from '../partials/HamburgerButton';
 import HamburgerMenu from '../partials/HamburgerMenu';
 import Architecture from './Architecture.js';
@@ -32,12 +27,12 @@ import ArchitectureDetail from './ArchitectureDetail';
 import ExperiencesMenu from './ExperiencesMenu';
 import ExperiencesARBuilding from '../partials/ExperiencesARBuilding';
 import Origin from './Origin';
-import Narratives from '../partials/Narratives';
-import Secrets from '../partials/Secrets';
-import Characters from '../partials/Characters';
-import Activities from '../partials/Activities';
-import CharacterDetail from '../partials/CharacterDetail';
-import Literature from '../partials/Literature';
+import Narratives from './Narratives';
+import Secrets from './Secrets';
+import Characters from './Characters';
+import Activities from './Activities';
+import ExperiencesDetail from '../partials/ExperiencesDetail';
+import Literature from './Literature';
 import MoreAmonRa from './MoreAmonRa';
 import AmonRaProject from './AmonRaProject';
 import ParticipatoryProcess from "./ParticipatoryProcess";
@@ -212,8 +207,8 @@ const mapStack = createStackNavigator(
         } 
       },
     },
-    CharacterDetail:{
-      screen: CharacterDetail,
+    ExperiencesDetail:{
+      screen: ExperiencesDetail,
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Personajes",
@@ -450,8 +445,8 @@ const virtualVisitStack = createStackNavigator(
         } 
       },
     },
-    CharacterDetail:{
-      screen: CharacterDetail,
+    ExperiencesDetail:{
+      screen: ExperiencesDetail,
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Personajes",
@@ -764,8 +759,8 @@ const urbanOfferStack = createStackNavigator(
         } 
       },
     },
-    CharacterDetail:{
-      screen: CharacterDetail,
+    ExperiencesDetail:{
+      screen: ExperiencesDetail,
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Personajes",
@@ -1075,8 +1070,8 @@ const timeLineStack = createStackNavigator(
         } 
       },
     },
-    CharacterDetail:{
-      screen: CharacterDetail,
+    ExperiencesDetail:{
+      screen: ExperiencesDetail,
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Personajes",

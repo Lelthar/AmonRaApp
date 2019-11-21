@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    Text,
     StyleSheet,
     View,
     Image,
@@ -41,22 +40,18 @@ export default class PointSheet extends Component {
                 <TouchableOpacity onPress={() => this.props.handlePressDataSheet()}>
                   <Image source={CLOSE_BTN}  style={localStyles.closeButton}/>
                 </TouchableOpacity>
-
+              
                 <View style={localStyles.containerImages}>
-                  <Image style={{width:200,height:150}} source={{uri:this.state.data.image_url}} />
+                  <Image style={{width:"105%",height:"100%", resizeMode: "stretch",}} source={{uri:this.state.data.image_url}} />
                 </View>
-                <Text style={localStyles.title}> {this.state.data.title} {'\n'}</Text>
-
-                <Text style={localStyles.text}> {this.state.data.description} {'\n'}</Text>
-
-                <Text style={localStyles.textInf}> Busca el elemento del glosario en el modelo 3D {'\n'}</Text>
-
+                
               </View>
               
           </View>
         );
     }
 }
+
 
 var localStyles = StyleSheet.create({
     dataSheet : {
@@ -80,29 +75,10 @@ var localStyles = StyleSheet.create({
     containerImages: {
       flexDirection: 'row', 
       alignItems: 'center',
-      marginBottom: "2.5%",
-      justifyContent: 'space-around'
-    },
-    title: {
-      fontSize: 15,
-      fontFamily: "Barlow-Regular",
-      color: "#0C5B60",
-      fontWeight: 'bold',
-      textAlign: "center",
-    },
-    text: {
-      textAlign: "justify",
-      color: '#6D6F70',
-      fontSize: 13,
-      fontFamily: "Barlow-Regular",
-    },
-    textInf:{
-      textAlign: "justify",
-      alignSelf: 'center',
-      color: '#6D6F70',
-      fontSize: 12,
-      fontFamily: "Barlow-Regular",
-      fontWeight: 'bold',
+      marginTop: "2%",
+      marginBottom: "5%",
+      height:hp('25%'),
+      justifyContent: 'space-around',
     },
     closeButton: {
       justifyContent: 'flex-end',

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   View,
+  Text,
 } from 'react-native'; 
 
 import {
@@ -11,7 +12,7 @@ import DataSheet from "../partials/DataSheet";
 import InfoMenu from "../partials/InfoMenu";
 import Toast from '../partials/Toast';
 
-const InitialARScene = require('./ARScene');
+const AR_SCENE = require('./ARScene');
 
 export class ARController extends Component {
 
@@ -25,13 +26,14 @@ export class ARController extends Component {
 
     this.state = {
       sharedProps : this.props.sharedProps, 
-      viroAppProps: {setInformation: this.showInfoMenu},
+      viroAppProps: {setInformation: this.showInfoMenu, changeCompass: this.changeCompass},
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
       houseArPressedID: null,
       houseArPressedName: null,
       toastVisible: false,
+      compass: 0,
     }
   }   
 
@@ -45,9 +47,11 @@ export class ARController extends Component {
       <View style={{flex:1}}>
         <ViroARSceneNavigator 
           {...this.state.sharedProps}
-          initialScene={{scene: InitialARScene}} 
+          initialScene={{scene: AR_SCENE}} 
           onExitViro={this._exitViro} 
           viroAppProps={this.state.viroAppProps} />
+
+        <Text> {this.state.compass}</Text>        
                                 
         {this.state.infoMenuVisible && (
           <InfoMenu 
@@ -94,6 +98,12 @@ export class ARController extends Component {
       houseArPressedID: place,
       houseArPressedName: tittle,
     });
+  }
+
+  changeCompass = (newCompass) => {
+    this.setState({
+      compass: newCompass,
+    })
   }
 
 }
