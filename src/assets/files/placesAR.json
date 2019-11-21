@@ -20,8 +20,8 @@
         "tittle": "Castillo del Moro",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F13.Vista%20CastillodelMorodesdeCalle3%2FcastilloMoroAntiguo.JPG?alt=media&token=c9b280ef-6208-4ff2-b3d5-704ccea5d65a", 
         "label3DObject" : "castillodelmoro",
-        "min_degree": 170,
-        "max_degree": 320
+        "min_degree": 180,
+        "max_degree": 300
     }, 
     {
         "placeID": 300, 

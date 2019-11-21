@@ -41,8 +41,6 @@ export class ARScene extends Component {
       trackingUpdated: true,
       arePlacesBeingWatched: [false,false,false],
       userMercProjection: null,
-      scale: [],
-      labelScale: [],
       nearestARPlaces: [
         {
             x: 0, 
@@ -171,18 +169,10 @@ export class ARScene extends Component {
     return( 
       <ViroNode key={viewAR.placeID}>
         <ViroAmbientLight color="#FFFFFF"/>
-        <Viro3DObject
-          onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle)}
-          source={this._get3DButtonByViewName(viewAR.label3DObject)} 
-          position={[viewAR.x, 10 ,viewAR.z]}
-          scale={buttonScale}
-          resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
-          type="OBJ" 
-        />
         <ViroImage
-          position={[viewAR.x, 0.1, viewAR.z]}
+          position={[0,0.1,-2]}
           resizeMode='ScaleToFit'
-          scale={imageScale}
+          scale={[1,1,1]}
           source={{uri: viewAR.img}}
         />
       </ViroNode>
@@ -288,20 +278,19 @@ export class ARScene extends Component {
   }
 
   _distanceBetweenTwoCoordinates = (lat1, lon1, lat2, lon2) => {
-    var deg2rad = Math.PI / 180;
-    lat1 *= deg2rad;
-    lon1 *= deg2rad;
-    lat2 *= deg2rad;
-    lon2 *= deg2rad;
-    var diam = 12742; // Diameter of the earth in km (2 * 6371)
-    var dLat = lat2 - lat1;
-    var dLon = lon2 - lon1;
-    var a = (
-      (1 - Math.cos(dLat)) +
-      (1 - Math.cos(dLon)) * Math.cos(lat1) * Math.cos(lat2)
+    lat1 = this._toRadians(lat1);
+    lon1 = this._toRadians(lon1);
+    lat2 = this._toRadians(lat2);
+    lon2 = this._toRadians(lon2);
+    const earth_diam_km = 12742; 
+    let distanceLat = lat2 - lat1;
+    let distanceLon = lon2 - lon1;
+    let a = (
+      (1 - Math.cos(distanceLat)) +
+      (1 - Math.cos(distanceLon)) * Math.cos(lat1) * Math.cos(lat2)
     ) / 2;
   
-    return diam * Math.asin(Math.sqrt(a));
+    return earth_diam_km * Math.asin(Math.sqrt(a));
   }
 
   _get3DButtonByViewName = (viewName) => {
