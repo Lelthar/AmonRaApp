@@ -20,7 +20,7 @@
         "tittle": "Castillo del Moro",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F13.Vista%20CastillodelMorodesdeCalle3%2FcastilloMoroAntiguo.JPG?alt=media&token=c9b280ef-6208-4ff2-b3d5-704ccea5d65a", 
         "label3DObject" : "castillodelmoro",
-        "min_degree": 180,
+        "min_degree": 200,
         "max_degree": 300
     }, 
     {
@@ -68,7 +68,7 @@
         "tittle": "Alianza Cultural Franco Costarricense",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F17.VistaAlianzaCulturalFrancoCostarricenseDesDeLaEsquinaSuroesteDeLaAvenida7yCalle5%2FalianzaFrancesaAntigua.jpg?alt=media&token=8f6fd074-fa0c-46c1-ac94-feb6767465cd", 
         "label3DObject" : "alianzaFrancesa",
-        "min_degree": 0,
+        "min_degree": 20,
         "max_degree": 80
     }, 
     {
@@ -81,7 +81,7 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F19.VistaAntiguaFosforera(InstitutoMixtoDeAyudaSocial)%2FfosforeraAntigua.jpg?alt=media&token=81c1c523-8695-4053-9c5c-d543ea812119", 
         "label3DObject" : "antiguafosforera",
         "min_degree": 280,
-        "max_degree": 30
+        "max_degree": 350
     }, 
     {
         "placeID": 280, 

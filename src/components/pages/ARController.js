@@ -26,14 +26,14 @@ export class ARController extends Component {
 
     this.state = {
       sharedProps : this.props.sharedProps, 
-      viroAppProps: {setInformation: this.showInfoMenu, changeCompass: this.changeCompass},
+      viroAppProps: {setInformation: this.showInfoMenu, updateWatchCount: this.updateWatchCount},
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
       houseArPressedID: null,
       houseArPressedName: null,
       toastVisible: false,
-      compass: 0,
+      watchCount: 0,
     }
   }   
 
@@ -51,7 +51,7 @@ export class ARController extends Component {
           onExitViro={this._exitViro} 
           viroAppProps={this.state.viroAppProps} />
 
-        <Text> {this.state.compass}</Text>        
+        <Text> {this.state.watchCount}</Text>        
                                 
         {this.state.infoMenuVisible && (
           <InfoMenu 
@@ -100,9 +100,9 @@ export class ARController extends Component {
     });
   }
 
-  changeCompass = (newCompass) => {
+  updateWatchCount = () => {
     this.setState({
-      compass: newCompass,
+      watchCount: this.state.watchCount + 1,
     })
   }
 
