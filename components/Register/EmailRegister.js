@@ -129,7 +129,11 @@ setUserDataStorage(response,header) {
     this._showConfidencialityAlert();
     
   } else {
-    alert(response.errors.full_messages[0]);
+    const mensaje = response.errors.full_messages[0];
+    if(mensaje == "Email has already been taken")
+      Alert.alert("Error de Registro", "El correo se encuentra en uso");
+    else 
+      Alert.alert("Error de Registro", response.errors.full_messages[0]);
     this.changeButtonToAbled();
   }
 }
@@ -191,7 +195,7 @@ isNoTextInputEmpty() {
   if (message == "") {
     return true;
   } else {
-    Alert.alert(message);
+    Alert.alert("Error de Registro", message);
     return false;
   }
 
