@@ -41,11 +41,11 @@ class RegisterMain extends Component {
       lastName: '',
       email: '',
       country: '',
-      gender: '',
+      gender: "Femenino",
       date: '',
       isConfidencialityAlertVisible: false,
       checkedH:false,
-      checkedM:false,
+      checkedM:true,
       buttonDisabled: false,
       titulo_pais: "País",
       titulo_anhos: "Año"
@@ -129,7 +129,11 @@ setUserDataStorage(response,header) {
     this._showConfidencialityAlert();
     
   } else {
-    alert(response.errors.full_messages[0]);
+    const mensaje = response.errors.full_messages[0];
+    if(mensaje == "Email has already been taken")
+      Alert.alert("Error de Registro", "El correo se encuentra en uso");
+    else 
+      Alert.alert("Error de Registro", response.errors.full_messages[0]);
     this.changeButtonToAbled();
   }
 }
@@ -158,6 +162,9 @@ isNoTextInputEmpty() {
   const lastName = this.state.lastName;
   const email = this.state.email;
   const date = this.state.date;
+  const country = this.state.country;
+  const checkedM = this.state.checkedM;
+  const checkedH = this.state.checkedH;
 
   let message = "";
 
@@ -173,6 +180,13 @@ isNoTextInputEmpty() {
     message += "El correo es obligatorio.\n";
     this.setState({email})
   }
+  if(country == '') {
+    message += "El país es obligatorio.\n";
+    this.setState({country})
+  }
+  if(checkedH == checkedM) {
+    message += "El género es obligatorio.\n";
+  }
   if(date == '') {
     message += "El año de nacimiento es obligatorio.\n";
     this.setState({date})
@@ -181,7 +195,7 @@ isNoTextInputEmpty() {
   if (message == "") {
     return true;
   } else {
-    Alert.alert(message);
+    Alert.alert("Error de Registro", message);
     return false;
   }
 
