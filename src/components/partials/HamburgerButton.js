@@ -22,7 +22,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const HamburgerButton = (props) => {
-
   toggleMenuSide = () => {
     props.setMenuSide(!props.menuSideState);
   };
