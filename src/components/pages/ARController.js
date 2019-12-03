@@ -6,13 +6,17 @@ import {
 
 import {
   ViroARSceneNavigator,
+  ViroUtils,
 } from 'react-viro';
 
 import DataSheet from "../partials/DataSheet";
 import InfoMenu from "../partials/InfoMenu";
 import Toast from '../partials/Toast';
+import ARNoSupport from '../partials/ARNoSupport';
 
 const AR_SCENE = require('./ARScene');
+
+var isARSupportedOnDevice = ViroUtils.isARSupportedOnDevice;
 
 export class ARController extends Component {
 
@@ -24,6 +28,11 @@ export class ARController extends Component {
     this.showInfoMenu = this.showInfoMenu.bind(this);
     this.showToast = this.showToast.bind(this);
 
+    this._getArNoSupport = this._getArNoSupport.bind(this);
+
+    this._handleARNotSupported = this._handleARNotSupported.bind(this);
+    this._handleARSupported = this._handleARSupported.bind(this);
+
     this.state = {
       sharedProps : this.props.sharedProps, 
       viroAppProps: {setInformation: this.showInfoMenu, changeCompass: this.changeCompass},
@@ -34,11 +43,38 @@ export class ARController extends Component {
       houseArPressedName: null,
       toastVisible: false,
       compass: 0,
+      scenaSource : true,
     }
+    
   }   
 
+  componentWillMount() {
+    console.log("COMPONENT")
+    isARSupportedOnDevice(this._handleARNotSupported, this._handleARSupported);
+  }
+
+  _handleARSupported() {
+    console.log("AR supported ");
+    this.setState({
+      scenaSource : true,
+    });
+  }
+  _handleARNotSupported(reason) {
+    console.log("AR not supported, with reason: " + reason);
+    this.setState({
+      scenaSource : false, 
+    });
+  }
+
+  ARSupport() {
+    this.setState({
+      scenaSource : true,
+    });
+  }
+
   render() { 
-      return this._getARNavigator();
+    console.log("Hola Mundo")
+    return (this.state.scenaSource ? this._getARNavigator() : this._getArNoSupport());
   }
 
   // Returns the ViroARSceneNavigator which will start the AR experience
@@ -104,6 +140,13 @@ export class ARController extends Component {
     this.setState({
       compass: newCompass,
     })
+  }
+
+  // Returns the ViroSceneNavigator which will start the VR experience
+  _getArNoSupport() {
+    return (
+      <ARNoSupport />
+    );
   }
 
 }
