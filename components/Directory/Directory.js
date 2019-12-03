@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
+import Swiper from 'react-native-swiper';
+import { connect } from "react-redux";
+import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
+
 import {
     StyleSheet,
-    Text,
     View,
     AppRegistry,
-    Button,
     Image,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
-import Swiper from 'react-native-swiper';
-import { SearchBar} from 'react-native-elements';
-
-//Imports for redux
-
-import { connect } from "react-redux";
 
 import {
   filterMenuAction,
@@ -24,8 +20,6 @@ import {
   guideScreenAction,
   menuResetAction,
 } from "../../src/redux/actions/menuDataActions";
-
-import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
 
 const mapStateToProps = state => {
   return {
@@ -56,162 +50,93 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const { width } = Dimensions.get('window').width
-var isMenuVisible = true;
-let onPressTextDiscover = () =>{
-      return ;
-    }
+const { width } = Dimensions.get('window').width;
 
 class Directory extends Component{
 
     constructor(props){
         super(props);
-        // Se le pasa el controlador de la navegación a App.js
-        // para controlar la navegación desde Navigator.js
-        
         this.navigation = this.props.navigation;
     }
 
     render() {
         return (
-
-            <View style={styles.container}>
-
-            {/* Navigator uses flex 10. 1 up, 1 down, 8 body */}
-               <View style={{flex:2}} />
-
-                {/* Full body container. Flex 8. Hay 23 flexes en el full body */}
-                <View style={styles.body}>
-
-                  {/* Swiper Flex 9*/}
-                  <View style={styles.swiper}>
-
-                    <Swiper style={styles.wrapper}  loop>
-
-                      <View style={styles.slide}>
-                        <Image style={styles.image} source={require('../../images/Swiper/ALIANZA/ALIANZAI.png')} />
-                      </View>
-
-                      <View style={styles.slide}>
-                        <Image resizeMode='stretch' style={styles.image} source={require('../../images/Swiper/RESTAURANTESILVESTRE/RESTAURANTESILVESTREI.png')} />
-                      </View>
-
-                      <View style={styles.slide}>
-                        <Image resizeMode='stretch' style={styles.image} source={require('../../images/Swiper/HOTELDONCARLOS/HOTELDONCARLOSI.png')} />
-                      </View>
-
-                      <View style={styles.slide}>
-                        <Image resizeMode='stretch' style={styles.image} source={require('../../images/Swiper/TECNOLOGICO/TECNOLOGICO.png')} />
-                      </View>
-                      
-                    </Swiper>
-
-                    {/* Ends Swiper Flex 9*/}
-                  </View>
-
-                    <View style={styles.contentUnderSwiper}>
-
-                    <View style={{flex:1}}/>
-                    <View style={styles.buttonsRow}>
-                      <View style={{flex:2}}/>
-                      
-                      <TouchableOpacity style={styles.squareButton} onPress={() => this.props.navigation.navigate('CultureArt',{goToScreen: this.navigation})} >
-                          <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/culturagris.png')} />
-                      </TouchableOpacity>
-                    
-
-                      <View style={{flex:1}}/>
-
-                      <TouchableOpacity style={styles.squareButton} onPress={() => this.props.navigation.navigate('Gastronomy',{goToScreen: this.navigation})}>
-                          <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/gastrogris.png')} />
-                      </TouchableOpacity>
-
-                      <View style={{flex:2}}/>
-
-                    {/* Ends flex 5. Half 14*/}
-                    {/* ,  borderWidth: 2, borderColor: '#000000'*/}
-                    </View>
-                    <View style={{flex:1}}/>
-
-                    <View style={styles.buttonsRow}>
-                      <View style={{flex:2}}/>
-
-                      <TouchableOpacity style={styles.squareButton}  onPress={() => this.props.navigation.navigate('Hotels',{goToScreen: this.navigation})} >
-                          <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/hospedajegris.png')} />
-                      </TouchableOpacity>
-
-                      <View style={{flex:1}}/>
-
-                      <TouchableOpacity style={styles.squareButton}  onPress={() => this.props.navigation.navigate('Institutional',{goToScreen: this.navigation})} >
-                          <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/instigris.png')} />
-                      </TouchableOpacity>
-
-                      <View style={{flex:2}}/>
-
-                    {/* Ends flex 5. Half 14*/}
-                    </View>
-
-                    <View style={{flex:2}}/>
-
-                    {/* Ends flex 14*/}
-                    </View>
-
-
-                {/* Ends full body flex 8*/}
+          <View style={styles.container}>
+            <View style={{flex:0.35}}>
+              <Swiper style={styles.wrapper}  loop>
+                <View style={styles.slide}>
+                  <Image style={styles.image} source={require('../../images/Swiper/ALIANZA/ALIANZAI.png')} />
                 </View>
-                <View style={{flex:2}}/>
-
-                {/*Start of hamburguer menu */}
-                {this.props.menuSideState &&
-                  < HamburgerMenu navigation={this.props.navigation}/>
-                }
-            {/*End of hamburguer menu */}
-
+                <View style={styles.slide}>
+                  <Image resizeMode='stretch' style={styles.image} source={require('../../images/Swiper/RESTAURANTESILVESTRE/RESTAURANTESILVESTREI.png')} />
+                </View>
+                <View style={styles.slide}>
+                  <Image resizeMode='stretch' style={styles.image} source={require('../../images/Swiper/HOTELDONCARLOS/HOTELDONCARLOSI.png')} />
+                </View>
+                <View style={styles.slide}>
+                  <Image resizeMode='stretch' style={styles.image} source={require('../../images/Swiper/TECNOLOGICO/TECNOLOGICO.png')} />
+                </View>
+              </Swiper>
             </View>
+            <View style={styles.contentUnderSwiper}>  
+
+              <TouchableOpacity style={styles.newSquare} onPress={() => this.props.navigation.navigate('CultureArt',{goToScreen: this.navigation})} >
+                <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/culturagris.png')} />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.newSquare} onPress={() => this.props.navigation.navigate('Gastronomy',{goToScreen: this.navigation})}>
+                <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/gastrogris.png')} />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.newSquare} onPress={() => this.props.navigation.navigate('Hotels',{goToScreen: this.navigation})} >
+                <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/hospedajegris.png')} />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.newSquare} onPress={() => this.props.navigation.navigate('Institutional',{goToScreen: this.navigation})} >
+                <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/instigris.png')} />
+              </TouchableOpacity>
+
+          </View>
+          {this.props.menuSideState &&
+            <HamburgerMenu navigation={this.props.navigation} />}
+        </View>
         );
     }
 }
-
 const styles = StyleSheet.create({
-  
+  newSquare:{
+    height:'35%',
+    width:'35%',
+    margin:'5%',
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
     justifyContent: 'center',
   },
-  body:{
-    flex:23
-  },
-  swiper:{
-    flex: 9
-  },
   contentUnderSwiper:{
-    flex:14
-  },
-  buttonsRow:{
-    flex:5,
-    flexDirection: "row"
+    flex:0.65,
+    flexDirection:'row',
+    flexWrap:'wrap',
+    alignItems:'center',
+    justifyContent: 'center',
   },
   wrapper: {
-  },
-  squareButton:{
-    flex:3
   },
   imageResizeAndFillParent: {
     flex: 1,
     width: null,
-    height: null
+    height: null,
   },
   slide: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   image: {
     width,
-    flex: 1
+    flex: 1,
   },
-
 });
 
 const dirComponent = connect(mapStateToProps,mapDispatchToProps)(Directory)
