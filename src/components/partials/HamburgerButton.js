@@ -25,7 +25,7 @@ const HamburgerButton = (props) => {
   toggleMenuSide = () => {
     props.setMenuSide(!props.menuSideState);
   };
-
+  
   return (
     <View>
       <TouchableOpacity onPress={toggleMenuSide} >
