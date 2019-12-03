@@ -25,10 +25,7 @@ import {
   menuResetAction,
 } from "../../src/redux/actions/menuDataActions";
 
-
 import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
-
-
 
 const mapStateToProps = state => {
   return {
@@ -46,7 +43,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     setMenuSide: (data) => {
       dispatch(menuSideAction(data));
-
     },
     setRateScreen: (data) => {
       dispatch(rateScreenAction(data));
@@ -59,9 +55,6 @@ const mapDispatchToProps = (dispatch) => {
     },
   }
 };
-
-// End of redux imports
-
 
 const { width } = Dimensions.get('window').width
 var isMenuVisible = true;
@@ -116,8 +109,6 @@ class Directory extends Component{
                     {/* Ends Swiper Flex 9*/}
                   </View>
 
-
-
                     <View style={styles.contentUnderSwiper}>
 
                     <View style={{flex:1}}/>
@@ -135,11 +126,7 @@ class Directory extends Component{
                           <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/gastrogris.png')} />
                       </TouchableOpacity>
 
-         
-
                       <View style={{flex:2}}/>
-
-
 
                     {/* Ends flex 5. Half 14*/}
                     {/* ,  borderWidth: 2, borderColor: '#000000'*/}
@@ -181,11 +168,9 @@ class Directory extends Component{
             {/*End of hamburguer menu */}
 
             </View>
-
         );
     }
 }
-
 
 const styles = StyleSheet.create({
   
