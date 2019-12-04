@@ -169,7 +169,7 @@ export class ARScene extends Component {
         <Viro3DObject
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle)}
           source={this._get3DButtonByViewName(viewAR.label3DObject)} 
-          position={[0, 0.1 ,-1]}
+          position={[viewAR.x, 12 ,viewAR.z]}
           scale={buttonScale}
           resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
           type="OBJ" 
