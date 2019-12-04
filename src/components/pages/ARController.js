@@ -16,7 +16,7 @@ import ARNoSupport from '../partials/ARNoSupport';
 
 const AR_SCENE = require('./ARScene');
 
-var isARSupportedOnDevice = ViroUtils.isARSupportedOnDevice;
+const isARSupportedOnDevice = ViroUtils.isARSupportedOnDevice;
 
 export class ARController extends Component {
 
@@ -49,31 +49,22 @@ export class ARController extends Component {
   }   
 
   componentWillMount() {
-    console.log("COMPONENT")
     isARSupportedOnDevice(this._handleARNotSupported, this._handleARSupported);
   }
 
   _handleARSupported() {
-    console.log("AR supported ");
     this.setState({
       scenaSource : true,
     });
   }
+
   _handleARNotSupported(reason) {
-    console.log("AR not supported, with reason: " + reason);
     this.setState({
       scenaSource : false, 
     });
   }
 
-  ARSupport() {
-    this.setState({
-      scenaSource : true,
-    });
-  }
-
   render() { 
-    console.log("Hola Mundo")
     return (this.state.scenaSource ? this._getARNavigator() : this._getArNoSupport());
   }
 

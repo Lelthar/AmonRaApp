@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
-    View,
-    Image,
-    Text,
-    TouchableOpacity,
-  } from 'react-native';
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+
+import localStyles from "../../assets/styles/partials/ARNoSupport";
 
 const txt_msg1 = "¡Lo sentimos!";
 const txt_msg2 = "Tu dispositivo no soporta el experiencia RA";
@@ -29,27 +31,5 @@ export default class VRSelectionMode extends Component {
     }
 
 }
-
-var localStyles = StyleSheet.create({
-    outer : {
-      flex : 1,
-      flexDirection: 'row',
-      alignItems:'center',
-      backgroundColor: "#08545c",
-    },
-    inner: {
-      flex : 1,
-      flexDirection: 'column',
-      alignItems:'center',
-      backgroundColor: "#08545c",
-    },
-    title: {
-      fontSize: 15,
-      fontFamily: "Barlow-Regular",
-      color: "#ffffff",
-      fontWeight: 'bold',
-      textAlign: "center",
-    },
-});
 
 module.exports = VRSelectionMode;
