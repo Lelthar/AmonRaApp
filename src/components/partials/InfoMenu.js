@@ -9,6 +9,7 @@ import {
   } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import styles from "../../assets/styles/partials/infoMenu";
 
 //----------Backend--------------
 import { 
@@ -55,25 +56,25 @@ export default class InfoMenu extends Component {
 
     render() { 
         return (
-            <View style={localStyles.infoContainer}>
+            <View style={styles.infoContainer}>
                 {this.props.descriptionVisible && (
-                    <Text style={localStyles.textDescription}>{this.state.informationText}</Text>
+                    <Text style={styles.textDescription}>{this.state.informationText}</Text>
                 )}
 
-                <View style={localStyles.buttonsContainer}>
-                    <TouchableOpacity style={localStyles.rowButton} onPress={() => this.toggleDataSheet()} >
+                <View style={styles.buttonsContainer}>
+                    <TouchableOpacity style={styles.rowButton} onPress={() => this.toggleDataSheet()} >
                         <Image source={DATA_SHEET_ICON} />
-                        <Text style={localStyles.textButton}> Ficha técnica</Text>
+                        <Text style={styles.textButton}> Ficha técnica</Text>
                     </TouchableOpacity>
             
-                    <TouchableOpacity style={localStyles.rowButton}>
+                    <TouchableOpacity style={styles.rowButton}>
                         <Image source={VIVENCIAS_ICON} />
-                        <Text style={localStyles.textButton}> Vivencias</Text>
+                        <Text style={styles.textButton}> Vivencias</Text>
                     </TouchableOpacity>
                     
-                    <TouchableOpacity style={localStyles.rowButton} onPress= {() => this.props.navigation.navigate('ArchitectureDetail',{goToScreen: this.props.navigation, placeInfo: DIC_ARQ}) }>
+                    <TouchableOpacity style={styles.rowButton} onPress= {() => this.props.navigation.navigate('ArchitectureDetail',{goToScreen: this.props.navigation, placeInfo: DIC_ARQ}) }>
                         <Image  source={EXTRA_INFO_ICON} />
-                        <Text style={localStyles.textButton}> Info</Text>
+                        <Text style={styles.textButton}> Info</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -98,7 +99,10 @@ export default class InfoMenu extends Component {
     async get_brief_description(){
         let URL_GET_INFO = BRIEF_DESCRIPTIONS_URL+FEATURE_ID+this.props.houseArPressed;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
+        console.log("Response",response);
+        
         let responseJson = await response.json();
+        console.log("JSON",responseJson);
         if(responseJson != undefined){
             this.setState({
                 informationText: responseJson.description,
@@ -106,31 +110,5 @@ export default class InfoMenu extends Component {
         }
     } 
 }
-
-var localStyles = StyleSheet.create({
-    infoContainer : {
-        padding:15, 
-        bottom: 0,
-        position:"absolute",
-        backgroundColor:'rgba(54, 145, 160, 0.8)',
-        width: (Dimensions.get('window').width),
-    },
-    buttonsContainer : {
-        flexDirection: "row", 
-        justifyContent: 'space-around',
-    },
-    rowButton : {
-        flexDirection: "row", 
-    },
-    textButton:{
-        color:"#1a606b",
-        fontSize: 14,
-    },
-    textDescription:{
-        color:'white',
-        fontSize: 16, 
-        marginBottom: 15,
-    },
-});
 
 module.exports = InfoMenu;

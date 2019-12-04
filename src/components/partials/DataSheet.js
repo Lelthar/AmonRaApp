@@ -9,7 +9,7 @@ import {
   } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
-
+import styles from "../../assets/styles/partials/dataSheet";
 //----------Backend--------------
 import { 
     DATA_SHEET_URL,
@@ -63,33 +63,33 @@ export default class DataSheet extends Component {
 
     showDataSheet(){
         return (
-        <View style={localStyles.container}>
-        <View style={localStyles.dataSheet}>
+        <View style={styles.container}>
+        <View style={styles.dataSheet}>
             <TouchableOpacity onPress={() => this.props.handlePressDataSheet()}>
-                <Text style={localStyles.title}> {this.props.houseArPressedName} {'\n'}</Text>
+                <Text style={styles.title}> {this.props.houseArPressedName} {'\n'}</Text>
                 
-                <Text style={localStyles.title}>Motivos de la declaratoria: 
-                    <Text style={localStyles.text}> {this.state.declaration_reason} {'\n'}</Text>
+                <Text style={styles.title}>Motivos de la declaratoria: 
+                    <Text style={styles.text}> {this.state.declaration_reason} {'\n'}</Text>
                 </Text>
                 
-                <Text style={localStyles.title}>Año de construcción: 
-                    <Text style={localStyles.text}> {this.state.build_year} {'\n'}</Text>
+                <Text style={styles.title}>Año de construcción: 
+                    <Text style={styles.text}> {this.state.build_year} {'\n'}</Text>
                 </Text> 
                 
-                <Text style={localStyles.title}>Influencia: 
-                    <Text style={localStyles.text}> {this.state.influence} {'\n'}</Text>
+                <Text style={styles.title}>Influencia: 
+                    <Text style={styles.text}> {this.state.influence} {'\n'}</Text>
                 </Text> 
                 
-                <Text style={localStyles.title}>Propietario actual: 
-                    <Text style={localStyles.text}> {this.state.current_owner} {'\n'}</Text>
+                <Text style={styles.title}>Propietario actual: 
+                    <Text style={styles.text}> {this.state.current_owner} {'\n'}</Text>
                 </Text> 
         
-                <Text style={localStyles.title}>Fecha de la declaratoria: 
-                    <Text style={localStyles.text}> {this.state.declaration_date} {'\n'}</Text>
+                <Text style={styles.title}>Fecha de la declaratoria: 
+                    <Text style={styles.text}> {this.state.declaration_date} {'\n'}</Text>
                 </Text> 
                 
-                <Text style={localStyles.title}>Decreto N:
-                    <Text style={localStyles.text}> {this.state.decree_number} {'\n'}</Text>
+                <Text style={styles.title}>Decreto N:
+                    <Text style={styles.text}> {this.state.decree_number} {'\n'}</Text>
                 </Text> 
             </TouchableOpacity>
         </View>
@@ -127,38 +127,5 @@ export default class DataSheet extends Component {
         }
     } 
 }
-
-var localStyles = StyleSheet.create({
-    container : {
-        alignItems: 'center',
-    },
-    dataSheet : {
-        position: 'absolute', 
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        width: (Dimensions.get('window').width) * 0.9,
-        height: (Dimensions.get('window').height) * 0.6,
-        bottom: (Dimensions.get('window').height)/2 * 0.2,
-        paddingHorizontal: 20,
-    },
-    title: {
-        fontSize: 15,
-        fontFamily: "Barlow-Regular",
-        color: "#0C5B60",
-        fontWeight: 'bold',
-    },
-    text: {
-        fontWeight: 'normal',
-        color: '#6D6F70',
-        fontSize: 13,
-        fontFamily: "Barlow-Regular",
-    },
-    closeButton: {
-        justifyContent: 'flex-end',
-        width: 10,
-        height: 10,
-        left: (Dimensions.get('window').width)*0.8,
-    },
-});
 
 module.exports = DataSheet;

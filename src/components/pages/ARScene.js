@@ -21,11 +21,10 @@ import Items3D from '../../assets/objects/indexObj';
 import Materials3D from '../../assets/objects/indexMaterials';
 
 const DEGREE_UPDATE_RATE = 10;
-const DISTANCE_MIN = 1;
-const DISTANCE_MAX = 100;
+const DISTANCE_MAX = 60;
 const SIZE_MIN = 1;
 const SIZE_MAX = 15;
-const LABEL_SIZE_MIN = 0.025;
+const LABEL_SIZE_MIN = 0.0025;
 const LABEL_SIZE_MAX = 0.5;
 
 let heading = 0;
@@ -80,20 +79,11 @@ export class ARScene extends Component {
       console.log(degree);
       this._iterateARViewsHeading();
     });
-
-    watchID = navigator.geolocation.watchPosition(
-      (position) => {
-        this.props.arSceneNavigator.viroAppProps.updateWatchCount();
-        this._iterateARLocations(position.coords.latitude, position.coords.longitude)
-      },
-      {distanceFilter: 1, maximumAge: 0, timeout: 20000},
-    );
   }
 
   componentDidMount(){
     if (checkLocalizationPermission()) {
-      console.log("");
-    //this._watchGeopositionLookingForARPlaces();
+      this._watchGeopositionLookingForARPlaces();
     } 
   }
 
@@ -132,14 +122,16 @@ export class ARScene extends Component {
     let scale = 0;
     let ratio = minSize / maxSize;
     let distance = Math.abs(viewAR.x) +  Math.abs(viewAR.z);
-    distance >= DISTANCE_MAX
+    distance > DISTANCE_MAX
     ? scale = minSize
     : scale = distance * ratio * maxSize / 2;
-    if (scale > maxSize){
+
+    if (scale > maxSize)
       scale = maxSize;
-    }
+
     return [scale,scale,scale];
   }
+
 
   _isCurrentHeadingBetweenViewsHeadingRange = (placeAR) => {
     if (placeAR.min_degree > placeAR.max_degree){ // Cuando es de i.e 240 a 40 
@@ -177,13 +169,13 @@ export class ARScene extends Component {
         <Viro3DObject
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle)}
           source={this._get3DButtonByViewName(viewAR.label3DObject)} 
-          position={[viewAR.x, 12 ,viewAR.z]}
+          position={[0, 0.1 ,-1]}
           scale={buttonScale}
           resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
           type="OBJ" 
         />
         <ViroImage
-          position={[viewAR.x, 0.1, viewAR.z]}
+          position={[viewAR.x, 0.1 ,viewAR.z]}
           resizeMode='ScaleToFit'
           scale={imageScale}
           source={{uri: viewAR.img}}
@@ -198,7 +190,7 @@ export class ARScene extends Component {
         this.props.arSceneNavigator.viroAppProps.updateWatchCount();
         this._iterateARLocations(position.coords.latitude, position.coords.longitude)
       },
-      {distanceFilter: 1, maximumAge: 0, timeout: 20000},
+      {distanceFilter: 1, maximumAge: 0, timeout: 10000},
     );
   }
 
@@ -227,12 +219,11 @@ export class ARScene extends Component {
         thirdNearestPlaceDistance = distance;
       }
     });
-    console.log("Nearest Places",[firstNearestPlace, secondNearestPlace, thirdNearestPlace])
+
     return [firstNearestPlace, secondNearestPlace, thirdNearestPlace];
   }
 
   _onTrackingUpdated=(state, reason) =>{
-    console.log("Tracking been updated");
     if (state == ViroConstants.TRACKING_NORMAL){
       this.setState({
         trackingUpdated: true,
