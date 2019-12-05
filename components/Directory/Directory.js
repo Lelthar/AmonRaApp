@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import Swiper from 'react-native-swiper';
 import { connect } from "react-redux";
 import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
+import styles from "../../src/assets/styles/pages/directory";
 
 import {
-    StyleSheet,
     View,
     AppRegistry,
     Image,
-    Dimensions,
     TouchableOpacity,
 } from 'react-native';
 
@@ -50,7 +49,15 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const { width } = Dimensions.get('window').width;
+const imageSwiper1 = require('../../images/Swiper/ALIANZA/ALIANZAI.png');
+const imageSwiper2 = require('../../images/Swiper/RESTAURANTESILVESTRE/RESTAURANTESILVESTREI.png');
+const imageSwiper3 = require('../../images/Swiper/HOTELDONCARLOS/HOTELDONCARLOSI.png');
+const imageSwiper4 = require('../../images/Swiper/TECNOLOGICO/TECNOLOGICO.png');
+
+const buttonCulture = require('../../images/icons/Directory/culturagris.png');
+const buttonGastronomy = require('../../images/icons/Directory/gastrogris.png');
+const buttonHotels = require('../../images/icons/Directory/hospedajegris.png');
+const buttonInstitutional = require('../../images/icons/Directory/instigris.png');
 
 class Directory extends Component{
 
@@ -60,40 +67,41 @@ class Directory extends Component{
     }
 
     render() {
+
         return (
           <View style={styles.container}>
             <View style={{flex:0.35}}>
               <Swiper style={styles.wrapper}  loop>
                 <View style={styles.slide}>
-                  <Image style={styles.image} source={require('../../images/Swiper/ALIANZA/ALIANZAI.png')} />
+                  <Image style={styles.image} source={imageSwiper1} />
                 </View>
                 <View style={styles.slide}>
-                  <Image resizeMode='stretch' style={styles.image} source={require('../../images/Swiper/RESTAURANTESILVESTRE/RESTAURANTESILVESTREI.png')} />
+                  <Image resizeMode='stretch' style={styles.image} source={imageSwiper2} />
                 </View>
                 <View style={styles.slide}>
-                  <Image resizeMode='stretch' style={styles.image} source={require('../../images/Swiper/HOTELDONCARLOS/HOTELDONCARLOSI.png')} />
+                  <Image resizeMode='stretch' style={styles.image} source={imageSwiper3} />
                 </View>
                 <View style={styles.slide}>
-                  <Image resizeMode='stretch' style={styles.image} source={require('../../images/Swiper/TECNOLOGICO/TECNOLOGICO.png')} />
+                  <Image resizeMode='stretch' style={styles.image} source={imageSwiper4} />
                 </View>
               </Swiper>
             </View>
             <View style={styles.contentUnderSwiper}>  
 
               <TouchableOpacity style={styles.newSquare} onPress={() => this.props.navigation.navigate('CultureArt',{goToScreen: this.navigation})} >
-                <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/culturagris.png')} />
+                <Image style={styles.imageResizeAndFillParent} source={buttonCulture} />
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.newSquare} onPress={() => this.props.navigation.navigate('Gastronomy',{goToScreen: this.navigation})}>
-                <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/gastrogris.png')} />
+                <Image style={styles.imageResizeAndFillParent} source={buttonGastronomy} />
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.newSquare} onPress={() => this.props.navigation.navigate('Hotels',{goToScreen: this.navigation})} >
-                <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/hospedajegris.png')} />
+                <Image style={styles.imageResizeAndFillParent} source={buttonHotels} />
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.newSquare} onPress={() => this.props.navigation.navigate('Institutional',{goToScreen: this.navigation})} >
-                <Image style={styles.imageResizeAndFillParent} source={require('../../images/icons/Directory/instigris.png')} />
+                <Image style={styles.imageResizeAndFillParent} source={buttonInstitutional} />
               </TouchableOpacity>
 
           </View>
@@ -103,43 +111,7 @@ class Directory extends Component{
         );
     }
 }
-const styles = StyleSheet.create({
-  newSquare:{
-    height:'35%',
-    width:'35%',
-    margin:'5%',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-  },
-  contentUnderSwiper:{
-    flex:0.65,
-    flexDirection:'row',
-    flexWrap:'wrap',
-    alignItems:'center',
-    justifyContent: 'center',
-  },
-  wrapper: {
-  },
-  imageResizeAndFillParent: {
-    flex: 1,
-    width: null,
-    height: null,
-  },
-  slide: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
-  image: {
-    width,
-    flex: 1,
-  },
-});
 
 const dirComponent = connect(mapStateToProps,mapDispatchToProps)(Directory)
 export default dirComponent;
 AppRegistry.registerComponent('Directory', () => Directory);
-
