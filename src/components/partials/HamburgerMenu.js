@@ -50,6 +50,10 @@ const HamburguerComponent = (props) => {
     setSearchText(search);
   };
 
+  toggleMenuSide = () => {
+    props.setMenuSide(!props.menuSideState);
+  };
+
   onClickSearchIcon = async () =>{
     /*message = "Clic en el icono de buscar ";
     message = message.concat(searchText);
@@ -66,10 +70,11 @@ const HamburguerComponent = (props) => {
       console.log(responseJson);
       if (response.status === 200) {
         props.navigation.navigate('Search', {results: responseJson});
+        toggleMenuSide();
       }
     }
   };
-
+  
   getUserData = async () => {
     const userDataStorage = await AsyncStorage.getItem(USER_DATA);
 
@@ -80,9 +85,7 @@ const HamburguerComponent = (props) => {
     getUserData();
   }, []);
 
-  toggleMenuSide = () => {
-    props.setMenuSide(!props.menuSideState);
-  };
+
 
   goToOrigin = () => {
     props.navigation.navigate('Origin',{goToScreen: props.navigation });

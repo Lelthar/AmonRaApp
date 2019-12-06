@@ -271,7 +271,7 @@ const mapStack = createStackNavigator(
       screen: Search,
       navigationOptions: {
         headerRight: <HamburgerButton />,
-        title: "Resultados busqueda",
+        title: "Resultados búsqueda",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
