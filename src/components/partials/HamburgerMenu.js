@@ -74,7 +74,7 @@ const HamburguerComponent = (props) => {
       }
     }
   };
-  
+
   getUserData = async () => {
     const userDataStorage = await AsyncStorage.getItem(USER_DATA);
 
@@ -84,9 +84,7 @@ const HamburguerComponent = (props) => {
   useEffect(() => {
     getUserData();
   }, []);
-
-
-
+  
   goToOrigin = () => {
     props.navigation.navigate('Origin',{goToScreen: props.navigation });
     toggleMenuSide(); 
