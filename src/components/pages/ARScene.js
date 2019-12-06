@@ -24,7 +24,7 @@ const DEGREE_UPDATE_RATE = 10;
 const DISTANCE_MAX = 70;
 const SIZE_MIN = 1;
 const SIZE_MAX = 15;
-const LABEL_SIZE_MIN = 0.025;
+const LABEL_SIZE_MIN = 0.0025;
 const LABEL_SIZE_MAX = 0.5;
 
 let heading = 0;
@@ -114,6 +114,7 @@ export class ARScene extends Component {
 
     return [scale,scale,scale];
   }
+
 
   _isCurrentHeadingBetweenViewsHeadingRange = (placeAR) => {
     if (placeAR.min_degree > placeAR.max_degree){ // Cuando es de i.e 240 a 40 

@@ -35,7 +35,7 @@ export class ARController extends Component {
 
     this.state = {
       sharedProps : this.props.sharedProps, 
-      viroAppProps: {setInformation: this.showInfoMenu, changeCompass: this.changeCompass},
+      viroAppProps: {setInformation: this.showInfoMenu},
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
@@ -44,6 +44,7 @@ export class ARController extends Component {
       toastVisible: false,
       scenaSource : true,
       compassHeading: 0,
+      watchCount: 0,
     }
     
   }   
@@ -126,12 +127,6 @@ export class ARController extends Component {
       houseArPressedID: place,
       houseArPressedName: tittle,
     });
-  }
-
-  changeCompass = (newCompass) => {
-    this.setState({
-      compassHeading: newCompass,
-    })
   }
 
   // Returns the ViroSceneNavigator which will start the VR experience
