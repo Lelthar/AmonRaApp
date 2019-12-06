@@ -35,7 +35,7 @@ export class ARController extends Component {
 
     this.state = {
       sharedProps : this.props.sharedProps, 
-      viroAppProps: {setInformation: this.showInfoMenu, updateWatchCount: this.updateWatchCount},
+      viroAppProps: {setInformation: this.showInfoMenu, changeCompass: this.changeCompass},
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
@@ -43,7 +43,7 @@ export class ARController extends Component {
       houseArPressedName: null,
       toastVisible: false,
       scenaSource : true,
-      watchCount: 0,
+      compassHeading: 0,
     }
     
   }   
@@ -78,8 +78,9 @@ export class ARController extends Component {
           onExitViro={this._exitViro} 
           viroAppProps={this.state.viroAppProps} />
 
-        <Text> {this.state.watchCount}</Text>        
-                                
+        {//<Text> {this.state.compassHeading} </Text>
+        }
+
         {this.state.infoMenuVisible && (
           <InfoMenu 
             handlePressDataSheet={this.toggleDataSheet} 
@@ -127,9 +128,9 @@ export class ARController extends Component {
     });
   }
 
-  updateWatchCount = () => {
+  changeCompass = (newCompass) => {
     this.setState({
-      watchCount: this.state.watchCount + 1,
+      compassHeading: newCompass,
     })
   }
 

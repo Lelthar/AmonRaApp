@@ -1,17 +1,5 @@
 [   
     {
-        "placeID": 1, 
-        "X": -9342346.443794215, 
-        "Y": 1102025.1244025028,
-        "lat": 9.850768, 
-        "lon": -83.923726,
-        "tittle": "Mi casita",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F13.Vista%20CastillodelMorodesdeCalle3%2FcastilloMoroAntiguo.JPG?alt=media&token=c9b280ef-6208-4ff2-b3d5-704ccea5d65a", 
-        "label3DObject" : "castillodelmoro",
-        "min_degree": 230,
-        "max_degree": 320
-    }, 
-    {
         "placeID": 285, 
         "X": -9359432.649797091,
         "Y": 1112029.3952271256,
@@ -23,6 +11,18 @@
         "min_degree": 200,
         "max_degree": 300
     }, 
+    {  
+        "placeID": 765765, 
+        "X": -9359217.80317986,
+        "Y": 1111773.9805703256,
+        "lat": 9.937041, 
+        "lon": -84.075284,
+        "tittle": "Casa entre Avenida 5 y Calles 5 y 7",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F18.VistaCasaEntreAvenida5yCalles5y7%2FcasaAv5Calle7Antigua.jpg?alt=media&token=40d0f8d4-56ad-41da-b9c5-1dc4c33b6f1e", 
+        "label3DObject" : "av5ycalles5y7",
+        "min_degree": 350,
+        "max_degree": 50
+    },
     {
         "placeID": 300, 
         "X": -9359390.459710082,
@@ -85,62 +85,62 @@
     }, 
     {
         "placeID": 280, 
-        "X": -9359138.655021908,
-        "Y": 1111758.6105410904,
-        "lat": 9.936905, 
-        "lon": -84.074573, 
+        "X": -9359125.853280466,
+        "Y": 1111743.127503397,
+        "lat": 9.936768, 
+        "lon": -84.074458, 
         "tittle": "Hotel Rey Amón",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F8.VistaAntiguoHotelReyAmonDesdeEsquinaSuroesteEntreAvenida7yCalle9%2FhotelReyAmonAntiguo.JPG?alt=media&token=08e5016c-82b7-4e1e-ac1f-54a3663d3e5e", 
         "label3DObject" : "hotelreyamon",
-        "min_degree": 250,
-        "max_degree": 360
+        "min_degree": 300,
+        "max_degree": 10
     }, 
     {
         "placeID": 279, 
-        "X": -9359127.745711809,
-        "Y": 1111770.477107217,  
-        "lat": 9.937010,
-        "lon": -84.074475,
+        "X": -9359132.532449912,
+        "Y": 1111757.2543623464,  
+        "lat": 9.936937, 
+        "lon": -84.074419,
         "tittle": "Hotel Tenerife",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F7.VistaAntiguoHotelTenerifeDesdeCalle9%2FhotelTenerife.JPG?alt=media&token=53497c69-fd0e-4d2d-bcbf-1dd1f72d7a34", 
         "label3DObject" : "hoteltenerife",
-        "min_degree": 200,
-        "max_degree": 320
+        "min_degree": 250,
+        "max_degree": 290
     }, 
     {
         "placeID": 278, 
-        "X": -9359129.41550417,  
-        "Y": 1111789.2375909605,   
+        "X": -9359128.858906716,  
+        "Y": 1111786.18618633,   
         "lat": 9.937176,
         "lon": -84.074490,
         "tittle": "Casa González Feo",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F6.VistaTapiaCasaGonzalezFeo%2CdesdeCalle9%2F2719.JPG?alt=media&token=46c8b38c-9a85-4d87-b0b8-af1f2596e093", 
         "label3DObject" : "gonzalesfeo",
-        "min_degree": 200,
-        "max_degree": 320
+        "min_degree": 250,
+        "max_degree": 290
     }, 
     {
         "placeID": 293, 
-        "X": -9359057.391793627,
-        "Y": 1111850.1527213082,
-        "lat": 9.937369, 
-        "lon": -84.074452,
+        "X": -9359128.636267735,
+        "Y": 1111815.344063101,
+        "lat": 9.937438, 
+        "lon": -84.074402,
         "tittle": "Hotel Don Carlos",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F20.VistaAnexoHotelDonCarlosDesdeCalle9%2FhotelDonCarlosAntiguo.jpg?alt=media&token=7ac6cdc9-d4e8-41d9-8ace-546f2081e35f", 
         "label3DObject" : "hoteldoncarlos",
-        "min_degree": 200,
-        "max_degree": 320
+        "min_degree": 250,
+        "max_degree": 290
     }, 
     {
         "placeID": 303, 
-        "X": -9359060.174780898,
-        "Y": 1111854.8993590572,
+        "X": -9359068.523742706,
+        "Y": 1111848.570508859,
         "lat": 9.937757, 
         "lon": -84.073868,
         "tittle": "Hotel Hemingway",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F31.VistaAntiguoHotelHemingwayDesdeEsquinaSuroesteEntreAvenida9yCalle9%2FhotelHemingwayInnAntiguo.JPG?alt=media&token=c060605c-25e8-4645-a8d9-dca88a7d0358", 
         "label3DObject" : "hotelhemingway",
-        "min_degree": 340,
+        "min_degree": 320,
         "max_degree": 90
     }, 
     {
@@ -165,7 +165,7 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F16.VistaAntiguaEscuelaTecnicaNacional%2FescuelaTecnicaNacionalAntigua.jpg?alt=media&token=35381f18-d487-4a45-ad7e-a161d5a2b29e", 
         "label3DObject" : "escuelatecnicanacional",
         "min_degree": 110,
-        "max_degree": 180
+        "max_degree": 160
     },
     {
         "placeID": 284, 
@@ -189,7 +189,7 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F15.VistaAntiguaCasaSerrano%2FcasaSerranoBonillaAntigua.jpg?alt=media&token=be009fd3-2691-4ccc-bb10-f8e49847a8aa", 
         "label3DObject" : "serranobonilla",
         "min_degree": 130,
-        "max_degree": 230
+        "max_degree": 190
     },
     {
         "placeID": 282, 
@@ -224,8 +224,8 @@
         "tittle": "Casa 936",
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F9.VistaCasa936(Casa%20Familia%20Castro%20Odio)%2CdesdeCalle3A%2Fcasa936Antigua.JPG?alt=media&token=a05d921a-2202-471b-996e-40f412495f00", 
         "label3DObject" : "casa936",
-        "min_degree": 70,
-        "max_degree": 170
+        "min_degree": 80,
+        "max_degree": 140
     },
     {
         "placeID": 277, 
