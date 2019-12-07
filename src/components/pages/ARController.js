@@ -10,7 +10,7 @@ import {
 } from 'react-viro';
 
 import DataSheet from "../partials/DataSheet";
-import InfoMenu from "../partials/InfoMenu";
+import ARViewMenu from "../partials/ARViewMenu";
 import Toast from '../partials/Toast';
 import ARNoSupport from '../partials/ARNoSupport';
 
@@ -39,8 +39,9 @@ export class ARController extends Component {
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
-      houseArPressedID: null,
+      houseArPressedID: 0,
       houseArPressedName: null,
+      architectureDataID: 0,
       toastVisible: false,
       scenaSource : true,
       compassHeading: 0,
@@ -83,11 +84,13 @@ export class ARController extends Component {
         }
 
         {this.state.infoMenuVisible && (
-          <InfoMenu 
+          <ARViewMenu 
             handlePressDataSheet={this.toggleDataSheet} 
             descriptionVisible={this.state.descriptionVisible} 
             houseArPressed={this.state.houseArPressedID} 
-            navigation={this.props.navigation}/> 
+            architectureDataID={this.state.architectureDataID} 
+            navigation={this.props.navigation}
+            showErrorToast={this.showToast}/> 
         )}
 
         {this.state.dataSheetVisible && (

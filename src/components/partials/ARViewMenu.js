@@ -15,6 +15,7 @@ import styles from "../../assets/styles/partials/infoMenu";
 import { 
     BRIEF_DESCRIPTIONS_URL,
     USER_DATA,
+    ARCHITECTURE_DATA,
 } from '../../../constants/constants';
   
 import {
@@ -23,30 +24,25 @@ import {
   
 //-------------------------------
 
-const FEATURE_ID = "?feature_id=";
+const BY_FEATURE_ID = "?feature_id=";
+const BY_DATA_ID = "?data_id=";
+const NOT_ARCHITECTURE_DETAILS_MESSAGE = "La vista no presenta información arquitectónica";
 const DATA_SHEET_ICON = require('../../assets/images/augmentedReality/ficha-tecnica.png');
 const VIVENCIAS_ICON = require('../../assets/images/augmentedReality/vivenciass.png');
 const EXTRA_INFO_ICON = require('../../assets/images/augmentedReality/mas-info.png');
-const DIC_ARQ = {
-    name: "name" , 
-    description: "description", 
-    direction: "direction",
-    phone_number: "phone_number",
-    facebook: "facebook",
-    images_url: ["image1_url", 
-                "image2_url", 
-                "image3_url"]
-};
 
-export default class InfoMenu extends Component {
+export default class ARViewMenu extends Component {
     constructor(props) {
         super(props);
     
         this.toggleDataSheet = this.toggleDataSheet.bind(this);
-        
+
+        this.navigation = this.props.navigation;
+
         this.state = {
             buildingARPressed: this.props.houseArPressed,
             informationText : null,
+            userData: null,
         }
     }
 
@@ -72,7 +68,7 @@ export default class InfoMenu extends Component {
                         <Text style={styles.textButton}> Vivencias</Text>
                     </TouchableOpacity>
                     
-                    <TouchableOpacity style={styles.rowButton} onPress= {() => this.props.navigation.navigate('ArchitectureDetail',{goToScreen: this.props.navigation, placeInfo: DIC_ARQ}) }>
+                    <TouchableOpacity style={styles.rowButton} onPress= {() => this.goToArchitectureDetails() }>
                         <Image  source={EXTRA_INFO_ICON} />
                         <Text style={styles.textButton}> Info</Text>
                     </TouchableOpacity>
@@ -82,7 +78,7 @@ export default class InfoMenu extends Component {
     }
     
     
-    toggleDataSheet(){
+    toggleDataSheet = () => {
         this.props.handlePressDataSheet();
     }
 
@@ -97,18 +93,36 @@ export default class InfoMenu extends Component {
     }
 
     async get_brief_description(){
-        let URL_GET_INFO = BRIEF_DESCRIPTIONS_URL+FEATURE_ID+this.props.houseArPressed;
+        let URL_GET_INFO = BRIEF_DESCRIPTIONS_URL+BY_FEATURE_ID+this.props.houseArPressed;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
-        console.log("Response",response);
-        
+        // ToDo: Ponerle la validacion de si hay respuesta cuando Gerald lo arregle.
         let responseJson = await response.json();
-        console.log("JSON",responseJson);
         if(responseJson != undefined){
             this.setState({
                 informationText: responseJson.description,
             });  
         }
     } 
+
+    async get_architecture_data_by_id(dataID){
+        let URL_GET_INFO = ARCHITECTURE_DATA+BY_DATA_ID+dataID;
+        let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
+        if(response.ok){
+            let responseJson = await response.json();
+            this.navigation.navigate('ArchitectureDetail', {placeInfo: responseJson}) 
+        }
+        else{
+            this.props.showErrorToast(NOT_ARCHITECTURE_DETAILS_MESSAGE);
+        }
+    } 
+
+    async goToArchitectureDetails() {
+        await this.get_user_data();
+        this.props.architectureDataID == 0 
+        ? await this.get_architecture_data_by_id(1)
+        : this.props.showErrorToast(NOT_ARCHITECTURE_DETAILS_MESSAGE);
+    }
 }
 
-module.exports = InfoMenu;
+
+module.exports = ARViewMenu;

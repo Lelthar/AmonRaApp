@@ -9,7 +9,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcastilloMoroAntiguo01_optimized.jpg?alt=media&token=1e0a17b1-a894-4bb8-92bc-b37e130b3fac", 
         "label3DObject" : "castillodelmoro",
         "min_degree": 250,
-        "max_degree": 300
+        "max_degree": 300,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 285, 
@@ -21,7 +22,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcastilloMoroAntiguo02_optimized.jpg?alt=media&token=6fd4d632-ad7f-42ee-8c64-b881b733421c", 
         "label3DObject" : "castillodelmoro",
         "min_degree": 200,
-        "max_degree": 240
+        "max_degree": 240,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 300, 
@@ -33,7 +35,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FciprianoHerrero_optimized.jpg?alt=media&token=6dc343c2-51e9-4d49-8020-7a6535631a8f", 
         "label3DObject" : "ciprianoherrero",
         "min_degree": 70,
-        "max_degree": 140
+        "max_degree": 140,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 274, 
@@ -45,7 +48,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FaguilarBolandi03_optimized.jpg?alt=media&token=bcfd2796-9873-411c-8a5b-927b97fb0f89", 
         "label3DObject" : "aguilarbolandi",
         "min_degree": 30,
-        "max_degree": 70
+        "max_degree": 70,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 274, 
@@ -57,7 +61,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FalejoAguilarBolandi01_optimized.jpg?alt=media&token=b85dd5a1-f010-4591-a228-7ef0cae6e6db", 
         "label3DObject" : "aguilarbolandi",
         "min_degree": 80,
-        "max_degree": 110
+        "max_degree": 110,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 274, 
@@ -69,7 +74,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FaguilarBolandi02_optimized.jpg?alt=media&token=45525f62-8be8-4b55-955c-5e7613901a24", 
         "label3DObject" : "aguilarbolandi",
         "min_degree": 120,
-        "max_degree": 170
+        "max_degree": 170,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 273, 
@@ -81,7 +87,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FedificioEsquineroAntiguo_optimized.jpg?alt=media&token=c8fe0549-4464-4a2d-9956-2de76fa8d66a", 
         "label3DObject" : "avenida7calle3",
         "min_degree": 260,
-        "max_degree": 10
+        "max_degree": 10,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 289, 
@@ -93,7 +100,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FalianzaFrancesaAntigua_optimized.jpg?alt=media&token=3b25da8b-30ef-47b4-a252-04890df82a29", 
         "label3DObject" : "alianzaFrancesa",
         "min_degree": 20,
-        "max_degree": 80
+        "max_degree": 80,
+        "architectureDataID": 0
     }, 
     {  
         "placeID": 765765, 
@@ -105,7 +113,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaAv5Calle7Antigua_optimized.jpg?alt=media&token=6ac0787d-429c-4a03-9761-47a18c467aaa", 
         "label3DObject" : "av5ycalles5y7",
         "min_degree": 350,
-        "max_degree": 50
+        "max_degree": 50,
+        "architectureDataID": 0
     },
     {
         "placeID": 291, 
@@ -117,7 +126,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FfosforeraAntigua_optimized.jpg?alt=media&token=d8b0679b-a19e-4dc8-8eae-905ef5428328", 
         "label3DObject" : "antiguafosforera",
         "min_degree": 260,
-        "max_degree": 350
+        "max_degree": 350,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 280, 
@@ -129,7 +139,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelReyAmonAntiguo_optimized.jpg?alt=media&token=614c2361-8dc7-4126-8003-2ebe1d89d391", 
         "label3DObject" : "hotelreyamon",
         "min_degree": 300,
-        "max_degree": 10
+        "max_degree": 10,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 279, 
@@ -141,7 +152,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelTenerife_optimized.jpg?alt=media&token=3f4d6655-b7b6-44fa-ae96-328151317c8f", 
         "label3DObject" : "hoteltenerife",
         "min_degree": 240,
-        "max_degree": 290
+        "max_degree": 290,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 278, 
@@ -153,7 +165,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaGonzalezFeo_optimized.jpg?alt=media&token=6f4ca884-b4d4-46c6-8de1-0d73396268ab", 
         "label3DObject" : "gonzalesfeo",
         "min_degree": 240,
-        "max_degree": 290
+        "max_degree": 290,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 293, 
@@ -165,7 +178,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelDonCarlos_optimized.jpg?alt=media&token=11df2bd5-476a-45e0-8d8b-9899108fe24a", 
         "label3DObject" : "hoteldoncarlos",
         "min_degree": 240,
-        "max_degree": 290
+        "max_degree": 290,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 303, 
@@ -177,7 +191,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelHeminway_optimized.jpg?alt=media&token=14e32df4-851a-4e9c-aaf6-3a5f9832d762", 
         "label3DObject" : "hotelhemingway",
         "min_degree": 320,
-        "max_degree": 90
+        "max_degree": 90,
+        "architectureDataID": 0
     }, 
     {
         "placeID": 275, 
@@ -189,7 +204,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaVerde_optimized.jpg?alt=media&token=b4617052-785b-4f2e-9d23-0d9d7540741d", 
         "label3DObject" : "casaverde",
         "min_degree": 340,
-        "max_degree": 80
+        "max_degree": 80,
+        "architectureDataID": 0
     },
     {
         "placeID": 275, 
@@ -201,7 +217,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaVerde02_optimized.jpg?alt=media&token=e371f5b0-b05e-4ece-9c5e-ae8cb953a602", 
         "label3DObject" : "casaverde",
         "min_degree": 90,
-        "max_degree": 130
+        "max_degree": 130,
+        "architectureDataID": 0
     },
     {
         "placeID": 288, 
@@ -213,7 +230,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FescuelaTecnicaNacionalAntigua_optimized.jpg?alt=media&token=ad235038-2a4b-4ea0-ab98-fd7f08f8d875", 
         "label3DObject" : "escuelatecnicanacional",
         "min_degree": 110,
-        "max_degree": 170
+        "max_degree": 170,
+        "architectureDataID": 0
     },
     {
         "placeID": 283, 
@@ -225,7 +243,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelDunnInn_optimized.jpg?alt=media&token=f4a68838-d955-4507-ae3e-eee8e59463ae", 
         "label3DObject" : "hoteldunninn",
         "min_degree": 190,
-        "max_degree": 260
+        "max_degree": 260,
+        "architectureDataID": 0
     },
     {
         "placeID": 287, 
@@ -237,7 +256,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaSerranoBonillaAntigua_optimized.jpg?alt=media&token=91068e89-34d0-4d9c-953f-3a01213e9ea8", 
         "label3DObject" : "serranobonilla",
         "min_degree": 180,
-        "max_degree": 230
+        "max_degree": 230,
+        "architectureDataID": 0
     },
     {
         "placeID": 282, 
@@ -249,7 +269,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FrestauranteSilvestre_optimized.jpg?alt=media&token=787d989b-66b7-4fb2-aa60-d526edbb0d61", 
         "label3DObject" : "peraltazeller",
         "min_degree": 190,
-        "max_degree": 270
+        "max_degree": 270,
+        "architectureDataID": 0
     },
     {
         "placeID": 302, 
@@ -261,7 +282,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelAmstelAmon_optimized.jpg?alt=media&token=349bec29-25d3-44cf-96ea-023eeff71c35", 
         "label3DObject" : "hotelAmstelAmon",
         "min_degree": 340,
-        "max_degree": 90
+        "max_degree": 90,
+        "architectureDataID": 0
     },
     {
         "placeID": 281, 
@@ -273,7 +295,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2Fcasa936Antigua_optimized.jpg?alt=media&token=c538e4c7-3507-46cf-9399-128ab012e247", 
         "label3DObject" : "casa936",
         "min_degree": 80,
-        "max_degree": 150
+        "max_degree": 150,
+        "architectureDataID": 0
     },
     {
         "placeID": 277, 
@@ -285,7 +308,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2Fcalle3haciaAv11.JPG?alt=media&token=dd5dcfa8-2bea-4c31-b44f-f49cc1bfc7db", 
         "label3DObject" : "calle3Ahaciaav11",
         "min_degree": 330,
-        "max_degree": 20
+        "max_degree": 20,
+        "architectureDataID": 0
     },
     {
         "placeID": 295, 
@@ -297,7 +321,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaMarianoAlvarezMelgarAntigua02_optimized.jpg?alt=media&token=898a6361-60b8-4f53-ad88-e09327233e9c", 
         "label3DObject" : "alvarezmelgar",
         "min_degree": 200,
-        "max_degree": 240
+        "max_degree": 240,
+        "architectureDataID": 0
     },
     {
         "placeID": 295, 
@@ -309,7 +334,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaMarianoAlvarezMelgarAntigua_optimized.jpg?alt=media&token=839d432b-6854-4048-980d-469ddf5a835f", 
         "label3DObject" : "alvarezmelgar",
         "min_degree": 250,
-        "max_degree": 280
+        "max_degree": 280,
+        "architectureDataID": 0
     },
     {
         "placeID": 295, 
@@ -321,7 +347,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2Favenida9HaciaEste_optimized.jpg?alt=media&token=313de64a-96f1-4128-aa58-4d3e8798c25e", 
         "label3DObject" : "alvarezmelgar",
         "min_degree": 50,
-        "max_degree": 130
+        "max_degree": 130,
+        "architectureDataID": 0
     },
     {
         "placeID": 297, 
@@ -333,7 +360,8 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FantiguedadesGobelino_optimized.jpg?alt=media&token=f0628610-0981-4169-8744-a5b6aee82103", 
         "label3DObject" : "antiguedadesgobelino",
         "min_degree": 290,
-        "max_degree": 340
+        "max_degree": 340,
+        "architectureDataID": 0
     },  
     {
         "placeID": 296, 
@@ -345,6 +373,7 @@
         "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FanticuarioSanAngelAntiguo_optimized.jpg?alt=media&token=e588fc8a-1074-4c9a-9dce-54e137bc0c0b", 
         "label3DObject" : "anticuariosanangel",
         "min_degree": 190,
-        "max_degree": 240
+        "max_degree": 240,
+        "architectureDataID": 0
     }
 ]
