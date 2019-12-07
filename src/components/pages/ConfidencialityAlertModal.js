@@ -9,8 +9,8 @@ import {
   Dimensions
 } from 'react-native';
 
-import * as constants from '../../data/constants'
-import * as colors from '../../data/colors'
+import * as constants from '../../../data/constants'
+import * as colors from '../../../data/colors'
 
 import Modal from "react-native-modal";
 import CheckBox from 'react-native-check-box'
@@ -37,10 +37,10 @@ renderCheckbox(){
      }}
      isChecked={this.state.isChecked}
      checkedImage={
-       <Image source={require('../../images/icons/check.png')} style={styles.checkImage} />
+       <Image source={require('../../../images/icons/check.png')} style={styles.checkImage} />
      }
      unCheckedImage={
-       <Image source={require('../../images/icons/uncheck.png')} style={styles.checkImage} />
+       <Image source={require('../../../images/icons/uncheck.png')} style={styles.checkImage} />
      }
      />
    );
@@ -56,7 +56,7 @@ render() {
        <View style={styles.modalBody} >
 
            {<View style={styles.modalImageContainer}>
-             <Image source={require("../../images/marca-01.png")} style={styles.modalLogoImage}/>
+             <Image source={require("../../../images/marca-01.png")} style={styles.modalLogoImage}/>
            </View>}
 
            <View style={styles.modalTextContainer}>

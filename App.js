@@ -3,7 +3,7 @@ import {
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen';
-import RegisterMain from './components/Register/RegisterMain';
+import RegisterMain from './src/components/pages/RegisterMain';
 import MainApp from './MainApp'
 import { 
   USER_DATA,
