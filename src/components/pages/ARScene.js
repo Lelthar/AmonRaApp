@@ -74,20 +74,14 @@ export class ARScene extends Component {
     Geolocation.getCurrentPosition(
       (position) => {
         let userMercProjection = this._coordLatLongToMercatorProjection(position.coords.latitude, position.coords.longitude);
-        /*console.log("REy Amon",this._coordLatLongToMercatorProjection(9.936768, -84.074458));
-        console.log("Casa hp",this._coordLatLongToMercatorProjection(9.937041, -84.075284 ));
-        console.log("HEminway",this._coordLatLongToMercatorProjection(9.937701, -84.073943));
-        console.log("Tenerife",this._coordLatLongToMercatorProjection(9.936893, -84.074518)); 
-        console.log("Gonzalez Feo",this._coordLatLongToMercatorProjection(9.937149, -84.074485)); 
-        console.log("Don Carlos",this._coordLatLongToMercatorProjection(9.937407, -84.074483)); */
         this.setState({
+          sceneVisible: true,
           arePlacesBeingWatched: newArePlacesBeingWatched,
           userMercProjection : userMercProjection,
-          sceneVisible: true,
         });
       },
-      error => console.log(error.message),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 0 }
+      (error) => {console.log(error.message);},
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 5000 },
     );
   }
 
@@ -150,8 +144,6 @@ export class ARScene extends Component {
   
   showARView = (viewAR, imageScale, buttonScale) => {
     console.log("Activando",viewAR);
-    console.log("imageScale",imageScale);
-    console.log("buttonScale",buttonScale);
     return( 
       <ViroNode key={viewAR.placeID}>
         <ViroAmbientLight color="#FFFFFF"/>

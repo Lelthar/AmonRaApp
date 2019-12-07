@@ -6,23 +6,23 @@
         "lat": 9.939301, 
         "lon": -84.077214,
         "tittle": "Castillo del Moro",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F13.Vista%20CastillodelMorodesdeCalle3%2FcastilloMoroAntiguo.JPG?alt=media&token=c9b280ef-6208-4ff2-b3d5-704ccea5d65a", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcastilloMoroAntiguo01_optimized.jpg?alt=media&token=1e0a17b1-a894-4bb8-92bc-b37e130b3fac", 
         "label3DObject" : "castillodelmoro",
-        "min_degree": 200,
+        "min_degree": 250,
         "max_degree": 300
     }, 
-    {  
-        "placeID": 765765, 
-        "X": -9359217.80317986,
-        "Y": 1111773.9805703256,
-        "lat": 9.937041, 
-        "lon": -84.075284,
-        "tittle": "Casa entre Avenida 5 y Calles 5 y 7",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F18.VistaCasaEntreAvenida5yCalles5y7%2FcasaAv5Calle7Antigua.jpg?alt=media&token=40d0f8d4-56ad-41da-b9c5-1dc4c33b6f1e", 
-        "label3DObject" : "av5ycalles5y7",
-        "min_degree": 350,
-        "max_degree": 50
-    },
+    {
+        "placeID": 285, 
+        "X": -9359432.649797091,
+        "Y": 1112029.3952271256,
+        "lat": 9.939301, 
+        "lon": -84.077214,
+        "tittle": "Castillo del Moro",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcastilloMoroAntiguo02_optimized.jpg?alt=media&token=6fd4d632-ad7f-42ee-8c64-b881b733421c", 
+        "label3DObject" : "castillodelmoro",
+        "min_degree": 200,
+        "max_degree": 240
+    }, 
     {
         "placeID": 300, 
         "X": -9359390.459710082,
@@ -30,9 +30,9 @@
         "lat": 9.938515, 
         "lon": -84.076835, 
         "tittle": "Casa Cipriano Herrero",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F28.VistaAntiguaCasaCiprianoHerreroDesdeEsquinaSuroesteEntreAvenida11yCalle3%2FcasaCiprianoAntigua.jpg?alt=media&token=e4f0f281-0099-4ac1-af3a-52329c71ef4e", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FciprianoHerrero_optimized.jpg?alt=media&token=6dc343c2-51e9-4d49-8020-7a6535631a8f", 
         "label3DObject" : "ciprianoherrero",
-        "min_degree": 40,
+        "min_degree": 70,
         "max_degree": 140
     }, 
     {
@@ -42,10 +42,34 @@
         "lat": 9.937853, 
         "lon": -84.076905, 
         "tittle": "Casa Alejo Aguilar Bolandi",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F2.VistaCasaAlejoAguilarBolandiDesdeEsquinaSuroesteEntreAvenida9yCalle3%2FcasaBolandiAntigua.jpg?alt=media&token=dc7210c5-06d0-470a-ba84-d173c3d4322b", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FaguilarBolandi03_optimized.jpg?alt=media&token=bcfd2796-9873-411c-8a5b-927b97fb0f89", 
         "label3DObject" : "aguilarbolandi",
-        "min_degree": 40,
-        "max_degree": 140
+        "min_degree": 30,
+        "max_degree": 70
+    }, 
+    {
+        "placeID": 274, 
+        "X": -9359398.252074437,
+        "Y": 1111865.74881906,
+        "lat": 9.937853, 
+        "lon": -84.076905, 
+        "tittle": "Casa Alejo Aguilar Bolandi",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FalejoAguilarBolandi01_optimized.jpg?alt=media&token=b85dd5a1-f010-4591-a228-7ef0cae6e6db", 
+        "label3DObject" : "aguilarbolandi",
+        "min_degree": 80,
+        "max_degree": 110
+    }, 
+    {
+        "placeID": 274, 
+        "X": -9359398.252074437,
+        "Y": 1111865.74881906,
+        "lat": 9.937853, 
+        "lon": -84.076905, 
+        "tittle": "Casa Alejo Aguilar Bolandi",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FaguilarBolandi02_optimized.jpg?alt=media&token=45525f62-8be8-4b55-955c-5e7613901a24", 
+        "label3DObject" : "aguilarbolandi",
+        "min_degree": 120,
+        "max_degree": 170
     }, 
     {
         "placeID": 273, 
@@ -54,7 +78,7 @@
         "lat": 9.937341, 
         "lon": -84.077318, 
         "tittle": "Edificio Esquinero",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F1.VistaEdificioEsquineroAvenida7yCalle3%2FedificioEsquineroAntiguo.jpg?alt=media&token=adc7e1c0-e67b-4037-983d-b53e3a2577cb", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FedificioEsquineroAntiguo_optimized.jpg?alt=media&token=c8fe0549-4464-4a2d-9956-2de76fa8d66a", 
         "label3DObject" : "avenida7calle3",
         "min_degree": 260,
         "max_degree": 10
@@ -66,11 +90,23 @@
         "lat": 9.937082,
         "lon": -84.075623,
         "tittle": "Alianza Cultural Franco Costarricense",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F17.VistaAlianzaCulturalFrancoCostarricenseDesDeLaEsquinaSuroesteDeLaAvenida7yCalle5%2FalianzaFrancesaAntigua.jpg?alt=media&token=8f6fd074-fa0c-46c1-ac94-feb6767465cd", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FalianzaFrancesaAntigua_optimized.jpg?alt=media&token=3b25da8b-30ef-47b4-a252-04890df82a29", 
         "label3DObject" : "alianzaFrancesa",
         "min_degree": 20,
         "max_degree": 80
     }, 
+    {  
+        "placeID": 765765, 
+        "X": -9359217.80317986,
+        "Y": 1111773.9805703256,
+        "lat": 9.937041, 
+        "lon": -84.075284,
+        "tittle": "Casa entre Avenida 5 y Calles 5 y 7",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaAv5Calle7Antigua_optimized.jpg?alt=media&token=6ac0787d-429c-4a03-9761-47a18c467aaa", 
+        "label3DObject" : "av5ycalles5y7",
+        "min_degree": 350,
+        "max_degree": 50
+    },
     {
         "placeID": 291, 
         "X": -9359202.329770641,
@@ -78,9 +114,9 @@
         "lat": 9.937008,
         "lon": -84.075145,
         "tittle": "Antigua Fosforera",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F19.VistaAntiguaFosforera(InstitutoMixtoDeAyudaSocial)%2FfosforeraAntigua.jpg?alt=media&token=81c1c523-8695-4053-9c5c-d543ea812119", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FfosforeraAntigua_optimized.jpg?alt=media&token=d8b0679b-a19e-4dc8-8eae-905ef5428328", 
         "label3DObject" : "antiguafosforera",
-        "min_degree": 280,
+        "min_degree": 260,
         "max_degree": 350
     }, 
     {
@@ -90,7 +126,7 @@
         "lat": 9.936768, 
         "lon": -84.074458, 
         "tittle": "Hotel Rey Amón",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F8.VistaAntiguoHotelReyAmonDesdeEsquinaSuroesteEntreAvenida7yCalle9%2FhotelReyAmonAntiguo.JPG?alt=media&token=08e5016c-82b7-4e1e-ac1f-54a3663d3e5e", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelReyAmonAntiguo_optimized.jpg?alt=media&token=614c2361-8dc7-4126-8003-2ebe1d89d391", 
         "label3DObject" : "hotelreyamon",
         "min_degree": 300,
         "max_degree": 10
@@ -99,46 +135,46 @@
         "placeID": 279, 
         "X": -9359132.532449912,
         "Y": 1111757.2543623464,  
-        "lat": 9.936937, 
-        "lon": -84.074419,
+        "lat": 9.936893, 
+        "lon": -84.074518,
         "tittle": "Hotel Tenerife",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F7.VistaAntiguoHotelTenerifeDesdeCalle9%2FhotelTenerife.JPG?alt=media&token=53497c69-fd0e-4d2d-bcbf-1dd1f72d7a34", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelTenerife_optimized.jpg?alt=media&token=3f4d6655-b7b6-44fa-ae96-328151317c8f", 
         "label3DObject" : "hoteltenerife",
-        "min_degree": 250,
+        "min_degree": 240,
         "max_degree": 290
     }, 
     {
         "placeID": 278, 
         "X": -9359128.858906716,  
         "Y": 1111786.18618633,   
-        "lat": 9.937176,
-        "lon": -84.074490,
+        "lat": 9.937149, 
+        "lon": -84.074485,
         "tittle": "Casa González Feo",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F6.VistaTapiaCasaGonzalezFeo%2CdesdeCalle9%2F2719.JPG?alt=media&token=46c8b38c-9a85-4d87-b0b8-af1f2596e093", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaGonzalezFeo_optimized.jpg?alt=media&token=6f4ca884-b4d4-46c6-8de1-0d73396268ab", 
         "label3DObject" : "gonzalesfeo",
-        "min_degree": 250,
+        "min_degree": 240,
         "max_degree": 290
     }, 
     {
         "placeID": 293, 
         "X": -9359128.636267735,
         "Y": 1111815.344063101,
-        "lat": 9.937438, 
-        "lon": -84.074402,
+        "lat": 9.937407, 
+        "lon": -84.074483,
         "tittle": "Hotel Don Carlos",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F20.VistaAnexoHotelDonCarlosDesdeCalle9%2FhotelDonCarlosAntiguo.jpg?alt=media&token=7ac6cdc9-d4e8-41d9-8ace-546f2081e35f", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelDonCarlos_optimized.jpg?alt=media&token=11df2bd5-476a-45e0-8d8b-9899108fe24a", 
         "label3DObject" : "hoteldoncarlos",
-        "min_degree": 250,
+        "min_degree": 240,
         "max_degree": 290
     }, 
     {
         "placeID": 303, 
         "X": -9359068.523742706,
         "Y": 1111848.570508859,
-        "lat": 9.937757, 
-        "lon": -84.073868,
+        "lat": 9.937701, 
+        "lon": -84.073943,
         "tittle": "Hotel Hemingway",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F31.VistaAntiguoHotelHemingwayDesdeEsquinaSuroesteEntreAvenida9yCalle9%2FhotelHemingwayInnAntiguo.JPG?alt=media&token=c060605c-25e8-4645-a8d9-dca88a7d0358", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelHeminway_optimized.jpg?alt=media&token=14e32df4-851a-4e9c-aaf6-3a5f9832d762", 
         "label3DObject" : "hotelhemingway",
         "min_degree": 320,
         "max_degree": 90
@@ -150,10 +186,22 @@
         "lat": 9.937914, 
         "lon": -84.074649, 
         "tittle": "Casa Saborío Iglesias (Casa Verde)",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F3.VistaCasaSaborioIglesiasDesdeEsquinaSuroesteEntreAvenida9yCalle7%2FcasaVerde.JPG?alt=media&token=3db9b4d9-b474-4d5d-ac62-e9b6ba2e492a", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaVerde_optimized.jpg?alt=media&token=b4617052-785b-4f2e-9d23-0d9d7540741d", 
         "label3DObject" : "casaverde",
         "min_degree": 340,
-        "max_degree": 90
+        "max_degree": 80
+    },
+    {
+        "placeID": 275, 
+        "X": -9359147.115303207,
+        "Y": 1111872.6427484255,
+        "lat": 9.937914, 
+        "lon": -84.074649, 
+        "tittle": "Casa Saborío Iglesias (Casa Verde)",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaVerde02_optimized.jpg?alt=media&token=e371f5b0-b05e-4ece-9c5e-ae8cb953a602", 
+        "label3DObject" : "casaverde",
+        "min_degree": 90,
+        "max_degree": 130
     },
     {
         "placeID": 288, 
@@ -162,22 +210,22 @@
         "lat": 9.937894, 
         "lon": -84.075309, 
         "tittle": "Escuela Técnica Nacional",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F16.VistaAntiguaEscuelaTecnicaNacional%2FescuelaTecnicaNacionalAntigua.jpg?alt=media&token=35381f18-d487-4a45-ad7e-a161d5a2b29e", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FescuelaTecnicaNacionalAntigua_optimized.jpg?alt=media&token=ad235038-2a4b-4ea0-ab98-fd7f08f8d875", 
         "label3DObject" : "escuelatecnicanacional",
         "min_degree": 110,
-        "max_degree": 160
+        "max_degree": 170
     },
     {
-        "placeID": 284, 
-        "X": -9359245.74437205,
-        "Y": 1111922.4825055348,  
-        "lat": 9.938490,
-        "lon": -84.075507, 
-        "tittle": "Calle 5 hacia Avenida 9",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F12.VistaCalle5SobreAvenida11haciaAvenida9%2Fcalle5sobreAvenida11haciaAvenida9.jpg?alt=media&token=2621de75-b566-43be-a462-80a6e8d2f856", 
-        "label3DObject" : "calle5haciaav9",
-        "min_degree": 130,
-        "max_degree": 230
+        "placeID": 283, 
+        "X": -9359257.655557565, 
+        "Y": 1111929.2634300645,  
+        "lat": 9.938415, 
+        "lon": -84.075642,
+        "tittle": "Hotel Dunn Inn",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelDunnInn_optimized.jpg?alt=media&token=f4a68838-d955-4507-ae3e-eee8e59463ae", 
+        "label3DObject" : "hoteldunninn",
+        "min_degree": 190,
+        "max_degree": 260
     },
     {
         "placeID": 287, 
@@ -186,10 +234,10 @@
         "lat": 9.938448, 
         "lon": -84.076019, 
         "tittle": "Casa Serrano Bonilla",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F15.VistaAntiguaCasaSerrano%2FcasaSerranoBonillaAntigua.jpg?alt=media&token=be009fd3-2691-4ccc-bb10-f8e49847a8aa", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaSerranoBonillaAntigua_optimized.jpg?alt=media&token=91068e89-34d0-4d9c-953f-3a01213e9ea8", 
         "label3DObject" : "serranobonilla",
-        "min_degree": 130,
-        "max_degree": 190
+        "min_degree": 180,
+        "max_degree": 230
     },
     {
         "placeID": 282, 
@@ -198,9 +246,9 @@
         "lat": 9.938515, 
         "lon": -84.076499, 
         "tittle": "Casa Peralta Zeller",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F10.VistaRestauranteSilvestre(AntiguaCasaPeraltaZeller)%2CdesdeEsquinaNoresteEntreAvenida11yCalle%203A%2FrestauranteSilvestre.JPG?alt=media&token=fa6b5fae-1990-4e62-9b12-6f0a65c459bc", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FrestauranteSilvestre_optimized.jpg?alt=media&token=787d989b-66b7-4fb2-aa60-d526edbb0d61", 
         "label3DObject" : "peraltazeller",
-        "min_degree": 150,
+        "min_degree": 190,
         "max_degree": 270
     },
     {
@@ -210,7 +258,7 @@
         "lat": 9.938806, 
         "lon": -84.076016, 
         "tittle": "Hotel Amstel Amón",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F30.VistaAntiguoHotelAmstelAmondesdeesquinasuroesteentreAvenida11yCalle3A%2FhotelAmstelAmonAntiguo.JPG?alt=media&token=2c509aad-8c5d-4fe2-b380-f9a6eceace58", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FhotelAmstelAmon_optimized.jpg?alt=media&token=349bec29-25d3-44cf-96ea-023eeff71c35", 
         "label3DObject" : "hotelAmstelAmon",
         "min_degree": 340,
         "max_degree": 90
@@ -222,21 +270,21 @@
         "lat": 9.938306, 
         "lon": -84.076115, 
         "tittle": "Casa 936",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F9.VistaCasa936(Casa%20Familia%20Castro%20Odio)%2CdesdeCalle3A%2Fcasa936Antigua.JPG?alt=media&token=a05d921a-2202-471b-996e-40f412495f00", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2Fcasa936Antigua_optimized.jpg?alt=media&token=c538e4c7-3507-46cf-9399-128ab012e247", 
         "label3DObject" : "casa936",
         "min_degree": 80,
-        "max_degree": 140
+        "max_degree": 150
     },
     {
         "placeID": 277, 
-        "X": -9359349.939415433,
-        "Y": 1111903.2698927922,  
-        "lat": 9.938185,
-        "lon": -84.076471, 
+        "X": -9359332.350935888,
+        "Y": 1111907.4514605976,  
+        "lat": 9.938222, 
+        "lon": -84.076313, 
         "tittle": "Calle 3A hacia Avenida 11",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F5.VistaCalle3AHaciaAvenida11%2Fcalle3haciaAv11.JPG?alt=media&token=ee4873e1-d9cd-4d93-9f90-f31a1627f0f0", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2Fcalle3haciaAv11.JPG?alt=media&token=dd5dcfa8-2bea-4c31-b44f-f49cc1bfc7db", 
         "label3DObject" : "calle3Ahaciaav11",
-        "min_degree": 280,
+        "min_degree": 330,
         "max_degree": 20
     },
     {
@@ -246,22 +294,34 @@
         "lat": 9.937831,
         "lon": -84.076526, 
         "tittle": "Casa Mariano Álvarez Melgar",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F23.VistaAntiguaCasaMarianoAlvarezMelgarDesdeCalle3A%2FcasaMarianoAlvarezMelgarAntigua.jpg?alt=media&token=c6f7d46a-518d-48b6-956f-869cbf6cbe97", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaMarianoAlvarezMelgarAntigua02_optimized.jpg?alt=media&token=898a6361-60b8-4f53-ad88-e09327233e9c", 
         "label3DObject" : "alvarezmelgar",
-        "min_degree": 150,
-        "max_degree": 220
+        "min_degree": 200,
+        "max_degree": 240
     },
     {
-        "placeID": 296, 
-        "X": -9359346.265872236,
-        "Y": 1111845.85814482,
-        "lat": 9.937677, 
-        "lon": -84.076438, 
-        "tittle": "Anticuario San Ángel",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F24.VistaAntiguoAnticuarioSanAngel%2FanticuarioSanAngelAntiguo.jpg?alt=media&token=3d719b9e-ae93-44a8-b231-e78a5e285845", 
-        "label3DObject" : "anticuariosanangel",
-        "min_degree": 240,
-        "max_degree": 320
+        "placeID": 295, 
+        "X": -9359356.061987426,
+        "Y": 1111863.2624841947, 
+        "lat": 9.937831,
+        "lon": -84.076526, 
+        "tittle": "Casa Mariano Álvarez Melgar",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FcasaMarianoAlvarezMelgarAntigua_optimized.jpg?alt=media&token=839d432b-6854-4048-980d-469ddf5a835f", 
+        "label3DObject" : "alvarezmelgar",
+        "min_degree": 250,
+        "max_degree": 280
+    },
+    {
+        "placeID": 295, 
+        "X": -9359353.056361174,
+        "Y": 1111877.1633585435,
+        "lat": 9.937954,
+        "lon": -84.076499,
+        "tittle": "Casa Mariano Álvarez Melgar",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2Favenida9HaciaEste_optimized.jpg?alt=media&token=313de64a-96f1-4128-aa58-4d3e8798c25e", 
+        "label3DObject" : "alvarezmelgar",
+        "min_degree": 50,
+        "max_degree": 130
     },
     {
         "placeID": 297, 
@@ -270,9 +330,21 @@
         "lat": 9.938112, 
         "lon": -84.076516, 
         "tittle": "Antiguedades Gobelino",
-        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/RealidadVirtual%2F25.VistaAntiguedadesGobelinoyCafeGournetDesdeEsquinaSuresteAvenida9yCalle3A%2FantiguedadesGobelino.jpg?alt=media&token=94859835-fb13-419d-9bf2-83cdcc7a6dfd", 
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FantiguedadesGobelino_optimized.jpg?alt=media&token=f0628610-0981-4169-8744-a5b6aee82103", 
         "label3DObject" : "antiguedadesgobelino",
-        "min_degree": 270,
-        "max_degree": 350
-    }  
+        "min_degree": 290,
+        "max_degree": 340
+    },  
+    {
+        "placeID": 296, 
+        "X": -9359346.265872236,
+        "Y": 1111845.85814482,
+        "lat": 9.937677, 
+        "lon": -84.076438, 
+        "tittle": "Anticuario San Ángel",
+        "img": "https://firebasestorage.googleapis.com/v0/b/amonra-tec.appspot.com/o/Realidad%20Aumentada%2FanticuarioSanAngelAntiguo_optimized.jpg?alt=media&token=e588fc8a-1074-4c9a-9dce-54e137bc0c0b", 
+        "label3DObject" : "anticuariosanangel",
+        "min_degree": 190,
+        "max_degree": 240
+    }
 ]
