@@ -24,11 +24,11 @@ import {
   FEATURES_URL,
   PERIMETER_URL,
   USER_DATA,
-} from '../../constants/constants';
+} from '../../../constants/constants';
 
 import {
   makeBackendRequest,
-} from '../../helpers/helpers'
+} from '../../../helpers/helpers'
 
 //Imports for redux
 
@@ -41,9 +41,9 @@ import {
   rateScreenAction,
   guideScreenAction,
   menuResetAction,
-} from "../../src/redux/actions/menuDataActions";
+} from "../../redux/actions/menuDataActions";
 
-import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
+import HamburgerMenu from '../partials/HamburgerMenu';
 
 const HOUSES = [337,338,339,340,341,342,343];
 const URL_360 = "?category=Fotos%20360°" ;

@@ -14,7 +14,7 @@ import {
 
 //import Spinner from 'react-native-loading-spinner-overlay';
 
-const background = '../../resources/img/casa-verde-I.jpeg';
+const background = '../../../resources/img/casa-verde-I.jpeg';
 
 export default class LocationLoader extends Component{
 

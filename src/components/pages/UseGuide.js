@@ -11,8 +11,8 @@ import {
     Button
 } from 'react-native';
 
-import * as constants from '../../data/constants'
-import * as colors from '../../data/colors'
+import * as constants from '../../../data/constants'
+import * as colors from '../../../data/colors'
 
 import VideoPlayer from 'react-native-video-player';
 

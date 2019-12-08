@@ -34,9 +34,9 @@ import {
   rateScreenAction,
   guideScreenAction,
   menuResetAction,
-} from "../../../src/redux/actions/menuDataActions";
+} from "../../redux/actions/menuDataActions";
 
-import HamburgerMenu from '../../../src/components/partials/HamburgerMenu';
+import HamburgerMenu from '../partials/HamburgerMenu';
 
 
 const mapStateToProps = state => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import * as constants from '../../data/constants'
-import * as colors from '../../data/colors'
+import * as constants from '../../../data/constants'
+import * as colors from '../../../data/colors'
 
 import Orientation from 'react-native-orientation-locker';
 //react-native run-android --variant=gvrDebug
@@ -20,14 +20,14 @@ import {
 
 import {createStackNavigator,createAppContainer, StackActions, NavigationActions} from 'react-navigation';
 import EmailRegister from './EmailRegister';
-import MainApp from '../../MainApp';
+import MainApp from '../../../MainApp';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
-import ConfidencialityAlertModal from '../ConfidencialityAlertModal/ConfidencialityAlertModal';
-import UseGuide from '../UseGuide/UseGuide';
+import ConfidencialityAlertModal from './ConfidencialityAlertModal';
+import UseGuide from './UseGuide';
 
-const logo = '../../images/marca-02-smaller.png';
-const background = '../../resources/img/casa-verde-I.png';
+const logo = '../../../images/marca-02-smaller.png';
+const background = '../../../resources/img/casa-verde-I.png';
 
 
 class RegisterMain extends React.Component {
@@ -121,7 +121,7 @@ class RegisterMain extends React.Component {
 
           <TouchableOpacity style={styles.FacebookStyle} activeOpacity={0.5}>
             <Image 
-              source={require('../../images/regfacebook.jpg')} 
+              source={require('../../../images/regfacebook.jpg')} 
               style={styles.ImageIconStyle} 
               />
           </TouchableOpacity>

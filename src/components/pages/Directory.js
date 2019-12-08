@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Swiper from 'react-native-swiper';
 import { connect } from "react-redux";
-import HamburgerMenu from '../../src/components/partials/HamburgerMenu';
-import styles from "../../src/assets/styles/pages/directory";
+import HamburgerMenu from '../partials/HamburgerMenu';
+import styles from "../../assets/styles/pages/directory";
 
 import {
     View,
@@ -18,7 +18,7 @@ import {
   rateScreenAction,
   guideScreenAction,
   menuResetAction,
-} from "../../src/redux/actions/menuDataActions";
+} from "../../redux/actions/menuDataActions";
 
 const mapStateToProps = state => {
   return {
@@ -49,15 +49,15 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const imageSwiper1 = require('../../images/Swiper/ALIANZA/ALIANZAI.png');
-const imageSwiper2 = require('../../images/Swiper/RESTAURANTESILVESTRE/RESTAURANTESILVESTREI.png');
-const imageSwiper3 = require('../../images/Swiper/HOTELDONCARLOS/HOTELDONCARLOSI.png');
-const imageSwiper4 = require('../../images/Swiper/TECNOLOGICO/TECNOLOGICO.png');
+const imageSwiper1 = require('../../../images/Swiper/ALIANZA/ALIANZAI.png');
+const imageSwiper2 = require('../../../images/Swiper/RESTAURANTESILVESTRE/RESTAURANTESILVESTREI.png');
+const imageSwiper3 = require('../../../images/Swiper/HOTELDONCARLOS/HOTELDONCARLOSI.png');
+const imageSwiper4 = require('../../../images/Swiper/TECNOLOGICO/TECNOLOGICO.png');
 
-const buttonCulture = require('../../images/icons/Directory/culturagris.png');
-const buttonGastronomy = require('../../images/icons/Directory/gastrogris.png');
-const buttonHotels = require('../../images/icons/Directory/hospedajegris.png');
-const buttonInstitutional = require('../../images/icons/Directory/instigris.png');
+const buttonCulture = require('../../../images/icons/Directory/culturagris.png');
+const buttonGastronomy = require('../../../images/icons/Directory/gastrogris.png');
+const buttonHotels = require('../../../images/icons/Directory/hospedajegris.png');
+const buttonInstitutional = require('../../../images/icons/Directory/instigris.png');
 
 class Directory extends Component{
 

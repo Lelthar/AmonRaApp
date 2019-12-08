@@ -9,7 +9,7 @@ import {
 import CheckBox from 'react-native-check-box'
 import Image from 'react-native-scalable-image'
 
-const data = require('../../data/data.json');
+const data = require('../../../data/data.json');
 
 const features = [
     "Patrimonio Arquitectónico",
@@ -31,7 +31,7 @@ import {
   filterMenuAction,
   activeFiltersAction,
   menuResetAction,
-} from "../../src/redux/actions/menuDataActions";
+} from "../../redux/actions/menuDataActions";
 
 const mapStateToProps = state => {
   return {
@@ -152,11 +152,11 @@ class FilterMenu extends Component{
                                                     onClick={() => this.toggleFilter(item.key)}
                                                     checkedImage={<Image
                                                                         width={20}
-                                                                        source={require('../../images/icons-temp/check.png')}
+                                                                        source={require('../../../images/icons-temp/check.png')}
                                                                 />}
                                                     unCheckedImage={<Image
                                                                         width={20}
-                                                                        source={require('../../images/icons-temp/uncheck.png')}
+                                                                        source={require('../../../images/icons-temp/uncheck.png')}
                                                                     />}
                                                 />}
                     />

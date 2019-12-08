@@ -10,13 +10,13 @@ import {
 } from '../../assets/images/navigation';
 
 import Map from './Map';
-import VirtualVisit from '../../../components/VirtualVisit/VirtualVisit';
+import VirtualVisit from './VirtualVisit';
 import ViromediaController from './ViromediaController';
-import UrbanOffer from '../../../components/Directory/Directory';
-import CultureArt from '../../../components/Directory/CultureArt/CultureArt';
-import Institutional from '../../../components/Directory/Institutional/Institutional';
-import Hotels from '../../../components/Directory/Hotels/Hotels';
-import Gastronomy from '../../../components/Directory/Gastronomy/Gastronomy';
+import UrbanOffer from './Directory';
+import CultureArt from './CultureArt';
+import Institutional from './Institutional';
+import Hotels from './Hotels';
+import Gastronomy from './Gastronomy';
 import SeeMore from './SeeMore';
 import TimeLine from './TimeLine';
 import Search from './Search';

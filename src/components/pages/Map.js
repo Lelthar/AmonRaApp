@@ -24,7 +24,7 @@ import MapView from 'react-native-maps';
 import Image from 'react-native-scalable-image';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import FilterMenu from '../../../components/FilterMenu/FilterMenu';
+import FilterMenu from './FilterMenu';
 import FilterButton from '../partials/FilterButton';
 import HamburgerMenu from '../partials/HamburgerMenu';
 import BriefInformation from '../partials/BriefInformation';

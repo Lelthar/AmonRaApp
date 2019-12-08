@@ -5,7 +5,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import { 
   REGISTRATION_URL,
   USER_DATA,
-} from '../../constants/constants';
+} from '../../../constants/constants';
 
 import {
   Alert,
@@ -20,15 +20,15 @@ import {
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-import styles from "../../src/assets/styles/pages/emailRegister";
+import styles from "../../assets/styles/pages/emailRegister";
 
-import * as countries from '../../data/countries';
-import ConfidencialityAlertModal from '../ConfidencialityAlertModal/ConfidencialityAlertModal';
+import * as countries from '../../../data/countries';
+import ConfidencialityAlertModal from './ConfidencialityAlertModal';
 import CheckBox from 'react-native-check-box';
-import UseGuide from '../UseGuide/UseGuide';
+import UseGuide from './UseGuide';
 
-const logo = '../../images/marca-02.png';
-const background = '../../resources/img/casa-verde-I.png';
+const logo = '../../../images/marca-02.png';
+const background = '../../../resources/img/casa-verde-I.png';
 let anho = [];
 const paises = [];
 
@@ -238,7 +238,7 @@ render() {
         <View style={styles.logoContainer}>
         <View style={{flex:1,position: 'absolute',left:10,top:10}}>
           <TouchableOpacity onPress = {this._goToBackApp.bind(this)}>
-            <Image source={require('../../images/icons/PantallaPrincipal/flechaatras.png')} style={styles.backArrow} />
+            <Image source={require('../../../images/icons/PantallaPrincipal/flechaatras.png')} style={styles.backArrow} />
           </TouchableOpacity>
           </View>
           <View style={{flex:2,marginTop:70,marginBottom:20}}>
@@ -248,7 +248,7 @@ render() {
         <View style={{flex:6}}>
           <View style={styles.inputsContainer}>
             <View style={styles.inputData}>
-              <Image style={styles.imgButton} source={require('../../images/icons/register/nombre.png')} />
+              <Image style={styles.imgButton} source={require('../../../images/icons/register/nombre.png')} />
               <TextInput
                 style={styles.inputBox}
                 placeholder ="Nombre"
@@ -260,7 +260,7 @@ render() {
               />
             </View>
             <View style={styles.inputData}>
-              <Image style={styles.imgButton} source={require('../../images/icons/register/blank_background.png')} />
+              <Image style={styles.imgButton} source={require('../../../images/icons/register/blank_background.png')} />
               <TextInput
                 style={styles.inputBox} 
                 placeholder ="Apellidos"
@@ -272,7 +272,7 @@ render() {
             />
             </View>
             <View style={styles.inputData}>
-              <Image style={styles.imgButton} source={require('../../images/icons/register/correo.png')} />
+              <Image style={styles.imgButton} source={require('../../../images/icons/register/correo.png')} />
               <TextInput style={styles.inputBox}
                 placeholder ="Correo electrónico"
                 underlineColorAndroid={'transparent'}
@@ -283,7 +283,7 @@ render() {
               />
             </View>
             <View style={styles.inputData}>
-              <Image style={styles.imgButton} source={require('../../images/icons/register/pais.png')} />
+              <Image style={styles.imgButton} source={require('../../../images/icons/register/pais.png')} />
               <View style={styles.paisesBox}>
                 <Dropdown
                   label={this.state.titulo_pais}
@@ -316,10 +316,10 @@ render() {
                     }}
                     isChecked={this.state.checkedM}
                     checkedImage={
-                      <Image source={require('../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
+                      <Image source={require('../../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
                     }
                     unCheckedImage={
-                      <Image source={require('../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
+                      <Image source={require('../../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
                     }
                   />
                   <Text style={styles.genderBox}>
@@ -344,10 +344,10 @@ render() {
                     }}
                     isChecked={this.state.checkedH}
                     checkedImage={
-                      <Image source={require('../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
+                      <Image source={require('../../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
                     }
                     unCheckedImage={
-                      <Image source={require('../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
+                      <Image source={require('../../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
                     }
                   />
                   <Text style={styles.genderBox}>
