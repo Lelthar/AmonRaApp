@@ -46,11 +46,11 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const btn_literature = require('../../../images/icons/Vivencias/11.vivencias-02.png');
-const btn_narratives = require('../../../images/icons/Vivencias/11.vivencias-04.png');
-const btn_characters = require('../../../images/icons/Vivencias/11.vivencias-06.png');
-const btn_activities = require('../../../images/icons/Vivencias/11.vivencias-08.png');
-const btn_secrets = require('../../../images/icons/Vivencias/11.vivencias-12.png');
+const LITERATURE_BTN = require('../../assets/images/experiences/11.vivencias-02.png');
+const NARRATIVES_BTN = require('../../assets/images/experiences/11.vivencias-04.png');
+const CHARACTERS_BTN = require('../../assets/images/experiences/11.vivencias-06.png');
+const ACTIVITIES_BTN = require('../../assets/images/experiences/11.vivencias-08.png');
+const SECRETS_BTN = require('../../assets/images/experiences/11.vivencias-12.png');
 
 class ExperiencesMenu extends Component {
     constructor(props) {
@@ -63,27 +63,27 @@ class ExperiencesMenu extends Component {
             <View style={styles.container}>
                 <View style={styles.buttonsRow}>
                     <TouchableOpacity onPress={()=>this.openLiterature()}>
-                        <Image source={btn_literature}/>
+                        <Image source={LITERATURE_BTN}/>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={()=>this.openNarratives()}>
-                        <Image source={btn_narratives}/>
+                        <Image source={NARRATIVES_BTN}/>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.buttonsRow}>
                     <TouchableOpacity onPress={()=>this.openCharacters()}>
-                        <Image source={btn_characters}/>
+                        <Image source={CHARACTERS_BTN}/>
                     </TouchableOpacity>
                     
                     <TouchableOpacity onPress={()=>this.openActivities()}>
-                        <Image source={btn_activities}/>
+                        <Image source={ACTIVITIES_BTN}/>
                     </TouchableOpacity>
                 </View>
                 
                 <View style={styles.buttonsRow}>
                     <TouchableOpacity onPress={()=>this.openSecrets()}>
-                        <Image source={btn_secrets}/>
+                        <Image source={SECRETS_BTN}/>
                     </TouchableOpacity>
                 </View>
 

@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex:2,
+    backgroundColor: '#111111',
   },
   buttonsSection: {
     backgroundColor:"white",

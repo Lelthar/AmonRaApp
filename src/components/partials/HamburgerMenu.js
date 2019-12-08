@@ -18,8 +18,22 @@ import { SearchBar } from 'react-native-elements';
 import { connect } from "react-redux";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from "../../assets/styles/partials/hamburgerMenu";
-
 import AsyncStorage from '@react-native-community/async-storage';
+import { menuSideAction } from "../../redux/actions/menuDataActions";
+
+const mapStateToProps = state => {
+  return {
+    menuSideState: state.menuDataReducer.MENUSIDE,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setMenuSide: (data) => {
+      dispatch(menuSideAction(data));
+    },
+  };
+};
 
 const HamburguerComponent = (props) => {
 
@@ -30,11 +44,11 @@ const HamburguerComponent = (props) => {
 
   onPressTextDiscover = () => {
     setTextDiscoverPressed(!isTextDiscoverPressed);
-  }
+  };
 
   updateSearch = search =>{
     setSearchText(search);
-  }
+  };
 
   onClickSearchIcon = async () =>{
     /*message = "Clic en el icono de buscar ";
@@ -54,7 +68,7 @@ const HamburguerComponent = (props) => {
         props.navigation.navigate('Search', {results: responseJson});
       }
     }
-  }
+  };
 
   getUserData = async () => {
     const userDataStorage = await AsyncStorage.getItem(USER_DATA);
@@ -65,6 +79,25 @@ const HamburguerComponent = (props) => {
   useEffect(() => {
     getUserData();
   }, []);
+
+  toggleMenuSide = () => {
+    props.setMenuSide(!props.menuSideState);
+  };
+
+  goToOrigin = () => {
+    props.navigation.navigate('Origin',{goToScreen: props.navigation });
+    toggleMenuSide(); 
+  };
+
+  goToArchitecture = () => {
+    props.navigation.navigate('Architecture',{goToScreen: props.navigation});
+    toggleMenuSide();
+  };
+
+  goToExperiences = () => {
+    props.navigation.navigate('ExperiencesMenu',{goToScreen: props.navigation});
+    toggleMenuSide();
+  };
 
   return (
     <View style={styles.hamburgerMenu}>
@@ -97,18 +130,17 @@ const HamburguerComponent = (props) => {
           {isTextDiscoverPressed &&
 
             <View style={{backgroundColor:'#00A2B5'}}>
-              <TouchableOpacity onPress= {() => props.navigation.navigate('Origin',{goToScreen: props.navigation}) }>
+              <TouchableOpacity onPress= { goToOrigin }>
                 <Text style={styles.textList} >     •Origen del Barrio</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress= {() => props.navigation.navigate('ExperiencesMenu',{goToScreen: props.navigation }) }>
+              <TouchableOpacity onPress= { goToExperiences }>
                 <Text style={styles.textList} >     •Vivencias</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress= {() => props.navigation.navigate('Architecture',{goToScreen: props.navigation}) }>
+              <TouchableOpacity onPress= { goToArchitecture }>
                 <Text style={styles.textList} >     •Arquitectura</Text>
               </TouchableOpacity>
             </View>
           }
-
           <TouchableOpacity onPress= {() => props.navigation.navigate('MoreAmonRa', {}) }>
             <Text style={styles.textMoreAmon}>Más de Amon_RA</Text>
           </TouchableOpacity>     
@@ -116,4 +148,4 @@ const HamburguerComponent = (props) => {
   );
 };
 
-export default connect(null, null)(HamburguerComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(HamburguerComponent);

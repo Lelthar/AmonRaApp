@@ -6,7 +6,6 @@ import {
     Dimensions,
     Image,
     TouchableOpacity,
-    ToastAndroid,
   } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -24,7 +23,7 @@ import {
 //-------------------------------
 
 const FEATURE_ID = "?feature_id=";
-const defaultErrorMessage = "La edificación no presenta Ficha Técnica";
+const DEFAULT_ERROR_MESSAGE = "La edificación no presenta Ficha Técnica";
 
 export default class DataSheet extends Component {
     constructor(props) {
@@ -59,7 +58,7 @@ export default class DataSheet extends Component {
 
     showNoDataSheet(){
         this.props.handlePressDataSheet();
-        this.props.showErrorToast(defaultErrorMessage);
+        this.props.showErrorToast(DEFAULT_ERROR_MESSAGE);
     }
 
     showDataSheet(){
@@ -111,8 +110,8 @@ export default class DataSheet extends Component {
     async get_brief_description(){
         let URL_GET_INFO = DATA_SHEET_URL+FEATURE_ID+this.props.houseArPressedID;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
-        if (response.status != 404 && response.status != 203){
-            let responseJson = await response.json();
+        let responseJson = await response.json();
+        if(responseJson != undefined){
             this.setState({
                 informationText: responseJson.description,
                 build_year: responseJson.build_year,
@@ -123,8 +122,7 @@ export default class DataSheet extends Component {
                 influence: responseJson.influence,
                 dataSheetVisible: true,
             });
-        }
-        else{
+        }else{
             this.showNoDataSheet();
         }
     } 

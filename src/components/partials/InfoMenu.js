@@ -23,10 +23,10 @@ import {
 //-------------------------------
 
 const FEATURE_ID = "?feature_id=";
-const dataSheetIcon = require('../../../images/icons/RA/ficha-tecnica.png');
-const vivenciasIcon = require('../../../images/icons/RA/vivenciass.png');
-const extraInfoIcon = require('../../../images/icons/RA/mas-info.png');
-const dicArq = {
+const DATA_SHEET_ICON = require('../../assets/images/augmentedReality/ficha-tecnica.png');
+const VIVENCIAS_ICON = require('../../assets/images/augmentedReality/vivenciass.png');
+const EXTRA_INFO_ICON = require('../../assets/images/augmentedReality/mas-info.png');
+const DIC_ARQ = {
     name: "name" , 
     description: "description", 
     direction: "direction",
@@ -42,7 +42,6 @@ export default class InfoMenu extends Component {
         super(props);
     
         this.toggleDataSheet = this.toggleDataSheet.bind(this);
-        this.openExperiences = this.openExperiences.bind(this);
         
         this.state = {
             buildingARPressed: this.props.houseArPressed,
@@ -63,17 +62,17 @@ export default class InfoMenu extends Component {
 
                 <View style={localStyles.buttonsContainer}>
                     <TouchableOpacity style={localStyles.rowButton} onPress={() => this.toggleDataSheet()} >
-                        <Image source={dataSheetIcon} />
+                        <Image source={DATA_SHEET_ICON} />
                         <Text style={localStyles.textButton}> Ficha técnica</Text>
                     </TouchableOpacity>
             
-                    <TouchableOpacity style={localStyles.rowButton} onPress={() => this.openExperiences()}>
-                        <Image source={vivenciasIcon} />
+                    <TouchableOpacity style={localStyles.rowButton}>
+                        <Image source={VIVENCIAS_ICON} />
                         <Text style={localStyles.textButton}> Vivencias</Text>
                     </TouchableOpacity>
                     
-                    <TouchableOpacity style={localStyles.rowButton} onPress= {() => this.props.navigation.navigate('ArchitectureDetail',{goToScreen: this.props.navigation, placeInfo: dicArq}) }>
-                        <Image  source={extraInfoIcon} />
+                    <TouchableOpacity style={localStyles.rowButton} onPress= {() => this.props.navigation.navigate('ArchitectureDetail',{goToScreen: this.props.navigation, placeInfo: DIC_ARQ}) }>
+                        <Image  source={EXTRA_INFO_ICON} />
                         <Text style={localStyles.textButton}> Info</Text>
                     </TouchableOpacity>
                 </View>
@@ -81,10 +80,7 @@ export default class InfoMenu extends Component {
         );
     }
     
-    openExperiences(){
-        this.props.navigation.navigate('ExperiencesARHouse',{goToScreen: this.props.navigation, housePressed: this.state.buildingARPressed});
-    }
-
+    
     toggleDataSheet(){
         this.props.handlePressDataSheet();
     }
@@ -102,12 +98,11 @@ export default class InfoMenu extends Component {
     async get_brief_description(){
         let URL_GET_INFO = BRIEF_DESCRIPTIONS_URL+FEATURE_ID+this.props.houseArPressed;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
-        console.log(response)
-        if (response.status != 404 && response.status != 203){
-            let responseJson = await response.json();
+        let responseJson = await response.json();
+        if(responseJson != undefined){
             this.setState({
                 informationText: responseJson.description,
-            });          
+            });  
         }
     } 
 }
