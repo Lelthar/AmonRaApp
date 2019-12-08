@@ -137,20 +137,19 @@ export class ARScene extends Component {
     let buttonScale = this._getViewScale(newARView, LABEL_SIZE_MAX, LABEL_SIZE_MIN);
     
     if(JSON.stringify(imageScale) == JSON.stringify([0,0,0]))
-      return this.showARView(newARView, imageScale, [0.5,0.5,0.5]) ;
+      return this.showARView(newARView, imageScale, buttonScale) ;
     
     return null ;
   }
   
   showARView = (viewAR, imageScale, buttonScale) => {
-    //console.log("Activando",viewAR);
     return( 
       <ViroNode key={viewAR.placeID}>
         <ViroAmbientLight color="#FFFFFF"/>
         <Viro3DObject
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle)}
           source={this._get3DButtonByViewName(viewAR.label3DObject)} 
-          position={[0, 0.1 ,-1]}
+          position={[viewAR.x, 12,viewAR.z]}
           scale={buttonScale}
           resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
           type="OBJ" 

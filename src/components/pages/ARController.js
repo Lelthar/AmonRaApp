@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
 } from 'react-native'; 
 
 import {
@@ -44,8 +43,6 @@ export class ARController extends Component {
       architectureDataID: 0,
       toastVisible: false,
       scenaSource : true,
-      compassHeading: 0,
-      watchCount: 0,
     }
     
   }   
@@ -79,9 +76,6 @@ export class ARController extends Component {
           initialScene={{scene: AR_SCENE}} 
           onExitViro={this._exitViro} 
           viroAppProps={this.state.viroAppProps} />
-
-        {//<Text> {this.state.compassHeading} </Text>
-        }
 
         {this.state.infoMenuVisible && (
           <ARViewMenu 
