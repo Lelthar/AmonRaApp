@@ -16,6 +16,8 @@ import {
     BRIEF_DESCRIPTIONS_URL,
     USER_DATA,
     ARCHITECTURE_DATA,
+    EXPERIENCES_DATA_URL,
+    FEATURES_URL,
 } from '../../../constants/constants';
   
 import {
@@ -27,6 +29,7 @@ import {
 const BY_FEATURE_ID = "?feature_id=";
 const BY_DATA_ID = "?data_id=";
 const NOT_ARCHITECTURE_DETAILS_MESSAGE = "La vista no presenta información arquitectónica";
+const NOT_EXPERIENCES_DETAILS_MESSAGE = "La vista no presenta vivencias";
 const DATA_SHEET_ICON = require('../../assets/images/augmentedReality/ficha-tecnica.png');
 const VIVENCIAS_ICON = require('../../assets/images/augmentedReality/vivenciass.png');
 const EXTRA_INFO_ICON = require('../../assets/images/augmentedReality/mas-info.png');
@@ -63,7 +66,7 @@ export default class ARViewMenu extends Component {
                         <Text style={styles.textButton}> Ficha técnica</Text>
                     </TouchableOpacity>
             
-                    <TouchableOpacity style={styles.rowButton}>
+                    <TouchableOpacity style={styles.rowButton} onPress={() => this.goToExperiencesARDetails()} >
                         <Image source={VIVENCIAS_ICON} />
                         <Text style={styles.textButton}> Vivencias</Text>
                     </TouchableOpacity>
@@ -121,6 +124,33 @@ export default class ARViewMenu extends Component {
         this.props.architectureDataID == 0 
         ? await this.get_architecture_data_by_id(1)
         : this.props.showErrorToast(NOT_ARCHITECTURE_DETAILS_MESSAGE);
+    }
+
+    async get_experiences_data_by_id(houseID){
+        let URL_GET_INFO = EXPERIENCES_DATA_URL+BY_FEATURE_ID+houseID;
+        let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
+        let responseJson = await response.json();
+
+        if(responseJson != undefined){
+
+            let URL_GET_NAME = FEATURES_URL+"/"+houseID;
+
+            let resName = await makeBackendRequest(URL_GET_NAME,"GET",this.state.userData);
+
+            let resNameJson = await resName.json();
+
+            this.navigation.navigate('ExperiencesARHouse', {name: resNameJson.name,description: responseJson.description, image: responseJson.image}) 
+        }
+        else{
+            this.props.showErrorToast(NOT_EXPERIENCES_DETAILS_MESSAGE);
+        }
+    } 
+
+    async goToExperiencesARDetails(){
+        await this.get_user_data();
+        this.props.architectureDataID == 0 
+        ? await this.get_experiences_data_by_id(this.props.houseArPressed)
+        : this.props.showErrorToast(NOT_EXPERIENCES_DETAILS_MESSAGE);
     }
 }
 
