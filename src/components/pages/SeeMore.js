@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
@@ -24,6 +24,12 @@ const mapStateToProps = state => {
 // End of redux imports
 
 const SeeMore = (props) => {
+
+  useEffect(() => {
+    if (props.navigation.state.params.hasTitle) {
+      props.navigation.setParams({ header_title: props.navigation.state.params.category })
+    }
+  }, []);
 
   return (
     <View style={styles.container}>

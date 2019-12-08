@@ -41,6 +41,8 @@ const BriefInformation = (props) => {
       images_url_1: marker.images_url[0], 
       images_url_2: marker.images_url[1], 
       images_url_3: marker.images_url[2],
+      hasTitle: true,
+      category: marker.category,
     };
   }
 
