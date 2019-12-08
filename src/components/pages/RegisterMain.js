@@ -1,10 +1,7 @@
 import React from 'react';
-import * as constants from '../../../data/constants'
-import * as colors from '../../../data/colors'
-
+import * as constants from '../../assets/constants/constants';
+import * as colors from '../../assets/constants/colors';
 import Orientation from 'react-native-orientation-locker';
-//react-native run-android --variant=gvrDebug
-
 import {
   StyleSheet,
   ImageBackground,
@@ -24,7 +21,7 @@ import MainApp from '../../../MainApp';
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 import ConfidencialityAlertModal from './ConfidencialityAlertModal';
-import UseGuide from './UseGuide';
+import UseGuide from './UseVideoGuide';
 
 const logo = '../../../images/marca-02-smaller.png';
 const background = '../../../resources/img/casa-verde-I.png';
@@ -100,7 +97,6 @@ class RegisterMain extends React.Component {
   renderModal(){
     return(
       <ConfidencialityAlertModal isVisible={this.state.isConfidencialityAlertVisible} okAction={this._goToMainApp.bind(this)}/>
-      //<UseGuide />
     );
   }
 

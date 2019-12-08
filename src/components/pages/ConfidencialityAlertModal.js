@@ -9,8 +9,8 @@ import {
   Dimensions
 } from 'react-native';
 
-import * as constants from '../../../data/constants'
-import * as colors from '../../../data/colors'
+import * as constants from '../../assets/constants/constants'
+import * as colors from '../../assets/constants/colors'
 
 import Modal from "react-native-modal";
 import CheckBox from 'react-native-check-box'
