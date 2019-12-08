@@ -74,7 +74,8 @@ const mapStack = createStackNavigator(
           color: "#FFFFFF",
           textAlign: 'center',
           flexGrow:1,
-        } 
+        },
+        title: typeof(navigation.state.params)==='undefined' || typeof(navigation.state.params.title) === 'undefined' ? 'find': navigation.state.params.title,
       },
     },
     Architecture:{

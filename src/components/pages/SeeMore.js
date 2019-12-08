@@ -25,6 +25,12 @@ const mapStateToProps = state => {
 
 const SeeMore = (props) => {
 
+  useEffect(() => {
+    if (props.navigation.state.params.hasTitle) {
+      props.navigation.setParams({ title: props.navigation.state.params.category })
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
 
