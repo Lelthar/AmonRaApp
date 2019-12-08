@@ -21,6 +21,7 @@ export default class MainApp extends Component {
         if (typeof this.props.navigation != "undefined"){
             firstTime = true;
         }
+        
         this.state = {
             current_screen: "None",
             navigation: {},
