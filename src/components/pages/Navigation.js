@@ -60,7 +60,7 @@ const mapStack = createStackNavigator(
     },
     SeeMore: {
       screen: SeeMore,
-      navigationOptions: {
+      navigationOptions: ({ navigation }) => ( {
         headerRight: <HamburgerButton />,
         headerStyle:{
           backgroundColor:'#00A2B5'
@@ -70,8 +70,8 @@ const mapStack = createStackNavigator(
           textAlign: 'center',
           flexGrow:1,
         },
-        title: typeof(navigation.state.params)==='undefined' || typeof(navigation.state.params.title) === 'undefined' ? 'find': navigation.state.params.title,
-      },
+        title: navigation.getParam("header_title", ""),
+      }),
     },
     Architecture:{
       screen: Architecture,

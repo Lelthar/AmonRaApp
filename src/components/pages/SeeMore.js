@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
@@ -27,7 +27,7 @@ const SeeMore = (props) => {
 
   useEffect(() => {
     if (props.navigation.state.params.hasTitle) {
-      props.navigation.setParams({ title: props.navigation.state.params.category })
+      props.navigation.setParams({ header_title: props.navigation.state.params.category })
     }
   }, []);
 
