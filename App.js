@@ -5,7 +5,7 @@ import MainApp from './MainApp';
 import AsyncStorage from '@react-native-community/async-storage';
 import { 
   USER_DATA,
-} from './constants/constants';
+} from './constants/routesAPI';
 
 
 export default class App extends Component<Props> {

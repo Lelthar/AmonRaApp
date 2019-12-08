@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     View,
-    FlatList
+    FlatList,
 } from 'react-native';
 import CheckBox from 'react-native-check-box'
 import Image from 'react-native-scalable-image'
@@ -33,8 +33,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const CHECK_ICON = require('../../assets/images/filterMenu/check.png');
-const UNCHECK_ICON = require('../../assets/images/filterMenu/uncheck.png');
+const CHECK_ICON = require('../../assets/images/icons/check.png');
+const UNCHECK_ICON = require('../../assets/images/icons/uncheck.png');
 const FEATURES_LIST = [
     "Patrimonio Arquitectónico",
     "Pasado perdido",

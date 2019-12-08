@@ -3,14 +3,12 @@ import Swiper from 'react-native-swiper';
 import { connect } from "react-redux";
 import HamburgerMenu from '../partials/HamburgerMenu';
 import styles from "../../assets/styles/pages/directory";
-
 import {
     View,
     AppRegistry,
     Image,
     TouchableOpacity,
 } from 'react-native';
-
 import {
   filterMenuAction,
   activeFiltersAction,
@@ -49,25 +47,25 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-const imageSwiper1 = require('../../../images/Swiper/ALIANZA/ALIANZAI.png');
-const imageSwiper2 = require('../../../images/Swiper/RESTAURANTESILVESTRE/RESTAURANTESILVESTREI.png');
-const imageSwiper3 = require('../../../images/Swiper/HOTELDONCARLOS/HOTELDONCARLOSI.png');
-const imageSwiper4 = require('../../../images/Swiper/TECNOLOGICO/TECNOLOGICO.png');
+const imageSwiper1 = require('../../assets/images/Swiper/ALIANZA/ALIANZAI.png');
+const imageSwiper2 = require('../../assets/images/Swiper/RESTAURANTESILVESTRE/RESTAURANTESILVESTREI.png');
+const imageSwiper3 = require('../../assets/images/Swiper/HOTELDONCARLOS/HOTELDONCARLOSI.png');
+const imageSwiper4 = require('../../assets/images/Swiper/TECNOLOGICO/TECNOLOGICO.png');
 
-const buttonCulture = require('../../../images/icons/Directory/culturagris.png');
-const buttonGastronomy = require('../../../images/icons/Directory/gastrogris.png');
-const buttonHotels = require('../../../images/icons/Directory/hospedajegris.png');
-const buttonInstitutional = require('../../../images/icons/Directory/instigris.png');
+const buttonCulture = require('../../assets/images/directory/culturagris.png');
+const buttonGastronomy = require('../../assets/images/directory/gastrogris.png');
+const buttonHotels = require('../../assets/images/directory/hospedajegris.png');
+const buttonInstitutional = require('../../assets/images/directory/instigris.png');
 
 class Directory extends Component{
-
     constructor(props){
+
         super(props);
         this.navigation = this.props.navigation;
+
     }
 
     render() {
-
         return (
           <View style={styles.container}>
             <View style={{flex:0.35}}>

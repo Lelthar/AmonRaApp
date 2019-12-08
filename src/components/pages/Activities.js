@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { 
   FEATURES_URL,
   USER_DATA,
-} from '../../../constants/constants';
+} from '../../../constants/routesAPI';
 
 import {
   makeBackendRequest,

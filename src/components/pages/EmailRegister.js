@@ -5,7 +5,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import { 
   REGISTRATION_URL,
   USER_DATA,
-} from '../../../constants/constants';
+} from '../../../constants/routesAPI';
 
 import {
   Alert,
@@ -15,20 +15,18 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  PermissionsAndroid
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
-
 import styles from "../../assets/styles/pages/emailRegister";
-
 import * as countries from '../../assets/constants/countries';
 import ConfidencialityAlertModal from './ConfidencialityAlertModal';
 import CheckBox from 'react-native-check-box';
+import {requestPermissions} from '../../../permission/permission.js';
 
-const LOGO = require('../../../images/marca-02.png');
-const BACKGROUND = require('../../../resources/img/casa-verde-I.png');
-const BACK_ARROW_ICON = require('../../../images/icons/PantallaPrincipal/flechaatras.png');
+const LOGO = require("../../assets/images/amonraBrand/marca-02.png");
+const BACKGROUND = require('../../assets/images/amonraBrand/casa-verde-I.png');
+const BACK_ARROW_ICON = require('../../assets/images/icons/flechaatras.png');
 const NAME_ICON = require('../../assets/images/register/nombre.png');
 const BLANK_SPACE_BACKGROUND = require('../../assets/images/register/blank_background.png');
 const EMAIL_ICON = require('../../assets/images/register/correo.png');
@@ -39,7 +37,7 @@ const CHECK_BOX = require('../../assets/images/register/check_box_gris.png');
 let years = [];
 const countries_list = [];
 
-class RegisterMain extends Component {
+class EmailRegister extends Component {
 
   constructor (props) {
     super(props);
@@ -55,7 +53,7 @@ class RegisterMain extends Component {
       checkedM:true,
       buttonDisabled: false,
       titulo_pais: "País",
-      titulo_yearss: "Año"
+      titulo_anhos: "Año"
     }
 
     for(let i = 1900; i < 2020; i++){
@@ -131,7 +129,7 @@ setUserDataStorage(response,header) {
     const userData = this.get_user_data(header,response);
     AsyncStorage.setItem(USER_DATA, JSON.stringify(userData));
 
-    checkLocalizationPermission();
+    requestPermissions();
 
     this._showConfidencialityAlert();
     
@@ -236,7 +234,6 @@ renderModal(){
 
 render() {
   return (
-
     <ImageBackground source={BACKGROUND} style={styles.body} >
       {this.renderModal()}
       {!this.state.isConfidencialityAlertVisible &&
@@ -290,7 +287,7 @@ render() {
             </View>
             <View style={styles.inputData}>
               <Image style={styles.imgButton} source={COUNTRY_ICON} />
-              <View style={styles.countries_listBox}>
+              <View style={styles.paisesBox}>
                 <Dropdown
                   label={this.state.titulo_pais}
                   data={countries_list}
@@ -364,15 +361,15 @@ render() {
               </View>
             </View>
             <View style={styles.inputDataYears}>
-              <Text style={styles.yearsInput}>Año de nacimiento:</Text>
-              <View style={styles.yearssBox}>
+              <Text style={styles.anhoInput}>Año de nacimiento:</Text>
+              <View style={styles.anhosBox}>
                 <Dropdown
-                  label={this.state.titulo_yearss}
+                  label={this.state.titulo_anhos}
                   data={years}
                   dropdownPosition={0}
                   value={this.state.date}
                   dropdownOffset={{ top: 17, left: 0 }}
-                  onChangeText={(itemValue, itemIndex) => this.setState({date: itemValue, titulo_yearss: ""})}
+                  onChangeText={(itemValue, itemIndex) => this.setState({date: itemValue, titulo_anhos: ""})}
                 />
               </View>
             </View>
@@ -394,15 +391,4 @@ render() {
   }
 }
 
-async function checkLocalizationPermission(){
-  try {
-    const granted = await PermissionsAndroid.requestMultiple([PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      PermissionsAndroid.PERMISSIONS.CAMERA]);
-      return true;
-  } catch (err) {
-    console.warn(err);
-  }
-  return false;
-}
-
-export default RegisterMain;
+export default EmailRegister;

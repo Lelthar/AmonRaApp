@@ -27,7 +27,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const BriefInformation = (props) => {
-
   toggleInformation = () => {
     props.setInformationVisible(false);
   };

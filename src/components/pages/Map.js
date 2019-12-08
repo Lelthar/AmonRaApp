@@ -37,7 +37,7 @@ import {
   FEATURES_URL,
   PERIMETER_URL,
   USER_DATA,
-} from '../../../constants/constants';
+} from '../../../constants/routesAPI';
 
 import {
   IMAGES,

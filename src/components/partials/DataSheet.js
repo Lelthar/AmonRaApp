@@ -1,26 +1,18 @@
 import React, { Component } from 'react';
 import {
     Text,
-    StyleSheet,
     View,
-    Dimensions,
-    Image,
     TouchableOpacity,
   } from 'react-native';
-
 import AsyncStorage from '@react-native-community/async-storage';
-
-//----------Backend--------------
+import localStyles from "../../assets/styles/partials/dataSheet";
 import { 
     DATA_SHEET_URL,
     USER_DATA,
-} from '../../../constants/constants';
-
+} from '../../../constants/routesAPI';
 import {
     makeBackendRequest,
 } from '../../../helpers/helpers';
-
-//-------------------------------
 
 const FEATURE_ID = "?feature_id=";
 const DEFAULT_ERROR_MESSAGE = "La edificación no presenta Ficha Técnica";
@@ -41,6 +33,7 @@ export default class DataSheet extends Component {
             decree_number: "",
             influence: "",
             dataSheetVisible: false,
+            userData: null,
         }
     }
 
@@ -127,38 +120,5 @@ export default class DataSheet extends Component {
         }
     } 
 }
-
-var localStyles = StyleSheet.create({
-    container : {
-        alignItems: 'center',
-    },
-    dataSheet : {
-        position: 'absolute', 
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        width: (Dimensions.get('window').width) * 0.9,
-        height: (Dimensions.get('window').height) * 0.6,
-        bottom: (Dimensions.get('window').height)/2 * 0.2,
-        paddingHorizontal: 20,
-    },
-    title: {
-        fontSize: 15,
-        fontFamily: "Barlow-Regular",
-        color: "#0C5B60",
-        fontWeight: 'bold',
-    },
-    text: {
-        fontWeight: 'normal',
-        color: '#6D6F70',
-        fontSize: 13,
-        fontFamily: "Barlow-Regular",
-    },
-    closeButton: {
-        justifyContent: 'flex-end',
-        width: 10,
-        height: 10,
-        left: (Dimensions.get('window').width)*0.8,
-    },
-});
 
 module.exports = DataSheet;

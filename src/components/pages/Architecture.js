@@ -24,7 +24,7 @@ import {
   FEATURES_URL,
   PERIMETER_URL,
   USER_DATA,
-} from '../../../constants/constants';
+} from '../../../constants/routesAPI';
 
 import {
   makeBackendRequest,
@@ -76,7 +76,6 @@ class Architecture extends Component {
   
   async get_features(){
     const url = "https://amonra.herokuapp.com/api/v1/architecture_data";
-    const institutionalUrl = "?category=Patrimonio%20Arquitectónico"; 
     const response = await makeBackendRequest(url,"GET",this.state.userData);
     const responseJson = await response.json();
     this.setState({
