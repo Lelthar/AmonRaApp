@@ -13,6 +13,7 @@ export const INFORMATION_HOUSES = "https://amonra.herokuapp.com/api/v1/informati
 export const SEARCH_INTERMEDIATES = "https://amonra.herokuapp.com/api/v1/search_intermediates";
 export const ARCHITECTURE_DATA = "https://amonra.herokuapp.com/api/v1/architecture_data";
 export const EXPERIENCES_DATA_URL = "https://amonra.herokuapp.com/api/v1/experiences";
+export const AR_PLACES_URL = "https://amonra.herokuapp.com/api/v1/ar_objects";
 
 // Otros
 export const USER_DATA = "userData";

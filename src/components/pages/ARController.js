@@ -118,11 +118,12 @@ export class ARController extends Component {
   }
 
   // Show extra information of a building.
-  showInfoMenu(place, tittle){ 
+  showInfoMenu(place, tittle, architectureDataID){ 
     this.setState({
       infoMenuVisible : true,
       houseArPressedID: place,
       houseArPressedName: tittle,
+      architectureDataID: architectureDataID,
     });
   }
 

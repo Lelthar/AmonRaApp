@@ -92,7 +92,7 @@ export default class DataSheet extends Component {
 
     async get_backend_data() {
         await this.get_user_data();
-        await this.get_brief_description();
+        await this.get_data_shee_infot();
     }
 
     async get_user_data() {
@@ -100,7 +100,7 @@ export default class DataSheet extends Component {
         this.setState({userData: JSON.parse(user_data_storage)});
     }
 
-    async get_brief_description(){
+    async get_data_shee_infot(){
         let URL_GET_INFO = DATA_SHEET_URL+FEATURE_ID+this.props.houseArPressedID;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
         let responseJson = await response.json();
