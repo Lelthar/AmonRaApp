@@ -1,26 +1,18 @@
 import React, { Component } from 'react';
 import {
     Text,
-    StyleSheet,
     View,
-    Dimensions,
-    Image,
     TouchableOpacity,
   } from 'react-native';
-
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from "../../assets/styles/partials/dataSheet";
-//----------Backend--------------
 import { 
     DATA_SHEET_URL,
     USER_DATA,
-} from '../../../constants/constants';
-
+} from '../../../constants/routesAPI';
 import {
     makeBackendRequest,
 } from '../../../helpers/helpers';
-
-//-------------------------------
 
 const FEATURE_ID = "?feature_id=";
 const DEFAULT_ERROR_MESSAGE = "La edificación no presenta Ficha Técnica";
@@ -41,6 +33,7 @@ export default class DataSheet extends Component {
             decree_number: "",
             influence: "",
             dataSheetVisible: false,
+            userData: null,
         }
     }
 

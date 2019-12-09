@@ -12,7 +12,7 @@ import {
 import {
   SEARCH_INTERMEDIATES, 
   USER_DATA,
-} from '../../../constants/constants';
+} from '../../../constants/routesAPI';
 
 import { SearchBar } from 'react-native-elements';
 import { connect } from "react-redux";

@@ -22,8 +22,7 @@ import {
 
 import { 
   USER_DATA,
-  ARCHITECTURE_DATA,
-} from '../../../constants/constants';
+} from '../../../constants/routesAPI';
 
 import {
   makeBackendRequest,
@@ -76,7 +75,6 @@ class Architecture extends Component {
   async get_features(){
     const response = await makeBackendRequest(ARCHITECTURE_DATA,"GET",this.state.userData);
     const responseJson = await response.json();
-    console.log(responseJson);
     this.setState({
       markers: responseJson,
     });
@@ -107,8 +105,7 @@ class Architecture extends Component {
           contentContainerStyle={styles.list_style}
           renderItem={({item}) => (
             <TouchableOpacity style= {styles.list_item}
-              onPress={ () => this.navigation.navigate('ArchitectureDetail',{goToScreen: this.navigation, placeInfo: item }) }
-            >
+              onPress={ () => this.navigation.navigate('ArchitectureDetail',{placeInfo: item}) }>
               <View style={{flex:1}}>
                 <Image source={{uri: item.image1}} style={styles.image} />
               </View>

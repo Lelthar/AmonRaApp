@@ -5,7 +5,7 @@ import { Dropdown } from 'react-native-material-dropdown';
 import { 
   REGISTRATION_URL,
   USER_DATA,
-} from '../../../constants/constants';
+} from '../../../constants/routesAPI';
 
 import {
   Alert,
@@ -15,24 +15,29 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  PermissionsAndroid
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
-
 import styles from "../../assets/styles/pages/emailRegister";
-
-import * as countries from '../../../data/countries';
+import * as countries from '../../assets/constants/countries';
 import ConfidencialityAlertModal from './ConfidencialityAlertModal';
 import CheckBox from 'react-native-check-box';
-import UseGuide from './UseGuide';
+import {requestPermissions} from '../../../permission/permission.js';
 
-const logo = '../../../images/marca-02.png';
-const background = '../../../resources/img/casa-verde-I.png';
-let anho = [];
-const paises = [];
+const LOGO = require("../../assets/images/amonraBrand/marca-02.png");
+const BACKGROUND = require('../../assets/images/amonraBrand/casa-verde-I.png');
+const BACK_ARROW_ICON = require('../../assets/images/icons/flechaatras.png');
+const NAME_ICON = require('../../assets/images/register/nombre.png');
+const BLANK_SPACE_BACKGROUND = require('../../assets/images/register/blank_background.png');
+const EMAIL_ICON = require('../../assets/images/register/correo.png');
+const COUNTRY_ICON = require('../../assets/images/register/pais.png');
+const GRAY_CHECK_ICON = require('../../assets/images/register/check_gris.png');
+const CHECK_BOX = require('../../assets/images/register/check_box_gris.png');
 
-class RegisterMain extends Component {
+let years = [];
+const countries_list = [];
+
+class EmailRegister extends Component {
 
   constructor (props) {
     super(props);
@@ -52,12 +57,12 @@ class RegisterMain extends Component {
     }
 
     for(let i = 1900; i < 2020; i++){
-      anho.push({value:i.toString()});
+      years.push({value:i.toString()});
     }
-    anho = anho.reverse();
+    years = years.reverse();
 
     for(let i = 0; i < countries.countries.length; i++) {
-      paises.push({value:countries.countries[i]});
+      countries_list.push({value:countries.countries[i]});
     }
   };
 
@@ -124,7 +129,7 @@ setUserDataStorage(response,header) {
     const userData = this.get_user_data(header,response);
     AsyncStorage.setItem(USER_DATA, JSON.stringify(userData));
 
-    checkLocalizationPermission();
+    requestPermissions();
 
     this._showConfidencialityAlert();
     
@@ -224,31 +229,29 @@ pre_register( ){
 renderModal(){
   return(
     <ConfidencialityAlertModal isVisible={this.state.isConfidencialityAlertVisible} okAction={this._goToMainApp.bind(this)}/>
-    //<UseGuide hideVideo= {this._goToMainApp.bind(this)}/>
   );
 }
 
 render() {
   return (
-
-    <ImageBackground source={require(background)} style={styles.body} >
+    <ImageBackground source={BACKGROUND} style={styles.body} >
       {this.renderModal()}
       {!this.state.isConfidencialityAlertVisible &&
       <View style={styles.body}>
         <View style={styles.logoContainer}>
         <View style={{flex:1,position: 'absolute',left:10,top:10}}>
           <TouchableOpacity onPress = {this._goToBackApp.bind(this)}>
-            <Image source={require('../../../images/icons/PantallaPrincipal/flechaatras.png')} style={styles.backArrow} />
+            <Image source={BACK_ARROW_ICON} style={styles.backArrow} />
           </TouchableOpacity>
           </View>
           <View style={{flex:2,marginTop:70,marginBottom:20}}>
-            <Image source={require(logo)} style={styles.logoRegisterScreen}/>
+            <Image source={LOGO} style={styles.logoRegisterScreen}/>
           </View>
         </View>
         <View style={{flex:6}}>
           <View style={styles.inputsContainer}>
             <View style={styles.inputData}>
-              <Image style={styles.imgButton} source={require('../../../images/icons/register/nombre.png')} />
+              <Image style={styles.imgButton} source={NAME_ICON} />
               <TextInput
                 style={styles.inputBox}
                 placeholder ="Nombre"
@@ -260,7 +263,7 @@ render() {
               />
             </View>
             <View style={styles.inputData}>
-              <Image style={styles.imgButton} source={require('../../../images/icons/register/blank_background.png')} />
+              <Image style={styles.imgButton} source={BLANK_SPACE_BACKGROUND} />
               <TextInput
                 style={styles.inputBox} 
                 placeholder ="Apellidos"
@@ -272,7 +275,7 @@ render() {
             />
             </View>
             <View style={styles.inputData}>
-              <Image style={styles.imgButton} source={require('../../../images/icons/register/correo.png')} />
+              <Image style={styles.imgButton} source={EMAIL_ICON} />
               <TextInput style={styles.inputBox}
                 placeholder ="Correo electrónico"
                 underlineColorAndroid={'transparent'}
@@ -283,11 +286,11 @@ render() {
               />
             </View>
             <View style={styles.inputData}>
-              <Image style={styles.imgButton} source={require('../../../images/icons/register/pais.png')} />
+              <Image style={styles.imgButton} source={COUNTRY_ICON} />
               <View style={styles.paisesBox}>
                 <Dropdown
                   label={this.state.titulo_pais}
-                  data={paises}
+                  data={countries_list}
                   dropdownPosition={0}
                   value={this.state.country}
                   dropdownOffset={{ top: 17, left: 0 }}
@@ -316,10 +319,10 @@ render() {
                     }}
                     isChecked={this.state.checkedM}
                     checkedImage={
-                      <Image source={require('../../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
+                      <Image source={GRAY_CHECK_ICON} style={styles.checkImage} />
                     }
                     unCheckedImage={
-                      <Image source={require('../../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
+                      <Image source={CHECK_BOX} style={styles.checkImage} />
                     }
                   />
                   <Text style={styles.genderBox}>
@@ -344,10 +347,10 @@ render() {
                     }}
                     isChecked={this.state.checkedH}
                     checkedImage={
-                      <Image source={require('../../../images/icons/registro/check_gris.png')} style={styles.checkImage} />
+                      <Image source={GRAY_CHECK_ICON} style={styles.checkImage} />
                     }
                     unCheckedImage={
-                      <Image source={require('../../../images/icons/registro/check_box_gris.png')} style={styles.checkImage} />
+                      <Image source={CHECK_BOX} style={styles.checkImage} />
                     }
                   />
                   <Text style={styles.genderBox}>
@@ -362,7 +365,7 @@ render() {
               <View style={styles.anhosBox}>
                 <Dropdown
                   label={this.state.titulo_anhos}
-                  data={anho}
+                  data={years}
                   dropdownPosition={0}
                   value={this.state.date}
                   dropdownOffset={{ top: 17, left: 0 }}
@@ -388,27 +391,4 @@ render() {
   }
 }
 
-async function checkLocalizationPermission(){
-  try {
-    const granted = await PermissionsAndroid.requestMultiple([PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      PermissionsAndroid.PERMISSIONS.CAMERA]);
-      return true;
-  } catch (err) {
-    console.warn(err);
-  }
-  return false;
-}
-
-async function checkCameraPermission(){
-  try {
-    const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA);
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      return true;
-    }
-  } catch (err) {
-    console.warn(err);
-  }
-  return false;
-  }
-
-export default RegisterMain;
+export default EmailRegister;
