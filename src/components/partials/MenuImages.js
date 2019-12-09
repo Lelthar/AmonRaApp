@@ -1,43 +1,39 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
     View,
     Image,
     TouchableOpacity,
   } from 'react-native';
-
 import AsyncStorage from '@react-native-community/async-storage';
-
 import Orientation from 'react-native-orientation-locker';
-
-//----------Backend--------------
+import localStyles from "../../assets/styles/partials/menuImages";
 import { 
   VIRTUAL_VISIT_IMAGES,
   INFORMATION_HOUSES,
   USER_DATA,
-} from '../../../constants/constants';
-
+} from '../../../constants/routesAPI';
 import {
   makeBackendRequest,
 } from '../../../helpers/helpers';
 
-//-------------------------------
-
 const FEATURE_ID = "?feature_id=";
+const LEFT_ARROW_ICON = require('../../assets/images/icons/despliegaizq.png');
+const RIGHT_ARROW_ICON = require('../../assets/images/icons/despliegader.png');
 
 export default class MenuImages extends Component {
   constructor(props) {
     super(props);
-    console.log("Const MEnuimgs");
+
     this.showMenuImages = this.showMenuImages.bind(this);
 
     this.state = {
       counter: {one: 0, two: 1, three: 2},
-      typeContent : this.props.dataImages.type, //1=information views images 0=images of points information
+      typeContent : this.props.dataImages.type, 
       images : [],
       houseId : this.props.dataImages.id,
       menuImagesVisible: false,
-    }
+      userData: null,
+    };
   }
 
   componentDidUpdate(){
@@ -45,7 +41,7 @@ export default class MenuImages extends Component {
   }
 
   componentDidMount() {
-    Orientation.lockToPortrait(); //this will lock the view to Portrait
+    Orientation.lockToPortrait(); 
     this.get_backend_data(); 
   }
 
@@ -53,7 +49,7 @@ export default class MenuImages extends Component {
     return (
         this.state.menuImagesVisible && (
           this.showMenuImages()
-          )
+        )
     );
   }
 
@@ -62,7 +58,7 @@ export default class MenuImages extends Component {
       <View style={localStyles.menuContainer}>
         <View style={localStyles.extremesContainer}>
           <TouchableOpacity style={localStyles.displaybotomRight} onPress={() => this.changeImage3D(1)}>
-            <Image  source={require('../../../images/despliegaizq.png')} />
+            <Image  source={LEFT_ARROW_ICON} />
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={localStyles.middleContainer} onPress={() => 
@@ -79,7 +75,7 @@ export default class MenuImages extends Component {
         </TouchableOpacity>
         <View style={localStyles.extremesContainer}>
         <TouchableOpacity style={localStyles.displaybotomLeft} onPress={() => this.changeImage3D(2)}>
-          <Image source={require('../../../images/despliegader.png')} />
+          <Image source={RIGHT_ARROW_ICON} />
         </TouchableOpacity>
         </View>
       </View>
@@ -87,14 +83,14 @@ export default class MenuImages extends Component {
   }
 
   changeImage3D(button){
-    let one,two, three =0;
+    let one,two, three = 0;
     let length = this.state.images.length;
-    //right
-    if(button == 2){
+
+    if(button == 2){ // go to right
       one = (this.state.counter.one-1) >= 0 ? (this.state.counter.one-1) : length-1;
       two = (this.state.counter.two-1) >= 0 ? (this.state.counter.two-1) : length-1;
       three = (this.state.counter.three-1) >= 0 ? (this.state.counter.three-1) : length-1;
-    }else{//left
+    }else{ // go to left
       one = ((this.state.counter.one+1)%length);
       two = ((this.state.counter.two+1)%length);
       three = ((this.state.counter.three+1)%length);
@@ -129,72 +125,8 @@ export default class MenuImages extends Component {
         images : responseJson,
         menuImagesVisible : true,
       });
-    }else{
-        console.log("ERROR")
     }
   }
 }
-
-var localStyles = StyleSheet.create({
-    menuContainer: {
-    flex:1, 
-    flexDirection: 'row', 
-    padding:3,
-    paddingTop:7,
-    paddingBottom:7, 
-    bottom: 0,
-    position:"absolute",
-    backgroundColor: "#00A2B5",
-    opacity: 0.8,
-    },
-    extremesContainer: {
-    flex:1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    },
-    middleContainer: {
-    flex:2,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    },
-    centerContainer: {
-    flex:3,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    },
-    item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-    },
-    photoMain: {
-    height: "110%",
-    width: "95%",
-    borderRadius: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: "#FFFFFF",
-    },
-    photoAux: {
-    height: 65,
-    width: "95%",
-    borderRadius: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-    backgroundColor: "#FFFFFF",
-    },
-    displaybotomRight: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    },
-    displaybotomLeft: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    }
-});
 
 module.exports = MenuImages;

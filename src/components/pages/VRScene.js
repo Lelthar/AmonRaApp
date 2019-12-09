@@ -18,10 +18,12 @@ export default class VRScene extends Component {
   }
 
   render() {
+    const IMAGE_URL = this.props.sceneNavigator.viroAppProps.data;
+
     return (
       <ViroScene>
         <ViroCamera active={true}>
-          <Viro360Image source={{uri:this.props.sceneNavigator.viroAppProps.data}} onLoadEnd={this.imageLoaded} />
+          <Viro360Image source={{uri:IMAGE_URL}} onLoadEnd={this.imageLoaded} />
           <VRHeadset />
         </ViroCamera>
       </ViroScene>
@@ -29,7 +31,7 @@ export default class VRScene extends Component {
   }
 
   imageLoaded = () => {
-    this.props.sceneNavigator.viroAppProps.handleClick();
+    this.props.sceneNavigator.viroAppProps.stopLoading();
   }
 
 }

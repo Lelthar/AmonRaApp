@@ -47,7 +47,7 @@ export class VRController extends Component {
           initialScene={{scene: VR_SCENE}} 
           onExitViro={this._exitViro} 
           vrModeEnabled={this.state.vrMode} 
-          viroAppProps={{data:this.state.content,handleClick:this.showLoadedContent}}/>
+          viroAppProps={{data: this.state.content, stopLoading: this.showLoadedContent}}/>
 
         {this.state.loadedVisible && (<Loaded />)}
           

@@ -16,7 +16,7 @@ import {
     ARCHITECTURE_DATA,
     EXPERIENCES_DATA_URL,
     FEATURES_URL,
-} from '../../../constants/constants';
+} from '../../../constants/routesAPI';
   
 import {
     makeBackendRequest,

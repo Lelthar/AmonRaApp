@@ -1,28 +1,21 @@
 import React, { Component } from 'react';
-import {
-} from 'react-native';
-
 import SplashScreen from 'react-native-splash-screen';
 import RegisterMain from './src/components/pages/RegisterMain';
-import MainApp from './MainApp'
+import MainApp from './MainApp';
+import AsyncStorage from '@react-native-community/async-storage';
 import { 
   USER_DATA,
-} from './constants/constants';
+} from './constants/routesAPI';
 
-import {
-    requestCameraPermission,
-    requestFineLocationPermission,
-    requestPermissions
-} from './permission/permission';
-
-import AsyncStorage from '@react-native-community/async-storage';
 
 export default class App extends Component<Props> {
     constructor(props) {
         super(props);
+
         this.state = {
-            userData: null
+            userData: null,
         }
+        
         AsyncStorage.getItem(USER_DATA).then((value) => {
             this.setState({userData: value});
         });
@@ -30,8 +23,6 @@ export default class App extends Component<Props> {
     }
 
     componentDidMount() {
-    	// do stuff while splash screen is shown
-        // After having done stuff (such as async tasks) hide the splash screen
         setTimeout(() => {SplashScreen.hide()}, 3000);
     }
 
@@ -40,7 +31,5 @@ export default class App extends Component<Props> {
         const mainApp = <MainApp />;
         
         return (this.state.userData ? mainApp : register);
-        //return (mainApp);
-        //return (register);
     }
 }
