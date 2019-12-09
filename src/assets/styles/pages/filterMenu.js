@@ -2,9 +2,13 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        position:'absolute', 
+        position: 'absolute', 
         left: 0,
         bottom: 0,
+      },
+    menu: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 162, 181, 0.99)',
     },
     menuBox: {
         backgroundColor: 'rgba(0, 162, 181, 0.8)',
@@ -17,7 +21,14 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginRight: 20,
     },
-    rightText:{
+    closeFilter: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        marginTop: 5,
+        marginRight: 10,
+    },
+    rightText: {
         color:'white',
         fontSize: 16,
     }
