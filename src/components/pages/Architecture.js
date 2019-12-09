@@ -21,9 +21,8 @@ import {
 } from "../../redux/actions/menuDataActions";
 
 import { 
-  FEATURES_URL,
-  PERIMETER_URL,
   USER_DATA,
+  ARCHITECTURE_DATA,
 } from '../../../constants/constants';
 
 import {
@@ -75,10 +74,9 @@ class Architecture extends Component {
   }
   
   async get_features(){
-    const url = "https://amonra.herokuapp.com/api/v1/architecture_data";
-    const institutionalUrl = "?category=Patrimonio%20Arquitectónico"; 
-    const response = await makeBackendRequest(url,"GET",this.state.userData);
+    const response = await makeBackendRequest(ARCHITECTURE_DATA,"GET",this.state.userData);
     const responseJson = await response.json();
+    console.log(responseJson);
     this.setState({
       markers: responseJson,
     });

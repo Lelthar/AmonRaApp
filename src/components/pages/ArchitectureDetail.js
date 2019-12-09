@@ -19,16 +19,6 @@ import {
   menuResetAction,
 } from "../../redux/actions/menuDataActions";
 
-import { 
-  FEATURES_URL,
-  PERIMETER_URL,
-  USER_DATA,
-} from '../../../constants/constants';
-
-import {
-  makeBackendRequest,
-} from '../../../helpers/helpers';
-
 import HamburgerMenu from '../partials/HamburgerMenu';
 import Option from '../partials/Option';
 import styles from "../../assets/styles/pages/architectureDetail";

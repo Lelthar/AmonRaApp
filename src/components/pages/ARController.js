@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
 } from 'react-native'; 
 
 import {
@@ -10,7 +9,7 @@ import {
 } from 'react-viro';
 
 import DataSheet from "../partials/DataSheet";
-import InfoMenu from "../partials/InfoMenu";
+import ARViewMenu from "../partials/ARViewMenu";
 import Toast from '../partials/Toast';
 import ARNoSupport from '../partials/ARNoSupport';
 
@@ -35,14 +34,14 @@ export class ARController extends Component {
 
     this.state = {
       sharedProps : this.props.sharedProps, 
-      viroAppProps: {setInformation: this.showInfoMenu, changeCompass: this.changeCompass},
+      viroAppProps: {setInformation: this.showInfoMenu},
       infoMenuVisible : false,
       dataSheetVisible : false,
       descriptionVisible : true,
-      houseArPressedID: null,
+      houseArPressedID: 0,
       houseArPressedName: null,
+      architectureDataID: 0,
       toastVisible: false,
-      compass: 0,
       scenaSource : true,
     }
     
@@ -78,14 +77,14 @@ export class ARController extends Component {
           onExitViro={this._exitViro} 
           viroAppProps={this.state.viroAppProps} />
 
-        <Text> {this.state.compass}</Text>        
-                                
         {this.state.infoMenuVisible && (
-          <InfoMenu 
+          <ARViewMenu 
             handlePressDataSheet={this.toggleDataSheet} 
             descriptionVisible={this.state.descriptionVisible} 
             houseArPressed={this.state.houseArPressedID} 
-            navigation={this.props.navigation}/> 
+            architectureDataID={this.state.architectureDataID} 
+            navigation={this.props.navigation}
+            showErrorToast={this.showToast}/> 
         )}
 
         {this.state.dataSheetVisible && (
@@ -125,12 +124,6 @@ export class ARController extends Component {
       houseArPressedID: place,
       houseArPressedName: tittle,
     });
-  }
-
-  changeCompass = (newCompass) => {
-    this.setState({
-      compass: newCompass,
-    })
   }
 
   // Returns the ViroSceneNavigator which will start the VR experience

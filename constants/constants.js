@@ -11,6 +11,8 @@ export const DATA_SHEET_URL = "https://amonra.herokuapp.com/api/v1/architecture_
 export const VIRTUAL_VISIT_IMAGES = "https://amonra.herokuapp.com/api/v1/virtual_visit_houses";
 export const INFORMATION_HOUSES = "https://amonra.herokuapp.com/api/v1/information_houses";
 export const SEARCH_INTERMEDIATES = "https://amonra.herokuapp.com/api/v1/search_intermediates";
-//virtual_visit_houses
+export const ARCHITECTURE_DATA = "https://amonra.herokuapp.com/api/v1/architecture_data";
+export const EXPERIENCES_DATA_URL = "https://amonra.herokuapp.com/api/v1/experiences";
+
 // Otros
 export const USER_DATA = "userData";

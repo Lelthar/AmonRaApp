@@ -21,15 +21,13 @@ import Items3D from '../../assets/objects/indexObj';
 import Materials3D from '../../assets/objects/indexMaterials';
 
 const DEGREE_UPDATE_RATE = 10;
-const DISTANCE_MIN = 1;
-const DISTANCE_MAX = 100;
+const DISTANCE_MAX = 70;
 const SIZE_MIN = 1;
 const SIZE_MAX = 15;
-const LABEL_SIZE_MIN = 0.025;
+const LABEL_SIZE_MIN = 0.0025;
 const LABEL_SIZE_MAX = 0.5;
 
 let heading = 0;
-let watchID = 0;
 
 export class ARScene extends Component {
 
@@ -37,104 +35,80 @@ export class ARScene extends Component {
     super(props);
 
     this.state = {
-      sceneVisible: false,
+      sceneVisible: false, 
       trackingUpdated: true,
-      arePlacesBeingWatched: [false,false,false],
+      arePlacesBeingWatched: [],
       userMercProjection: null,
-      nearestARPlaces: [
-        {
-            x: 0, 
-            z: 0, 
-            placeID: 0, 
-            tittle: "",
-            img: "", 
-            label3DObject: "", 
-            "min_degree": 0,
-            "max_degree": 0
-        },
-        {
-            x: 0, 
-            z: 0, 
-            placeID: 0, 
-            tittle: "",
-            img: "", 
-            label3DObject: "",
-            "min_degree": 0,
-            "max_degree": 0,
-        },
-        {
-          x: 0, 
-          z: 0, 
-          placeID: 0, 
-          tittle: "",
-          img: "", 
-          label3DObject: "",
-          "min_degree": 0,
-          "max_degree": 0,
-        }
-      ],
     };
 
     RNSimpleCompass.start(DEGREE_UPDATE_RATE, (degree) => {
       heading = degree 
       console.log(degree);
-      this.props.arSceneNavigator.viroAppProps.changeCompass(heading);
       this._iterateARViewsHeading();
     });
   }
 
   componentDidMount(){
     if (checkLocalizationPermission()) {
-      this._watchGeopositionLookingForARPlaces();
+      console.log("");
     } 
   }
 
   componentWillUnmount(){
     RNSimpleCompass.stop();
-    Geolocation.clearWatch(watchID);
-    Geolocation.stopObserving();
   }
 
   render() { 
     return (
-      <ViroARScene onTrackingUpdated={this._onTrackingUpdated}>
+      <ViroARScene>
         {this.state.sceneVisible && this.state.trackingUpdated && (
-          this.state.nearestARPlaces.map((item , index)=> (
-            this.enableARViewByHeadingCompass(item, index)
+          mercatorAmon.map((placeAR , index)=> (
+            this.enableARViewByHeadingCompass(placeAR, index)
           ))
         )}
       </ViroARScene>
     );
   }
 
+  _getCurrentPosition = (newArePlacesBeingWatched) => {
+    Geolocation.getCurrentPosition(
+      (position) => {
+        let userMercProjection = this._coordLatLongToMercatorProjection(position.coords.latitude, position.coords.longitude);
+        this.setState({
+          sceneVisible: true,
+          arePlacesBeingWatched: newArePlacesBeingWatched,
+          userMercProjection : userMercProjection,
+        });
+      },
+      (error) => {console.log(error.message);},
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 5000 },
+    );
+  }
+
   _iterateARViewsHeading = () => {
-    console.log("Iterating views");
     let newArePlacesBeingWatched = [];
-    this.state.nearestARPlaces.forEach((item, index) => {
-      newArePlacesBeingWatched.push(this._isCurrentHeadingBetweenViewsHeadingRange(item));
+    mercatorAmon.forEach((placeAR) => {
+      newArePlacesBeingWatched.push(this._isCurrentHeadingBetweenViewsHeadingRange(placeAR));
     });
-    
-    if(this.state.arePlacesBeingWatched.toString() !== newArePlacesBeingWatched.toString()){
-      console.log("newArePlacesBeingWatched",newArePlacesBeingWatched);
-      this.setState({
-        arePlacesBeingWatched: newArePlacesBeingWatched,
-      });
-    }
+
+    if(this.state.arePlacesBeingWatched.toString() !== newArePlacesBeingWatched.toString())
+      this._getCurrentPosition(newArePlacesBeingWatched)
   }
 
   _getViewScale = (viewAR, maxSize, minSize) => {
     let scale = 0;
     let ratio = minSize / maxSize;
     let distance = Math.abs(viewAR.x) +  Math.abs(viewAR.z);
-    console.log("Distance",distance);
     distance > DISTANCE_MAX
-    ? scale = minSize
+    ? scale = 0
     : scale = distance * ratio * maxSize / 2;
-    if (scale > maxSize){
+
+    if (scale > maxSize)
       scale = maxSize;
-    }
+
     return [scale,scale,scale];
   }
+
 
   _isCurrentHeadingBetweenViewsHeadingRange = (placeAR) => {
     if (placeAR.min_degree > placeAR.max_degree){ // Cuando es de i.e 240 a 40 
@@ -149,7 +123,7 @@ export class ARScene extends Component {
     return false;
   }
 
-  enableARViewByHeadingCompass=(place, index)=>{
+  enableARViewByHeadingCompass=(place, index)=>{    
     return (
       this.state.arePlacesBeingWatched[index]
       ? this._setARView(place)
@@ -161,68 +135,33 @@ export class ARScene extends Component {
     let newARView = this._transformMercPointToAR(this.state.userMercProjection, place);
     let imageScale = this._getViewScale(newARView, SIZE_MAX, SIZE_MIN);
     let buttonScale = this._getViewScale(newARView, LABEL_SIZE_MAX, LABEL_SIZE_MIN);
-    return this.showARView(newARView, imageScale, buttonScale);
+    
+    if(JSON.stringify(imageScale) == JSON.stringify([0,0,0]))
+      return this.showARView(newARView, imageScale, buttonScale) ;
+    
+    return null ;
   }
   
   showARView = (viewAR, imageScale, buttonScale) => {
-    console.log("Activando",viewAR);
     return( 
       <ViroNode key={viewAR.placeID}>
         <ViroAmbientLight color="#FFFFFF"/>
         <Viro3DObject
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle)}
           source={this._get3DButtonByViewName(viewAR.label3DObject)} 
-          position={[viewAR.x, 10 ,viewAR.z]}
+          position={[viewAR.x, 12,viewAR.z]}
           scale={buttonScale}
           resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
           type="OBJ" 
         />
         <ViroImage
-          position={[viewAR.x, 0.1, viewAR.z]}
+          position={[viewAR.x, 0.1 ,viewAR.z]}
           resizeMode='ScaleToFit'
           scale={imageScale}
           source={{uri: viewAR.img}}
         />
       </ViroNode>
     );
-  }
-
-  _watchGeopositionLookingForARPlaces = () => {
-    watchID = Geolocation.watchPosition(
-      (position) => {
-        this._iterateARLocations(position.coords.latitude, position.coords.longitude)
-      },
-      {distanceFilter: 0, maximumAge: 0, timeout: 20000},
-    );
-  }
-
-  _getThreeNearestPlaces = (userLat, userLon) => {
-    let firstNearestPlace, secondNearestPlace, thirdNearestPlace;
-    let firstNearestPlaceDistance = Number.MAX_VALUE,
-        secondNearestPlaceDistance = Number.MAX_VALUE, 
-        thirdNearestPlaceDistance = Number.MAX_VALUE;
-
-    mercatorAmon.forEach((placeAR) => {
-      let distance = this._distanceBetweenTwoCoordinates(userLat, userLon, placeAR.lat, placeAR.lon);
-      if(distance < firstNearestPlaceDistance){
-        thirdNearestPlace = secondNearestPlace;
-        thirdNearestPlaceDistance = secondNearestPlaceDistance;
-        secondNearestPlace = firstNearestPlace;
-        secondNearestPlaceDistance = firstNearestPlaceDistance;
-        firstNearestPlace = placeAR;
-        firstNearestPlaceDistance = distance;
-      }else if(distance < secondNearestPlaceDistance){
-        thirdNearestPlace = secondNearestPlace
-        thirdNearestPlaceDistance = secondNearestPlaceDistance;
-        secondNearestPlace = placeAR;
-        secondNearestPlaceDistance = distance;
-      }else if(distance < thirdNearestPlaceDistance){
-        thirdNearestPlace = placeAR;
-        thirdNearestPlaceDistance = distance;
-      }
-    });
-    console.log("Nearest Places",[firstNearestPlace, secondNearestPlace, thirdNearestPlace])
-    return [firstNearestPlace, secondNearestPlace, thirdNearestPlace];
   }
 
   _onTrackingUpdated=(state, reason) =>{
@@ -236,17 +175,6 @@ export class ARScene extends Component {
         trackingUpdated: false,
       });
     }
-  }
-
-  _iterateARLocations = (lat, lon) => {
-    let nearestARPlaces = this._getThreeNearestPlaces(lat, lon);
-    //console.log("Mi casa",this._coordLatLongToMercatorProjection(9.850768, -83.923726));
-    let userMercProjection = this._coordLatLongToMercatorProjection(lat, lon);
-    this.setState({
-      userMercProjection: userMercProjection,
-      nearestARPlaces: nearestARPlaces,
-      sceneVisible: true,
-    });
   }
 
   _transformMercPointToAR = (userMercPoint, ViewMercPoint) => {
@@ -283,22 +211,6 @@ export class ARScene extends Component {
 
   _toRadians = (value) => {
     return (value / 180.0) * Math.PI;
-  }
-
-  _distanceBetweenTwoCoordinates = (lat1, lon1, lat2, lon2) => {
-    lat1 = this._toRadians(lat1);
-    lon1 = this._toRadians(lon1);
-    lat2 = this._toRadians(lat2);
-    lon2 = this._toRadians(lon2);
-    const earth_diam_km = 12742; 
-    let distanceLat = lat2 - lat1;
-    let distanceLon = lon2 - lon1;
-    let a = (
-      (1 - Math.cos(distanceLat)) +
-      (1 - Math.cos(distanceLon)) * Math.cos(lat1) * Math.cos(lat2)
-    ) / 2;
-  
-    return earth_diam_km * Math.asin(Math.sqrt(a));
   }
 
   _get3DButtonByViewName = (viewName) => {
