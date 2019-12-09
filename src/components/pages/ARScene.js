@@ -2,10 +2,6 @@
 import React, { Component } from 'react';
 
 import {
-  PermissionsAndroid,
-} from 'react-native';
-
-import {
   ViroARScene,
   Viro3DObject, 
   ViroAmbientLight, 
@@ -14,9 +10,19 @@ import {
   ViroConstants,
 } from 'react-viro';
 
+import { 
+  AR_PLACES_URL,
+  USER_DATA,
+} from '../../../constants/routesAPI';
+
+import {
+  makeBackendRequest,
+} from '../../../helpers/helpers'
+
+import AsyncStorage from '@react-native-community/async-storage';
+import {requestPermissions} from '../../../permission/permission.js';
 import Geolocation from 'react-native-geolocation-service';
 import RNSimpleCompass from 'react-native-simple-compass';
-import mercatorAmon from '../../assets/files/placesAR.json';
 import Items3D from '../../assets/objects/indexObj';
 import Materials3D from '../../assets/objects/indexMaterials';
 
@@ -39,18 +45,15 @@ export class ARScene extends Component {
       trackingUpdated: true,
       arePlacesBeingWatched: [],
       userMercProjection: null,
+      userData: null,
+      placesARData: [],
     };
-
-    RNSimpleCompass.start(DEGREE_UPDATE_RATE, (degree) => {
-      heading = degree 
-      console.log(degree);
-      this._iterateARViewsHeading();
-    });
   }
 
   componentDidMount(){
-    if (checkLocalizationPermission()) {
-      console.log("");
+    if (requestPermissions()) {
+      this.get_backend_data();
+      this._startCompass();
     } 
   }
 
@@ -62,12 +65,37 @@ export class ARScene extends Component {
     return (
       <ViroARScene>
         {this.state.sceneVisible && this.state.trackingUpdated && (
-          mercatorAmon.map((placeAR , index)=> (
+          this.state.placesARData.map((placeAR , index)=> (
             this.enableARViewByHeadingCompass(placeAR, index)
           ))
         )}
       </ViroARScene>
     );
+  }
+
+  async get_features(){
+    let response = await makeBackendRequest(AR_PLACES_URL,"GET",this.state.userData);
+    let responseJson = await response.json();
+    this.setState({
+      placesARData: responseJson,
+    });
+  }
+
+  async get_user_data() {
+    const user_data_storage = await AsyncStorage.getItem(USER_DATA);
+    this.setState({ userData: JSON.parse(user_data_storage)});
+  }
+
+  async get_backend_data() {
+    await this.get_user_data()
+    await this.get_features();
+  }
+
+  _startCompass = () => {
+    RNSimpleCompass.start(DEGREE_UPDATE_RATE, (degree) => {
+      heading = degree 
+      this._iterateARViewsHeading();
+    });
   }
 
   _getCurrentPosition = (newArePlacesBeingWatched) => {
@@ -87,7 +115,7 @@ export class ARScene extends Component {
 
   _iterateARViewsHeading = () => {
     let newArePlacesBeingWatched = [];
-    mercatorAmon.forEach((placeAR) => {
+    this.state.placesARData.forEach((placeAR) => {
       newArePlacesBeingWatched.push(this._isCurrentHeadingBetweenViewsHeadingRange(placeAR));
     });
 
@@ -109,7 +137,6 @@ export class ARScene extends Component {
     return [scale,scale,scale];
   }
 
-
   _isCurrentHeadingBetweenViewsHeadingRange = (placeAR) => {
     if (placeAR.min_degree > placeAR.max_degree){ // Cuando es de i.e 240 a 40 
       if ((placeAR.min_degree > heading && heading < placeAR.max_degree) || (placeAR.min_degree < heading && heading > placeAR.max_degree)){
@@ -123,7 +150,7 @@ export class ARScene extends Component {
     return false;
   }
 
-  enableARViewByHeadingCompass=(place, index)=>{    
+  enableARViewByHeadingCompass = (place, index) => {    
     return (
       this.state.arePlacesBeingWatched[index]
       ? this._setARView(place)
@@ -135,11 +162,10 @@ export class ARScene extends Component {
     let newARView = this._transformMercPointToAR(this.state.userMercProjection, place);
     let imageScale = this._getViewScale(newARView, SIZE_MAX, SIZE_MIN);
     let buttonScale = this._getViewScale(newARView, LABEL_SIZE_MAX, LABEL_SIZE_MIN);
-    
-    if(JSON.stringify(imageScale) == JSON.stringify([0,0,0]))
+    if(JSON.stringify(imageScale) !== JSON.stringify([0,0,0]))
       return this.showARView(newARView, imageScale, buttonScale) ;
     
-    return null ;
+    return null;
   }
   
   showARView = (viewAR, imageScale, buttonScale) => {
@@ -147,15 +173,15 @@ export class ARScene extends Component {
       <ViroNode key={viewAR.placeID}>
         <ViroAmbientLight color="#FFFFFF"/>
         <Viro3DObject
-          onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle)}
+          onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle, viewAR.architectureDataID)}
           source={this._get3DButtonByViewName(viewAR.label3DObject)} 
-          position={[viewAR.x, 12,viewAR.z]}
+          position={[viewAR.x, 12, viewAR.z]}
           scale={buttonScale}
           resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
           type="OBJ" 
         />
         <ViroImage
-          position={[viewAR.x, 0.1 ,viewAR.z]}
+          position={[viewAR.x, 0.1, viewAR.z]}
           resizeMode='ScaleToFit'
           scale={imageScale}
           source={{uri: viewAR.img}}
@@ -177,24 +203,25 @@ export class ARScene extends Component {
     }
   }
 
-  _transformMercPointToAR = (userMercPoint, ViewMercPoint) => {
+  _transformMercPointToAR = (userMercPoint, viewMercPoint) => {
     let compassHeading = heading;
-    let objFinalPosZ = ViewMercPoint.Y - userMercPoint.Y;
-    let objFinalPosX = ViewMercPoint.X - userMercPoint.X;
+    let objFinalPosZ = viewMercPoint.y - userMercPoint.Y;
+    let objFinalPosX = viewMercPoint.x - userMercPoint.X;
     let angle = (compassHeading * Math.PI)/180;
     let newRotatedX = objFinalPosX * Math.cos(angle) - objFinalPosZ * Math.sin(angle);
     let newRotatedZ = objFinalPosZ * Math.cos(angle) + objFinalPosX * Math.sin(angle);  
-    return this._createARObject(newRotatedX, -newRotatedZ, ViewMercPoint);
+    return this._createARObject(newRotatedX, -newRotatedZ, viewMercPoint);
   }
   
   _createARObject = (newX, newZ, place) => {
     return ({ 
               x: newX, 
               z: newZ, 
-              placeID: place.placeID, 
-              tittle: place.tittle,
-              img: place.img, 
-              label3DObject: place.label3DObject,
+              placeID: place.feature_id, 
+              tittle: place.name,
+              architectureDataID: place.architecture_data_id,
+              img: place.image_url, 
+              label3DObject: place.label_3d,
               "min_degree": place.min_degree,
               "max_degree": place.max_degree
            });
@@ -303,16 +330,6 @@ export class ARScene extends Component {
     return materials[viewName];
   }
 
-}
-
-async function checkLocalizationPermission(){
-  try {
-    const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      return true;
-    }
-  } catch (err) {}
-  return false;
 }
 
 module.exports = ARScene;

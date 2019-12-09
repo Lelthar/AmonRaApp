@@ -8,8 +8,6 @@ import {
 
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from "../../assets/styles/partials/infoMenu";
-
-//----------Backend--------------
 import { 
     BRIEF_DESCRIPTIONS_URL,
     USER_DATA,
@@ -21,8 +19,6 @@ import {
 import {
     makeBackendRequest,
 } from '../../../helpers/helpers'
-  
-//-------------------------------
 
 const BY_FEATURE_ID = "?feature_id=";
 const BY_DATA_ID = "?data_id=";
@@ -96,7 +92,6 @@ export default class ARViewMenu extends Component {
     async get_brief_description(){
         let URL_GET_INFO = BRIEF_DESCRIPTIONS_URL+BY_FEATURE_ID+this.props.houseArPressed;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
-        // ToDo: Ponerle la validacion de si hay respuesta cuando Gerald lo arregle.
         let responseJson = await response.json();
         if(responseJson != undefined){
             this.setState({
@@ -118,9 +113,11 @@ export default class ARViewMenu extends Component {
     } 
 
     async goToArchitectureDetails() {
+        let architectureDataID = this.props.architectureDataID;
         await this.get_user_data();
-        this.props.architectureDataID == 0 
-        ? await this.get_architecture_data_by_id(1)
+        
+        architectureDataID != 0 
+        ? await this.get_architecture_data_by_id(architectureDataID)
         : this.props.showErrorToast(NOT_ARCHITECTURE_DETAILS_MESSAGE);
     }
 
@@ -128,15 +125,10 @@ export default class ARViewMenu extends Component {
         let URL_GET_INFO = EXPERIENCES_DATA_URL+BY_FEATURE_ID+houseID;
         let response = await makeBackendRequest(URL_GET_INFO, "GET", this.state.userData);
         let responseJson = await response.json();
-
         if(responseJson != undefined){
-
             let URL_GET_NAME = FEATURES_URL+"/"+houseID;
-
             let resName = await makeBackendRequest(URL_GET_NAME,"GET",this.state.userData);
-
             let resNameJson = await resName.json();
-
             this.navigation.navigate('ExperiencesARHouse', {name: resNameJson.name,description: responseJson.description, image: responseJson.image}) 
         }
         else{
