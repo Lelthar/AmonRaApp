@@ -21,6 +21,7 @@ import {
 } from "../../redux/actions/menuDataActions";
 
 import { 
+  ARCHITECTURE_DATA,
   USER_DATA,
 } from '../../../constants/routesAPI';
 
