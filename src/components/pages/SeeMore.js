@@ -38,17 +38,17 @@ const SeeMore = (props) => {
         <Swiper>
           {props.navigation.state.params.images_url_1 != "" && (
             <View style={styles.slide}>
-              <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
+              <Image resizeMode='stretch' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
             </View>
           )}
           {props.navigation.state.params.images_url_2 != "" && (
             <View style={styles.slide}>
-              <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_2}} />
+              <Image resizeMode='stretch' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_2}} />
             </View>
           )}
           {props.navigation.state.params.images_url_3 != "" && (
             <View style={styles.slide}>
-              <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_3}} />
+              <Image resizeMode='stretch' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_3}} />
             </View>
           )}
         </Swiper>
