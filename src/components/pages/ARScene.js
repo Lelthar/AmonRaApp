@@ -30,7 +30,7 @@ const DEGREE_UPDATE_RATE = 10;
 const DISTANCE_MAX = 70;
 const SIZE_MIN = 1;
 const SIZE_MAX = 15;
-const LABEL_SIZE_MIN = 0.0025;
+const LABEL_SIZE_MIN = 0.075;
 const LABEL_SIZE_MAX = 0.5;
 
 let heading = 0;
@@ -109,7 +109,7 @@ export class ARScene extends Component {
         });
       },
       (error) => {console.log(error.message);},
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 5000 },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 },
     );
   }
 
@@ -122,6 +122,7 @@ export class ARScene extends Component {
     if(this.state.arePlacesBeingWatched.toString() !== newArePlacesBeingWatched.toString())
       this._getCurrentPosition(newArePlacesBeingWatched)
   }
+
 
   _getViewScale = (viewAR, maxSize, minSize) => {
     let scale = 0;
@@ -139,14 +140,12 @@ export class ARScene extends Component {
 
   _isCurrentHeadingBetweenViewsHeadingRange = (placeAR) => {
     if (placeAR.min_degree > placeAR.max_degree){ // Cuando es de i.e 240 a 40 
-      if ((placeAR.min_degree > heading && heading < placeAR.max_degree) || (placeAR.min_degree < heading && heading > placeAR.max_degree)){
+      if ((placeAR.min_degree > heading && heading < placeAR.max_degree) || (placeAR.min_degree < heading && heading > placeAR.max_degree))
         return true;
-      }
     }
-    else if(placeAR.min_degree < heading && heading < placeAR.max_degree){
+    else if(placeAR.min_degree < heading && heading < placeAR.max_degree)
       return true;
-    }
-
+    
     return false;
   }
 
