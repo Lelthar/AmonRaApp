@@ -32,6 +32,7 @@ const SeeMore = (props) => {
 
   return (
     <View style={styles.container}>
+      <View style={{flex:0.35}}> 
         {props.navigation.state.params.hasTitle ? (
           <Swiper>
             <View style={styles.slide}>
@@ -58,8 +59,7 @@ const SeeMore = (props) => {
           </Swiper>
         )
         }
-      </View> 
-
+      </View>
       <View style={{flex:0.65}}>  
         <Text style={styles.titleOr} >{props.navigation.state.params.title}</Text>
         <ScrollView>
@@ -71,7 +71,7 @@ const SeeMore = (props) => {
             <Text style = {styles.phoneOr}>Tel: {props.navigation.state.params.phone_number} </Text> 
           )}
           {props.navigation.state.params.facebook != "" && (
-            <Text style = {styles.facebookOr}>Facebook: {props.navigation.state.params.images_url_2} </Text>
+            <Text style = {styles.facebookOr}>Facebook: {props.navigation.state.params.facebook} </Text>
           )}
         </ScrollView>
       </View>
