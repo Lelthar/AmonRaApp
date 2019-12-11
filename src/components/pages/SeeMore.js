@@ -21,8 +21,6 @@ const mapStateToProps = state => {
   }
 };
 
-// End of redux imports
-
 const SeeMore = (props) => {
 
   useEffect(() => {
@@ -30,6 +28,7 @@ const SeeMore = (props) => {
       props.navigation.setParams({ header_title: props.navigation.state.params.category })
     }
   }, []);
+
 
   return (
     <View style={styles.container}>
@@ -74,7 +73,7 @@ const SeeMore = (props) => {
             <Text style = {styles.phoneOr}>Tel: {props.navigation.state.params.phone_number} </Text> 
           )}
           {props.navigation.state.params.facebook != "" && (
-            <Text style = {styles.facebookOr}>Facebook: {props.navigation.state.params.facebook} </Text>
+            <Text style = {styles.facebookOr}>Facebook: {props.navigation.state.params.images_url_2} </Text>
           )}
         </ScrollView>
       </View>
