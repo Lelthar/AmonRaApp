@@ -32,8 +32,6 @@ const SeeMore = (props) => {
 
   return (
     <View style={styles.container}>
-
-      <View style={{flex:0.35}}>
         {props.navigation.state.params.hasTitle ? (
           <Swiper>
             <View style={styles.slide}>
