@@ -35,23 +35,32 @@ const SeeMore = (props) => {
     <View style={styles.container}>
 
       <View style={{flex:0.35}}>
-        <Swiper>
-          {props.navigation.state.params.images_url_1 != "" && (
+        {props.navigation.state.params.hasTitle ? (
+          <Swiper>
             <View style={styles.slide}>
-              <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
+              <Image resizeMode='contain' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
             </View>
-          )}
-          {props.navigation.state.params.images_url_2 != "" && (
-            <View style={styles.slide}>
-              <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_2}} />
-            </View>
-          )}
-          {props.navigation.state.params.images_url_3 != "" && (
-            <View style={styles.slide}>
-              <Image resizeMode='center' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_3}} />
-            </View>
-          )}
-        </Swiper>
+          </Swiper>
+        ) : (
+          <Swiper>
+            {props.navigation.state.params.images_url_1 != "" && (
+              <View style={styles.slide}>
+                <Image resizeMode='contain' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
+              </View>
+            )}
+            {props.navigation.state.params.images_url_2 != "" && (
+              <View style={styles.slide}>
+                <Image resizeMode='contain' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_2}} />
+              </View>
+            )}
+            {props.navigation.state.params.images_url_3 != "" && (
+              <View style={styles.slide}>
+                <Image resizeMode='contain' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_3}} />
+              </View>
+            )}
+          </Swiper>
+        )
+        }
       </View> 
 
       <View style={{flex:0.65}}>  
