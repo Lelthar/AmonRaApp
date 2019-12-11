@@ -21,8 +21,6 @@ const mapStateToProps = state => {
   }
 };
 
-// End of redux imports
-
 const SeeMore = (props) => {
 
   useEffect(() => {
@@ -31,27 +29,35 @@ const SeeMore = (props) => {
     }
   }, []);
 
+
   return (
     <View style={styles.container}>
-
-      <View style={{flex:0.35}}>
-        <Swiper>
-          {props.navigation.state.params.images_url_1 != "" && (
+        {props.navigation.state.params.hasTitle ? (
+          <Swiper>
             <View style={styles.slide}>
-              <Image resizeMode='stretch' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
+              <Image resizeMode='contain' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
             </View>
-          )}
-          {props.navigation.state.params.images_url_2 != "" && (
-            <View style={styles.slide}>
-              <Image resizeMode='stretch' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_2}} />
-            </View>
-          )}
-          {props.navigation.state.params.images_url_3 != "" && (
-            <View style={styles.slide}>
-              <Image resizeMode='stretch' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_3}} />
-            </View>
-          )}
-        </Swiper>
+          </Swiper>
+        ) : (
+          <Swiper>
+            {props.navigation.state.params.images_url_1 != "" && (
+              <View style={styles.slide}>
+                <Image resizeMode='contain' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_1}} />
+              </View>
+            )}
+            {props.navigation.state.params.images_url_2 != "" && (
+              <View style={styles.slide}>
+                <Image resizeMode='contain' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_2}} />
+              </View>
+            )}
+            {props.navigation.state.params.images_url_3 != "" && (
+              <View style={styles.slide}>
+                <Image resizeMode='contain' style={styles.imageOr} source={{uri: props.navigation.state.params.images_url_3}} />
+              </View>
+            )}
+          </Swiper>
+        )
+        }
       </View> 
 
       <View style={{flex:0.65}}>  
@@ -65,7 +71,7 @@ const SeeMore = (props) => {
             <Text style = {styles.phoneOr}>Tel: {props.navigation.state.params.phone_number} </Text> 
           )}
           {props.navigation.state.params.facebook != "" && (
-            <Text style = {styles.facebookOr}>Facebook: {props.navigation.state.params.facebook} </Text>
+            <Text style = {styles.facebookOr}>Facebook: {props.navigation.state.params.images_url_2} </Text>
           )}
         </ScrollView>
       </View>

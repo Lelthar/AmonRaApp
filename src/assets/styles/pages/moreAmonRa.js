@@ -5,8 +5,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flex:2,
-    backgroundColor: '#111111',
+    flex: 3,
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
   },
   buttonsSection: {
     backgroundColor:"white",
@@ -14,6 +15,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
+  },
+  image: {
+    width: "100%",
+    height: 400,
   },
   slide: {
     flex: 1,

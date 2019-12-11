@@ -4,8 +4,12 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
   },
+  imageOr: {
+    width: "100%",
+    height: 250,
+  },
   headerSection: {
-    flex: 2,
+    flex: 3,
   },
   bodySection: {
     flex: 6,
