@@ -82,10 +82,10 @@ const AmonRaProject = (props) => {
       <View style={styles.headerSection}>
         <Swiper>
           <View style={styles.slide}>
-            <Image resizeMode='center' style={styles.imageOr} source={{uri: image_1}} />
+            <Image resizeMode='contain' style={styles.imageOr} source={{uri: image_1}} />
           </View>
           <View style={styles.slide}>
-            <Image resizeMode='center' style={styles.imageOr} source={{uri: image_2}} />
+            <Image resizeMode='contain' style={styles.imageOr} source={{uri: image_2}} />
           </View>
         </Swiper>
       </View>

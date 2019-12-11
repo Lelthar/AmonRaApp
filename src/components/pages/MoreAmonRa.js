@@ -8,6 +8,8 @@ import styles from "../../assets/styles/pages/moreAmonRa";
 import OptionButton from "../partials/OptionButton";
 import HamburgerMenu from '../partials/HamburgerMenu';
 
+import Swiper from 'react-native-swiper';
+
 import {
   PARTICIPATORY_PROCESS,
   PROJECTS,
@@ -69,9 +71,9 @@ const MoreAmonRa = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header} >
-        <Image resizeMode='stretch' source={{uri: headerImage}} />
-      </View>
+        <View style={styles.header} >
+          <Image style={styles.image} resizeMode='contain' source={{uri: headerImage}} />
+        </View>
       <View style={styles.buttonsSection}>
         <OptionButton image={PROJECTS} goTo={goToProjects} />
         <OptionButton image={PARTICIPATORY_PROCESS} goTo={goToParticipatoryProcess} />
