@@ -62,7 +62,6 @@ class Directory extends Component{
 
         super(props);
         this.navigation = this.props.navigation;
-
     }
 
     render() {

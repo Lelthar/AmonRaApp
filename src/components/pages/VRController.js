@@ -9,6 +9,7 @@ import {
 
 import VRSelectionMode from "../partials/VRSelectionMode";
 import Loaded from "../partials/Loaded";
+import CloseButton from "../partials/CloseButton";
 
 const VR_SCENE = require('./VRScene');
 
@@ -21,6 +22,7 @@ export class VRController extends Component {
     this._getSelectionButtons = this._getSelectionButtons.bind(this);
     this.setVRMode = this.setVRMode.bind(this);
     this.showLoadedContent = this.showLoadedContent.bind(this);
+    this.closeScene360 = this.closeScene360.bind(this);
 
     this.state = {
       sharedProps : this.props.sharedProps, 
@@ -50,6 +52,8 @@ export class VRController extends Component {
           viroAppProps={{data: this.state.content, stopLoading: this.showLoadedContent}}/>
 
         {this.state.loadedVisible && (<Loaded />)}
+
+        {!this.state.vrMode && (<CloseButton handlePressClose={this.closeScene360} />)}
           
       </View>
     );
@@ -71,6 +75,10 @@ export class VRController extends Component {
     this.setState({
       loadedVisible : false,
     });
+  }
+
+  closeScene360(){
+    this.props.navigation.goBack()
   }
 }
 

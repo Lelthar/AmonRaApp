@@ -21,8 +21,6 @@ const mapStateToProps = state => {
   }
 };
 
-// End of redux imports
-
 const SeeMore = (props) => {
 
   useEffect(() => {
@@ -31,10 +29,10 @@ const SeeMore = (props) => {
     }
   }, []);
 
+
   return (
     <View style={styles.container}>
-
-      <View style={{flex:0.35}}>
+      <View style={{flex:0.35}}> 
         {props.navigation.state.params.hasTitle ? (
           <Swiper>
             <View style={styles.slide}>
@@ -61,8 +59,7 @@ const SeeMore = (props) => {
           </Swiper>
         )
         }
-      </View> 
-
+      </View>
       <View style={{flex:0.65}}>  
         <Text style={styles.titleOr} >{props.navigation.state.params.title}</Text>
         <ScrollView>

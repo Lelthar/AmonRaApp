@@ -24,6 +24,6 @@ export const getPropsFromPlace = (place) => {
     facebook: place.facebook,
     images_url_1: place.image1_url, 
     images_url_2: place.image2_url, 
-    images_url_2: place.image3_url,
+    images_url_3: place.image3_url,
   };
 }

@@ -11,6 +11,7 @@ import MenuImages from "../partials/MenuImages";
 import PointSheet from "../partials/PointSheet";
 import PointSheetView from "../partials/PointSheetView";
 import SwitchButtom from "../partials/SwitchButton";
+import CloseButton from "../partials/CloseButton";
 
 const D3_SCENE = require('./D3Scene');
 
@@ -22,6 +23,7 @@ export class D3Controller extends Component {
     this.closeDataPoint = this.closeDataPoint.bind(this);
     this.showDataPoint = this.showDataPoint.bind(this);
     this.changeMenuImage = this.changeMenuImage.bind(this);
+    this.closeScene3D = this.closeScene3D.bind(this);
 
     this.state = {
       sharedProps : this.props.sharedProps, 
@@ -86,6 +88,10 @@ export class D3Controller extends Component {
           )
         }
 
+        {
+          <CloseButton handlePressClose={this.closeScene3D} />
+        }
+
       </View>
     );
   }
@@ -121,6 +127,10 @@ export class D3Controller extends Component {
         dataPoint : data,
       });
     }
+  }
+
+  closeScene3D(){
+    this.props.navigation.goBack()
   }
 }
 
