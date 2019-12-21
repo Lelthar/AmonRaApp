@@ -50,7 +50,7 @@ const BriefInformation = (props) => {
     <View style={styles.briefInformationContainer} >
       <View style={{flex:6}} >
         <View style={{flex:1, marginBottom:5}} >
-          <Text style={{color:'white',fontSize: 17,fontWeight:"bold"}} >{props.marker.title}</Text>
+          <Text style={{color:'white',fontSize: 17,fontWeight:"bold"}} onPress={()=> props.navigation.navigate('SeeMore', getPropsFromMarker(props.marker))}>{props.marker.title}</Text>
         </View>
         <View style={{flex:1,marginBottom:5}} >
           { props.marker.direction != "" && (
@@ -90,15 +90,6 @@ const BriefInformation = (props) => {
             <Icon
               name='times'
               size={22}
-              color="#FFFFFF"
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={{flex:1, marginTop: 20}} >
-          <TouchableOpacity style={{flex: 1, alignItems: 'flex-end'}} onPress={()=> props.navigation.navigate('SeeMore', getPropsFromMarker(props.marker))} >
-            <Icon
-              name='plus-circle'
-              size={30}
               color="#FFFFFF"
             />
           </TouchableOpacity>
