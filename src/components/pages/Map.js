@@ -42,6 +42,7 @@ import {
 import {
   IMAGES,
   DEFAULT_MARKER,
+  EXTRA_PERIMETER,
 } from "../../assets/constants/map";
 
 import {
@@ -170,7 +171,7 @@ const Map = (props) => {
     });
 
     if (!warningVisible && perimeterDataLoaded) {
-      const showWarningMessage = isOutBarrioAmon([coordinate.latitude, coordinate.longitude]);
+      const showWarningMessage = isOutBarrioAmon([coordinate.latitude, coordinate.longitude], EXTRA_PERIMETER);
       
       props.setOutBarrioAmonVisibility(showWarningMessage);
 
@@ -211,8 +212,8 @@ const Map = (props) => {
     setPerimeterDataLoaded(true);
   };
 
-  isOutBarrioAmon = (coordinates) => {
-    return arrayCoordinates != [] ? !Inside(coordinates, arrayCoordinates) : false; 
+  isOutBarrioAmon = (coordinates, perimeter) => {
+    return perimeter != [] ? !Inside(coordinates, perimeter) : false; 
   };
 
   getFeatures = async () => {
