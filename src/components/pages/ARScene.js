@@ -44,7 +44,7 @@ export class ARScene extends Component {
       sceneVisible: false, 
       trackingUpdated: true,
       arePlacesBeingWatched: [],
-      userMercProjection: null,
+      userMercProjection: {X: 0, Y: 0},
       userData: null,
       placesARData: [],
     };
@@ -102,11 +102,19 @@ export class ARScene extends Component {
     Geolocation.getCurrentPosition(
       (position) => {
         let userMercProjection = this._coordLatLongToMercatorProjection(position.coords.latitude, position.coords.longitude);
-        this.setState({
-          sceneVisible: true,
-          arePlacesBeingWatched: newArePlacesBeingWatched,
-          userMercProjection : userMercProjection,
-        });
+        if (Math.abs(userMercProjection.X - this.state.userMercProjection.X) < 5 && 
+            Math.abs(userMercProjection.Y - this.state.userMercProjection.Y) < 5 ){
+            this.setState({
+              sceneVisible: true,
+              arePlacesBeingWatched: newArePlacesBeingWatched,
+            });
+        }else{
+          this.setState({
+            sceneVisible: true,
+            arePlacesBeingWatched: newArePlacesBeingWatched,
+            userMercProjection : userMercProjection,
+          });
+        }
       },
       (error) => {console.log(error.message);},
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 },
@@ -122,7 +130,6 @@ export class ARScene extends Component {
     if(this.state.arePlacesBeingWatched.toString() !== newArePlacesBeingWatched.toString())
       this._getCurrentPosition(newArePlacesBeingWatched)
   }
-
 
   _getViewScale = (viewAR, maxSize, minSize) => {
     let scale = 0;
@@ -174,7 +181,7 @@ export class ARScene extends Component {
         <Viro3DObject
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle, viewAR.architectureDataID)}
           source={this._get3DButtonByViewName(viewAR.label3DObject)} 
-          position={[viewAR.x, 12, viewAR.z]}
+          position={[viewAR.x, 8, viewAR.z]}
           scale={buttonScale}
           resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
           type="OBJ" 
@@ -203,10 +210,9 @@ export class ARScene extends Component {
   }
 
   _transformMercPointToAR = (userMercPoint, viewMercPoint) => {
-    let compassHeading = heading;
     let objFinalPosZ = viewMercPoint.y - userMercPoint.Y;
     let objFinalPosX = viewMercPoint.x - userMercPoint.X;
-    let angle = (compassHeading * Math.PI)/180;
+    let angle = this._toRadians(heading);
     let newRotatedX = objFinalPosX * Math.cos(angle) - objFinalPosZ * Math.sin(angle);
     let newRotatedZ = objFinalPosZ * Math.cos(angle) + objFinalPosX * Math.sin(angle);  
     return this._createARObject(newRotatedX, -newRotatedZ, viewMercPoint);
