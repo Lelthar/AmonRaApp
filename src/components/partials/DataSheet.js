@@ -3,6 +3,7 @@ import {
     Text,
     View,
     TouchableOpacity,
+    Animated,
   } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import styles from "../../assets/styles/partials/dataSheet";
@@ -34,6 +35,7 @@ export default class DataSheet extends Component {
             influence: "",
             dataSheetVisible: false,
             userData: null,
+            fadeValue: new Animated.Value(0),
         }
     }
 
@@ -54,39 +56,52 @@ export default class DataSheet extends Component {
         this.props.showErrorToast(DEFAULT_ERROR_MESSAGE);
     }
 
+    _startAnimation = () => {
+        Animated.timing(this.state.fadeValue, {
+          toValue: 1,
+          duration: 1000
+        }).start();
+    };
+
     showDataSheet(){
-        return (
+    return (
+        <Animated.View
+            style={{
+            opacity: this.state.fadeValue,
+            }}
+        >
         <View style={styles.container}>
-        <View style={styles.dataSheet}>
-            <TouchableOpacity onPress={() => this.props.handlePressDataSheet()}>
+            <View style={styles.dataSheet}>
+                <TouchableOpacity onPress={() => this.props.handlePressDataSheet()}>
                 <Text style={styles.title}> {this.props.houseArPressedName} {'\n'}</Text>
-                
+
                 <Text style={styles.title}>Motivos de la declaratoria: 
-                    <Text style={styles.text}> {this.state.declaration_reason} {'\n'}</Text>
+                <Text style={styles.text}> {this.state.declaration_reason} {'\n'}</Text>
                 </Text>
-                
+
                 <Text style={styles.title}>Año de construcción: 
-                    <Text style={styles.text}> {this.state.build_year} {'\n'}</Text>
+                <Text style={styles.text}> {this.state.build_year} {'\n'}</Text>
                 </Text> 
-                
+
                 <Text style={styles.title}>Influencia: 
-                    <Text style={styles.text}> {this.state.influence} {'\n'}</Text>
+                <Text style={styles.text}> {this.state.influence} {'\n'}</Text>
                 </Text> 
-                
+
                 <Text style={styles.title}>Propietario actual: 
-                    <Text style={styles.text}> {this.state.current_owner} {'\n'}</Text>
+                <Text style={styles.text}> {this.state.current_owner} {'\n'}</Text>
                 </Text> 
-        
+
                 <Text style={styles.title}>Fecha de la declaratoria: 
-                    <Text style={styles.text}> {this.state.declaration_date} {'\n'}</Text>
+                <Text style={styles.text}> {this.state.declaration_date} {'\n'}</Text>
                 </Text> 
-                
+
                 <Text style={styles.title}>Decreto N:
-                    <Text style={styles.text}> {this.state.decree_number} {'\n'}</Text>
+                <Text style={styles.text}> {this.state.decree_number} {'\n'}</Text>
                 </Text> 
-            </TouchableOpacity>
+                </TouchableOpacity>
+            </View>
         </View>
-        </View>
+        </Animated.View>
         );
     }
 
@@ -115,6 +130,8 @@ export default class DataSheet extends Component {
                 influence: responseJson.influence,
                 dataSheetVisible: true,
             });
+            this._startAnimation();
+            
         }else{
             this.showNoDataSheet();
         }
