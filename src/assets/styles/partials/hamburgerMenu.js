@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontSize:14,
-    backgroundColor: '#10535D',
+    backgroundColor: '#00A2B5',
     padding:5,
   },
   hamburgerMenu:{
@@ -35,6 +35,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     right: 0,
+  },
+  textDiscoverHighlight:{
+    color: 'white',
+    textAlign: 'center',
+    fontSize:14,
+    backgroundColor: '#10535D',
+    padding:5,
   },
 });
 
