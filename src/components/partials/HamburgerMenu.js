@@ -99,6 +99,16 @@ const HamburguerComponent = (props) => {
     toggleMenuSide();
   };
 
+  goToMoreAmonRa = () => {
+    props.navigation.navigate('MoreAmonRa', {});
+    toggleMenuSide();
+  }
+
+  goToUseGuide = () => {
+    props.navigation.navigate('UseGuide',{});
+    toggleMenuSide();
+  }
+
   return (
     <View style={styles.hamburgerMenu}>
 
@@ -123,25 +133,36 @@ const HamburguerComponent = (props) => {
                 />
               </TouchableOpacity> }
           />
-          <TouchableOpacity onPress={ onPressTextDiscover } >
+
+          {!isTextDiscoverPressed && 
+            <TouchableOpacity onPress={ onPressTextDiscover } >
             <Text style={styles.textDiscover}>Descubrí Barrio Amón</Text>
           </TouchableOpacity>
-
+          }
+          
           {isTextDiscoverPressed &&
 
-            <View style={{backgroundColor:'#00A2B5'}}>
-              <TouchableOpacity onPress= { goToOrigin }>
-                <Text style={styles.textList} >     •Origen del Barrio</Text>
+            <View>
+              <TouchableOpacity onPress={ onPressTextDiscover } >
+              <Text style={styles.textDiscoverHighlight}>Descubrí Barrio Amón</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress= { goToExperiences }>
-                <Text style={styles.textList} >     •Vivencias</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress= { goToArchitecture }>
-                <Text style={styles.textList} >     •Arquitectura</Text>
-              </TouchableOpacity>
+              <View style={{backgroundColor:'#00A2B5'}}>
+                <TouchableOpacity onPress= { goToOrigin }>
+                  <Text style={styles.textList} >     •Origen del Barrio</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress= { goToExperiences }>
+                  <Text style={styles.textList} >     •Vivencias</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress= { goToArchitecture }>
+                  <Text style={styles.textList} >     •Arquitectura</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           }
-          <TouchableOpacity onPress= {() => props.navigation.navigate('MoreAmonRa', {}) }>
+          <TouchableOpacity onPress= { goToUseGuide }>
+            <Text style={styles.textMoreAmon}>Guía de Uso</Text>
+          </TouchableOpacity> 
+          <TouchableOpacity onPress= { goToMoreAmonRa }>
             <Text style={styles.textMoreAmon}>Más de Amon_RA</Text>
           </TouchableOpacity>     
         </View>

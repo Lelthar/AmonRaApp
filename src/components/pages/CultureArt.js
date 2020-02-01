@@ -64,8 +64,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const CULTURE_ART_URL = "?category=Cultura%20y%20arte"; 
-const MORE_INFO_BTN = require('../../assets/images/directory/masinfogris.png');
-
 class CultureArt extends Component{
   constructor(props){
       super(props);
@@ -136,17 +134,15 @@ class CultureArt extends Component{
                 <TouchableOpacity style={{width: 15}} />
                 <Image  source= {{uri: place.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
                 <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', flex: 1 }}>
-                <Text style={styles.name_place} >  { this.fixPlaceNameWithParenthesis(place.name) }</Text>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('SeeMore', getPropsFromPlace(place))}>
+                  <Text style={styles.name_place} >  { this.fixPlaceNameWithParenthesis(place.name) }</Text>
+                </TouchableOpacity>
+                
                 <Text style={styles.text}>Dirección: {place.direction}</Text>
                 <Text style={styles.text}>Tel: {place.phone_number}</Text>
                 <Text style={styles.text}>Facebook: {place.facebook}</Text> 
-                <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}} onPress={() => this.props.navigation.navigate('SeeMore', getPropsFromPlace(place))}>
-                  <View style={{flexDirection: 'row'}}>
-                    <Image  source={MORE_INFO_BTN}/>
-                  </View>
-                </TouchableOpacity>
                 </View>
-                </View>
+              </View>
 
               )}
             </ScrollView>

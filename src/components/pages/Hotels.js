@@ -64,8 +64,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const HOTEL_URL = "?category=Hospedaje"; 
-const MORE_INFO_BTN = require('../../assets/images/directory/masinfogris.png');
-
 class Hotels extends Component{
 
   constructor(props){
@@ -139,15 +137,12 @@ class Hotels extends Component{
             <TouchableOpacity style={{width: 15}} />
             <Image  source= {{uri: hotel.miniature_image_url}} style={{width: 60, height: 60}} resizeMode='stretch' />
             <View style={{backgroundColor: 'rgba(200, 200, 200, 0.7)', flex: 1}}>
-            <Text style={styles.name_place} >  Hotel: {this.fixPlaceNameWithParenthesis(hotel.name)}</Text>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('SeeMore', getPropsFromPlace(hotel))}>
+                  <Text style={styles.name_place} >  { this.fixPlaceNameWithParenthesis(hotel.name) }</Text>
+            </TouchableOpacity>
             <Text style={styles.text} >  Dirección: {hotel.direction} </Text>
             <Text style={styles.text}>  Tel: {hotel.phone_number}</Text>
             <Text style={styles.text}>  Facebook: {hotel.facebook}</Text>
-            <TouchableOpacity style={{flex: 1,alignItems: 'flex-end'}}  onPress={() => this.props.navigation.navigate('SeeMore', getPropsFromPlace(hotel))} >
-              <View style={{flexDirection: 'row'}}>
-                <Image  source={MORE_INFO_BTN}/>
-              </View>
-            </TouchableOpacity>
             </View>
             </View>
           ))}

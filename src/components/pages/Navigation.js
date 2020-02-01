@@ -36,6 +36,7 @@ import Literature from './Literature';
 import MoreAmonRa from './MoreAmonRa';
 import AmonRaProject from './AmonRaProject';
 import ParticipatoryProcess from "./ParticipatoryProcess";
+import UseGuide from "./UseGuide";
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -178,6 +179,21 @@ const mapStack = createStackNavigator(
         } 
       },
     },
+    UseGuide: {
+      screen: UseGuide,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Guías",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
     Secrets:{
       screen: Secrets,
       navigationOptions: {
@@ -212,7 +228,7 @@ const mapStack = createStackNavigator(
       screen: ExperiencesDetail,
       navigationOptions: {
         headerRight: <HamburgerButton />,
-        title: "Personajes",
+        title: "Vivencias",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
