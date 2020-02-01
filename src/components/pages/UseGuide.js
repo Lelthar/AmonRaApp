@@ -7,7 +7,6 @@ import {
 import styles from "../../assets/styles/pages/useGuide";
 import HamburgerMenu from '../partials/HamburgerMenu';
 import { connect } from "react-redux";
-//import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const buttonMap = require('../../assets/images/useGuide/buttonMap.png');
 const buttonRA = require('../../assets/images/useGuide/buttonRA.png');
@@ -49,7 +48,7 @@ const UseGuide = (props) => {
       <TouchableOpacity style = {styles.button}>
         <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonCompleteGuide} />
       </TouchableOpacity>
-      
+
       {props.menuSide && (
         <HamburgerMenu navigation={props.navigation} /> 
       )}

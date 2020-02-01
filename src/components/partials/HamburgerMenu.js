@@ -107,7 +107,6 @@ const HamburguerComponent = (props) => {
   goToUseGuide = () => {
     props.navigation.navigate('UseGuide',{});
     toggleMenuSide();
-
   }
 
   return (
