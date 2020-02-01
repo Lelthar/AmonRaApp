@@ -32,7 +32,8 @@ const FilterButton = (props) => {
   return (
     <View>
       <TouchableOpacity style={styles.arrowButton} onPress={() => toggleFilters()} >
-        <Image source={require('../../assets/images/map/mapa_filtros.png')} />
+        <Image source={props.filterMenu ? require('../../assets/images/map/mapa_filtro_activo.png'):
+                                          require('../../assets/images/map/mapa_filtro_inactivo.png')} /> 
       </TouchableOpacity> 
     </View>
   );

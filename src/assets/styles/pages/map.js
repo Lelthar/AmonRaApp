@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
   squareButton: {
     resizeMode:'contain',
     flex:1,
+    height: 50,
+    width: 50,
   },
 });
 
