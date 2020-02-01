@@ -285,7 +285,6 @@ const Map = (props) => {
       <View style={{flex:1,justifyContent: 'center',alignItems: 'center'}} >
 
         { /* barra de arriba */}
-        <View style={{flex:8}} />
 
         {/* Body completo, flex row */}
         <View style={{flex:40, flexDirection:'row', justifyContent:'center'}} >
@@ -295,24 +294,28 @@ const Map = (props) => {
           {/* 1 columnas de botón */}
           <View style={{flex:0.5, flexDirection:'column'}} >
 
-            <View style={{flex:0.5}}/>
-
-            <View style={{flex:5.5, flexDirection:'row'}} >
-
+            {/* Boton de filtros */}
+            <View style={{flex:12, flexDirection:'row'}} >
               <View style={{flex:2}} />
-
-              <TouchableOpacity style={styles.imgContainer} onPress={()=> props.changeLayersMenuVisibility()} >
-                <Image
-                  style={styles.squareButton}
-                  source={props.layersMenuVisible ? require('../../assets/images/map/capas-icon-turq.png') :
-                                                    require('../../assets/images/map/capas-icon.png') }
-                />
-              </TouchableOpacity>
+              <FilterButton />
             </View>
 
+            <View style={{flex:12, flexDirection:'row'}} >
+              <View style={{flex:2}} />
+                <TouchableOpacity style={styles.imgContainer} onPress={()=> props.changeLayersMenuVisibility()} >
+                  <Image
+                    style={styles.squareButton}
+                    source={props.layersMenuVisible ? require('../../assets/images/map/capas-icon-turq.png') :
+                                                      require('../../assets/images/map/capas-icon.png') }
+                  />
+                </TouchableOpacity>
+
+              </View>
+            <View/>
+
             <View style={{flex:0.5}}/>
 
-            <View style={{flex:15}} >
+            <View style={{flex:24}} >
             
               {props.layersMenuVisible && (
                 <MapLayersMenu />
@@ -335,11 +338,6 @@ const Map = (props) => {
           <View style={{flex:0.10}} />                  
 
         </View>
-
-        {/* Boton de filtros */}
-        <View style={styles.filterButton} >
-          <FilterButton />
-        </View> 
 
         {/* Menu de filtros del mapa */}          
         {props.filterMenu && (

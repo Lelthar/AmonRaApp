@@ -140,17 +140,6 @@ class FilterMenu extends Component{
         
         <View style={styles.container}>
           <View style={styles.menu}>
-
-            <View style={styles.closeFilter}>
-              <TouchableOpacity onPress={() => this.props.resetAll()} >
-                <Icon
-                  name='times'
-                  size={20}
-                  color="#FFFFFF"
-                />
-              </TouchableOpacity>
-            </View>
-
             <FlatList
               style={styles.menuBox}
               data={this.state.filters}
