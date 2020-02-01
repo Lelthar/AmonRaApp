@@ -35,7 +35,9 @@ export class D3Controller extends Component {
       switchButtomVisible: true,
       menuViews: true,
       dataPointVisible: false,
+      dataPointVisible1: false,
       dataPointViewVisible: false,
+      dataPointViewVisible1: false,
     }
   }   
 
@@ -77,7 +79,19 @@ export class D3Controller extends Component {
           )
         }
 
+        {this.state.dataPointVisible1 && (//PointSheet
+          <PointSheet dataPoint={{data:this.state.dataPoint}} 
+            handlePressDataSheet={this.closeDataPoint}/>
+          )
+        }
+
         {this.state.dataPointViewVisible && (//PointSheet
+          <PointSheetView dataPoint={{data:this.state.dataPoint}} 
+            handlePressDataSheet={this.closeDataPoint}/>
+          )
+        }
+
+        {this.state.dataPointViewVisible1 && (//PointSheet
           <PointSheetView dataPoint={{data:this.state.dataPoint}} 
             handlePressDataSheet={this.closeDataPoint}/>
           )
@@ -100,31 +114,53 @@ export class D3Controller extends Component {
     this.setState({
       menuViews : type,
       dataPointVisible: false,
+      dataPointVisible1: false,
+      dataPointViewVisible: false,
+      dataPointViewVisible1: false,
     });
-  }
-
-  closeDataPoint(){
-    if(!this.state.menuViews){
-      this.setState({
-        dataPointVisible : false,
-      });
-    }else{
-      this.setState({
-        dataPointViewVisible : false,
-      });
-    }
   }
 
   showDataPoint(data){
     if(!this.state.menuViews){
       this.setState({
         dataPointVisible : true,
+        dataPointVisible1 : false,
         dataPoint : data,
       });
+      if(this.state.dataPointVisible){
+        this.setState({
+          dataPointVisible : false,
+          dataPointVisible1 : true,
+          dataPoint : data,
+        });
+      }
     }else{
       this.setState({
         dataPointViewVisible : true,
+        dataPointViewVisible1 :false,
         dataPoint : data,
+      });
+      if(this.state.dataPointViewVisible){
+        this.setState({
+          dataPointViewVisible1 : true,
+          dataPointViewVisible : false,
+          dataPoint : data,
+        });
+      }
+    }
+    console.log(this.state.dataPoint);
+  }
+
+  closeDataPoint(){
+    if(!this.state.menuViews){
+      this.setState({
+        dataPointVisible : false,
+        dataPointVisible1 : false,
+      });
+    }else{
+      this.setState({
+        dataPointViewVisible : false,
+        dataPointViewVisible1 : false,
       });
     }
   }

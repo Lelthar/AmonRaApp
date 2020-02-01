@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import localStyles from "../../assets/styles/partials/pointSheet";
 
-const CLOSE_BTN = require('../../assets/images/augmentedReality/close.png');
+const CLOSE_BTN = require('../../assets/images/virtualReality/cerrar.png');
 
 export default class PointSheet extends Component {
     constructor(props) {
