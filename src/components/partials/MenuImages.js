@@ -84,16 +84,24 @@ export default class MenuImages extends Component {
 
   changeImage3D(button){
     let one,two, three = 0;
+
+    one = this.state.counter.one;
+    two = this.state.counter.two;
+    three = this.state.counter.three;
     let length = this.state.images.length;
 
     if(button == 2){ // go to right
-      one = (this.state.counter.one-1) >= 0 ? (this.state.counter.one-1) : length-1;
-      two = (this.state.counter.two-1) >= 0 ? (this.state.counter.two-1) : length-1;
-      three = (this.state.counter.three-1) >= 0 ? (this.state.counter.three-1) : length-1;
+      if(this.state.counter.three < length-1){
+        one = this.state.counter.one+1;
+        two = this.state.counter.two+1;
+        three = this.state.counter.three+1;
+      }
     }else{ // go to left
-      one = ((this.state.counter.one+1)%length);
-      two = ((this.state.counter.two+1)%length);
-      three = ((this.state.counter.three+1)%length);
+      if(this.state.counter.one>0){
+        one = this.state.counter.one-1;
+        two = this.state.counter.two-1;
+        three = this.state.counter.three-1;
+      }
     }
     this.setState({
       counter: {one: one,two: two, three: three}

@@ -8,7 +8,7 @@ import {
 
 import localStyles from "../../assets/styles/partials/closeButton"; 
 
-const CLOSE_BTN = require('../../assets/images/augmentedReality/close.png');
+const CLOSE_BTN = require('../../assets/images/virtualReality/cerrar.png');
 
 export default class CloseButton extends Component {
     constructor(props) {

@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     closeButton: {
         justifyContent: 'flex-end',
         alignSelf: 'flex-end',
-        width: 20,
-        height:20,
+        width: 17,
+        height:17,
     },
     image:{
         width:200,
