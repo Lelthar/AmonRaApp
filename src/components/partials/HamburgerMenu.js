@@ -85,7 +85,7 @@ const HamburguerComponent = (props) => {
   }, []);
 
   goToOrigin = () => {
-    props.navigation.navigate('Origin',{goToScreen: props.navigation });
+    props.navigation.navigate('Origin',{goToScreen: props.navigation});
     toggleMenuSide(); 
   };
 
@@ -105,7 +105,7 @@ const HamburguerComponent = (props) => {
   }
 
   goToUseGuide = () => {
-    props.navigation.navigate('UseGuide',{});
+    props.navigation.navigate('UseGuide',{goToScreen: props.navigation});
     toggleMenuSide();
   }
 

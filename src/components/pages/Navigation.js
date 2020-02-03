@@ -37,6 +37,7 @@ import MoreAmonRa from './MoreAmonRa';
 import AmonRaProject from './AmonRaProject';
 import ParticipatoryProcess from "./ParticipatoryProcess";
 import UseGuide from "./UseGuide";
+import VideoGuidePlayer from "./VideoGuidePlayer";
 
 import styles from "../../assets/styles/pages/navigation";
 import * as screenInformation from "../../assets/constants/navigation";
@@ -184,6 +185,21 @@ const mapStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Guías",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    VideoGuidePlayer: {
+      screen: VideoGuidePlayer,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Video",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -422,6 +438,21 @@ const virtualVisitStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Más de Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    VideoGuidePlayer: {
+      screen: VideoGuidePlayer,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Video",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
@@ -746,6 +777,21 @@ const urbanOfferStack = createStackNavigator(
         } 
       },
     },
+    VideoGuidePlayer: {
+      screen: VideoGuidePlayer,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Video",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
     Secrets:{
       screen: Secrets,
       navigationOptions: {
@@ -1047,6 +1093,21 @@ const timeLineStack = createStackNavigator(
       navigationOptions: {
         headerRight: <HamburgerButton />,
         title: "Más de Amón_RA",
+        headerStyle:{
+          backgroundColor:'#00A2B5'
+        },
+        headerTitleStyle:{
+          color: "#FFFFFF",
+          textAlign: 'center',
+          flexGrow:1,
+        } 
+      },
+    },
+    VideoGuidePlayer: {
+      screen: VideoGuidePlayer,
+      navigationOptions: {
+        headerRight: <HamburgerButton />,
+        title: "Video",
         headerStyle:{
           backgroundColor:'#00A2B5'
         },
