@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Image,
@@ -20,40 +20,71 @@ const mapStateToProps = state => {
     menuSide: state.menuDataReducer.MENUSIDE,
   }
 };
-const UseGuide = (props) => {
 
-  return (
-    <View style={ styles.container }>
+class UseGuide extends Component {
+  constructor(props) {
+      super(props);
+      this.navigation = this.props.navigation;
+  }
 
-      <TouchableOpacity style = {styles.button}>
-        <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonMap} />
-      </TouchableOpacity>
+  goToVideoMap = () => {
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389089880'});
+  }
 
-      <TouchableOpacity style = {styles.button}>
-        <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonRA} />
-      </TouchableOpacity>
+  goToVideoRA = () => {
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389089903'});
+  }
 
-      <TouchableOpacity style = {styles.button}>
-        <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonVirtualVisit} />
-      </TouchableOpacity>
+  goToVideoVirtual = () => {
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389089933'});
+  }
 
-      <TouchableOpacity style = {styles.button}>
-        <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonUrbanOffer} />
-      </TouchableOpacity>
+  goToVideoUrban = () => {
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389089980'});
+  }
 
-      <TouchableOpacity style = {styles.button}>
-        <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonTimeline} />
-      </TouchableOpacity>
+  goToVideoTime = () => {
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389090003'});
+  }
 
-      <TouchableOpacity style = {styles.button}>
-        <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonCompleteGuide} />
-      </TouchableOpacity>
+  goToVideoComplete = () => {
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389090023'});
+  }
 
-      {props.menuSide && (
-        <HamburgerMenu navigation={props.navigation} /> 
-      )}
-    </View>
-  );
-};
+  render() { 
+    return (
+      <View style={ styles.container }>
+
+        <TouchableOpacity style = {styles.button} onPress={()=>this.goToVideoMap()}>
+          <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonMap} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {styles.button} onPress={()=>this.goToVideoRA()}>
+          <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonRA} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {styles.button} onPress={()=>this.goToVideoVirtual()}>
+          <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonVirtualVisit} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {styles.button} onPress={()=>this.goToVideoUrban()}>
+          <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonUrbanOffer} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {styles.button} onPress={()=>this.goToVideoTime()}>
+          <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonTimeline} />
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {styles.button} onPress={()=>this.goToVideoComplete()}>
+          <Image resizeMode= 'stretch' style={styles.imageResizeAndFillParent} source={buttonCompleteGuide} />
+        </TouchableOpacity>
+
+        {this.props.menuSide && (
+          <HamburgerMenu navigation={this.props.navigation} /> 
+        )}
+      </View>
+    );
+  }
+}
 
 export default connect(mapStateToProps,null)(UseGuide);
