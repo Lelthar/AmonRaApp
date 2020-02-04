@@ -7,7 +7,7 @@ import {
 import localStyles from "../../assets/styles/partials/ARNoSupport";
 
 const txt_msg1 = "¡Lo sentimos!";
-const txt_msg2 = "Tu dispositivo no soporta el experiencia RA";
+const txt_msg2 = "Tu dispositivo no soporta la experiencia RA";
 
 export default class VRSelectionMode extends Component {
     constructor(props) {
