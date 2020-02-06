@@ -7,12 +7,17 @@ import {
   MENURESET
 } from "../actions/menuDataActions"
 
+import {
+  VISIBLE
+} from "../actions/briefInformationActions"
+
 const defaultData = {
   FILTERMENU: false,
   ACTIVEFILTERS: [],
   MENUSIDE: false,
   RATESCREEN: false,
   GUIDESCREEN: false,
+  VISIBLE: false,
 };
 
 const menuDataReducer = (data = defaultData, action) => {
@@ -57,6 +62,15 @@ const menuDataReducer = (data = defaultData, action) => {
         RATESCREEN: data.RATESCREEN,
         GUIDESCREEN: action.data,
       };
+    case VISIBLE:
+      return {
+        FILTERMENU: data.FILTERMENU,
+        ACTIVEFILTERS: data.ACTIVEFILTERS,
+        MENUSIDE: data.MENUSIDE,
+        RATESCREEN: data.RATESCREEN,
+        GUIDESCREEN: data.GUIDESCREEN,
+        VISIBLE: action.data,
+      };
     case MENURESET:
       return {
         FILTERMENU: false,
@@ -64,6 +78,7 @@ const menuDataReducer = (data = defaultData, action) => {
         MENUSIDE: false,
         RATESCREEN: false,
         GUIDESCREEN: false,
+        VISIBLE: false
       };
     default:
       return data;
