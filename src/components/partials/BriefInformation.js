@@ -83,18 +83,6 @@ const BriefInformation = (props) => {
         )}
             
       </View>
-
-      <View style={{flex:1}} >
-        <View style={{flex:1}} >
-          <TouchableOpacity style={{flex: 1, alignItems: 'flex-end'}} onPress={toggleInformation} >
-            <Icon
-              name='times'
-              size={22}
-              color="#FFFFFF"
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
     </View>
   );
 };

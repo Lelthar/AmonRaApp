@@ -56,7 +56,7 @@ const mapStateToProps = state => {
     activeFilters: state.menuDataReducer.ACTIVEFILTERS,
     filterMenu: state.menuDataReducer.FILTERMENU,
     menuSide: state.menuDataReducer.MENUSIDE,
-    informationVisible: state.briefInformationReducer.VISIBLE,
+    informationVisible: state.menuDataReducer.VISIBLE,
     mapStyle: state.mapReducer.MAP_STYLE,
     layersMenuVisible: state.mapReducer.LAYERS_MENU_VISIBLE,
     region: state.mapReducer.REGION,
