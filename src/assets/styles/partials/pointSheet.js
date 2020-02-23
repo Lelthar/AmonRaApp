@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     text: {
-        textAlign: "justify",
+        textAlign: "left",
         color: '#6D6F70',
         fontSize: 13,
         fontFamily: "Barlow-Regular",
     },
     textInf:{
-        textAlign: "justify",
+        textAlign: "left",
         alignSelf: 'center',
         color: '#6D6F70',
         fontSize: 12,
