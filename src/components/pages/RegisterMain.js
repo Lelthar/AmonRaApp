@@ -49,7 +49,12 @@ class RegisterMain extends React.Component {
 
             </TouchableOpacity>
 
-            <TouchableOpacity 
+            {
+              /*Al descomentar el boton de facebook se debe
+              ir a los estilos y eliminar el marginTop del estilo ButtonRegister*/
+            }
+            
+            {/* <TouchableOpacity 
               style={styles.FacebookStyle} 
               activeOpacity={0.5}>
 
@@ -57,7 +62,7 @@ class RegisterMain extends React.Component {
                 source={FACEBOOK_BTN} 
                 style={styles.ImageIconStyle}/>
 
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
         </View>

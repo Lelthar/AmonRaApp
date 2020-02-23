@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         marginLeft:50,
         marginRight: 50,
+        marginTop: 20 //Si se agrega el boton de Facebook se debe eliminar este margen
     },
     ButtonText:{
         flex: 4,

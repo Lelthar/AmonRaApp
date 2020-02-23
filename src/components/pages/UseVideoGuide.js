@@ -4,6 +4,7 @@ import {
     Text,
     TouchableOpacity,
     View,
+    Alert
 } from 'react-native';
 import VideoPlayer from 'react-native-video-player';
 import styles from "../../assets/styles/pages/useVideoGuide";
@@ -38,7 +39,7 @@ export default class UseGuide extends Component {
       progress: 0,
     });
     this.player.showControls();
-
+    Alert.alert('¡Conoce AmonRA!','Puedes visitar la guía de uso en el menú para visualizar un conjunto de vídeos que te explican como utilizar correctamente AmonRA.');
     this.props.navigation.navigate('MainApp');
   }
 
