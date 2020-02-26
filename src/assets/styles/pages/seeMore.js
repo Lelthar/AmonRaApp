@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   descriptionOr: {
-    textAlign: "justify", fontSize:18,
+    textAlign: "left", fontSize:18,
     color: "#0C5B60",
     paddingLeft:20,
     paddingRight:20,

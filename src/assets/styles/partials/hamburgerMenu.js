@@ -17,17 +17,21 @@ const styles = StyleSheet.create({
   },
   textMoreAmon:{
     color: 'white',
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize:14,
     backgroundColor: '#00A2B5',
-    padding:5,
+    paddingTop:5,
+    paddingBottom:5,
+    paddingLeft: 20
   },
   textDiscover:{
     color: 'white',
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize:14,
     backgroundColor: '#00A2B5',
-    padding:5,
+    paddingTop:5,
+    paddingBottom:5,
+    paddingLeft: 20
   },
   hamburgerMenu:{
     backgroundColor:'#00A2B5',
@@ -38,10 +42,12 @@ const styles = StyleSheet.create({
   },
   textDiscoverHighlight:{
     color: 'white',
-    textAlign: 'center',
+    textAlign: 'left',
     fontSize:14,
     backgroundColor: '#10535D',
-    padding:5,
+    paddingTop:5,
+    paddingBottom:5,
+    paddingLeft: 20
   },
 });
 

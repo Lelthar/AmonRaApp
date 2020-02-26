@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     houseDescription:{
-        textAlign: "justify", 
+        textAlign: "left", 
         fontSize: 17,
         color: "grey",
     },
