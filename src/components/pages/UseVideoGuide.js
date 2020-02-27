@@ -39,7 +39,7 @@ export default class UseGuide extends Component {
       progress: 0,
     });
     this.player.showControls();
-    Alert.alert('¡Conoce AmonRA!','Puedes visitar la guía de uso en el menú para visualizar un conjunto de vídeos que te explican como utilizar correctamente AmonRA.');
+    Alert.alert('¡Conoce AmónRA!','Puedes visitar la guía de uso en el menú para visualizar un conjunto de vídeos que te explican como utilizar correctamente AmónRA.');
     this.props.navigation.navigate('MainApp');
   }
 
