@@ -28,27 +28,27 @@ class UseGuide extends Component {
   }
 
   goToVideoMap = () => {
-    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389089880'});
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'395989564'});
   }
 
   goToVideoRA = () => {
-    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389089903'});
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'395989594'});
   }
 
   goToVideoVirtual = () => {
-    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389089933'});
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'395989618'});
   }
 
   goToVideoUrban = () => {
-    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389089980'});
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'395989669'});
   }
 
   goToVideoTime = () => {
-    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389090003'});
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'395989695'});
   }
 
   goToVideoComplete = () => {
-    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'389090023'});
+    this.props.navigation.navigate('VideoGuidePlayer', {goToScreen:this.props.navigation, videoID:'395989709'});
   }
 
   render() { 
