@@ -101,28 +101,30 @@ export class ARScene extends Component {
 
   /* 
     Update position when distance between new pos and old pos is more than 
-    constant DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE value 
+    constant DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE value in meters
   */
-  _shouldUpdatePosition = (newUserMercProjection) => (
-    Math.abs(newUserMercProjection.X - this.state.userMercProjection.X) < DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE 
-    &&
-    Math.abs(newUserMercProjection.Y - this.state.userMercProjection.Y) < DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE 
-  );
+  _shouldUpdatePosition = (newUserMercProjection) => {
+    const xMetersDiff = Math.abs(newUserMercProjection.X - this.state.userMercProjection.X);
+    const xBool = xMetersDiff > DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE;
+    const yMetersDiff = Math.abs(newUserMercProjection.Y - this.state.userMercProjection.Y);
+    const yBool = yMetersDiff > DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE;
+    return xBool || yBool;
+  };
 
   _getCurrentPosition = (newArePlacesBeingWatched) => {
     Geolocation.getCurrentPosition(
       (position) => {
-        let userMercProjection = this._coordLatLongToMercatorProjection(position.coords.latitude, position.coords.longitude);
+        const userMercProjection = this._coordLatLongToMercatorProjection(position.coords.latitude, position.coords.longitude);
         if(this._shouldUpdatePosition(userMercProjection)){
           this.setState({
             sceneVisible: true,
             arePlacesBeingWatched: newArePlacesBeingWatched,
+            userMercProjection : userMercProjection,
           });
         }else{
           this.setState({
             sceneVisible: true,
             arePlacesBeingWatched: newArePlacesBeingWatched,
-            userMercProjection : userMercProjection,
           });
         }
       },
