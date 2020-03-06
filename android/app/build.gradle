@@ -103,7 +103,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     flavorDimensions "platform"
-    
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -136,16 +136,16 @@ android {
             buildConfigField 'String', 'VR_PLATFORM', '"OVR_MOBILE"'
         }*/
     }
-    
+
     signingConfigs {
         release {
-            storeFile file(MYAPP_RELEASE_STORE_FILE)
-            storePassword MYAPP_RELEASE_STORE_PASSWORD
-            keyAlias MYAPP_RELEASE_KEY_ALIAS
-            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+          storeFile file(MYAPP_UPLOAD_STORE_FILE)
+          storePassword MYAPP_UPLOAD_STORE_PASSWORD
+          keyAlias MYAPP_UPLOAD_KEY_ALIAS
+          keyPassword MYAPP_UPLOAD_KEY_PASSWORD
         }
     }
-    
+
     splits {
         abi {
             reset()
@@ -160,9 +160,9 @@ android {
             matchingFallbacks = ['release', 'debug']
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
-            
+
         }
-        
+
     }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
@@ -212,7 +212,7 @@ dependencies {
    implementation 'com.amazonaws:aws-android-sdk-cognito:2.7.7'
    implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider:2.7.7'
    implementation project(':react-native-geolocation-service')
-   implementation 'com.google.android.gms:play-services-auth:16.0.1' 
+   implementation 'com.google.android.gms:play-services-auth:16.0.1'
    implementation project(':react-native-simple-compass')
     implementation 'com.facebook.fresco:fresco:1.10.0'
     implementation 'com.facebook.fresco:animated-gif:1.10.0'

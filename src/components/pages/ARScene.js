@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 
 import {
   ViroARScene,
-  Viro3DObject, 
-  ViroAmbientLight, 
+  Viro3DObject,
+  ViroAmbientLight,
   ViroNode,
   ViroImage,
   ViroConstants,
 } from 'react-viro';
 
-import { 
+import {
   AR_PLACES_URL,
   USER_DATA,
 } from '../../../constants/routesAPI';
@@ -26,6 +26,7 @@ import RNSimpleCompass from 'react-native-simple-compass';
 import Items3D from '../../assets/objects/indexObj';
 import Materials3D from '../../assets/objects/indexMaterials';
 
+const DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE = 5;
 const DEGREE_UPDATE_RATE = 10;
 const DISTANCE_MAX = 70;
 const SIZE_MIN = 1;
@@ -41,7 +42,7 @@ export class ARScene extends Component {
     super(props);
 
     this.state = {
-      sceneVisible: false, 
+      sceneVisible: false,
       trackingUpdated: true,
       arePlacesBeingWatched: [],
       userMercProjection: {X: 0, Y: 0},
@@ -54,14 +55,14 @@ export class ARScene extends Component {
     if (requestPermissions()) {
       this.get_backend_data();
       this._startCompass();
-    } 
+    }
   }
 
   componentWillUnmount(){
     RNSimpleCompass.stop();
   }
 
-  render() { 
+  render() {
     return (
       <ViroARScene>
         {this.state.sceneVisible && this.state.trackingUpdated && (
@@ -93,21 +94,30 @@ export class ARScene extends Component {
 
   _startCompass = () => {
     RNSimpleCompass.start(DEGREE_UPDATE_RATE, (degree) => {
-      heading = degree 
+      heading = degree
       this._iterateARViewsHeading();
     });
   }
+
+  /* 
+    Update position when distance between new pos and old pos is more than 
+    constant DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE value 
+  */
+  _shouldUpdatePosition = (newUserMercProjection) => (
+    Math.abs(newUserMercProjection.X - this.state.userMercProjection.X) < DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE 
+    &&
+    Math.abs(newUserMercProjection.Y - this.state.userMercProjection.Y) < DIST_ALLOWED_MOV_WITHOUT_POS_UPDATE 
+  );
 
   _getCurrentPosition = (newArePlacesBeingWatched) => {
     Geolocation.getCurrentPosition(
       (position) => {
         let userMercProjection = this._coordLatLongToMercatorProjection(position.coords.latitude, position.coords.longitude);
-        if (Math.abs(userMercProjection.X - this.state.userMercProjection.X) < 5 && 
-            Math.abs(userMercProjection.Y - this.state.userMercProjection.Y) < 5 ){
-            this.setState({
-              sceneVisible: true,
-              arePlacesBeingWatched: newArePlacesBeingWatched,
-            });
+        if(this._shouldUpdatePosition(userMercProjection)){
+          this.setState({
+            sceneVisible: true,
+            arePlacesBeingWatched: newArePlacesBeingWatched,
+          });
         }else{
           this.setState({
             sceneVisible: true,
@@ -121,6 +131,10 @@ export class ARScene extends Component {
     );
   }
 
+  /*
+    Check which Amon Views are being watched by the user and gets the current device position 
+    in order to alocate AR Images.
+  */
   _iterateARViewsHeading = () => {
     let newArePlacesBeingWatched = [];
     this.state.placesARData.forEach((placeAR) => {
@@ -145,22 +159,26 @@ export class ARScene extends Component {
     return [scale,scale,scale];
   }
 
+  /*
+    Check if device compass is heading to the Amon view compass range. 
+  */
   _isCurrentHeadingBetweenViewsHeadingRange = (placeAR) => {
-    if (placeAR.min_degree > placeAR.max_degree){ // Cuando es de i.e 240 a 40 
-      if ((placeAR.min_degree > heading && heading < placeAR.max_degree) || (placeAR.min_degree < heading && heading > placeAR.max_degree))
+    if (placeAR.min_degree > placeAR.max_degree){ // Cuando es de i.e 240 a 40
+      if ((placeAR.min_degree > heading && heading < placeAR.max_degree) ||
+         (placeAR.min_degree < heading && heading > placeAR.max_degree))
         return true;
     }
     else if(placeAR.min_degree < heading && heading < placeAR.max_degree)
       return true;
-    
+
     return false;
   }
 
-  enableARViewByHeadingCompass = (place, index) => {    
+  enableARViewByHeadingCompass = (place, index) => {
     return (
       this.state.arePlacesBeingWatched[index]
       ? this._setARView(place)
-      : null 
+      : null
     );
   }
 
@@ -170,21 +188,21 @@ export class ARScene extends Component {
     let buttonScale = this._getViewScale(newARView, LABEL_SIZE_MAX, LABEL_SIZE_MIN);
     if(JSON.stringify(imageScale) !== JSON.stringify([0,0,0]))
       return this.showARView(newARView, imageScale, buttonScale) ;
-    
+
     return null;
   }
-  
+
   showARView = (viewAR, imageScale, buttonScale) => {
-    return( 
+    return(
       <ViroNode key={viewAR.placeID}>
         <ViroAmbientLight color="#FFFFFF"/>
         <Viro3DObject
           onClick={() => this.props.arSceneNavigator.viroAppProps.setInformation(viewAR.placeID, viewAR.tittle, viewAR.architectureDataID)}
-          source={this._get3DButtonByViewName(viewAR.label3DObject)} 
+          source={this._get3DButtonByViewName(viewAR.label3DObject)}
           position={[viewAR.x, 8, viewAR.z]}
           scale={buttonScale}
           resources={[this._get3DMaterialByViewName(viewAR.label3DObject)]}
-          type="OBJ" 
+          type="OBJ"
         />
         <ViroImage
           position={[viewAR.x, 0.1, viewAR.z]}
@@ -209,30 +227,37 @@ export class ARScene extends Component {
     }
   }
 
+  /*
+    Receive user position 2D Mercator Projection and Amon view 2D Mercator projection and transform 
+    to the 2D distance between both points in meters.
+  */
   _transformMercPointToAR = (userMercPoint, viewMercPoint) => {
     let objFinalPosZ = viewMercPoint.y - userMercPoint.Y;
     let objFinalPosX = viewMercPoint.x - userMercPoint.X;
     let angle = this._toRadians(heading);
     let newRotatedX = objFinalPosX * Math.cos(angle) - objFinalPosZ * Math.sin(angle);
-    let newRotatedZ = objFinalPosZ * Math.cos(angle) + objFinalPosX * Math.sin(angle);  
+    let newRotatedZ = objFinalPosZ * Math.cos(angle) + objFinalPosX * Math.sin(angle);
     return this._createARObject(newRotatedX, -newRotatedZ, viewMercPoint);
   }
-  
+
   _createARObject = (newX, newZ, place) => {
-    return ({ 
-              x: newX, 
-              z: newZ, 
-              placeID: place.feature_id, 
+    return ({
+              x: newX,
+              z: newZ,
+              placeID: place.feature_id,
               tittle: place.name,
               architectureDataID: place.architecture_data_id,
-              img: place.image_url, 
+              img: place.image_url,
               label3DObject: place.label_3d,
               "min_degree": place.min_degree,
               "max_degree": place.max_degree
            });
   }
 
-  _coordLatLongToMercatorProjection = (lat_degree, lon_degree) => { 
+  /*
+    Transform lat/long position to 2D Mercator Projection
+  */
+  _coordLatLongToMercatorProjection = (lat_degree, lon_degree) => {
     const earth_radius = 6378137.0;
     let lon_radians = this._toRadians(lon_degree);
     let lat_radians = this._toRadians(lat_degree);
@@ -331,7 +356,7 @@ export class ARScene extends Component {
       "escuelatecnicanacional": Materials3D.escuelatecnicanacional,
       "hotelAmstelAmon": Materials3D.hotelAmstelAmon,
     };
-    
+
     return materials[viewName];
   }
 
